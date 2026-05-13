@@ -1073,10 +1073,12 @@
       btn.disabled = true;
 
       try {
-        const res = await fetch('https://formspree.io/f/xpqbnldg', {
+        const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
+            access_key: 'b45d09cf-f309-4553-a511-33909841478b',
+            subject: '[이바우펫] 새 상담 신청이 도착했습니다',
             성함: name,
             연락처: phone,
             수강목적: selectedPurpose,
