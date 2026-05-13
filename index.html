@@ -1054,55 +1054,55 @@
     document.getElementById('form-error').style.display = 'none';
   }
 
-  function submitForm() {
-    clearError();
-    const name   = document.getElementById('f-name').value.trim();
-    const phone  = document.getElementById('f-phone').value.trim();
-    const region = document.getElementById('f-region').value.trim();
-    const agreed = document.getElementById('f-agree').checked;
+    /* ─ FORM SUBMIT ─ */
+    async function submitForm() {
+      clearError();
+      const name   = document.getElementById('f-name').value.trim();
+      const phone  = document.getElementById('f-phone').value.trim();
+      const region = document.getElementById('f-region').value.trim();
+      const agreed = document.getElementById('f-agree').checked;
 
-    if (!name)            { showError('성함을 입력해 주세요.'); return; }
-    if (phone.length < 9) { showError('연락처를 올바르게 입력해 주세요.'); return; }
-    if (!selectedPurpose) { showError('수강 목적을 선택해 주세요.'); return; }
-    if (!region)          { showError('희망 교육 지역을 입력해 주세요.'); return; }
-    if (!agreed)          { showError('개인정보 수집 및 이용에 동의해 주세요.'); return; }
+      if (!name)            { showError('성함을 입력해 주세요.'); return; }
+      if (phone.length < 9) { showError('연락처를 올바르게 입력해 주세요.'); return; }
+      if (!selectedPurpose) { showError('수강 목적을 선택해 주세요.'); return; }
+      if (!region)          { showError('희망 교육 지역을 입력해 주세요.'); return; }
+      if (!agreed)          { showError('개인정보 수집 및 이용에 동의해 주세요.'); return; }
 
-    /* ═════════════════════════════════════════════════
-       📌 실제 폼 전송 연동 방법 (배포 시 주석 해제):
-       
-       옵션 A – 네이버 폼 / 구글 폼: action URL 교체 후 fetch
-       옵션 B – 이메일 전송 서비스 (EmailJS, Formspree 등)
-       옵션 C – 자체 백엔드 API 연결
-       
-       예시 (Formspree):
-       fetch('https://formspree.io/f/YOUR_FORM_ID', {
-         method: 'POST',
-         headers: { 'Content-Type': 'application/json' },
-         body: JSON.stringify({ name, phone, purpose: selectedPurpose, region })
-       });
-    ═════════════════════════════════════════════════ */
+      const btn = document.getElementById('submit-btn');
+      btn.textContent = '전송 중...';
+      btn.disabled = true;
 
-    /* 전환 추적 */
-    naverCnv("1");
-    ga4('form_submit', `상담신청_${selectedPurpose}_${region}`);
+      try {
+        const res = await fetch('https://formspree.io/f/xpqbnldg', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            성함: name,
+            연락처: phone,
+            수강목적: selectedPurpose,
+            희망지역: region
+          })
+        });
 
-    /* 성공 화면 */
-    const btn = document.getElementById('submit-btn');
-    btn.textContent = '✅ 신청 완료!';
-    btn.disabled = true;
-
-    setTimeout(() => {
-      document.getElementById('formState').style.display = 'none';
-      document.getElementById('successState').style.display = 'block';
-      /* 폼 초기화 */
-      ['f-name','f-phone','f-region'].forEach(id => document.getElementById(id).value = '');
-      document.querySelectorAll('.purpose-chip').forEach(c => c.classList.remove('selected'));
-      document.getElementById('f-agree').checked = false;
-      selectedPurpose = '';
-      btn.textContent = '📋 상담 신청 완료하기';
-      btn.disabled = false;
-    }, 600);
-  }
+        if (res.ok) {
+          naverCnv("1");
+          ga4('form_submit', `상담신청_${selectedPurpose}_${region}`);
+          document.getElementById('formState').style.display = 'none';
+          document.getElementById('successState').style.display = 'block';
+          ['f-name','f-phone','f-region'].forEach(id => document.getElementById(id).value = '');
+          document.querySelectorAll('.purpose-chip').forEach(c => c.classList.remove('selected'));
+          document.getElementById('f-agree').checked = false;
+          selectedPurpose = '';
+        } else {
+          showError('전송에 실패했습니다. 다시 시도해 주세요.');
+        }
+      } catch(e) {
+        showError('네트워크 오류가 발생했습니다. 전화나 카카오톡으로 문의해 주세요.');
+      } finally {
+        btn.textContent = '📋 상담 신청 완료하기';
+        btn.disabled = false;
+      }
+    }
 
   /* ESC 닫기 */
   document.addEventListener('keydown', e => {
