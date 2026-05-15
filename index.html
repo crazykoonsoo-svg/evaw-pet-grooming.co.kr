@@ -1144,6 +1144,14 @@
           })
         });
 
+        // Google Sheets 동시 저장
+        fetch('https://script.google.com/macros/s/AKfycbwRhbSn6XvqrFs4je9n1a65gG28nlsm6TbwVMEoRajn4joiwdEN53i2p5gThpjXV5rkRg/exec', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 성함: name, 연락처: phone, 수강목적: selectedPurpose, 희망지역: region }),
+          mode: 'no-cors'
+        }).catch(() => {});
+
         if (res.ok) {
           naverCnv("1");
           ga4('form_submit', `상담신청_${selectedPurpose}_${region}`);
