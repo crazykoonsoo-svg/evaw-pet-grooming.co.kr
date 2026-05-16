@@ -405,9 +405,40 @@
     .success-desc  { font-size:.85rem; color:var(--text-lt); line-height:1.6; margin-bottom:24px; }
 
     /* ── UTIL ── */
-    @media (max-width:480px) {
-      #stickyBar { padding-bottom:calc(14px + env(safe-area-inset-bottom)); }
+    /* ── NEWS SLIDER ── */
+    #news { background:var(--white); }
+    .news-slider { overflow:hidden; position:relative; }
+    .news-track  { display:flex; gap:14px; transition:transform .4s cubic-bezier(.4,0,.2,1); will-change:transform; }
+    .news-card   {
+      min-width:calc(100vw - 60px); max-width:380px;
+      background:var(--bg-main); border:1px solid var(--gray-2);
+      border-radius:var(--r16); padding:20px 18px; flex-shrink:0;
+      display:flex; flex-direction:column; gap:10px;
+      transition:var(--tr);
     }
+    .news-card:hover { box-shadow:var(--shadow-md); transform:translateY(-2px); }
+    .news-badge {
+      display:inline-flex; align-items:center; gap:5px;
+      background:var(--gold-bg); color:#7a5c10;
+      border:1px solid rgba(201,168,76,.25);
+      border-radius:50px; padding:3px 10px;
+      font-size:.68rem; font-weight:700; width:fit-content;
+    }
+    .news-title  { font-size:.9rem; font-weight:800; color:var(--text-dk); line-height:1.4; letter-spacing:-0.02em; }
+    .news-desc   { font-size:.78rem; color:var(--text-mid); line-height:1.6; flex:1; }
+    .news-footer { display:flex; align-items:center; justify-content:space-between; padding-top:8px; border-top:1px solid var(--gray-2); }
+    .news-date   { font-size:.7rem; color:var(--text-lt); }
+    .news-link   {
+      font-size:.72rem; font-weight:700; color:var(--navy);
+      text-decoration:none; display:flex; align-items:center; gap:4px;
+      padding:5px 12px; border-radius:50px;
+      background:var(--gray-1); border:1px solid var(--gray-2);
+      transition:var(--tr);
+    }
+    .news-link:hover { background:var(--navy); color:#fff; }
+    .news-dots { display:flex; justify-content:center; gap:6px; margin-top:18px; }
+    .news-dot { width:6px; height:6px; border-radius:50%; background:var(--gray-2); cursor:pointer; transition:var(--tr); border:none; padding:0; }
+    .news-dot.active { background:var(--navy); width:20px; border-radius:3px; }
     @media (min-width:481px) { .wrap { padding:0 24px; } }
 
     /* ── PHONE POPUP ── */
@@ -890,6 +921,70 @@
   </div>
 </section>
 
+<!-- ── NEWS SECTION ──────────────────────────── -->
+<section id="news" aria-labelledby="news-h">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <div class="sec-tag">📰 최근 소식</div>
+      <h2 class="t-section sec-title" id="news-h">Evaw Pet<br/>새소식</h2>
+      <div class="divider"></div>
+    </div>
+  </div>
+
+  <div class="news-slider" role="region" aria-label="최근 소식 슬라이더">
+    <div class="news-track" id="newsTrack" style="padding:0 20px;">
+
+      <article class="news-card">
+        <div class="news-badge">📺 방송</div>
+        <div class="news-title">'나혼자산다' 레드벨벳 조이, 애견 미용사 자격증 도전…학원 어디?</div>
+        <div class="news-desc">MBC '나 혼자 산다'에서 조이가 반려견 '햇님이'와 함께 애견 미용사 자격증 취득에 도전하는 일상을 공개해 화제를 모았습니다.</div>
+        <div class="news-footer">
+          <span class="news-date">2026.05.15</span>
+          <a href="https://www.gukjenews.com/news/articleView.html?idxno=3583588" class="news-link" target="_blank" rel="noopener">기사 보기 →</a>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-badge">📺 뉴스1</div>
+        <div class="news-title">'나혼산' 조이, 애견 미용사 자격증 도전…"연예인 못하게 된다면?"</div>
+        <div class="news-desc">레드벨벳 조이가 '나 혼자 산다'에서 애견 미용사 자격증에 도전하며 "연예인을 못 하게 된다면 이걸 할 것"이라고 밝혀 눈길을 끌었습니다.</div>
+        <div class="news-footer">
+          <span class="news-date">2026.05.16</span>
+          <a href="https://www.news1.kr/entertain/broadcast-tv/6168431" class="news-link" target="_blank" rel="noopener">기사 보기 →</a>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-badge">🎓 산학협력</div>
+        <div class="news-title">광주여대 반려동물보건학과, Evaw Pet 애견미용학원과 산학협력 MOU 체결</div>
+        <div class="news-desc">광주여대 반려동물보건학과는 Evaw Pet 애견미용학원과 산학협력 강화를 위한 업무협약(MOU)을 체결, 학생들에게 차별화된 실무 교육 기회를 제공합니다.</div>
+        <div class="news-footer">
+          <span class="news-date">2026.04.03</span>
+          <a href="https://www.veritas-a.com/news/articleView.html?idxno=604452" class="news-link" target="_blank" rel="noopener">기사 보기 →</a>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-badge">🏫 대학</div>
+        <div class="news-title">호남대학교 × Evaw Pet 애견미용학원 산학협력 협약 체결</div>
+        <div class="news-desc">호남대학교와 Evaw Pet 애견미용학원이 산학협력 협약을 맺고 학생들의 현장 실무 역량 강화를 위한 교육 연계 프로그램을 운영합니다.</div>
+        <div class="news-footer">
+          <span class="news-date">2026</span>
+          <a href="https://www.honam.ac.kr/UniNews/1/read/26083" class="news-link" target="_blank" rel="noopener">기사 보기 →</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <div class="news-dots" role="tablist">
+    <button class="news-dot active" role="tab" aria-selected="true"  data-idx="0" aria-label="소식 1"></button>
+    <button class="news-dot"        role="tab" aria-selected="false" data-idx="1" aria-label="소식 2"></button>
+    <button class="news-dot"        role="tab" aria-selected="false" data-idx="2" aria-label="소식 3"></button>
+    <button class="news-dot"        role="tab" aria-selected="false" data-idx="3" aria-label="소식 4"></button>
+  </div>
+</section>
+
 <!-- ── FOOTER ─────────────────────────────────── -->
 <footer style="background:#0d1628;padding:24px 20px 160px;text-align:center;">
   <div style="max-width:480px;margin:0 auto;">
@@ -1028,7 +1123,25 @@
 
 <!-- ── JAVASCRIPT ──────────────────────────────── -->
 <script>
-  /* STICKY BAR */
+  /* NEWS SLIDER */
+  const newsTrack = document.getElementById('newsTrack');
+  const newsDots  = document.querySelectorAll('.news-dot');
+  let newsCur = 0, newsAuto;
+  function newsGoTo(i) {
+    const w = newsTrack.querySelector('.news-card').offsetWidth + 14;
+    newsCur = i;
+    newsTrack.style.transform = `translateX(${-w * newsCur}px)`;
+    newsDots.forEach((d, j) => { d.classList.toggle('active', j === newsCur); d.setAttribute('aria-selected', String(j === newsCur)); });
+  }
+  newsDots.forEach(d => d.addEventListener('click', () => { clearInterval(newsAuto); newsGoTo(+d.dataset.idx); startNewsAuto(); }));
+  function startNewsAuto() { newsAuto = setInterval(() => newsGoTo((newsCur + 1) % newsDots.length), 5000); }
+  startNewsAuto();
+  let ntx = 0;
+  newsTrack.addEventListener('touchstart', e => { ntx = e.touches[0].clientX; }, { passive: true });
+  newsTrack.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - ntx;
+    if (Math.abs(dx) > 50) { clearInterval(newsAuto); newsGoTo(dx < 0 ? Math.min(newsCur+1, newsDots.length-1) : Math.max(newsCur-1, 0)); startNewsAuto(); }
+  }, { passive: true });
   const stickyBar = document.getElementById('stickyBar');
   window.addEventListener('scroll', () => {
     stickyBar.classList.toggle('visible', window.scrollY > 300);
