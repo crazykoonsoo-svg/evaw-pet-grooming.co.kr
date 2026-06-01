@@ -1321,5 +1321,14 @@
   document.querySelectorAll('a[href*="kakao"]').forEach(el => el.addEventListener('click', () => { naverCnv("1"); ga4('kakao_inquiry','카카오문의'); }));
   document.querySelectorAll('a[href*="naver.me"]').forEach(el => el.addEventListener('click', () => { naverCnv("3"); ga4('naver_inquiry','네이버문의'); }));
 </script>
+  <!-- 네이버 애널리틱스 -->
+  <script type="text/javascript" src="//wcs.pstatic.net/wcslog.js"></script>
+  <script type="text/javascript">
+    if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "cf421df2fe08a8";
+    if(window.wcs) {
+      wcs_do();
+    }
+  </script>
 </body>
 </html>
