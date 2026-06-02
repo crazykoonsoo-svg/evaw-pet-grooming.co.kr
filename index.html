@@ -273,6 +273,63 @@
     .tag-gold   { background:var(--gold-bg); color:var(--gold); }
     .tag-red    { background:#fce4ec; color:#c62828; }
     .tag-purple { background:#f3e5f5; color:#7b1fa2; }
+    .tag-hit    { background:linear-gradient(135deg,#fff3cd,#ffe08a); color:#7a5010; border:1px solid rgba(201,168,76,.3); }
+
+    /* Hit 카드 */
+    .curr-hit {
+      background:linear-gradient(135deg,#fffbf0,#fff8e1);
+      border:1.5px solid rgba(201,168,76,.35);
+      position:relative; overflow:hidden;
+    }
+    .curr-hit::before {
+      content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
+      background:linear-gradient(180deg,var(--gold),var(--gold-lt));
+    }
+    .curr-num-hit {
+      background:linear-gradient(135deg,#fff3cd,#ffe08a) !important;
+      font-size:1rem !important;
+    }
+
+    /* 커리큘럼 카드 터치 임팩트 */
+    .curr-card {
+      cursor:pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .curr-card:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 8px 24px rgba(22,33,62,.13);
+      border-color: rgba(22,33,62,.2);
+    }
+    .curr-hit:hover {
+      border-color: rgba(201,168,76,.6) !important;
+      box-shadow: 0 8px 24px rgba(201,168,76,.2) !important;
+    }
+    .curr-card:active {
+      transform: scale(0.96);
+      box-shadow: 0 2px 8px rgba(22,33,62,.15);
+    }
+    .curr-card.ripple-active {
+      animation: cardPop .3s cubic-bezier(.36,.07,.19,.97);
+    }
+    @keyframes cardPop {
+      0%   { transform:scale(1); }
+      40%  { transform:scale(0.95); box-shadow:0 0 0 6px rgba(22,33,62,.08); }
+      70%  { transform:scale(1.02); }
+      100% { transform:scale(1); }
+    }
+
+    /* 리플 효과 */
+    .ripple {
+      position:absolute; border-radius:50%;
+      background:rgba(22,33,62,.12);
+      transform:scale(0);
+      animation:rippleAnim .5s linear;
+      pointer-events:none;
+    }
+    @keyframes rippleAnim {
+      to { transform:scale(4); opacity:0; }
+    }
 
     /* ── CTA BANNER ── */
     .cta-banner { background:linear-gradient(135deg,var(--navy),var(--navy-lt)); padding:36px 20px; text-align:center; position:relative; overflow:hidden; }
@@ -720,13 +777,17 @@
         <div class="curr-left"><div class="curr-num">4</div><div><div class="curr-name">취업·창업반</div><div class="curr-sub">실무 완성 + 취업 연계</div></div></div>
         <span class="tag tag-red">취업</span>
       </div>
+      <div class="curr-card curr-hit" role="listitem">
+        <div class="curr-left"><div class="curr-num curr-num-hit">🔥</div><div><div class="curr-name">종합·심화반</div><div class="curr-sub">교육지원으로 합리적인 선택</div></div></div>
+        <span class="tag tag-hit">추천</span>
+      </div>
       <div class="curr-card" role="listitem">
         <div class="curr-left"><div class="curr-num">+</div><div><div class="curr-name">스페셜 특강</div><div class="curr-sub">행동교정 · 펫푸드 · 아로마</div></div></div>
         <span class="tag tag-purple">특강</span>
       </div>
     </div>
     <button class="btn btn-primary btn-full btn-lg mt20 fade-up" onclick="openModal()" aria-label="수강 상담 신청">
-      📋 수강 상담 신청하기
+      📚 커리큘럼 알아보기
     </button>
   </div>
 </section>
@@ -1132,6 +1193,24 @@
 
 <!-- ── JAVASCRIPT ──────────────────────────────── -->
 <script>
+  /* CURRICULUM CARD RIPPLE */
+  document.querySelectorAll('.curr-card').forEach(card => {
+    card.style.position = 'relative';
+    card.style.overflow = 'hidden';
+    card.addEventListener('click', function(e) {
+      const ripple = document.createElement('span');
+      ripple.classList.add('ripple');
+      const rect = card.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+      ripple.style.top  = (e.clientY - rect.top  - size/2) + 'px';
+      card.appendChild(ripple);
+      card.classList.add('ripple-active');
+      setTimeout(() => { ripple.remove(); card.classList.remove('ripple-active'); }, 500);
+    });
+  });
+
   /* NEWS SLIDER */
   const newsTrack = document.getElementById('newsTrack');
   const newsDots  = document.querySelectorAll('.news-dot');
