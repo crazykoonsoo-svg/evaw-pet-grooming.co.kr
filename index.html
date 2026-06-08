@@ -1538,7 +1538,7 @@
         });
 
         // Google Sheets 동시 저장
-        fetch('https://script.google.com/macros/s/AKfycbwRhbSn6XvqrFs4je9n1a65gG28nlsm6TbwVMEoRajn4joiwdEN53i2p5gThpjXV5rkRg/exec', {
+        fetch('https://script.google.com/macros/s/AKfycbzzBkQ19GqbtwzB2eI-9_0KEgpimsYdVWttHz_HGz-Ck4wS_X3xXLy_5mO9d8c_MKULZg/exec', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ 성함: name, 연락처: phone, 수강목적: selectedPurpose, 희망지역: region, 문의사항: message || '없음' }),
