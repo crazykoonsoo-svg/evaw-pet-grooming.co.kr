@@ -1201,13 +1201,23 @@
         <!-- 수강 목적 -->
         <div>
           <label class="field-label">수강 목적<span class="req">*</span></label>
-          <div class="purpose-grid" role="group" aria-label="수강 목적 선택">
-            <button class="purpose-chip" data-val="취미"   onclick="selectPurpose(this)" type="button">🎨 취미</button>
-            <button class="purpose-chip" data-val="자격증" onclick="selectPurpose(this)" type="button">📜 자격증</button>
-            <button class="purpose-chip" data-val="입시"   onclick="selectPurpose(this)" type="button">📚 입시</button>
-            <button class="purpose-chip" data-val="취업"   onclick="selectPurpose(this)" type="button">💼 취업</button>
-            <button class="purpose-chip" data-val="창업"   onclick="selectPurpose(this)" type="button">🏪 창업</button>
+          <div class="purpose-grid" role="group" aria-label="수강 목적 선택 (중복 가능)">
+            <div style="display:flex;gap:8px;flex-wrap:nowrap;">
+              <button class="purpose-chip" data-val="취미"   onclick="togglePurpose(this)" type="button">🎨 취미</button>
+              <button class="purpose-chip" data-val="자격증" onclick="togglePurpose(this)" type="button">📜 자격증</button>
+              <button class="purpose-chip" data-val="입시"   onclick="togglePurpose(this)" type="button">📚 입시</button>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:nowrap;">
+              <button class="purpose-chip" data-val="취업"   onclick="togglePurpose(this)" type="button">💼 취업</button>
+              <button class="purpose-chip" data-val="창업"   onclick="togglePurpose(this)" type="button">🏪 창업</button>
+            </div>
           </div>
+        </div>
+
+        <!-- 문의사항 -->
+        <div>
+          <label class="field-label" for="f-message">문의사항 <span style="color:var(--text-lt);font-weight:400;">(선택)</span></label>
+          <textarea class="field-input" id="f-message" rows="3" placeholder="궁금한 점이나 전달할 내용을 자유롭게 입력해 주세요" style="resize:none;height:auto;line-height:1.6;"></textarea>
         </div>
 
         <!-- 희망 교육 지역 -->
@@ -1453,6 +1463,7 @@
 
   /* ── MODAL ── */
   let selectedPurpose = '';
+  let selectedPurposes = [];
 
   function openModal() {
     document.getElementById('modalOverlay').classList.add('open');
@@ -1471,10 +1482,16 @@
     if (e.target === document.getElementById('modalOverlay')) closeModal();
   }
 
-  function selectPurpose(el) {
-    document.querySelectorAll('.purpose-chip').forEach(c => c.classList.remove('selected'));
-    el.classList.add('selected');
-    selectedPurpose = el.dataset.val;
+  function togglePurpose(el) {
+    const val = el.dataset.val;
+    if (el.classList.contains('selected')) {
+      el.classList.remove('selected');
+      selectedPurposes = selectedPurposes.filter(v => v !== val);
+    } else {
+      el.classList.add('selected');
+      selectedPurposes.push(val);
+    }
+    selectedPurpose = selectedPurposes.join(', ');
   }
 
   function showError(msg) {
@@ -1489,10 +1506,11 @@
     /* ─ FORM SUBMIT ─ */
     async function submitForm() {
       clearError();
-      const name   = document.getElementById('f-name').value.trim();
-      const phone  = document.getElementById('f-phone').value.trim();
-      const region = document.getElementById('f-region').value.trim();
-      const agreed = document.getElementById('f-agree').checked;
+      const name    = document.getElementById('f-name').value.trim();
+      const phone   = document.getElementById('f-phone').value.trim();
+      const region  = document.getElementById('f-region').value.trim();
+      const message = document.getElementById('f-message').value.trim();
+      const agreed  = document.getElementById('f-agree').checked;
 
       if (!name)            { showError('성함을 입력해 주세요.'); return; }
       if (phone.length < 9) { showError('연락처를 올바르게 입력해 주세요.'); return; }
@@ -1514,7 +1532,8 @@
             성함: name,
             연락처: phone,
             수강목적: selectedPurpose,
-            희망지역: region
+            희망지역: region,
+            문의사항: message || '없음'
           })
         });
 
@@ -1522,7 +1541,7 @@
         fetch('https://script.google.com/macros/s/AKfycbwRhbSn6XvqrFs4je9n1a65gG28nlsm6TbwVMEoRajn4joiwdEN53i2p5gThpjXV5rkRg/exec', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ 성함: name, 연락처: phone, 수강목적: selectedPurpose, 희망지역: region }),
+          body: JSON.stringify({ 성함: name, 연락처: phone, 수강목적: selectedPurpose, 희망지역: region, 문의사항: message || '없음' }),
           mode: 'no-cors'
         }).catch(() => {});
 
@@ -1531,8 +1550,9 @@
           ga4('form_submit', `상담신청_${selectedPurpose}_${region}`);
           document.getElementById('formState').style.display = 'none';
           document.getElementById('successState').style.display = 'block';
-          ['f-name','f-phone','f-region'].forEach(id => document.getElementById(id).value = '');
+          ['f-name','f-phone','f-region','f-message'].forEach(id => document.getElementById(id).value = '');
           document.querySelectorAll('.purpose-chip').forEach(c => c.classList.remove('selected'));
+          selectedPurposes = [];
           document.getElementById('f-agree').checked = false;
           selectedPurpose = '';
         } else {
