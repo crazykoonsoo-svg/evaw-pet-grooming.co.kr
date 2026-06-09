@@ -264,8 +264,16 @@
       object-fit: cover;
       object-position: center center;
       display: block;
-      mask-image: linear-gradient(to left, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, transparent 100%);
+      mask-image:
+        linear-gradient(to left, rgba(0,0,0,1) 70%, transparent 100%),
+        linear-gradient(to right, rgba(0,0,0,1) 96%, transparent 100%),
+        linear-gradient(to top, rgba(0,0,0,1) 96%, transparent 100%);
+      mask-composite: intersect;
+      -webkit-mask-image:
+        linear-gradient(to left, rgba(0,0,0,1) 70%, transparent 100%),
+        linear-gradient(to right, rgba(0,0,0,1) 96%, transparent 100%),
+        linear-gradient(to top, rgba(0,0,0,1) 96%, transparent 100%);
+      -webkit-mask-composite: source-in;
     }
     .hero-bg  { position:absolute; inset:0; pointer-events:none;
       background-image:
