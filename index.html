@@ -240,29 +240,29 @@
     /* ── HERO ── */
     #hero {
       background-color: #F8F9FC;
-      background-image: url('image/hero-bg.webp');
-      background-size: auto 85%;
-      background-position: center top;
-      background-repeat: no-repeat;
       padding:0; position:relative; overflow:hidden; min-height:100svh;
       display:flex; flex-direction:column;
     }
-    #hero::before {
-      content: ''; position:absolute; inset:0; z-index:0;
-      background:
-        linear-gradient(to bottom,
-          rgba(248,249,252,0.5) 0%,
-          rgba(248,249,252,0.3) 40%,
-          rgba(248,249,252,0.6) 80%,
-          rgba(248,249,252,0.95) 100%
-        ),
-        linear-gradient(to right,
-          rgba(248,249,252,0.85) 0%,
-          rgba(248,249,252,0.4) 50%,
-          rgba(248,249,252,0.1) 100%
-        );
-    }
+    #hero::before { content: none; }
     #hero .hero-bg, #hero .hero-paw, #hero .hero-content { position:relative; z-index:1; }
+
+    /* 히어로 우측 이미지 */
+    .hero-side-img {
+      position: absolute;
+      right: 0;
+      top: 88px;
+      width: 44%;
+      max-width: 180px;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .hero-side-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+      mask-image: linear-gradient(to left, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);
+    }
     .hero-bg  { position:absolute; inset:0; pointer-events:none;
       background-image:
         radial-gradient(ellipse 100% 80% at 110% -10%,rgba(201,168,76,.12) 0%,transparent 55%),
@@ -783,10 +783,15 @@
 <!-- ── HERO ─────────────────────────────────── -->
 <section id="hero" aria-label="메인 배너">
   <div class="hero-bg"></div>
-  <div class="hero-paw" aria-hidden="true">🐾</div>
+
   <div class="hero-content">
 
     <div class="hero-badge">🏆 전국 20개 직영지점 운영</div>
+
+    <!-- 제목 우측 이미지 -->
+    <div class="hero-side-img">
+      <img src="image/hero-bg.webp" alt="이바우펫 애견미용 실습" />
+    </div>
 
     <h1 class="t-hero hero-title serif">
       실견미용이 가정견으로<br/>
