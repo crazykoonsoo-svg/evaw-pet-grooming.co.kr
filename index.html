@@ -621,6 +621,25 @@
     .success-desc  { font-size:.85rem; color:var(--text-lt); line-height:1.6; margin-bottom:24px; }
 
     /* ── UTIL ── */
+
+    /* ── BRANCH SLIDER ── */
+    #branches { background:var(--white); padding:44px 0; }
+    #branches .sec-title { color:var(--text-dk); }
+    .branch-slider  { overflow:hidden; position:relative; }
+    .branch-track   { display:flex; gap:12px; transition:transform .3s cubic-bezier(.25,.46,.45,.94); will-change:transform; }
+    .branch-card    {
+      min-width:calc(50vw - 26px); max-width:200px;
+      background:var(--bg-main); border:1px solid var(--gray-2);
+      border-radius:var(--r12); padding:16px 14px; flex-shrink:0;
+      transition:var(--tr);
+    }
+    .branch-card:hover { box-shadow:var(--shadow-md); transform:translateY(-2px); border-color:rgba(22,33,62,.15); }
+    .branch-region  { font-size:.62rem; font-weight:700; color:var(--gold); letter-spacing:.05em; margin-bottom:4px; text-transform:uppercase; }
+    .branch-name    { font-size:.88rem; font-weight:800; color:var(--navy); margin-bottom:6px; line-height:1.3; }
+    .branch-addr    { font-size:.72rem; color:var(--text-lt); line-height:1.6; }
+    .branch-dots    { display:flex; justify-content:center; gap:5px; margin-top:16px; flex-wrap:wrap; padding:0 20px; }
+    .branch-dot     { width:6px; height:6px; border-radius:50%; background:var(--gray-2); cursor:pointer; transition:var(--tr); border:none; padding:0; }
+    .branch-dot.active { background:var(--navy); width:16px; border-radius:3px; }
     /* ── NEWS SLIDER ── */
     #news { background:var(--white); }
     .news-slider { overflow:hidden; position:relative; }
@@ -1106,24 +1125,46 @@
         <div><div class="info-lbl">운영시간</div><div class="info-val">월~목 11:00~21:30 · 토 11:00~15:00</div></div>
       </div>
     </div>
-    <a href="https://www.evawpet.com/Location" class="btn btn-full mt16 fade-up" style="background:var(--gray-1);color:var(--navy);border:1.5px solid var(--gray-2);" target="_blank" rel="noopener">
-      🗺️ 전국 캠퍼스 찾기
-    </a>
   </div>
 </section>
 
-<!-- ── 지역 키워드 섹션 ──────────────────────────── -->
-<section style="background:var(--bg-sub);padding:28px 0;">
-  <div class="wrap" style="text-align:center;">
-    <p style="font-size:.9rem;font-weight:800;color:var(--navy);margin-bottom:8px;line-height:1.8;">
-      서울 · 강남 · 노원 · 인천 · 부산 · 대구 · 광주 · 대전 · 수원
-    </p>
-    <p style="font-size:.82rem;color:var(--text-mid);line-height:1.8;">
-      전국 어디서나 가까운 이바우펫 애견미용학원 캠퍼스를 찾아보세요.<br/>
-      애견미용자격증 3급·2급부터 국비지원·취업·창업·비용·추천 정보까지<br/>
-      지역별 맞춤 상담을 제공합니다.
-    </p>
+
+
+
+<!-- ── 전국 캠퍼스 슬라이더 ──────────────────────── -->
+<section id="branches" aria-labelledby="branch-h">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <div class="sec-tag">📍 전국 직영 캠퍼스</div>
+      <h2 class="t-section sec-title" id="branch-h">전국 직영 캠퍼스</h2>
+      <div class="divider"></div>
+    </div>
   </div>
+  <div class="branch-slider" role="region" aria-label="전국 캠퍼스 슬라이더">
+    <div class="branch-track" id="branchTrack" style="padding:0 20px;">
+      <div class="branch-card"><div class="branch-region">광주</div><div class="branch-name">광주 애견미용학원</div><div class="branch-addr">광주광역시 서구 상무중앙로 7 10층</div></div>
+      <div class="branch-card"><div class="branch-region">경기</div><div class="branch-name">분당 애견미용학원</div><div class="branch-addr">경기도 성남시 분당구 백현로101번길 13 5층</div></div>
+      <div class="branch-card"><div class="branch-region">경기</div><div class="branch-name">일산 애견미용학원</div><div class="branch-addr">경기도 고양시 일산동구 정발산로 47 웅신아트 5층</div></div>
+      <div class="branch-card"><div class="branch-region">대전</div><div class="branch-name">대전 애견미용학원</div><div class="branch-addr">대전광역시 서구 대덕대로 182 10층</div></div>
+      <div class="branch-card"><div class="branch-region">인천</div><div class="branch-name">인천 애견미용학원</div><div class="branch-addr">인천광역시 남동구 인하로 501 8층</div></div>
+      <div class="branch-card"><div class="branch-region">대구</div><div class="branch-name">반월당 애견미용학원</div><div class="branch-addr">대구광역시 중구 달구벌대로 2118 예미안타워빌딩 7층</div></div>
+      <div class="branch-card"><div class="branch-region">대구</div><div class="branch-name">대구 애견미용학원</div><div class="branch-addr">대구광역시 동구 동대구로 525-1 3층</div></div>
+      <div class="branch-card"><div class="branch-region">서울</div><div class="branch-name">신림 애견미용학원</div><div class="branch-addr">서울특별시 관악구 남부순환로 1630 2층</div></div>
+      <div class="branch-card"><div class="branch-region">서울</div><div class="branch-name">노원 애견미용학원</div><div class="branch-addr">서울특별시 노원구 상계로3길 21 5층 501호</div></div>
+      <div class="branch-card"><div class="branch-region">서울</div><div class="branch-name">종로 애견미용학원</div><div class="branch-addr">서울특별시 종로구 삼일대로17길 51 스타골드빌딩 3층</div></div>
+      <div class="branch-card"><div class="branch-region">경기</div><div class="branch-name">부천 애견미용학원</div><div class="branch-addr">경기도 부천시 원미구 부일로 496</div></div>
+      <div class="branch-card"><div class="branch-region">서울</div><div class="branch-name">천호 애견미용학원</div><div class="branch-addr">서울특별시 강동구 천호대로 1037 10층</div></div>
+      <div class="branch-card"><div class="branch-region">경기</div><div class="branch-name">평택 애견미용학원</div><div class="branch-addr">경기도 평택시 중앙2로 16 2층</div></div>
+      <div class="branch-card"><div class="branch-region">경기</div><div class="branch-name">수원 애견미용학원</div><div class="branch-addr">경기도 수원시 팔달구 덕영대로 905 1101호, 1106호</div></div>
+      <div class="branch-card"><div class="branch-region">서울</div><div class="branch-name">강남 애견미용학원</div><div class="branch-addr">서울특별시 강남구 선릉로86길 39 서영빌딩 5층</div></div>
+      <div class="branch-card"><div class="branch-region">부산</div><div class="branch-name">서면 애견미용학원</div><div class="branch-addr">부산광역시 부산진구 중앙대로 711 3층</div></div>
+      <div class="branch-card"><div class="branch-region">경남</div><div class="branch-name">창원 애견미용학원</div><div class="branch-addr">경상남도 창원시 성산구 원이대로 652 7층</div></div>
+      <div class="branch-card"><div class="branch-region">부산</div><div class="branch-name">연산 애견미용학원</div><div class="branch-addr">부산광역시 연제구 월드컵대로 141 동화빌딩 10층</div></div>
+      <div class="branch-card"><div class="branch-region">부산</div><div class="branch-name">덕천 애견미용학원</div><div class="branch-addr">부산광역시 북구 만덕대로 28 4층</div></div>
+      <div class="branch-card"><div class="branch-region">충남</div><div class="branch-name">천안 애견미용학원</div><div class="branch-addr">충청남도 천안시 동남구 만남로 30 로얄빌딩 5층</div></div>
+    </div>
+  </div>
+  <div class="branch-dots" role="tablist" id="branchDots"></div>
 </section>
 
 <!-- ── FINAL CTA ──────────────────────────────── -->
@@ -1167,6 +1208,37 @@
 
   <div class="news-slider" role="region" aria-label="최근 소식 슬라이더">
     <div class="news-track" id="newsTrack" style="padding:0 20px;">
+
+
+      <article class="news-card">
+        <div class="news-badge">📍 천호</div>
+        <div class="news-title">천호애견미용학원 국비지원 | 연맹지원 가격 비교 2026 선택 기준</div>
+        <div class="news-desc">천호 애견미용학원 국비지원과 연맹지원 가격 비교, 2026년 기준 선택 가이드를 정리했습니다.</div>
+        <div class="news-footer">
+          <span class="news-date">2026.06.09</span>
+          <a href="https://www.evaw-pet-grooming.com/blog/petgrooming-20260609-536" class="news-link" target="_blank" rel="noopener">보기 →</a>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-badge">📍 강남</div>
+        <div class="news-title">2026 강남애견미용학원 | 국비·국취제·연맹지원 비교</div>
+        <div class="news-desc">강남 애견미용학원 등록 전 꼭 알아야 할 국비지원·국취제·연맹지원 비용 비교 정보를 안내합니다.</div>
+        <div class="news-footer">
+          <span class="news-date">2026.06.09</span>
+          <a href="https://www.evaw-pet-grooming.com/blog/evawpet-20260609-772" class="news-link" target="_blank" rel="noopener">보기 →</a>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-badge">📍 평택</div>
+        <div class="news-title">2026 평택애견미용학원 | 자격증 3급·2급 차이와 취업 준비</div>
+        <div class="news-desc">평택 애견미용학원에서 배우는 자격증 3급·2급 차이와 취업 준비 방법을 상세히 안내합니다.</div>
+        <div class="news-footer">
+          <span class="news-date">2026.06.09</span>
+          <a href="https://www.evaw-pet-grooming.com/blog/petgrooming-20260609-682" class="news-link" target="_blank" rel="noopener">보기 →</a>
+        </div>
+      </article>
 
       <article class="news-card">
         <div class="news-badge">📍 천안</div>
@@ -1293,6 +1365,9 @@
     <button class="news-dot"        role="tab" aria-selected="false" data-idx="8"  aria-label="소식 9"></button>
     <button class="news-dot"        role="tab" aria-selected="false" data-idx="9"  aria-label="소식 10"></button>
     <button class="news-dot"        role="tab" aria-selected="false" data-idx="10" aria-label="소식 11"></button>
+    <button class="news-dot"        role="tab" aria-selected="false" data-idx="11" aria-label="소식 12"></button>
+    <button class="news-dot"        role="tab" aria-selected="false" data-idx="12" aria-label="소식 13"></button>
+    <button class="news-dot"        role="tab" aria-selected="false" data-idx="13" aria-label="소식 14"></button>
   </div>
 </section>
 
@@ -1308,6 +1383,7 @@
       운영: 월~목 11:00~21:30 / 토 11:00~15:00
     </p>
     <div style="display:flex;justify-content:center;gap:14px;margin-top:14px;flex-wrap:wrap;">
+      <a href="#" onclick="openTuition();return false;" style="color:rgba(255,255,255,.2);font-size:.72rem;text-decoration:underline;">수강료</a>
       <a href="https://www.evawpet.com/?mode=policy"   style="color:rgba(255,255,255,.3);font-size:.72rem;text-decoration:underline;" target="_blank" rel="noopener">이용약관</a>
       <a href="https://www.evawpet.com/?mode=privacy"  style="color:rgba(255,255,255,.3);font-size:.72rem;text-decoration:underline;" target="_blank" rel="noopener">개인정보처리방침</a>
       <a href="https://www.evaw-pet-grooming.com/"     style="color:rgba(255,255,255,.3);font-size:.72rem;text-decoration:underline;" target="_blank" rel="noopener">지점 블로그</a>
@@ -1317,6 +1393,14 @@
     <p style="color:rgba(255,255,255,.18);font-size:.68rem;margin-top:12px;">Copyright © Evawpet. All rights reserved.</p>
   </div>
 </footer>
+
+<!-- ── 수강료 모달 ──────────────────────────────── -->
+<div id="tuitionModal" onclick="if(event.target===this)closeTuition()">
+  <button class="tuition-close" onclick="closeTuition()" aria-label="닫기">✕</button>
+  <div class="tuition-sheet">
+    <img src="image/tuition.webp" alt="이바우펫 애견미용학원 수강료 교습비 게시표" />
+  </div>
+</div>
 
 <!-- ── STICKY BAR ─────────────────────────────── -->
 <div id="stickyBar" role="complementary" aria-label="하단 고정 상담 버튼">
@@ -1557,6 +1641,56 @@
     }
 
     setTimeout(type, 800);
+  })();
+
+  /* BRANCH SLIDER */
+  (function() {
+    const track  = document.getElementById('branchTrack');
+    const dotWrap= document.getElementById('branchDots');
+    if (!track || !dotWrap) return;
+
+    const cards     = track.querySelectorAll('.branch-card');
+    const perPage   = 2;
+    const total     = Math.ceil(cards.length / perPage);
+    let   cur       = 0;
+    let   autoTimer;
+
+    // 도트 생성
+    for (let i = 0; i < total; i++) {
+      const d = document.createElement('button');
+      d.className = 'branch-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('role', 'tab');
+      d.setAttribute('aria-label', `캠퍼스 ${i+1}`);
+      d.addEventListener('click', () => { clearInterval(autoTimer); goTo(i); startAuto(); });
+      dotWrap.appendChild(d);
+    }
+
+    function goTo(idx) {
+      cur = idx;
+      const cardW = cards[0].offsetWidth + 12;
+      track.style.transform = `translateX(${-cardW * cur * perPage}px)`;
+      dotWrap.querySelectorAll('.branch-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === cur);
+      });
+    }
+
+    function startAuto() {
+      autoTimer = setInterval(() => goTo((cur + 1) % total), 1800);
+    }
+
+    // 터치 스와이프
+    let tx = 0;
+    track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - tx;
+      if (Math.abs(dx) > 40) {
+        clearInterval(autoTimer);
+        goTo(dx < 0 ? Math.min(cur+1, total-1) : Math.max(cur-1, 0));
+        startAuto();
+      }
+    }, { passive: true });
+
+    startAuto();
   })();
 
   /* NEWS SLIDER */
