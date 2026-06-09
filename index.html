@@ -1534,6 +1534,16 @@
 
 <!-- ── JAVASCRIPT ──────────────────────────────── -->
 <script>
+  /* TUITION MODAL */
+  function openTuition() {
+    document.getElementById('tuitionModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeTuition() {
+    document.getElementById('tuitionModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
   /* COUNT UP + GLOW - 무한 반복 */
   const netCard = document.querySelector('.net-card');
   const netNum  = document.getElementById('netNum');
