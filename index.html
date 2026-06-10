@@ -542,8 +542,10 @@
     .rv-slider { overflow:hidden; }
     .rv-track  { display:flex; gap:14px; transition:transform .4s cubic-bezier(.4,0,.2,1); will-change:transform; }
 
-    .rv-img { width:100%; height:160px; object-fit:cover; border-radius:var(--r12) var(--r12) 0 0; display:block; margin-bottom:16px; }
-    .rv-card   { min-width:calc(100vw - 60px); max-width:380px; background:var(--white); border:1px solid rgba(201,168,76,.2); border-radius:var(--r16); padding:22px 20px; flex-shrink:0; box-shadow:0 4px 16px rgba(0,0,0,.06); }
+    .rv-img-wrap { width:100px; height:100px; flex-shrink:0; border-radius:var(--r12); overflow:hidden; }
+    .rv-img { width:100%; height:100%; object-fit:cover; display:block; }
+    .rv-body { flex:1; display:flex; flex-direction:column; gap:8px; min-width:0; }
+    .rv-card   { min-width:calc(100vw - 60px); max-width:380px; background:var(--white); border:1px solid rgba(201,168,76,.2); border-radius:var(--r16); padding:16px; flex-shrink:0; box-shadow:0 4px 16px rgba(0,0,0,.06); display:flex; gap:14px; align-items:flex-start; }
     .rv-stars  { color:var(--gold); font-size:.9rem; margin-bottom:10px; letter-spacing:2px; }
     .rv-text   { color:var(--text-mid); font-size:.88rem; line-height:1.7; margin-bottom:16px; }
     .rv-author { display:flex; align-items:center; gap:10px; }
@@ -1062,34 +1064,44 @@
   <div class="rv-slider" role="region" aria-label="수강생 후기 슬라이더">
     <div class="rv-track" id="rvTrack" style="padding:0 20px;">
       <article class="rv-card">
-        <img src="image/rv1.webp" class="rv-img" alt="수강생 후기 사진" />
-        <div class="rv-stars" aria-label="별점 5점">★★★★★</div>
-        <p class="rv-text">"처음엔 걱정이 많았는데 선생님이 개별로 하나하나 다 가르쳐주셔서 자격증도 합격하고 지금은 미용샵에 취업했어요!"</p>
-        <div class="rv-author"><div class="rv-avatar">🐾</div><div><div class="rv-name">김지**님</div><div class="rv-meta">자격증취득반 수료 · 취업 성공</div></div></div>
+        <div class="rv-img-wrap"><img src="image/rv1.webp" class="rv-img" alt="김지**님 후기" /></div>
+        <div class="rv-body">
+          <div class="rv-stars" aria-label="별점 5점">★★★★★</div>
+          <p class="rv-text">"처음엔 걱정이 많았는데 선생님이 개별로 하나하나 다 가르쳐주셔서 자격증도 합격하고 지금은 미용샵에 취업했어요!"</p>
+          <div class="rv-author"><div class="rv-avatar">🐾</div><div><div class="rv-name">김지**님</div><div class="rv-meta">자격증취득반 수료 · 취업 성공</div></div></div>
+        </div>
       </article>
       <article class="rv-card">
-        <img src="image/rv2.webp" class="rv-img" alt="수강생 후기 사진" />
-        <div class="rv-stars" aria-label="별점 5점">★★★★★</div>
-        <p class="rv-text">"직장 다니면서 자율출석으로 다녔는데 시간 조율이 너무 편했어요. 실견 실습이라 배운 게 실제로 써먹힙니다!"</p>
-        <div class="rv-author"><div class="rv-avatar">✂️</div><div><div class="rv-name">이수**님</div><div class="rv-meta">직장인 수강생 · 자율출석 이용</div></div></div>
+        <div class="rv-img-wrap"><img src="image/rv2.webp" class="rv-img" alt="이수**님 후기" /></div>
+        <div class="rv-body">
+          <div class="rv-stars" aria-label="별점 5점">★★★★★</div>
+          <p class="rv-text">"직장 다니면서 자율출석으로 다녔는데 시간 조율이 너무 편했어요. 실견 실습이라 배운 게 실제로 써먹힙니다!"</p>
+          <div class="rv-author"><div class="rv-avatar">✂️</div><div><div class="rv-name">이수**님</div><div class="rv-meta">직장인 수강생 · 자율출석 이용</div></div></div>
+        </div>
       </article>
       <article class="rv-card">
-        <img src="image/rv3.webp" class="rv-img" alt="수강생 후기 사진" />
-        <div class="rv-stars" aria-label="별점 5점">★★★★★</div>
-        <p class="rv-text">"개별 피드백이 정말 달라요. 내 강아지 데리고 실습하니까 더 열심히 하게 되고 실력도 빠르게 늘었어요!"</p>
-        <div class="rv-author"><div class="rv-avatar">🐶</div><div><div class="rv-name">박예**님</div><div class="rv-meta">가정견 실습반 수료</div></div></div>
+        <div class="rv-img-wrap"><img src="image/rv3.webp" class="rv-img" alt="박예**님 후기" /></div>
+        <div class="rv-body">
+          <div class="rv-stars" aria-label="별점 5점">★★★★★</div>
+          <p class="rv-text">"개별 피드백이 정말 달라요. 내 강아지 데리고 실습하니까 더 열심히 하게 되고 실력도 빠르게 늘었어요!"</p>
+          <div class="rv-author"><div class="rv-avatar">🐶</div><div><div class="rv-name">박예**님</div><div class="rv-meta">가정견 실습반 수료</div></div></div>
+        </div>
       </article>
       <article class="rv-card">
-        <img src="image/rv4.webp" class="rv-img" alt="수강생 후기 사진" />
-        <div class="rv-stars" aria-label="별점 5점">★★★★★</div>
-        <p class="rv-text">"미용 경험 전혀 없이 왔는데 지금은 창업 준비 중이에요. 전국 네트워크 덕분에 취업·창업 지원도 든든했습니다."</p>
-        <div class="rv-author"><div class="rv-avatar">💼</div><div><div class="rv-name">최민**님</div><div class="rv-meta">창업반 수료 · 샵 오픈 준비</div></div></div>
+        <div class="rv-img-wrap"><img src="image/rv4.webp" class="rv-img" alt="최민**님 후기" /></div>
+        <div class="rv-body">
+          <div class="rv-stars" aria-label="별점 5점">★★★★★</div>
+          <p class="rv-text">"미용 경험 전혀 없이 왔는데 지금은 창업 준비 중이에요. 전국 네트워크 덕분에 취업·창업 지원도 든든했습니다."</p>
+          <div class="rv-author"><div class="rv-avatar">💼</div><div><div class="rv-name">최민**님</div><div class="rv-meta">창업반 수료 · 샵 오픈 준비</div></div></div>
+        </div>
       </article>
       <article class="rv-card">
-        <img src="image/rv5.webp" class="rv-img" alt="수강생 후기 사진" />
-        <div class="rv-stars" aria-label="별점 5점">★★★★★</div>
-        <p class="rv-text">"국비지원이 안 된다고 해서 등록을 포기하려 했는데, 상담받아보니 교육지원으로 부담을 많이 줄일 수 있었어요. 덕분에 종합반 등록할 수 있었고 지금은 창업 준비 중입니다. 먼저 상담부터 받아보시길 추천해요!"</p>
-        <div class="rv-author"><div class="rv-avatar">🏪</div><div><div class="rv-name">이수**님</div><div class="rv-meta">종합반 수강중 · 창업 준비</div></div></div>
+        <div class="rv-img-wrap"><img src="image/rv5.webp" class="rv-img" alt="이수**님 후기" /></div>
+        <div class="rv-body">
+          <div class="rv-stars" aria-label="별점 5점">★★★★★</div>
+          <p class="rv-text">"국비지원이 안 된다고 해서 등록을 포기하려 했는데, 상담받아보니 교육지원으로 부담을 많이 줄일 수 있었어요. 덕분에 종합반 등록할 수 있었고 지금은 창업 준비 중입니다. 먼저 상담부터 받아보시길 추천해요!"</p>
+          <div class="rv-author"><div class="rv-avatar">🏪</div><div><div class="rv-name">이수**님</div><div class="rv-meta">종합반 수강중 · 창업 준비</div></div></div>
+        </div>
       </article>
     </div>
   </div>
