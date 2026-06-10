@@ -258,12 +258,16 @@
       z-index: -1;
       pointer-events: none;
     }
-    .hero-side-img img {
-      width: 100%;
-      height: 100%;
+    .hero-slide {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
       object-fit: cover;
       object-position: center center;
-      display: block;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+    }
+    .hero-slide.active { opacity: 1; }
+    .hero-slide {
       mask-image:
         linear-gradient(to left, rgba(0,0,0,1) 70%, transparent 100%),
         linear-gradient(to right, rgba(0,0,0,1) 96%, transparent 100%),
@@ -818,9 +822,12 @@
 
     <div class="hero-badge">🏆 전국 20개 직영지점 운영</div>
 
-    <!-- 제목 우측 이미지 -->
-    <div class="hero-side-img">
-      <img src="image/hero-bg.webp" alt="이바우펫 애견미용 실습" />
+    <!-- 히어로 우측 슬라이드쇼 -->
+    <div class="hero-side-img" id="heroSlider">
+      <img src="image/hero-bg2.webp" class="hero-slide active" alt="애견미용 실습 1" />
+      <img src="image/hero-bg3.webp" class="hero-slide" alt="애견미용 실습 2" />
+      <img src="image/hero-bg4.webp" class="hero-slide" alt="애견미용 실습 3" />
+      <img src="image/hero-bg5.webp" class="hero-slide" alt="애견미용 실습 4" />
     </div>
 
     <h1 class="t-hero hero-title serif">
@@ -1589,6 +1596,17 @@
 
 <!-- ── JAVASCRIPT ──────────────────────────────── -->
 <script>
+  /* HERO SLIDESHOW */
+  (function() {
+    const slides = document.querySelectorAll('.hero-slide');
+    let cur = 0;
+    setInterval(() => {
+      slides[cur].classList.remove('active');
+      cur = (cur + 1) % slides.length;
+      slides[cur].classList.add('active');
+    }, 3500);
+  })();
+
   /* TUITION MODAL */
   function openTuition() {
     document.getElementById('tuitionModal').classList.add('open');
