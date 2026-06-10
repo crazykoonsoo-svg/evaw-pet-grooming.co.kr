@@ -286,16 +286,20 @@
     .hero-title { color:var(--navy); margin-bottom:12px; }
     .hero-title em { color:var(--navy); font-style:normal; text-decoration:underline; text-decoration-color:var(--gold); text-underline-offset:6px; text-decoration-thickness:3px; }
     .hero-title { margin-bottom:12px; }
-    .hero-title,
-    .hero-sub {
-      background: radial-gradient(ellipse at center, rgba(255,255,255,0.85) 0%, rgba(248,249,252,0.6) 60%, transparent 100%);
-      border-radius: 16px;
-      padding: 8px 12px;
-      display: inline-block;
-      width: fit-content;
-      max-width: 100%;
+    .hero-title {
+      text-shadow:
+        0 0 20px rgba(255,255,255,0.95),
+        0 0 40px rgba(255,255,255,0.8),
+        0 0 60px rgba(255,255,255,0.5);
+      display: block;
     }
-    .hero-sub { font-size:.9rem; margin-bottom:22px; color:var(--text-mid); line-height:1.7; min-height:unset; padding:6px 12px; }
+    .hero-sub {
+      font-size:.9rem; margin-bottom:22px; color:var(--text-mid); line-height:1.7; min-height:unset;
+      text-shadow:
+        0 0 16px rgba(255,255,255,0.95),
+        0 0 32px rgba(255,255,255,0.7);
+      display: block;
+    }
     .typing-cursor {
       display:inline-block; width:2px; height:1em;
       background:var(--navy); margin-left:2px;
