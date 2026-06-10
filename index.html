@@ -285,7 +285,19 @@
     .hero-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(201,168,76,.12); border:1px solid rgba(201,168,76,.35); color:#7a5c10; border-radius:50px; padding:6px 14px; font-size:.75rem; font-weight:700; margin-bottom:18px; width:fit-content; }
     .hero-title { color:var(--navy); margin-bottom:12px; }
     .hero-title em { color:var(--navy); font-style:normal; text-decoration:underline; text-decoration-color:var(--gold); text-underline-offset:6px; text-decoration-thickness:3px; }
-    .hero-sub { color:var(--text-mid); font-size:.9rem; margin-bottom:22px; line-height:1.7; min-height:3.4em; }
+    .hero-title { margin-bottom:12px; }
+    .hero-title,
+    .hero-sub {
+      background: rgba(248,249,252,0.72);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 10px;
+      padding: 6px 10px;
+      display: inline-block;
+      width: fit-content;
+      max-width: 100%;
+    }
+    .hero-sub { font-size:.9rem; margin-bottom:22px; color:var(--text-mid); line-height:1.7; min-height:unset; padding:6px 10px; }
     .typing-cursor {
       display:inline-block; width:2px; height:1em;
       background:var(--navy); margin-left:2px;
@@ -810,7 +822,7 @@
       진행되며 실무위주의 수업으로<br/>
       <em>취업과 창업에 효과적인 교육</em>
     </h1>
-    <p class="hero-sub" id="heroTyping"></p>
+    <p class="hero-sub">100% 가정견 실습 · 개별 피드백 · 자율출석<br/>취업·창업의 A~Z까지 명품 교육과 함께 하세요.</p>
 
     <!-- 과목 카드 그리드 -->
     <div class="course-grid">
