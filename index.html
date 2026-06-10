@@ -776,7 +776,13 @@
       overflow:hidden; animation:popIn .3s cubic-bezier(.34,1.56,.64,1);
       box-shadow:0 20px 60px rgba(0,0,0,.3);
     }
-    .event-img { width:100%; display:block; }
+    .event-img { width:100%; display:block; transition:all .3s ease; }
+    .event-img-full {
+      position:fixed; inset:0; z-index:5000;
+      width:100vw !important; height:100vh !important;
+      object-fit:contain; background:#000;
+      cursor:zoom-out !important;
+    }
     .event-btns { padding:14px 16px 16px; display:flex; flex-direction:column; gap:8px; }
     .event-cta {
       width:100%; padding:14px; border-radius:50px; border:none; cursor:pointer;
@@ -1426,7 +1432,7 @@
 <!-- ── 이벤트 팝업 ────────────────────────────────── -->
 <div id="eventPopup">
   <div class="event-sheet">
-    <img src="image/event-popup.webp" class="event-img" alt="여름 한정 상생 프로모션 SUMMER EVENT" />
+    <img src="image/event-popup.webp" class="event-img" alt="여름 한정 상생 프로모션 SUMMER EVENT" onclick="this.classList.toggle('event-img-full')" style="cursor:zoom-in;" />
     <div class="event-btns">
       <button class="event-cta" onclick="closeEvent();openModal();">🎉 이벤트 신청하기</button>
       <div class="event-footer">
