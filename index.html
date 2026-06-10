@@ -776,6 +776,29 @@
       border-radius:50%; font-size:14px; cursor:pointer;
       display:flex; align-items:center; justify-content:center; color:var(--text-lt);
     }
+
+    /* ── EVENT POPUP ── */
+    #eventPopup { display:none; position:fixed; inset:0; z-index:4000; background:rgba(10,20,50,.75); backdrop-filter:blur(6px); align-items:center; justify-content:center; padding:20px; }
+    #eventPopup.open { display:flex; }
+    .event-sheet {
+      background:#fff; border-radius:20px; width:100%; max-width:360px;
+      overflow:hidden; animation:popIn .3s cubic-bezier(.34,1.56,.64,1);
+      box-shadow:0 20px 60px rgba(0,0,0,.3);
+    }
+    .event-img { width:100%; display:block; }
+    .event-btns { padding:14px 16px 16px; display:flex; flex-direction:column; gap:8px; }
+    .event-cta {
+      width:100%; padding:14px; border-radius:50px; border:none; cursor:pointer;
+      background:linear-gradient(135deg,var(--navy),var(--navy-mid));
+      color:#fff; font-size:.95rem; font-weight:800; letter-spacing:-.02em;
+      font-family:inherit;
+    }
+    .event-footer { display:flex; justify-content:space-between; }
+    .event-skip, .event-close {
+      background:none; border:none; cursor:pointer; font-size:.78rem;
+      color:var(--text-lt); font-family:inherit; padding:4px 8px;
+    }
+    .event-skip:hover, .event-close:hover { color:var(--text-mid); }
     /* ── TUITION MODAL ── */
     #tuitionModal { display:none; position:fixed; inset:0; z-index:3000; background:rgba(10,20,50,.8); backdrop-filter:blur(6px); align-items:center; justify-content:center; padding:20px; }
     #tuitionModal.open { display:flex; }
@@ -980,11 +1003,7 @@
         <div class="net-sub">강남 · 노원 · 종로 · 부천 · 분당 · 수원 · 인천 · 일산<br/>평택 · 대전 · 대구 · 부산 · 창원 · 광주 외 다수</div>
       </div>
     </div>
-    <div class="assoc-row fade-up">
-      <div class="assoc-card"><div class="ico">🐾</div><div class="name">(사)한국유기견<br/>구호연맹 협약</div></div>
-      <div class="assoc-card"><div class="ico">💻</div><div class="name">Evaw Pet<br/>사이버스쿨 운영</div></div>
-      <div class="assoc-card"><div class="ico">🏅</div><div class="name">한국애견미용인<br/>협회 인증</div></div>
-    </div>
+
   </div>
 </section>
 
@@ -1429,6 +1448,20 @@
   </div>
 </footer>
 
+<!-- ── 이벤트 팝업 ────────────────────────────────── -->
+<div id="eventPopup">
+  <div class="event-sheet">
+    <img src="image/event-popup.webp" class="event-img" alt="여름 한정 상생 프로모션 SUMMER EVENT" />
+    <div class="event-btns">
+      <button class="event-cta" onclick="closeEvent();openModal();">🎉 이벤트 신청하기</button>
+      <div class="event-footer">
+        <button class="event-skip" onclick="skipEventToday()">오늘 하루 보지 않기</button>
+        <button class="event-close" onclick="closeEvent()">닫기 ✕</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ── 수강료 모달 ──────────────────────────────── -->
 <div id="tuitionModal" onclick="if(event.target===this)closeTuition()">
   <button class="tuition-close" onclick="closeTuition()" aria-label="닫기">✕</button>
@@ -1573,6 +1606,27 @@
       slides[cur].classList.add('active');
     }, 2000);
   })();
+
+  /* EVENT POPUP */
+  function closeEvent() {
+    document.getElementById('eventPopup').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function skipEventToday() {
+    const today = new Date().toDateString();
+    localStorage.setItem('evawEventSkip', today);
+    closeEvent();
+  }
+  window.addEventListener('load', function() {
+    const skip = localStorage.getItem('evawEventSkip');
+    const today = new Date().toDateString();
+    if (skip !== today) {
+      setTimeout(() => {
+        document.getElementById('eventPopup').classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }, 3000);
+    }
+  });
 
   /* TUITION MODAL */
   function openTuition() {
