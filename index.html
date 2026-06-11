@@ -315,6 +315,7 @@
       display:grid; grid-template-columns:1fr 1fr 1fr;
       gap:8px; margin-bottom:20px;
     }
+    .hero-course-row { display:none; }
     .course-card {
       border-radius:var(--r12);
       padding:14px 8px 12px;
@@ -731,153 +732,291 @@
 @media (min-width: 768px) {
 
   /* ── 기본 컨테이너 ── */
-  .wrap { max-width: 1200px; padding: 0 40px; }
-  section { padding: 72px 0; }
+  .wrap { max-width: 960px; padding: 0 40px; margin: 0 auto; }
+  section { padding: 64px 0; text-align: center; }
+  .sec-header { text-align: center; }
+  .sec-tag { margin: 0 auto 10px; }
+  .divider { margin: 10px auto 24px; }
+  .t-section { font-size: 1.9rem; }
 
   /* ── TOP NAV ── */
-  #topNav .wrap { max-width: 1200px; padding: 0 40px; }
-  .nav-inner { max-width: 1200px; margin: 0 auto; }
+  .nav-inner { max-width: 960px; margin: 0 auto; padding: 0 40px; }
 
   /* ── HERO ── */
   #hero { min-height: auto; padding-bottom: 60px; }
   .hero-content {
-    max-width: 1200px;
+    max-width: 960px;
     padding: 60px 40px 40px;
     flex-direction: row;
-    align-items: center;
-    gap: 60px;
+    align-items: flex-start;
+    gap: 48px;
+    text-align: left;
   }
-  .hero-left { flex: 1; }
+  .hero-left { flex: 1.1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .hero-left .hero-cta { width: 100%; }
+  .hero-left .hero-trust { width: 100%; }
+  .hero-left .hero-course-row { width: 100%; }
+  .hero-left .btn-consult { width: 100%; }
+  .hero-left .row3 { width: 100%; }
   .hero-right {
-    flex: 1;
+    flex: 0 0 320px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 20px;
+    align-items: stretch;
   }
   .hero-side-img {
     position: relative !important;
-    top: auto !important;
-    right: auto !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    height: 320px !important;
-    border-radius: 20px;
+    top: auto !important; right: auto !important;
+    width: 100% !important; max-width: 100% !important;
+    height: 100% !important;
+    min-height: 380px;
+    border-radius: 16px;
     z-index: 1 !important;
   }
-  .course-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    width: 100%;
+  /* 과목 카드: trust 아래 6열 한 줄 */
+  .hero-course-row {
+    display: grid !important;
+    grid-template-columns: repeat(6, 1fr) !important;
+    gap: 8px;
+    margin-top: 12px;
   }
+  .hero-course-row .course-card {
+    padding: 14px 6px;
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .hero-course-row .cc-icon { font-size: 22px; margin-bottom: 6px; }
+  .hero-course-row .cc-name { font-size: .72rem; }
+  /* 모바일에서 hero-course-row 숨기고 기존 course-grid 표시 */
   .hero-trust { max-width: 100%; }
   .hero-cta { max-width: 100%; }
   .row3 { max-width: 100%; }
   .scroll-hint { display: none; }
+  .t-hero { font-size: 1.9rem !important; line-height: 1.4 !important; }
+  .hero-sub { font-size: .95rem !important; }
+
+  /* ── WHY + CURRICULUM 2단 ── */
+  .why-curr-wrap {
+    display: flex;
+    align-items: stretch;
+    max-width: 1100px;
+    margin: 0 auto;
+    gap: 0;
+  }
+  .why-curr-wrap #why {
+    flex: 1;
+    border-right: 1px solid var(--gray-2);
+    padding: 48px 40px;
+    display: flex;
+    flex-direction: column;
+  }
+  .why-curr-wrap #curriculum {
+    flex: 1;
+    padding: 64px 40px;
+    display: flex;
+    flex-direction: column;
+  }
+  .why-curr-wrap .wrap { max-width: 100%; padding: 0; }
 
   /* ── WHY ── */
   #why .diff-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 18px;
+    text-align: left;
+    max-width: 960px;
+    margin: 0 auto;
   }
-  .diff-card { flex-direction: column; }
-  .diff-icon { width: 52px; height: 52px; font-size: 26px; }
+  .diff-card { flex-direction: column; gap: 12px; }
+  .diff-icon { width: 50px; height: 50px; font-size: 24px; }
 
   /* ── NETWORK ── */
-  #network .wrap { display: flex; align-items: center; gap: 60px; }
-  .net-card { flex: 0 0 340px; margin-bottom: 0; }
-  .assoc-row { flex: 1; grid-template-columns: repeat(3, 1fr); }
+  #network .wrap { text-align: center; }
+  .net-card { max-width: 400px; margin: 0 auto 24px; }
+  .assoc-row { justify-content: center; max-width: 960px; margin: 0 auto; }
 
   /* ── CURRICULUM ── */
   #curriculum .curr-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    gap: 14px;
+    max-width: 960px;
+    margin: 0 auto;
+    text-align: left;
   }
-  .curr-card { flex-direction: row; align-items: center; }
+
+  /* ── MID CTA ── */
+  .cta-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .cta-grid .btn { width: 100%; }
 
   /* ── REVIEWS ── */
-  #reviews .rv-slider { overflow: visible; }
+  #reviews { text-align: center; }
+  #reviews .rv-slider { overflow: hidden; max-width: 960px; margin: 0 auto; }
   #reviews .rv-track {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    transform: none !important;
-    padding: 0 40px !important;
+    display: flex !important;
+    gap: 18px;
+    transform: none;
+    padding: 0 !important;
   }
-  #reviews .rv-card { min-width: auto; max-width: 100%; }
-  #reviews .rv-img-wrap { width: 120px; height: 120px; }
-  .slider-dots { display: none; }
+  #reviews .rv-card { min-width: calc(33.333% - 12px) !important; max-width: calc(33.333% - 12px) !important; text-align: left; flex-shrink: 0; }
+  #reviews .rv-img-wrap { width: 100%; height: 180px; border-radius: var(--r12); flex-shrink: 0; }
+  #reviews .rv-stars { font-size: 1.1rem; }
+  #reviews .rv-text { text-align: center; font-size: .88rem; line-height: 1.7; }
+  #reviews .rv-author { justify-content: center; }
+  #reviews .rv-name { font-size: .9rem; }
+  #reviews .rv-meta { font-size: .78rem; }
+  .slider-dots { display: flex; }
 
   /* ── PORTFOLIO ── */
   .port-grid {
     grid-template-columns: repeat(5, 1fr) !important;
+    max-width: 960px;
+    margin: 0 auto;
   }
-  .port-grid .port-main { grid-column: span 2; grid-row: span 1; }
 
   /* ── FAQ ── */
   #faq .faq-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    gap: 14px;
     align-items: start;
+    max-width: 960px;
+    margin: 0 auto;
+    text-align: left;
   }
 
   /* ── BRANCHES ── */
-  .branch-track { padding: 0 40px !important; }
-  .branch-card { min-width: calc(25% - 12px) !important; max-width: 240px !important; }
+  #branches { text-align: center; }
+  .branch-slider { max-width: 960px; margin: 0 auto; }
+  .branch-track { padding: 0 !important; }
+  .branch-card { min-width: calc(25% - 12px) !important; max-width: 220px !important; }
+  .branch-dots { justify-content: center; }
 
   /* ── NEWS ── */
-  #news .news-slider { overflow: visible; }
+  #news { text-align: center; }
+  #news .news-slider { overflow: hidden; max-width: 960px; margin: 0 auto; }
   #news .news-track {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    transform: none !important;
-    padding: 0 40px !important;
+    display: flex !important;
+    gap: 18px;
+    transform: none;
+    padding: 0 !important;
   }
-  #news .news-card { min-width: auto; max-width: 100%; }
-  .news-dots { display: none; }
+  #news .news-card { min-width: calc(25% - 14px) !important; max-width: calc(25% - 14px) !important; text-align: left; flex-shrink: 0; }
+  .news-dots { display: flex; }
 
   /* ── FINAL CTA ── */
+  #finalCta { text-align: center; }
   #finalCta .ft-grid {
     grid-template-columns: repeat(4, 1fr);
-    max-width: 600px;
+    max-width: 500px;
     margin: 0 auto 28px;
   }
 
   /* ── FOOTER ── */
-  footer .wrap { display: flex; justify-content: space-between; align-items: center; }
-  .footer-links { margin-top: 0; }
+  footer { text-align: center; }
+  .footer-links { justify-content: center; flex-wrap: wrap; gap: 12px; }
 
   /* ── STICKY BAR ── */
-  .sticky-inner {
-    max-width: 600px;
+  .sticky-inner { max-width: 600px; gap: 12px; }
+  .sb-btn { font-size: .85rem; padding: 14px 12px; }
+
+/* ── 카드 가운데 정렬 + 균형 ── */
+
+  /* 과목 카드 */
+  .course-card {
+    padding: 28px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .cc-icon { font-size: 42px; margin-bottom: 14px; }
+  .cc-name { font-size: 1rem; text-align: center; line-height: 1.4; }
+
+  /* 왜 Evaw Pet 카드 */
+  .diff-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 18px 20px;
+    gap: 10px;
+  }
+  .diff-card::before { width: 100%; height: 3px; top: 0; left: 0; right: 0; bottom: auto; }
+  .diff-icon { width: 64px; height: 64px; font-size: 30px; flex-shrink: 0; }
+  .diff-ttl { text-align: center; font-size: 1.1rem; }
+  .t-body.mt8 { text-align: center; font-size: .9rem; line-height: 1.7; }
+  .diff-badge { display: block; margin: 8px auto 0; }
+
+  /* 커리큘럼 카드 */
+  .curr-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 28px 24px;
     gap: 12px;
   }
-  .sb-btn { font-size: .85rem; padding: 14px 10px; }
+  .curr-left { flex-direction: column; align-items: center; gap: 12px; }
+  .curr-num { width: 42px; height: 42px; font-size: 1rem; }
+  .curr-name { font-size: 1.1rem; text-align: center; }
+  .curr-sub { text-align: center; font-size: .85rem; }
+  .curr-card .tag { margin-top: 6px; font-size: .78rem; padding: 4px 14px; }
 
-  /* ── MID CTA ── */
-  .cta-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    max-width: 700px;
-    margin: 0 auto;
+  /* 전국 캠퍼스 카드 */
+  .branch-card { text-align: center; padding: 22px 16px; }
+  .branch-region { font-size: .75rem; }
+  .branch-name { font-size: 1rem; }
+  .branch-addr { text-align: center; font-size: .8rem; line-height: 1.6; }
+
+  /* 후기 카드 */
+  #reviews .rv-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    padding: 24px;
   }
+  #reviews .rv-img-wrap {
+    width: 100%;
+    height: 180px;
+    border-radius: var(--r12);
+    flex-shrink: 0;
+  }
+  #reviews .rv-body { text-align: center; }
+  #reviews .rv-stars { font-size: 1.1rem; }
+  #reviews .rv-text { text-align: center; font-size: .88rem; line-height: 1.7; }
+  #reviews .rv-author { justify-content: center; }
+  #reviews .rv-name { font-size: .9rem; }
+  #reviews .rv-meta { font-size: .78rem; }
 
-  /* ── SECTION HEADERS ── */
-  .sec-title { font-size: 2rem; }
-  .t-hero { font-size: 2.2rem !important; }
-  .hero-sub { font-size: 1rem !important; }
+  /* 새소식 카드 */
+  .news-card { padding: 22px 20px; }
+  .news-badge { font-size: .75rem; }
+  .news-title { font-size: .95rem; line-height: 1.5; }
+  .news-desc { font-size: .83rem; line-height: 1.7; }
+  .news-date { font-size: .75rem; }
+
+  /* 섹션 서브텍스트 */
+  .sec-sub { text-align: center; }
+  .fade-up { text-align: center; }
 }
 
-/* ── 넓은 화면 추가 최적화 ── */
-@media (min-width: 1024px) {
-  #why .diff-list { grid-template-columns: repeat(3, 1fr); }
-  #reviews .rv-track { grid-template-columns: repeat(3, 1fr); }
+/* ── 넓은 화면 (1200px+) ── */
+@media (min-width: 1200px) {
+  .wrap { max-width: 1100px; }
+  .hero-content { max-width: 1100px; }
+  #reviews .rv-track { grid-template-columns: repeat(3, 1fr); max-width: 1100px; }
   #news .news-track { grid-template-columns: repeat(4, 1fr); }
+  #why .diff-list { max-width: 1100px; }
+  #faq .faq-list { max-width: 1100px; }
   .branch-card { min-width: calc(20% - 12px) !important; }
 }
 
@@ -1032,27 +1171,30 @@
         <div class="trust-item" role="listitem"><span class="num">초보자</span><span class="lbl">맞춤 단계별 커리큘럼</span></div>
         <div class="trust-item" role="listitem"><span class="num">100%</span><span class="lbl">가정견 실견수업</span></div>
       </div>
-      <div class="scroll-hint" aria-hidden="true">
-        <div class="scroll-hint-text">자세히 보기</div>
-        <div class="scroll-arrow-icon">↓</div>
-      </div>
-    </div>
 
-    <!-- 오른쪽: 이미지 + 과목 카드 -->
-    <div class="hero-right">
-      <div class="hero-side-img" id="heroSlider">
-        <img src="image/hero-bg2.webp" class="hero-slide active" alt="애견미용 실습 1" />
-        <img src="image/hero-bg3.webp" class="hero-slide" alt="애견미용 실습 2" />
-        <img src="image/hero-bg4.webp" class="hero-slide" alt="애견미용 실습 3" />
-        <img src="image/hero-bg5.webp" class="hero-slide" alt="애견미용 실습 4" />
-      </div>
-      <div class="course-grid">
+      <!-- 과목 카드: trust 아래 한 줄 (PC에서 6열) -->
+      <div class="course-grid hero-course-row">
         <div class="course-card cc-blue"><div class="cc-icon">✂️</div><div class="cc-name">애견미용<br/>자격증</div></div>
         <div class="course-card cc-peach"><div class="cc-icon">🍖</div><div class="cc-name">펫푸드<br/>레시피</div></div>
         <div class="course-card cc-mint"><div class="cc-icon">🐾</div><div class="cc-name">반려동물<br/>행동교정사</div></div>
         <div class="course-card cc-lavender"><div class="cc-icon">🕊️</div><div class="cc-name">반려동물<br/>장례지도사</div></div>
         <div class="course-card cc-sage"><div class="cc-icon">🌿</div><div class="cc-name">아로마<br/>테라피</div></div>
         <div class="course-card cc-gold"><div class="cc-icon">💼</div><div class="cc-name">취업연계<br/>창업컨설팅</div></div>
+      </div>
+
+      <div class="scroll-hint" aria-hidden="true">
+        <div class="scroll-hint-text">자세히 보기</div>
+        <div class="scroll-arrow-icon">↓</div>
+      </div>
+    </div>
+
+    <!-- 오른쪽: 이미지만 -->
+    <div class="hero-right">
+      <div class="hero-side-img" id="heroSlider">
+        <img src="image/hero-bg2.webp" class="hero-slide active" alt="애견미용 실습 1" />
+        <img src="image/hero-bg3.webp" class="hero-slide" alt="애견미용 실습 2" />
+        <img src="image/hero-bg4.webp" class="hero-slide" alt="애견미용 실습 3" />
+        <img src="image/hero-bg5.webp" class="hero-slide" alt="애견미용 실습 4" />
       </div>
     </div>
 
@@ -1061,6 +1203,9 @@
 
 <!-- ── MARQUEE ──────────────────────────────── -->
 </div>
+
+<!-- ── WHY + CURRICULUM 2단 래퍼 ── -->
+<div class="why-curr-wrap">
 
 <!-- ── WHY ──────────────────────────────────── -->
 <section id="why" aria-labelledby="why-h">
@@ -1122,26 +1267,6 @@
     </div>
   </div>
 </section>
-
-<!-- ── NETWORK ──────────────────────────────── -->
-<section id="network" aria-labelledby="net-h">
-  <div class="wrap">
-    <div class="sec-header fade-up">
-      <div class="sec-tag">🌐 전국 네트워크</div>
-      <h2 class="t-section sec-title" id="net-h">전국 어디서나<br/>Evaw Pet</h2>
-      <div class="divider"></div>
-    </div>
-    <div class="net-card fade-up">
-      <div class="inner">
-        <div class="net-num" id="netNum">0<span style="font-size:1.8rem;">개</span></div>
-        <div class="net-label">전국 직영 캠퍼스 운영</div>
-        <div class="net-sub">강남 · 노원 · 종로 · 부천 · 분당 · 수원 · 인천 · 일산<br/>평택 · 대전 · 대구 · 부산 · 창원 · 광주 외 다수</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
 <!-- ── CURRICULUM ────────────────────────────── -->
 <section id="curriculum" aria-labelledby="curr-h">
   <div class="wrap">
@@ -1180,6 +1305,28 @@
     <button class="btn btn-primary btn-full btn-lg mt20 fade-up" onclick="openModal()" aria-label="수강 상담 신청">
       📚 커리큘럼 알아보기
     </button>
+  </div>
+</section>
+
+</div><!-- end why-curr-wrap -->
+
+
+<!-- ── NETWORK ──────────────────────────────── -->
+<section id="network" aria-labelledby="net-h">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <div class="sec-tag">🌐 전국 네트워크</div>
+      <h2 class="t-section sec-title" id="net-h">전국 어디서나<br/>Evaw Pet</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="net-card fade-up">
+      <div class="inner">
+        <div class="net-num" id="netNum">0<span style="font-size:1.8rem;">개</span></div>
+        <div class="net-label">전국 직영 캠퍼스 운영</div>
+        <div class="net-sub">강남 · 노원 · 종로 · 부천 · 분당 · 수원 · 인천 · 일산<br/>평택 · 대전 · 대구 · 부산 · 창원 · 광주 외 다수</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -2006,20 +2153,23 @@
   const rvTrack = document.getElementById('rvTrack');
   const dots    = document.querySelectorAll('.dot');
   let cur = 0, auto;
+  function getPerPage() { return window.innerWidth >= 768 ? 3 : 1; }
+  function getTotalPages() { return Math.ceil(document.querySelectorAll('.rv-card').length / getPerPage()); }
   function goTo(i) {
-    const w = rvTrack.querySelector('.rv-card').offsetWidth + 14;
-    cur = i;
-    rvTrack.style.transform = `translateX(${-w * cur}px)`;
+    const perPage = getPerPage();
+    const w = rvTrack.querySelector('.rv-card').offsetWidth + 18;
+    cur = Math.min(i, getTotalPages() - 1);
+    rvTrack.style.transform = `translateX(${-w * cur * perPage}px)`;
     dots.forEach((d, j) => { d.classList.toggle('active', j === cur); d.setAttribute('aria-selected', String(j === cur)); });
   }
   dots.forEach(d => d.addEventListener('click', () => { clearInterval(auto); goTo(+d.dataset.idx); startAuto(); }));
-  function startAuto() { auto = setInterval(() => goTo((cur + 1) % dots.length), 4200); }
+  function startAuto() { auto = setInterval(() => goTo((cur + 1) % getTotalPages()), 4200); }
   startAuto();
   let tx = 0;
   rvTrack.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
   rvTrack.addEventListener('touchend', e => {
     const dx = e.changedTouches[0].clientX - tx;
-    if (Math.abs(dx) > 50) { clearInterval(auto); goTo(dx < 0 ? Math.min(cur+1, dots.length-1) : Math.max(cur-1, 0)); startAuto(); }
+    if (Math.abs(dx) > 50) { clearInterval(auto); goTo(dx < 0 ? Math.min(cur+1, getTotalPages()-1) : Math.max(cur-1, 0)); startAuto(); }
   }, { passive: true });
 
   /* FAQ */
