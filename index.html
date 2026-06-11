@@ -759,19 +759,20 @@
   .hero-left .btn-consult { width: 100%; }
   .hero-left .row3 { width: 100%; }
   .hero-right {
-    flex: 0 0 320px;
+    flex: 0 0 340px;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    align-self: stretch;
   }
   .hero-side-img {
     position: relative !important;
     top: auto !important; right: auto !important;
     width: 100% !important; max-width: 100% !important;
     height: 100% !important;
-    min-height: 380px;
+    min-height: 480px;
     border-radius: 16px;
     z-index: 1 !important;
+    flex: 1;
   }
   /* 과목 카드: trust 아래 6열 한 줄 */
   .hero-course-row {
@@ -2106,25 +2107,77 @@
     startAuto();
   })();
 
-  /* NEWS SLIDER */
-  const newsTrack = document.getElementById('newsTrack');
-  const newsDots  = document.querySelectorAll('.news-dot');
-  let newsCur = 0, newsAuto;
-  function newsGoTo(i) {
-    const w = newsTrack.querySelector('.news-card').offsetWidth + 14;
-    newsCur = i;
-    newsTrack.style.transform = `translateX(${-w * newsCur}px)`;
-    newsDots.forEach((d, j) => { d.classList.toggle('active', j === newsCur); d.setAttribute('aria-selected', String(j === newsCur)); });
-  }
-  newsDots.forEach(d => d.addEventListener('click', () => { clearInterval(newsAuto); newsGoTo(+d.dataset.idx); startNewsAuto(); }));
-  function startNewsAuto() { newsAuto = setInterval(() => newsGoTo((newsCur + 1) % newsDots.length), 5000); }
-  startNewsAuto();
-  let ntx = 0;
-  newsTrack.addEventListener('touchstart', e => { ntx = e.touches[0].clientX; }, { passive: true });
-  newsTrack.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - ntx;
-    if (Math.abs(dx) > 50) { clearInterval(newsAuto); newsGoTo(dx < 0 ? Math.min(newsCur+1, newsDots.length-1) : Math.max(newsCur-1, 0)); startNewsAuto(); }
-  }, { passive: true });
+  /* NEWS SLIDER - 완전 무한 루프 */
+  (function() {
+    const track = document.getElementById('newsTrack');
+    const dots  = document.querySelectorAll('.news-dot');
+    if (!track) return;
+
+    const origCards = Array.from(track.querySelectorAll('.news-card'));
+    const total = origCards.length;
+
+    // 앞뒤 전체 복제
+    origCards.forEach(c => track.appendChild(c.cloneNode(true)));
+    origCards.forEach(c => track.insertBefore(c.cloneNode(true), track.firstChild));
+
+    let cur = total;
+    let locked = false;
+    let autoTimer;
+
+    function getW() {
+      return track.querySelectorAll('.news-card')[0].offsetWidth + 14;
+    }
+
+    function jump(idx) {
+      track.style.transition = 'none';
+      cur = idx;
+      track.style.transform = `translateX(${-getW() * cur}px)`;
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        track.style.transition = 'transform .45s cubic-bezier(.4,0,.2,1)';
+        locked = false;
+      }));
+    }
+
+    function slide(idx) {
+      if (locked) return;
+      locked = true;
+      cur = idx;
+      track.style.transition = 'transform .45s cubic-bezier(.4,0,.2,1)';
+      track.style.transform = `translateX(${-getW() * cur}px)`;
+      const dotIdx = ((idx - total) % total + total) % total;
+      dots.forEach((d, i) => {
+        d.classList.toggle('active', i === dotIdx);
+        d.setAttribute('aria-selected', String(i === dotIdx));
+      });
+    }
+
+    track.addEventListener('transitionend', () => {
+      if (cur >= total * 2) jump(cur - total);
+      else if (cur < total) jump(cur + total);
+      else locked = false;
+    });
+
+    jump(cur);
+
+    function startAuto() { autoTimer = setInterval(() => slide(cur + 1), 5000); }
+    function stopAuto()  { clearInterval(autoTimer); }
+    startAuto();
+
+    dots.forEach((d, i) => {
+      d.addEventListener('click', () => {
+        stopAuto(); slide(total + i); startAuto();
+      });
+    });
+
+    let ntx = 0;
+    track.addEventListener('touchstart', e => { ntx = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - ntx;
+      if (Math.abs(dx) > 50) {
+        stopAuto(); slide(dx < 0 ? cur + 1 : cur - 1); startAuto();
+      }
+    }, { passive: true });
+  })();
   const stickyBar = document.getElementById('stickyBar');
   window.addEventListener('scroll', () => {
     stickyBar.classList.toggle('visible', window.scrollY > 300);
@@ -2149,28 +2202,90 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
 
-  /* REVIEW SLIDER */
-  const rvTrack = document.getElementById('rvTrack');
-  const dots    = document.querySelectorAll('.dot');
-  let cur = 0, auto;
-  function getPerPage() { return window.innerWidth >= 768 ? 3 : 1; }
-  function getTotalPages() { return Math.ceil(document.querySelectorAll('.rv-card').length / getPerPage()); }
-  function goTo(i) {
-    const perPage = getPerPage();
-    const w = rvTrack.querySelector('.rv-card').offsetWidth + 18;
-    cur = Math.min(i, getTotalPages() - 1);
-    rvTrack.style.transform = `translateX(${-w * cur * perPage}px)`;
-    dots.forEach((d, j) => { d.classList.toggle('active', j === cur); d.setAttribute('aria-selected', String(j === cur)); });
-  }
-  dots.forEach(d => d.addEventListener('click', () => { clearInterval(auto); goTo(+d.dataset.idx); startAuto(); }));
-  function startAuto() { auto = setInterval(() => goTo((cur + 1) % getTotalPages()), 4200); }
-  startAuto();
-  let tx = 0;
-  rvTrack.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
-  rvTrack.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - tx;
-    if (Math.abs(dx) > 50) { clearInterval(auto); goTo(dx < 0 ? Math.min(cur+1, getTotalPages()-1) : Math.max(cur-1, 0)); startAuto(); }
-  }, { passive: true });
+  /* REVIEW SLIDER - 완전 무한 루프 */
+  (function() {
+    const track = document.getElementById('rvTrack');
+    const dots  = document.querySelectorAll('.dot');
+    if (!track) return;
+
+    const origCards = Array.from(track.querySelectorAll('.rv-card'));
+    const total = origCards.length;
+
+    // 앞뒤에 전체 카드 복제 (충분한 버퍼)
+    origCards.forEach(c => track.appendChild(c.cloneNode(true)));
+    origCards.forEach(c => track.insertBefore(c.cloneNode(true), track.firstChild));
+
+    // 인덱스: 0~total-1 = 앞쪽 클론 / total~2*total-1 = 원본 / 2*total~3*total-1 = 뒷쪽 클론
+    let cur = total; // 원본 첫 카드부터 시작
+    let locked = false;
+    let autoTimer;
+
+    function getW() {
+      return track.querySelectorAll('.rv-card')[0].offsetWidth + 18;
+    }
+
+    function jump(idx) {
+      track.style.transition = 'none';
+      cur = idx;
+      track.style.transform = `translateX(${-getW() * cur}px)`;
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        track.style.transition = 'transform .45s cubic-bezier(.4,0,.2,1)';
+        locked = false;
+      }));
+    }
+
+    function slide(idx) {
+      if (locked) return;
+      locked = true;
+      cur = idx;
+      track.style.transition = 'transform .45s cubic-bezier(.4,0,.2,1)';
+      track.style.transform = `translateX(${-getW() * cur}px)`;
+      updateDots(cur);
+    }
+
+    function updateDots(idx) {
+      const dotIdx = ((idx - total) % total + total) % total;
+      dots.forEach((d, i) => {
+        d.classList.toggle('active', i === dotIdx);
+        d.setAttribute('aria-selected', String(i === dotIdx));
+      });
+    }
+
+    track.addEventListener('transitionend', () => {
+      if (cur >= total * 2) jump(cur - total);
+      else if (cur < total) jump(cur + total);
+      else locked = false;
+    });
+
+    // 초기 위치
+    jump(cur);
+
+    // 자동 재생
+    function startAuto() { autoTimer = setInterval(() => slide(cur + 1), 4200); }
+    function stopAuto() { clearInterval(autoTimer); }
+    startAuto();
+
+    // 도트 클릭
+    dots.forEach((d, i) => {
+      d.addEventListener('click', () => {
+        stopAuto();
+        slide(total + i);
+        startAuto();
+      });
+    });
+
+    // 터치 스와이프
+    let tx = 0;
+    track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - tx;
+      if (Math.abs(dx) > 50) {
+        stopAuto();
+        slide(dx < 0 ? cur + 1 : cur - 1);
+        startAuto();
+      }
+    }, { passive: true });
+  })();
 
   /* FAQ */
   document.querySelectorAll('.faq-q').forEach(btn => {
