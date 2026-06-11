@@ -22,7 +22,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Noto+Serif+KR:wght@400;600;700;900&family=Do+Hyeon&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Noto+Serif+KR:wght@400;600;700;900&family=Do+Hyeon&family=Jua&display=swap" rel="stylesheet" />
 
   <!-- =====================================================
        📌 TRACKING CODE INSERTION POINTS
@@ -490,12 +490,27 @@
     .curr-card {
       cursor:pointer;
       -webkit-tap-highlight-color: transparent;
-      transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+      transition: background .3s ease, box-shadow .3s ease, transform .3s ease, border-color .3s ease;
+      position: relative; overflow: hidden;
+    }
+    .curr-card::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+      background: linear-gradient(180deg, var(--navy), var(--gold));
+      transition: width .3s ease;
     }
     .curr-card:hover {
-      transform: translateY(-3px) scale(1.01);
-      box-shadow: 0 8px 24px rgba(22,33,62,.13);
-      border-color: rgba(22,33,62,.2);
+      background: var(--bg-sub);
+      box-shadow: 0 8px 28px rgba(22,33,62,.10);
+      transform: translateX(4px);
+      border-color: rgba(22,33,62,.15);
+    }
+    .curr-card:hover::before { width: 4px; }
+    .curr-card:hover .curr-num { transform: scale(1.18); box-shadow: 0 6px 18px rgba(22,33,62,.2); }
+    .curr-card:hover .curr-name {
+      text-decoration: underline;
+      text-decoration-color: var(--gold);
+      text-underline-offset: 4px;
+      text-decoration-thickness: 2px;
     }
     .curr-hit:hover {
       border-color: rgba(201,168,76,.6) !important;
@@ -794,8 +809,15 @@
   .hero-cta { max-width: 100%; }
   .row3 { max-width: 100%; }
   .scroll-hint { display: none; }
-  .t-hero { font-size: 1.9rem !important; line-height: 1.4 !important; }
-  .hero-sub { font-size: .95rem !important; }
+  .t-hero { font-size: 2rem !important; line-height: 1.4 !important; }
+  .t-hero span:first-child { font-size: 3rem !important; }
+  .t-hero span:nth-child(2) { font-size: 2rem !important; }
+  .t-hero em { font-size: 2rem !important; }
+  .hero-sub { font-size: 1.1rem !important; line-height: 1.8 !important; font-family: 'Jua', 'Noto Sans KR', sans-serif !important; }
+  .hero-badge { font-size: .85rem; padding: 7px 16px; }
+  .trust-item .num { font-size: 1.2rem !important; }
+  .trust-item .lbl { font-size: .82rem !important; }
+  .trust-item { padding: 16px 10px; }
 
   /* ── WHY + CURRICULUM 2단 ── */
   .why-curr-wrap {
@@ -1283,27 +1305,27 @@
       <p class="sec-desc">초보부터 프로까지, 목표에 맞는 과정 선택</p>
     </div>
     <div class="curr-grid fade-up" role="list">
-      <div class="curr-card" role="listitem">
+      <div class="curr-card fade-up d1" role="listitem">
         <div class="curr-left"><div class="curr-num">1</div><div><div class="curr-name">기초과정</div><div class="curr-sub">입문 ~ 기본 그루밍</div></div></div>
         <span class="tag tag-blue">입문</span>
       </div>
-      <div class="curr-card" role="listitem">
+      <div class="curr-card fade-up d2" role="listitem">
         <div class="curr-left"><div class="curr-num">2</div><div><div class="curr-name">자격증 취득반</div><div class="curr-sub">애견미용자격증 3급 · 2급</div></div></div>
         <span class="tag tag-green">자격증</span>
       </div>
-      <div class="curr-card" role="listitem">
+      <div class="curr-card fade-up d3" role="listitem">
         <div class="curr-left"><div class="curr-num">3</div><div><div class="curr-name">실견 심화반</div><div class="curr-sub">가정견 실습 집중과정</div></div></div>
         <span class="tag tag-gold">실습</span>
       </div>
-      <div class="curr-card" role="listitem">
+      <div class="curr-card fade-up d4" role="listitem">
         <div class="curr-left"><div class="curr-num">4</div><div><div class="curr-name">취업·창업반</div><div class="curr-sub">실무 완성 + 취업 연계</div></div></div>
         <span class="tag tag-red">취업</span>
       </div>
-      <div class="curr-card curr-hit" role="listitem">
+      <div class="curr-card curr-hit fade-up d4" role="listitem">
         <div class="curr-left"><div class="curr-num curr-num-hit">🔥</div><div><div class="curr-name">종합·심화반</div><div class="curr-sub">교육지원으로 합리적인 선택</div></div></div>
         <span class="tag tag-hit">추천</span>
       </div>
-      <div class="curr-card" role="listitem">
+      <div class="curr-card fade-up d4" role="listitem">
         <div class="curr-left"><div class="curr-num">+</div><div><div class="curr-name">스페셜 특강</div><div class="curr-sub">행동교정 · 펫푸드 · 아로마</div></div></div>
         <span class="tag tag-purple">특강</span>
       </div>
