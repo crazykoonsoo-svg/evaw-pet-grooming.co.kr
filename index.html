@@ -724,6 +724,163 @@
     .news-dot { width:6px; height:6px; border-radius:50%; background:var(--gray-2); cursor:pointer; transition:var(--tr); border:none; padding:0; }
     .news-dot.active { background:var(--navy); width:20px; border-radius:3px; }
     @media (min-width:481px) { .wrap { padding:0 24px; } }
+
+/* ════════════════════════════════════════════════
+   데스크탑 레이아웃 (768px 이상)
+════════════════════════════════════════════════ */
+@media (min-width: 768px) {
+
+  /* ── 기본 컨테이너 ── */
+  .wrap { max-width: 1200px; padding: 0 40px; }
+  section { padding: 72px 0; }
+
+  /* ── TOP NAV ── */
+  #topNav .wrap { max-width: 1200px; padding: 0 40px; }
+  .nav-inner { max-width: 1200px; margin: 0 auto; }
+
+  /* ── HERO ── */
+  #hero { min-height: auto; padding-bottom: 60px; }
+  .hero-content {
+    max-width: 1200px;
+    padding: 60px 40px 40px;
+    flex-direction: row;
+    align-items: center;
+    gap: 60px;
+  }
+  .hero-left { flex: 1; }
+  .hero-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .hero-side-img {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 320px !important;
+    border-radius: 20px;
+    z-index: 1 !important;
+  }
+  .course-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    width: 100%;
+  }
+  .hero-trust { max-width: 100%; }
+  .hero-cta { max-width: 100%; }
+  .row3 { max-width: 100%; }
+  .scroll-hint { display: none; }
+
+  /* ── WHY ── */
+  #why .diff-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .diff-card { flex-direction: column; }
+  .diff-icon { width: 52px; height: 52px; font-size: 26px; }
+
+  /* ── NETWORK ── */
+  #network .wrap { display: flex; align-items: center; gap: 60px; }
+  .net-card { flex: 0 0 340px; margin-bottom: 0; }
+  .assoc-row { flex: 1; grid-template-columns: repeat(3, 1fr); }
+
+  /* ── CURRICULUM ── */
+  #curriculum .curr-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .curr-card { flex-direction: row; align-items: center; }
+
+  /* ── REVIEWS ── */
+  #reviews .rv-slider { overflow: visible; }
+  #reviews .rv-track {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    transform: none !important;
+    padding: 0 40px !important;
+  }
+  #reviews .rv-card { min-width: auto; max-width: 100%; }
+  #reviews .rv-img-wrap { width: 120px; height: 120px; }
+  .slider-dots { display: none; }
+
+  /* ── PORTFOLIO ── */
+  .port-grid {
+    grid-template-columns: repeat(5, 1fr) !important;
+  }
+  .port-grid .port-main { grid-column: span 2; grid-row: span 1; }
+
+  /* ── FAQ ── */
+  #faq .faq-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    align-items: start;
+  }
+
+  /* ── BRANCHES ── */
+  .branch-track { padding: 0 40px !important; }
+  .branch-card { min-width: calc(25% - 12px) !important; max-width: 240px !important; }
+
+  /* ── NEWS ── */
+  #news .news-slider { overflow: visible; }
+  #news .news-track {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    transform: none !important;
+    padding: 0 40px !important;
+  }
+  #news .news-card { min-width: auto; max-width: 100%; }
+  .news-dots { display: none; }
+
+  /* ── FINAL CTA ── */
+  #finalCta .ft-grid {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 600px;
+    margin: 0 auto 28px;
+  }
+
+  /* ── FOOTER ── */
+  footer .wrap { display: flex; justify-content: space-between; align-items: center; }
+  .footer-links { margin-top: 0; }
+
+  /* ── STICKY BAR ── */
+  .sticky-inner {
+    max-width: 600px;
+    gap: 12px;
+  }
+  .sb-btn { font-size: .85rem; padding: 14px 10px; }
+
+  /* ── MID CTA ── */
+  .cta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .sec-title { font-size: 2rem; }
+  .t-hero { font-size: 2.2rem !important; }
+  .hero-sub { font-size: 1rem !important; }
+}
+
+/* ── 넓은 화면 추가 최적화 ── */
+@media (min-width: 1024px) {
+  #why .diff-list { grid-template-columns: repeat(3, 1fr); }
+  #reviews .rv-track { grid-template-columns: repeat(3, 1fr); }
+  #news .news-track { grid-template-columns: repeat(4, 1fr); }
+  .branch-card { min-width: calc(20% - 12px) !important; }
+}
+
     @media (min-width:600px) { #hero { min-height:auto; padding-bottom:40px; } }
 
     /* ── PHONE POPUP ── */
@@ -845,76 +1002,60 @@
 
   <div class="hero-content">
 
-    <div class="hero-badge">🏆 전국 20개 직영지점 운영</div>
+    <!-- 왼쪽: 텍스트 + CTA -->
+    <div class="hero-left">
+      <div class="hero-badge">🏆 전국 20개 직영지점 운영</div>
 
-    <!-- 히어로 우측 슬라이드쇼 -->
-    <div class="hero-side-img" id="heroSlider">
-      <img src="image/hero-bg2.webp" class="hero-slide active" alt="애견미용 실습 1" />
-      <img src="image/hero-bg3.webp" class="hero-slide" alt="애견미용 실습 2" />
-      <img src="image/hero-bg4.webp" class="hero-slide" alt="애견미용 실습 3" />
-      <img src="image/hero-bg5.webp" class="hero-slide" alt="애견미용 실습 4" />
-    </div>
+      <h1 class="t-hero hero-title serif">
+        <span style="font-size:1.5rem;display:block;text-shadow:0 0 10px rgba(255,255,255,.9),0 0 20px rgba(255,255,255,.6);">누적 수강생 5,600명 이상</span>
+        <span style="font-size:1.2rem;display:block;">수업 만족도가 높은</span>
+        <em style="font-size:1.2rem;">이바우펫 애견미용학원</em>
+      </h1>
+      <p class="hero-sub">100% 가정견 실견수업부터 취업·창업 준비까지<br/>교육지원 가능 여부부터 확인해보세요</p>
 
-    <h1 class="t-hero hero-title serif">
-      <span style="font-size:1.5rem;display:block;text-shadow:0 0 10px rgba(255,255,255,.9),0 0 20px rgba(255,255,255,.6);">누적 수강생 5,600명 이상</span>
-      <span style="font-size:1.2rem;display:block;">수업 만족도가 높은</span>
-      <em style="font-size:1.2rem;">이바우펫 애견미용학원</em>
-    </h1>
-    <p class="hero-sub">100% 가정견 실견수업부터 취업·창업 준비까지<br/>교육지원 가능 여부부터 확인해보세요</p>
+      <div class="hero-cta">
+        <button class="btn btn-consult btn-full btn-lg" onclick="openModal()" aria-label="무료 상담 신청">
+          🎓 교육비지원 조회하기
+        </button>
+        <div class="row3">
+          <button class="btn btn-gold" onclick="showPhone()" aria-label="전화 상담">📞 전화상담</button>
+          <a href="http://pf.kakao.com/_xaNjrn/chat" class="btn btn-kakao" target="_blank" rel="noopener" aria-label="카카오톡 문의">💬 카톡문의</a>
+          <a href="https://naver.me/51umU1bd" class="btn btn-naver" target="_blank" rel="noopener" aria-label="네이버 문의">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>
+            네이버문의
+          </a>
+        </div>
+      </div>
 
-    <!-- 과목 카드 그리드 -->
-    <div class="course-grid">
-      <div class="course-card cc-blue">
-        <div class="cc-icon">✂️</div>
-        <div class="cc-name">애견미용<br/>자격증</div>
+      <div class="hero-trust" role="list">
+        <div class="trust-item" role="listitem"><span class="num">전국 20개</span><span class="lbl">직영지점 운영</span></div>
+        <div class="trust-item" role="listitem"><span class="num">초보자</span><span class="lbl">맞춤 단계별 커리큘럼</span></div>
+        <div class="trust-item" role="listitem"><span class="num">100%</span><span class="lbl">가정견 실견수업</span></div>
       </div>
-      <div class="course-card cc-peach">
-        <div class="cc-icon">🍖</div>
-        <div class="cc-name">펫푸드<br/>레시피</div>
-      </div>
-      <div class="course-card cc-mint">
-        <div class="cc-icon">🐾</div>
-        <div class="cc-name">반려동물<br/>행동교정사</div>
-      </div>
-      <div class="course-card cc-lavender">
-        <div class="cc-icon">🕊️</div>
-        <div class="cc-name">반려동물<br/>장례지도사</div>
-      </div>
-      <div class="course-card cc-sage">
-        <div class="cc-icon">🌿</div>
-        <div class="cc-name">아로마<br/>테라피</div>
-      </div>
-      <div class="course-card cc-gold">
-        <div class="cc-icon">💼</div>
-        <div class="cc-name">취업연계<br/>창업컨설팅</div>
+      <div class="scroll-hint" aria-hidden="true">
+        <div class="scroll-hint-text">자세히 보기</div>
+        <div class="scroll-arrow-icon">↓</div>
       </div>
     </div>
 
-    <div class="hero-cta">
-      <!-- 1행: 무료상담 -->
-      <button class="btn btn-consult btn-full btn-lg" onclick="openModal()" aria-label="무료 상담 신청">
-        🎓 교육비지원 조회하기
-      </button>
-      <!-- 2행: 전화 + 카톡 + 네이버 한줄 -->
-      <div class="row3">
-        <button class="btn btn-gold" onclick="showPhone()" aria-label="전화 상담">📞 전화상담</button>
-        <a href="http://pf.kakao.com/_xaNjrn/chat" class="btn btn-kakao" target="_blank" rel="noopener" aria-label="카카오톡 문의">💬 카톡문의</a>
-        <a href="https://naver.me/51umU1bd" class="btn btn-naver" target="_blank" rel="noopener" aria-label="네이버 문의">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>
-          네이버문의
-        </a>
+    <!-- 오른쪽: 이미지 + 과목 카드 -->
+    <div class="hero-right">
+      <div class="hero-side-img" id="heroSlider">
+        <img src="image/hero-bg2.webp" class="hero-slide active" alt="애견미용 실습 1" />
+        <img src="image/hero-bg3.webp" class="hero-slide" alt="애견미용 실습 2" />
+        <img src="image/hero-bg4.webp" class="hero-slide" alt="애견미용 실습 3" />
+        <img src="image/hero-bg5.webp" class="hero-slide" alt="애견미용 실습 4" />
+      </div>
+      <div class="course-grid">
+        <div class="course-card cc-blue"><div class="cc-icon">✂️</div><div class="cc-name">애견미용<br/>자격증</div></div>
+        <div class="course-card cc-peach"><div class="cc-icon">🍖</div><div class="cc-name">펫푸드<br/>레시피</div></div>
+        <div class="course-card cc-mint"><div class="cc-icon">🐾</div><div class="cc-name">반려동물<br/>행동교정사</div></div>
+        <div class="course-card cc-lavender"><div class="cc-icon">🕊️</div><div class="cc-name">반려동물<br/>장례지도사</div></div>
+        <div class="course-card cc-sage"><div class="cc-icon">🌿</div><div class="cc-name">아로마<br/>테라피</div></div>
+        <div class="course-card cc-gold"><div class="cc-icon">💼</div><div class="cc-name">취업연계<br/>창업컨설팅</div></div>
       </div>
     </div>
 
-    <div class="hero-trust" role="list">
-      <div class="trust-item" role="listitem"><span class="num">전국 20개</span><span class="lbl">직영지점 운영</span></div>
-      <div class="trust-item" role="listitem"><span class="num">초보자</span><span class="lbl">맞춤 단계별 커리큘럼</span></div>
-      <div class="trust-item" role="listitem"><span class="num">100%</span><span class="lbl">가정견 실견수업</span></div>
-    </div>
-    <div class="scroll-hint" aria-hidden="true">
-      <div class="scroll-hint-text">자세히 보기</div>
-      <div class="scroll-arrow-icon">↓</div>
-    </div>
   </div>
 </section>
 
