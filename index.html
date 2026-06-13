@@ -279,6 +279,46 @@
         linear-gradient(to top, transparent 0%, rgba(0,0,0,1) 30%);
       -webkit-mask-composite: source-in;
     }
+    .hero-mobile-gallery {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1000 / 400;
+      border-radius: 16px;
+      overflow: hidden;
+      margin: 16px 0 6px;
+    }
+    .hmg-slide {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      animation: hmgFade 15s infinite;
+      cursor: zoom-in;
+      transition: none;
+    }
+    .hmg-slide:nth-child(1) { animation-delay: 0s; }
+    .hmg-slide:nth-child(2) { animation-delay: 3s; }
+    .hmg-slide:nth-child(3) { animation-delay: 6s; }
+    .hmg-slide:nth-child(4) { animation-delay: 9s; }
+    .hmg-slide:nth-child(5) { animation-delay: 12s; }
+    @keyframes hmgFade {
+      0%   { opacity: 0; }
+      4%   { opacity: 1; }
+      20%  { opacity: 1; }
+      24%  { opacity: 0; }
+      100% { opacity: 0; }
+    }
+    .hmg-slide.hmg-full {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important; height: 100vh !important;
+      object-fit: contain !important;
+      background: #000;
+      z-index: 5000;
+      opacity: 1 !important;
+      animation: none !important;
+      cursor: zoom-out;
+    }
     .hero-bg  { position:absolute; inset:0; pointer-events:none;
       background-image:
         radial-gradient(ellipse 100% 80% at 110% -10%,rgba(201,168,76,.12) 0%,transparent 55%),
@@ -771,6 +811,7 @@
   .hero-left .hero-cta { width: 100%; }
   .hero-left .hero-trust { width: 100%; }
   .hero-left .hero-course-row { width: 100%; }
+  .hero-left .hero-mobile-gallery { width: 100%; }
   .hero-left .btn-consult { width: 100%; }
   .hero-left .row3 { width: 100%; }
   .hero-right {
@@ -789,26 +830,26 @@
     z-index: 1 !important;
     flex: 1;
   }
-  /* 과목 카드: trust 아래 6열 한 줄 */
+  /* 과목 카드: trust 아래 (768px~1023px: 3열x2행 / 1024px+: 6열) */
   .hero-course-row {
     display: grid !important;
-    grid-template-columns: repeat(6, 1fr) !important;
-    gap: 8px;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 10px;
     margin-top: 12px;
   }
   .hero-course-row .course-card {
-    padding: 14px 6px;
+    padding: 16px 8px;
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
   }
-  .hero-course-row .cc-icon { font-size: 22px; margin-bottom: 6px; }
-  .hero-course-row .cc-name { font-size: .72rem; }
-  /* 모바일에서 hero-course-row 숨기고 기존 course-grid 표시 */
+  .hero-course-row .cc-icon { font-size: 26px; margin-bottom: 8px; }
+  .hero-course-row .cc-name { font-size: .85rem; white-space: nowrap; }
   .hero-trust { max-width: 100%; }
   .hero-cta { max-width: 100%; }
   .row3 { max-width: 100%; }
   .scroll-hint { display: none; }
+
   .t-hero { font-size: 2rem !important; line-height: 1.4 !important; }
   .t-hero span:first-child { font-size: 3rem !important; }
   .t-hero span:nth-child(2) { font-size: 2rem !important; }
@@ -1037,6 +1078,17 @@
   .fade-up { text-align: center; }
 }
 
+/* ── 1024px+: 과목카드 6열 한 줄 ── */
+@media (min-width: 1024px) {
+  .hero-course-row {
+    grid-template-columns: repeat(6, 1fr) !important;
+    gap: 8px;
+  }
+  .hero-course-row .course-card { padding: 14px 6px; }
+  .hero-course-row .cc-icon { font-size: 22px; margin-bottom: 6px; }
+  .hero-course-row .cc-name { font-size: .72rem; white-space: normal; }
+}
+
 /* ── 넓은 화면 (1200px+) ── */
 @media (min-width: 1200px) {
   .wrap { max-width: 1100px; }
@@ -1198,6 +1250,15 @@
         <div class="trust-item" role="listitem"><span class="num">전국 20개</span><span class="lbl">직영지점 운영</span></div>
         <div class="trust-item" role="listitem"><span class="num">초보자</span><span class="lbl">맞춤 단계별 커리큘럼</span></div>
         <div class="trust-item" role="listitem"><span class="num">100%</span><span class="lbl">가정견 실견수업</span></div>
+      </div>
+
+      <!-- 모바일 전용 슬라이드 이미지 -->
+      <div class="hero-mobile-gallery" role="region" aria-label="이바우펫 프로그램 안내 이미지 갤러리 (클릭하면 확대됩니다)">
+        <img src="image/hero-banner1.webp" class="hmg-slide" alt="애견미용적성파악 클래스" onclick="this.classList.toggle('hmg-full')" />
+        <img src="image/hero-banner2.webp" class="hmg-slide" alt="애견미용자격증취득 보장반" onclick="this.classList.toggle('hmg-full')" />
+        <img src="image/hero-banner3.webp" class="hmg-slide" alt="애견미용펫미용" onclick="this.classList.toggle('hmg-full')" />
+        <img src="image/hero-banner4.webp" class="hmg-slide" alt="애견미용종합반" onclick="this.classList.toggle('hmg-full')" />
+        <img src="image/hero-banner5.webp" class="hmg-slide" alt="애견미용교육비 지원" onclick="this.classList.toggle('hmg-full')" />
       </div>
 
       <!-- 과목 카드: trust 아래 한 줄 (PC에서 6열) -->
