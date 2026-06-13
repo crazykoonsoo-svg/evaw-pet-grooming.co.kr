@@ -326,6 +326,8 @@
         radial-gradient(ellipse 70% 60% at -5% 110%,rgba(22,33,62,.06) 0%,transparent 50%); }
     .hero-paw { position:absolute; right:-20px; top:20px; font-size:120px; opacity:.04; pointer-events:none; transform:rotate(20deg); }
     .hero-content { padding:36px 20px 0; max-width:480px; margin:0 auto; width:100%; position:relative; z-index:2; flex:1; display:flex; flex-direction:column; }
+    .hero-top-row { display: flex; flex-direction: column; }
+    .hero-bottom { display: flex; flex-direction: column; }
 
     .hero-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(201,168,76,.12); border:1px solid rgba(201,168,76,.35); color:#7a5c10; border-radius:50px; padding:6px 14px; font-size:.75rem; font-weight:700; margin-bottom:18px; width:fit-content; }
     .hero-title { color:var(--navy); margin-bottom:12px; }
@@ -821,33 +823,45 @@
   #hero { min-height: auto; padding-bottom: 60px; }
   .hero-content {
     max-width: 960px;
-    padding: 60px 40px 40px;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 48px;
+    padding: 0 40px 40px;
+    flex-direction: column;
+    gap: 0;
     text-align: left;
   }
-  .hero-left { flex: 1; width: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+  /* 상단: 좌(텍스트) / 우(이미지) 2단 */
+  .hero-top-row {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 40px;
+    padding-top: 24px;
+  }
+  .hero-left {
+    flex: 1.2; width: 100%; display: flex; flex-direction: column;
+    align-items: flex-start; text-align: left;
+  }
   .hero-left .hero-cta { width: 100%; }
   .hero-left .hero-trust { width: 100%; }
-  .hero-left .hero-course-row { width: 100%; }
-  .hero-left .hero-mobile-gallery { width: 100%; }
   .hero-left .btn-consult { width: 100%; }
   .hero-left .row3 { width: 100%; }
+
+  /* 하단: 풀와이드 (과목카드/갤러리) */
+  .hero-bottom { width: 100%; margin-top: 24px; }
+  .hero-bottom .hero-course-row { width: 100%; }
+  .hero-bottom .hero-mobile-gallery { width: 100%; }
+
   .hero-right { display: none; }
 
-  /* 우측 상단 배경 이미지 (텍스트 뒤) */
-  .hero-content { position: relative; }
+  /* 우측 이미지 컬럼 (네이비 nav 바로 아래부터 CTA 버튼까지) */
   .hero-pc-bg {
     display: block;
-    position: absolute;
-    top: 0; right: 0;
-    width: 48%;
-    max-width: 440px;
-    height: 400px;
+    position: relative;
+    flex: 0 0 360px;
+    width: 360px;
+    height: auto;
+    align-self: stretch;
     overflow: hidden;
     border-radius: 16px;
-    z-index: 0;
   }
   .hero-pc-bg .hero-slide-pc {
     position: absolute; inset: 0;
@@ -855,19 +869,11 @@
     object-fit: cover;
     opacity: 0;
     transition: opacity 1.2s ease-in-out;
-    mask-image:
-      linear-gradient(to left, rgba(0,0,0,1) 60%, transparent 100%),
-      linear-gradient(to right, rgba(0,0,0,1) 96%, transparent 100%),
-      linear-gradient(to bottom, rgba(0,0,0,1) 70%, transparent 100%);
-    mask-composite: intersect;
-    -webkit-mask-image:
-      linear-gradient(to left, rgba(0,0,0,1) 60%, transparent 100%),
-      linear-gradient(to right, rgba(0,0,0,1) 96%, transparent 100%),
-      linear-gradient(to bottom, rgba(0,0,0,1) 70%, transparent 100%);
-    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to left, rgba(0,0,0,1) 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 85%, transparent 100%);
   }
-  .hero-pc-bg .hero-slide-pc.active { opacity: .5; }
-  .hero-left { position: relative; z-index: 1; }
+  .hero-pc-bg .hero-slide-pc.active { opacity: .85; }
+
   /* 과목 카드: trust 아래 (768px~1023px: 3열x2행 / 1024px+: 6열) */
   .hero-course-row {
     display: grid !important;
@@ -1259,46 +1265,50 @@
 
   <div class="hero-content">
 
-    <!-- PC 전용 우측 상단 배경 슬라이드 -->
-    <div class="hero-pc-bg" id="heroPcBg" aria-hidden="true">
-      <img src="image/hero-bg2.webp" class="hero-slide-pc active" alt="" />
-      <img src="image/hero-bg3.webp" class="hero-slide-pc" alt="" />
-      <img src="image/hero-bg4.webp" class="hero-slide-pc" alt="" />
-      <img src="image/hero-bg5.webp" class="hero-slide-pc" alt="" />
-    </div>
+    <div class="hero-top-row">
+      <!-- 왼쪽: 텍스트 + CTA -->
+      <div class="hero-left">
+        <div class="hero-badge">🏆 전국 20개 직영지점 운영</div>
 
+        <h1 class="t-hero hero-title serif">
+          <span style="font-size:1.5rem;display:block;text-shadow:0 0 10px rgba(255,255,255,.9),0 0 20px rgba(255,255,255,.6);">누적 수강생 5,600명 이상</span>
+          <span style="font-size:1.2rem;display:block;">수업 만족도가 높은</span>
+          <em style="font-size:1.2rem;">이바우펫 애견미용학원</em>
+        </h1>
+        <p class="hero-sub">100% 가정견 실견수업부터 취업·창업 준비까지<br/>교육지원 가능 여부부터 확인해보세요</p>
 
-    <!-- 왼쪽: 텍스트 + CTA -->
-    <div class="hero-left">
-      <div class="hero-badge">🏆 전국 20개 직영지점 운영</div>
+        <div class="hero-cta">
+          <button class="btn btn-consult btn-full btn-lg" onclick="openModal()" aria-label="무료 상담 신청">
+            🎓 교육비지원 조회하기
+          </button>
+          <div class="row3">
+            <button class="btn btn-gold" onclick="showPhone()" aria-label="전화 상담">📞 전화상담</button>
+            <a href="http://pf.kakao.com/_xaNjrn/chat" class="btn btn-kakao" target="_blank" rel="noopener" aria-label="카카오톡 문의">💬 카톡문의</a>
+            <a href="https://naver.me/51umU1bd" class="btn btn-naver" target="_blank" rel="noopener" aria-label="네이버 문의">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>
+              네이버문의
+            </a>
+          </div>
+        </div>
 
-      <h1 class="t-hero hero-title serif">
-        <span style="font-size:1.5rem;display:block;text-shadow:0 0 10px rgba(255,255,255,.9),0 0 20px rgba(255,255,255,.6);">누적 수강생 5,600명 이상</span>
-        <span style="font-size:1.2rem;display:block;">수업 만족도가 높은</span>
-        <em style="font-size:1.2rem;">이바우펫 애견미용학원</em>
-      </h1>
-      <p class="hero-sub">100% 가정견 실견수업부터 취업·창업 준비까지<br/>교육지원 가능 여부부터 확인해보세요</p>
-
-      <div class="hero-cta">
-        <button class="btn btn-consult btn-full btn-lg" onclick="openModal()" aria-label="무료 상담 신청">
-          🎓 교육비지원 조회하기
-        </button>
-        <div class="row3">
-          <button class="btn btn-gold" onclick="showPhone()" aria-label="전화 상담">📞 전화상담</button>
-          <a href="http://pf.kakao.com/_xaNjrn/chat" class="btn btn-kakao" target="_blank" rel="noopener" aria-label="카카오톡 문의">💬 카톡문의</a>
-          <a href="https://naver.me/51umU1bd" class="btn btn-naver" target="_blank" rel="noopener" aria-label="네이버 문의">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>
-            네이버문의
-          </a>
+        <div class="hero-trust" role="list">
+          <div class="trust-item" role="listitem"><span class="num">전국 20개</span><span class="lbl">직영지점 운영</span></div>
+          <div class="trust-item" role="listitem"><span class="num">초보자</span><span class="lbl">맞춤 단계별 커리큘럼</span></div>
+          <div class="trust-item" role="listitem"><span class="num">100%</span><span class="lbl">가정견 실견수업</span></div>
         </div>
       </div>
 
-      <div class="hero-trust" role="list">
-        <div class="trust-item" role="listitem"><span class="num">전국 20개</span><span class="lbl">직영지점 운영</span></div>
-        <div class="trust-item" role="listitem"><span class="num">초보자</span><span class="lbl">맞춤 단계별 커리큘럼</span></div>
-        <div class="trust-item" role="listitem"><span class="num">100%</span><span class="lbl">가정견 실견수업</span></div>
+      <!-- PC 전용 우측 이미지 -->
+      <div class="hero-pc-bg" id="heroPcBg" aria-hidden="true">
+        <img src="image/hero-bg2.webp" class="hero-slide-pc active" alt="" />
+        <img src="image/hero-bg3.webp" class="hero-slide-pc" alt="" />
+        <img src="image/hero-bg4.webp" class="hero-slide-pc" alt="" />
+        <img src="image/hero-bg5.webp" class="hero-slide-pc" alt="" />
       </div>
+    </div>
 
+    <!-- 하단: 풀와이드 (과목카드 / 갤러리 / 자세히보기) -->
+    <div class="hero-bottom">
       <!-- 과목 카드: trust 아래 한 줄 (PC에서 6열) -->
       <div class="course-grid hero-course-row">
         <div class="course-card cc-blue"><div class="cc-icon">✂️</div><div class="cc-name">애견미용<br/>자격증</div></div>
@@ -1318,14 +1328,13 @@
         <img src="image/hero-banner5.webp" class="hmg-slide" alt="애견미용교육비 지원" onclick="this.classList.toggle('hmg-full')" />
       </div>
 
-
       <div class="scroll-hint" aria-hidden="true">
         <div class="scroll-hint-text">자세히 보기</div>
         <div class="scroll-arrow-icon">↓</div>
       </div>
     </div>
 
-    <!-- 오른쪽: 이미지만 -->
+    <!-- 오른쪽: 이미지만 (구버전, 모바일 슬라이드쇼 유지용) -->
     <div class="hero-right">
       <div class="hero-side-img" id="heroSlider">
         <img src="image/hero-bg2.webp" class="hero-slide active" alt="애견미용 실습 1" />
