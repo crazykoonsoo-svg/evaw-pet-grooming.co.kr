@@ -355,7 +355,26 @@
       display:grid; grid-template-columns:1fr 1fr 1fr;
       gap:8px; margin-bottom:20px;
     }
-    .hero-course-row { display:none; }
+    .hero-course-row {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 6px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      margin-bottom: 4px;
+    }
+    .hero-course-row::-webkit-scrollbar { display: none; }
+    .hero-course-row .course-card {
+      flex: 1 1 0;
+      min-width: 0;
+      padding: 8px 2px;
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .hero-course-row .cc-icon { font-size: 16px; margin-bottom: 4px; }
+    .hero-course-row .cc-name { font-size: .58rem; line-height: 1.25; }
     .course-card {
       border-radius:var(--r12);
       padding:14px 8px 12px;
@@ -807,29 +826,14 @@
     gap: 48px;
     text-align: left;
   }
-  .hero-left { flex: 1.1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .hero-left { flex: 1; width: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; }
   .hero-left .hero-cta { width: 100%; }
   .hero-left .hero-trust { width: 100%; }
   .hero-left .hero-course-row { width: 100%; }
   .hero-left .hero-mobile-gallery { width: 100%; }
   .hero-left .btn-consult { width: 100%; }
   .hero-left .row3 { width: 100%; }
-  .hero-right {
-    flex: 0 0 340px;
-    display: flex;
-    flex-direction: column;
-    align-self: stretch;
-  }
-  .hero-side-img {
-    position: relative !important;
-    top: auto !important; right: auto !important;
-    width: 100% !important; max-width: 100% !important;
-    height: 100% !important;
-    min-height: 480px;
-    border-radius: 16px;
-    z-index: 1 !important;
-    flex: 1;
-  }
+  .hero-right { display: none; }
   /* 과목 카드: trust 아래 (768px~1023px: 3열x2행 / 1024px+: 6열) */
   .hero-course-row {
     display: grid !important;
@@ -1252,15 +1256,6 @@
         <div class="trust-item" role="listitem"><span class="num">100%</span><span class="lbl">가정견 실견수업</span></div>
       </div>
 
-      <!-- 모바일 전용 슬라이드 이미지 -->
-      <div class="hero-mobile-gallery" role="region" aria-label="이바우펫 프로그램 안내 이미지 갤러리 (클릭하면 확대됩니다)">
-        <img src="image/hero-banner1.webp" class="hmg-slide" alt="애견미용적성파악 클래스" onclick="this.classList.toggle('hmg-full')" />
-        <img src="image/hero-banner2.webp" class="hmg-slide" alt="애견미용자격증취득 보장반" onclick="this.classList.toggle('hmg-full')" />
-        <img src="image/hero-banner3.webp" class="hmg-slide" alt="애견미용펫미용" onclick="this.classList.toggle('hmg-full')" />
-        <img src="image/hero-banner4.webp" class="hmg-slide" alt="애견미용종합반" onclick="this.classList.toggle('hmg-full')" />
-        <img src="image/hero-banner5.webp" class="hmg-slide" alt="애견미용교육비 지원" onclick="this.classList.toggle('hmg-full')" />
-      </div>
-
       <!-- 과목 카드: trust 아래 한 줄 (PC에서 6열) -->
       <div class="course-grid hero-course-row">
         <div class="course-card cc-blue"><div class="cc-icon">✂️</div><div class="cc-name">애견미용<br/>자격증</div></div>
@@ -1270,6 +1265,16 @@
         <div class="course-card cc-sage"><div class="cc-icon">🌿</div><div class="cc-name">아로마<br/>테라피</div></div>
         <div class="course-card cc-gold"><div class="cc-icon">💼</div><div class="cc-name">취업연계<br/>창업컨설팅</div></div>
       </div>
+
+      <!-- 모바일 전용 슬라이드 이미지 -->
+      <div class="hero-mobile-gallery" role="region" aria-label="이바우펫 프로그램 안내 이미지 갤러리 (클릭하면 확대됩니다)">
+        <img src="image/hero-banner1.webp" class="hmg-slide" alt="애견미용적성파악 클래스" onclick="this.classList.toggle('hmg-full')" />
+        <img src="image/hero-banner2.webp" class="hmg-slide" alt="애견미용자격증취득 보장반" onclick="this.classList.toggle('hmg-full')" />
+        <img src="image/hero-banner3.webp" class="hmg-slide" alt="애견미용펫미용" onclick="this.classList.toggle('hmg-full')" />
+        <img src="image/hero-banner4.webp" class="hmg-slide" alt="애견미용종합반" onclick="this.classList.toggle('hmg-full')" />
+        <img src="image/hero-banner5.webp" class="hmg-slide" alt="애견미용교육비 지원" onclick="this.classList.toggle('hmg-full')" />
+      </div>
+
 
       <div class="scroll-hint" aria-hidden="true">
         <div class="scroll-hint-text">자세히 보기</div>
