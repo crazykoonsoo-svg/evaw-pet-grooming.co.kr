@@ -247,6 +247,7 @@
     #hero .hero-bg, #hero .hero-paw, #hero .hero-content { position:relative; z-index:1; }
 
     /* 히어로 우측 이미지 */
+    .hero-pc-bg { display: none; }
     .hero-side-img {
       position: absolute;
       right: 0;
@@ -834,6 +835,37 @@
   .hero-left .btn-consult { width: 100%; }
   .hero-left .row3 { width: 100%; }
   .hero-right { display: none; }
+
+  /* 우측 상단 배경 이미지 (텍스트 뒤) */
+  .hero-content { position: relative; }
+  .hero-pc-bg {
+    display: block;
+    position: absolute;
+    top: -20px; right: 0;
+    width: 46%;
+    max-width: 420px;
+    height: 380px;
+    overflow: hidden;
+    border-radius: 16px;
+    z-index: 0;
+  }
+  .hero-pc-bg .hero-slide-pc {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+    mask-image:
+      linear-gradient(to left, rgba(0,0,0,1) 60%, transparent 100%),
+      linear-gradient(to bottom, rgba(0,0,0,1) 70%, transparent 100%);
+    mask-composite: intersect;
+    -webkit-mask-image:
+      linear-gradient(to left, rgba(0,0,0,1) 60%, transparent 100%),
+      linear-gradient(to bottom, rgba(0,0,0,1) 70%, transparent 100%);
+    -webkit-mask-composite: source-in;
+  }
+  .hero-pc-bg .hero-slide-pc.active { opacity: 1; }
+  .hero-left { position: relative; z-index: 1; }
   /* 과목 카드: trust 아래 (768px~1023px: 3열x2행 / 1024px+: 6열) */
   .hero-course-row {
     display: grid !important;
@@ -1224,6 +1256,15 @@
   <div class="hero-bg"></div>
 
   <div class="hero-content">
+
+    <!-- PC 전용 우측 상단 배경 슬라이드 -->
+    <div class="hero-pc-bg" id="heroPcBg" aria-hidden="true">
+      <img src="image/hero-bg2.webp" class="hero-slide-pc active" alt="" />
+      <img src="image/hero-bg3.webp" class="hero-slide-pc" alt="" />
+      <img src="image/hero-bg4.webp" class="hero-slide-pc" alt="" />
+      <img src="image/hero-bg5.webp" class="hero-slide-pc" alt="" />
+    </div>
+
 
     <!-- 왼쪽: 텍스트 + CTA -->
     <div class="hero-left">
@@ -2016,15 +2057,18 @@
 <!-- ── JAVASCRIPT ──────────────────────────────── -->
 <script>
   /* HERO SLIDESHOW */
-  (function() {
-    const slides = document.querySelectorAll('.hero-slide');
+  function runHeroSlideshow(selector) {
+    const slides = document.querySelectorAll(selector);
+    if (!slides.length) return;
     let cur = 0;
     setInterval(() => {
       slides[cur].classList.remove('active');
       cur = (cur + 1) % slides.length;
       slides[cur].classList.add('active');
     }, 2000);
-  })();
+  }
+  runHeroSlideshow('.hero-slide');
+  runHeroSlideshow('.hero-slide-pc');
 
   /* EVENT POPUP */
   function closeEvent() {
