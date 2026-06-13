@@ -267,17 +267,17 @@
       opacity: 0;
       transition: opacity 1.2s ease-in-out;
     }
-    .hero-slide.active { opacity: 1; }
+    .hero-slide.active { opacity: .5; }
     .hero-slide {
       mask-image:
-        linear-gradient(to left, rgba(0,0,0,1) 85%, transparent 100%),
-        linear-gradient(to right, rgba(0,0,0,1) 98%, transparent 100%),
-        linear-gradient(to top, transparent 0%, rgba(0,0,0,1) 18%);
+        linear-gradient(to left, rgba(0,0,0,1) 70%, transparent 100%),
+        linear-gradient(to right, rgba(0,0,0,1) 96%, transparent 100%),
+        linear-gradient(to top, transparent 0%, rgba(0,0,0,1) 30%);
       mask-composite: intersect;
       -webkit-mask-image:
-        linear-gradient(to left, rgba(0,0,0,1) 85%, transparent 100%),
-        linear-gradient(to right, rgba(0,0,0,1) 98%, transparent 100%),
-        linear-gradient(to top, transparent 0%, rgba(0,0,0,1) 18%);
+        linear-gradient(to left, rgba(0,0,0,1) 70%, transparent 100%),
+        linear-gradient(to right, rgba(0,0,0,1) 96%, transparent 100%),
+        linear-gradient(to top, transparent 0%, rgba(0,0,0,1) 30%);
       -webkit-mask-composite: source-in;
     }
     .hero-mobile-gallery {
@@ -841,10 +841,10 @@
   .hero-pc-bg {
     display: block;
     position: absolute;
-    top: -20px; right: 0;
-    width: 46%;
-    max-width: 420px;
-    height: 380px;
+    top: 0; right: 0;
+    width: 48%;
+    max-width: 440px;
+    height: 400px;
     overflow: hidden;
     border-radius: 16px;
     z-index: 0;
@@ -856,15 +856,17 @@
     opacity: 0;
     transition: opacity 1.2s ease-in-out;
     mask-image:
-      linear-gradient(to left, rgba(0,0,0,1) 75%, transparent 100%),
-      linear-gradient(to bottom, rgba(0,0,0,1) 85%, transparent 100%);
+      linear-gradient(to left, rgba(0,0,0,1) 60%, transparent 100%),
+      linear-gradient(to right, rgba(0,0,0,1) 96%, transparent 100%),
+      linear-gradient(to bottom, rgba(0,0,0,1) 70%, transparent 100%);
     mask-composite: intersect;
     -webkit-mask-image:
-      linear-gradient(to left, rgba(0,0,0,1) 75%, transparent 100%),
-      linear-gradient(to bottom, rgba(0,0,0,1) 85%, transparent 100%);
+      linear-gradient(to left, rgba(0,0,0,1) 60%, transparent 100%),
+      linear-gradient(to right, rgba(0,0,0,1) 96%, transparent 100%),
+      linear-gradient(to bottom, rgba(0,0,0,1) 70%, transparent 100%);
     -webkit-mask-composite: source-in;
   }
-  .hero-pc-bg .hero-slide-pc.active { opacity: 1; }
+  .hero-pc-bg .hero-slide-pc.active { opacity: .5; }
   .hero-left { position: relative; z-index: 1; }
   /* 과목 카드: trust 아래 (768px~1023px: 3열x2행 / 1024px+: 6열) */
   .hero-course-row {
