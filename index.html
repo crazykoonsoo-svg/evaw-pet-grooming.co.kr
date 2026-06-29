@@ -666,7 +666,19 @@
     .info-val   { font-size:.88rem; font-weight:700; color:var(--text-dk); }
 
     /* ── FINAL CTA ── */
-    #finalCta { background:linear-gradient(160deg,var(--navy) 0%,var(--navy-lt) 100%); padding:52px 0 140px; text-align:center; position:relative; overflow:hidden; }
+    #finalCta {
+      background: linear-gradient(160deg,var(--navy) 0%,var(--navy-lt) 100%);
+      padding:52px 0 140px; text-align:center; position:relative; overflow:hidden;
+    }
+    #finalCta::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('image/form-bg.webp') center center / cover no-repeat;
+      opacity: 0.18;
+      z-index: 0;
+    }
+    #finalCta > * { position: relative; z-index: 1; }
+    #finalCta .wrap { position: relative; z-index: 1; }
     #finalCta::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.18),transparent 60%); }
     #finalCta .wrap { position:relative; }
     #finalCta .sec-title { color:#fff; margin-bottom:8px; }
