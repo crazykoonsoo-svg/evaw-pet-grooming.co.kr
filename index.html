@@ -518,7 +518,31 @@
     .assoc-card .ico  { font-size:24px; margin-bottom:6px; }
     .assoc-card .name { font-size:.72rem; font-weight:700; color:var(--navy); line-height:1.4; }
 
-    /* ── CURRICULUM ── */
+    /* ── 교수진 ── */
+    #faculty { background:var(--bg-sub); padding:44px 0; }
+    .faculty-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:20px; }
+    .faculty-card {
+      background:var(--white); border-radius:var(--r12); padding:16px;
+      border:1px solid var(--gray-2); display:flex; gap:12px; align-items:flex-start;
+      transition:box-shadow .2s ease, transform .2s ease;
+    }
+    .faculty-card:hover { box-shadow:0 6px 20px rgba(22,33,62,.1); transform:translateY(-2px); }
+    .faculty-avatar {
+      width:56px; height:56px; border-radius:50%; flex-shrink:0;
+      overflow:hidden; border:2px solid var(--gold);
+    }
+    .faculty-avatar img { width:100%; height:100%; object-fit:cover; display:block; }
+    .faculty-name { font-size:.92rem; font-weight:800; color:var(--navy); margin-bottom:2px; }
+    .faculty-title { font-size:.72rem; color:var(--gold-dk); font-weight:700; margin-bottom:6px; }
+    .faculty-creds { font-size:.68rem; color:var(--text-mid); line-height:1.6; }
+    .faculty-more {
+      display:block; width:100%; padding:12px; border-radius:var(--r12);
+      background:var(--navy); color:#fff; font-size:.85rem; font-weight:700;
+      text-align:center; text-decoration:none; margin-top:4px;
+    }
+    .faculty-more:hover { background:var(--navy-mid); }
+
+    /* ── 교수진 ── */
     #curriculum { background:var(--white); }
     .curr-grid  { display:flex; flex-direction:column; gap:10px; }
     .curr-card  { background:var(--cream); border-radius:var(--r12); padding:16px 18px; border:1px solid var(--gray-2); display:flex; align-items:center; justify-content:space-between; }
@@ -916,6 +940,11 @@
   .trust-item .num { font-size: 1.2rem !important; }
   .trust-item .lbl { font-size: .82rem !important; }
   .trust-item { padding: 16px 10px; }
+
+  /* ── FACULTY ── */
+  #faculty .faculty-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  #faculty .faculty-name { font-size: 1rem; }
+  #faculty .faculty-creds { font-size: .75rem; }
 
   /* ── WHY + CURRICULUM 2단 ── */
   .why-curr-wrap {
@@ -1469,6 +1498,71 @@
 
 </div><!-- end why-curr-wrap -->
 
+
+<!-- ── FACULTY ──────────────────────────────── -->
+<section id="faculty" aria-labelledby="fac-h">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <div class="sec-tag">👨‍🏫 교수진 소개</div>
+      <h2 class="t-section sec-title" id="fac-h">전문 강사진과 함께하세요</h2>
+      <div class="divider"></div>
+      <p class="sec-sub">빠른 자격증 취득뿐 아니라 실무에서 실력을 높이는 강의를 전문강사와 함께하세요.</p>
+    </div>
+    <div class="faculty-grid fade-up">
+      <div class="faculty-card">
+        <div class="faculty-avatar"><img src="image/faculty1.webp" alt="조윤호 대표원장" /></div>
+        <div>
+          <div class="faculty-name">조윤호</div>
+          <div class="faculty-title">총괄 대표원장</div>
+          <div class="faculty-creds">한국애견미용인협회 1급 최고강사 · 수석강사<br/>펫뷰티 분과장 · 빈스앤멍 펫살롱 대표원장</div>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-avatar"><img src="image/faculty2.webp" alt="이보미 영남 대표원장" /></div>
+        <div>
+          <div class="faculty-name">이보미</div>
+          <div class="faculty-title">영남 대표원장</div>
+          <div class="faculty-creds">KTC 트리머 2·3급 · NCS 확인강사<br/>반려동물관리사 1급 · 아로마테라피 1급</div>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-avatar"><img src="image/faculty3.webp" alt="이슬비 원장" /></div>
+        <div>
+          <div class="faculty-name">이슬비</div>
+          <div class="faculty-title">원장</div>
+          <div class="faculty-creds">KKF 애견미용사 3급 · 반려견스타일리스트 3급<br/>2025 KKC 반려견스타일리스트 경연대회 장려상</div>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-avatar"><img src="image/faculty4.webp" alt="김국화 원장" /></div>
+        <div>
+          <div class="faculty-name">김국화</div>
+          <div class="faculty-title">원장</div>
+          <div class="faculty-creds">한국애견미용인협회 1급 최고강사<br/>한국애견미용사 2급 장려상</div>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-avatar"><img src="image/faculty5.webp" alt="손보라 원장" /></div>
+        <div>
+          <div class="faculty-name">손보라</div>
+          <div class="faculty-title">원장</div>
+          <div class="faculty-creds">한국애견미용인협회 2·3급<br/>한국반려동물 예술문화 미용대회 예술상</div>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-avatar"><img src="image/faculty6.webp" alt="장재훈 부원장" /></div>
+        <div>
+          <div class="faculty-name">장재훈</div>
+          <div class="faculty-title">부원장</div>
+          <div class="faculty-creds">애견협회 트리머 1·2·3급<br/>IJA미용경연대회 Best in Show 수상</div>
+        </div>
+      </div>
+    </div>
+    <a href="https://www.evawpet.com/" class="faculty-more fade-up" target="_blank" rel="noopener">
+      👨‍🏫 전체 교수진 보기 (총 20명+)
+    </a>
+  </div>
+</section>
 
 <!-- ── NETWORK ──────────────────────────────── -->
 <section id="network" aria-labelledby="net-h">
