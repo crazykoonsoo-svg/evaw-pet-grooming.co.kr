@@ -7,10 +7,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>Evaw Pet 애견미용학원 | 전국 20개 직영 · 이바우펫</title>
-  <meta name="description" content="서울·분당·일산·대전·광주·인천·대구·노원·부천·천호·평택·강남·창원·부산·천안·서면 전국 애견미용학원 애견미용 자격증·시험·국비지원·비용·추천" />
+  <meta name="description" content="서울·분당·일산·대전·광주·인천·대구·노원·부천·천호·평택·강남·창원·부산·수원·서면 전국 애견미용학원 애견미용 자격증·시험·국비지원·비용·추천" />
   <meta name="keywords" content="애견미용학원, 애견미용자격증, 애견미용국비지원, 애견미용비용, 애견미용취업, 애견미용창업, 애견미용자격증3급, 애견미용자격증2급, 서울애견미용학원, 부산애견미용학원, 대구애견미용학원, 인천애견미용학원, 광주애견미용학원, 대전애견미용학원, 수원애견미용학원, 강남애견미용학원, 노원애견미용학원" />
   <meta property="og:title" content="Evaw Pet 애견미용학원 | 전국 20개 직영 · 이바우펫" />
-  <meta property="og:description" content="서울·분당·일산·대전·광주·인천·대구·노원·부천·천호·평택·강남·창원·부산·천안·서면 전국 애견미용학원 애견미용 자격증·시험·국비지원·비용·추천" />
+  <meta property="og:description" content="서울·분당·일산·대전·광주·인천·대구·노원·부천·천호·평택·강남·창원·부산·수원·서면 전국 애견미용학원 애견미용 자격증·시험·국비지원·비용·추천" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://evaw-pet-grooming.co.kr/" />
   <meta property="og:image" content="https://evaw-pet-grooming.co.kr/image/og-image.jpg" />
@@ -520,11 +520,14 @@
 
     /* ── 교수진 ── */
     #faculty { background:var(--bg-sub); padding:44px 0; }
-    .faculty-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:20px; }
+    .faculty-slider { overflow:hidden; margin-bottom:20px; }
+    .faculty-track { display:flex; gap:12px; transition:transform .45s cubic-bezier(.4,0,.2,1); will-change:transform; }
+    .faculty-grid { display:contents; }
     .faculty-card {
       background:var(--white); border-radius:var(--r12); padding:16px;
       border:1px solid var(--gray-2); display:flex; gap:12px; align-items:flex-start;
       transition:box-shadow .2s ease, transform .2s ease;
+      min-width:calc(50vw - 28px); max-width:220px; flex-shrink:0;
     }
     .faculty-card:hover { box-shadow:0 6px 20px rgba(22,33,62,.1); transform:translateY(-2px); }
     .faculty-avatar {
@@ -535,6 +538,9 @@
     .faculty-name { font-size:.92rem; font-weight:800; color:var(--navy); margin-bottom:2px; }
     .faculty-title { font-size:.72rem; color:var(--gold-dk); font-weight:700; margin-bottom:6px; }
     .faculty-creds { font-size:.68rem; color:var(--text-mid); line-height:1.6; }
+    .faculty-dots { display:flex; justify-content:center; gap:6px; margin-bottom:16px; }
+    .faculty-dot { width:7px; height:7px; border-radius:50%; background:var(--gray-2); border:none; cursor:pointer; padding:0; transition:background .2s; }
+    .faculty-dot.active { background:var(--navy); }
     .faculty-more {
       display:block; width:100%; padding:12px; border-radius:var(--r12);
       background:var(--navy); color:#fff; font-size:.85rem; font-weight:700;
@@ -942,7 +948,7 @@
   .trust-item { padding: 16px 10px; }
 
   /* ── FACULTY ── */
-  #faculty .faculty-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  #faculty .faculty-card { min-width: calc(33.333% - 8px) !important; max-width: calc(33.333% - 8px) !important; }
   #faculty .faculty-name { font-size: 1rem; }
   #faculty .faculty-creds { font-size: .75rem; }
 
@@ -1235,6 +1241,57 @@
       display:flex; align-items:center; justify-content:center; color:var(--text-lt);
     }
 
+
+    /* ── 과정 팝업 ── */
+    .course-modal-overlay {
+      display:none; position:fixed; inset:0; z-index:3500;
+      background:rgba(10,20,50,.75); backdrop-filter:blur(6px);
+      align-items:center; justify-content:center; padding:20px;
+    }
+    .course-modal-overlay.open { display:flex; }
+    .course-sheet {
+      background:#fff; border-radius:20px; width:100%; max-width:380px;
+      overflow:hidden; animation:popIn .3s cubic-bezier(.34,1.56,.64,1);
+      box-shadow:0 20px 60px rgba(0,0,0,.3);
+    }
+    .course-sheet-header {
+      padding:22px 22px 16px;
+      background:linear-gradient(135deg,var(--navy),var(--navy-mid));
+      color:#fff;
+    }
+    .course-sheet-icon { font-size:2rem; margin-bottom:8px; display:block; }
+    .course-sheet-title { font-size:1.1rem; font-weight:800; }
+    .course-sheet-sub { font-size:.78rem; opacity:.8; margin-top:4px; }
+    .course-sheet-body { padding:20px 22px; }
+    .course-info-row {
+      display:flex; gap:10px; align-items:flex-start;
+      padding:10px 0; border-bottom:1px solid var(--gray-2);
+    }
+    .course-info-row:last-of-type { border-bottom:none; }
+    .course-info-label {
+      font-size:.72rem; font-weight:700; color:var(--text-lt);
+      min-width:60px; padding-top:2px;
+    }
+    .course-info-val { font-size:.82rem; color:var(--text-dk); line-height:1.6; }
+    .course-tag-list { display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
+    .course-tag-pill {
+      font-size:.7rem; font-weight:700; padding:4px 10px;
+      border-radius:50px; background:var(--bg-sub); color:var(--navy);
+    }
+    .course-sheet-footer {
+      padding:0 22px 20px; display:flex; flex-direction:column; gap:8px;
+    }
+    .course-cta {
+      width:100%; padding:13px; border-radius:50px; border:none; cursor:pointer;
+      background:linear-gradient(135deg,var(--navy),var(--navy-mid));
+      color:#fff; font-size:.92rem; font-weight:800; font-family:inherit;
+    }
+    .course-close-btn {
+      width:100%; padding:10px; border-radius:50px; border:1px solid var(--gray-2);
+      background:#fff; color:var(--text-lt); font-size:.82rem; cursor:pointer;
+      font-family:inherit;
+    }
+
     /* ── EVENT POPUP ── */
     #eventPopup { display:none; position:fixed; inset:0; z-index:4000; background:rgba(10,20,50,.75); backdrop-filter:blur(6px); align-items:center; justify-content:center; padding:20px; }
     #eventPopup.open { display:flex; }
@@ -1353,12 +1410,12 @@
     <div class="hero-bottom">
       <!-- 과목 카드: trust 아래 한 줄 (PC에서 6열) -->
       <div class="course-grid hero-course-row">
-        <div class="course-card cc-blue"><div class="cc-icon">✂️</div><div class="cc-name">애견미용<br/>자격증</div></div>
-        <div class="course-card cc-peach"><div class="cc-icon">🍖</div><div class="cc-name">펫푸드<br/>레시피</div></div>
-        <div class="course-card cc-mint"><div class="cc-icon">🐾</div><div class="cc-name">반려동물<br/>행동교정사</div></div>
-        <div class="course-card cc-lavender"><div class="cc-icon">🕊️</div><div class="cc-name">반려동물<br/>장례지도사</div></div>
-        <div class="course-card cc-sage"><div class="cc-icon">🌿</div><div class="cc-name">아로마<br/>테라피</div></div>
-        <div class="course-card cc-gold"><div class="cc-icon">💼</div><div class="cc-name">취업연계<br/>창업컨설팅</div></div>
+        <div class="course-card cc-blue" onclick="openCModal('cModal2')" style="cursor:pointer"><div class="cc-icon">✂️</div><div class="cc-name">애견미용<br/>자격증</div></div>
+        <div class="course-card cc-peach" onclick="openCModal('cModal6')" style="cursor:pointer"><div class="cc-icon">🍖</div><div class="cc-name">펫푸드<br/>레시피</div></div>
+        <div class="course-card cc-mint" onclick="openCModal('cModal6')" style="cursor:pointer"><div class="cc-icon">🐾</div><div class="cc-name">반려동물<br/>행동교정사</div></div>
+        <div class="course-card cc-lavender" onclick="openCModal('cModal6')" style="cursor:pointer"><div class="cc-icon">🕊️</div><div class="cc-name">반려동물<br/>장례지도사</div></div>
+        <div class="course-card cc-sage" onclick="openCModal('cModal6')" style="cursor:pointer"><div class="cc-icon">🌿</div><div class="cc-name">아로마<br/>테라피</div></div>
+        <div class="course-card cc-gold" onclick="openCModal('cModal5')" style="cursor:pointer"><div class="cc-icon">💼</div><div class="cc-name">취업연계<br/>창업컨설팅</div></div>
       </div>
 
       <!-- 모바일 전용 슬라이드 이미지 -->
@@ -1404,7 +1461,7 @@
       <div class="divider"></div>
     </div>
     <div class="cards-grid" role="list">
-      <article class="diff-card fade-up d1" role="listitem">
+      <article class="diff-card fade-up d1" role="listitem" onclick="openCModal('dModal1')" style="cursor:pointer">
         <div class="diff-icon">🐩</div>
         <div>
           <p class="diff-ttl">100% 가정견 실견 실습</p>
@@ -1412,7 +1469,7 @@
           <span class="diff-badge">실전 실습</span>
         </div>
       </article>
-      <article class="diff-card fade-up d2" role="listitem">
+      <article class="diff-card fade-up d2" role="listitem" onclick="openCModal('dModal2')" style="cursor:pointer">
         <div class="diff-icon">👤</div>
         <div>
           <p class="diff-ttl">개별 맞춤 피드백</p>
@@ -1420,7 +1477,7 @@
           <span class="diff-badge">정예 수업</span>
         </div>
       </article>
-      <article class="diff-card fade-up d3" role="listitem">
+      <article class="diff-card fade-up d3" role="listitem" onclick="openCModal('dModal3')" style="cursor:pointer">
         <div class="diff-icon">✂️</div>
         <div>
           <p class="diff-ttl">미용 도구 제공</p>
@@ -1428,7 +1485,7 @@
           <span class="diff-badge">도구 지원</span>
         </div>
       </article>
-      <article class="diff-card fade-up d3" role="listitem">
+      <article class="diff-card fade-up d3" role="listitem" onclick="openCModal('dModal4')" style="cursor:pointer">
         <div class="diff-icon">🗓️</div>
         <div>
           <p class="diff-ttl">자율출석 시간제</p>
@@ -1436,7 +1493,7 @@
           <span class="diff-badge">유연한 스케줄</span>
         </div>
       </article>
-      <article class="diff-card fade-up d4" role="listitem">
+      <article class="diff-card fade-up d4" role="listitem" onclick="openCModal('dModal5')" style="cursor:pointer">
         <div class="diff-icon">💼</div>
         <div>
           <p class="diff-ttl">취업·창업 개별 지원</p>
@@ -1444,7 +1501,7 @@
           <span class="diff-badge">사후 지원</span>
         </div>
       </article>
-      <article class="diff-card fade-up d1" role="listitem">
+      <article class="diff-card fade-up d1" role="listitem" onclick="openCModal('dModal6')" style="cursor:pointer">
         <div class="diff-icon">🎓</div>
         <div>
           <p class="diff-ttl">스페셜 특강 포함</p>
@@ -1465,27 +1522,27 @@
       <p class="sec-desc">초보부터 프로까지, 목표에 맞는 과정 선택</p>
     </div>
     <div class="curr-grid fade-up" role="list">
-      <div class="curr-card fade-up d1" role="listitem">
+      <div class="curr-card fade-up d1" onclick="openCModal('cModal1')" style="cursor:pointer" role="listitem">
         <div class="curr-left"><div class="curr-num">1</div><div><div class="curr-name">기초과정</div><div class="curr-sub">입문 ~ 기본 그루밍</div></div></div>
         <span class="tag tag-blue">입문</span>
       </div>
-      <div class="curr-card fade-up d2" role="listitem">
+      <div class="curr-card fade-up d2" onclick="openCModal('cModal2')" style="cursor:pointer" role="listitem">
         <div class="curr-left"><div class="curr-num">2</div><div><div class="curr-name">자격증 취득반</div><div class="curr-sub">애견미용자격증 3급 · 2급</div></div></div>
         <span class="tag tag-green">자격증</span>
       </div>
-      <div class="curr-card fade-up d3" role="listitem">
+      <div class="curr-card fade-up d3" onclick="openCModal('cModal3')" style="cursor:pointer" role="listitem">
         <div class="curr-left"><div class="curr-num">3</div><div><div class="curr-name">실견 심화반</div><div class="curr-sub">가정견 실습 집중과정</div></div></div>
         <span class="tag tag-gold">실습</span>
       </div>
-      <div class="curr-card fade-up d4" role="listitem">
+      <div class="curr-card fade-up d4" role="listitem" onclick="openCModal('cModal4')" style="cursor:pointer">
         <div class="curr-left"><div class="curr-num">4</div><div><div class="curr-name">취업·창업반</div><div class="curr-sub">실무 완성 + 취업 연계</div></div></div>
         <span class="tag tag-red">취업</span>
       </div>
-      <div class="curr-card curr-hit fade-up d4" role="listitem">
+      <div class="curr-card curr-hit fade-up d4" onclick="openCModal('cModal5')" style="cursor:pointer" role="listitem">
         <div class="curr-left"><div class="curr-num curr-num-hit">🔥</div><div><div class="curr-name">종합·심화반</div><div class="curr-sub">교육지원으로 합리적인 선택</div></div></div>
         <span class="tag tag-hit">추천</span>
       </div>
-      <div class="curr-card fade-up d4" role="listitem">
+      <div class="curr-card fade-up d4" role="listitem" onclick="openCModal('cModal6')" style="cursor:pointer">
         <div class="curr-left"><div class="curr-num">+</div><div><div class="curr-name">스페셜 특강</div><div class="curr-sub">행동교정 · 펫푸드 · 아로마</div></div></div>
         <span class="tag tag-purple">특강</span>
       </div>
@@ -1508,7 +1565,7 @@
       <div class="divider"></div>
       <p class="sec-sub">빠른 자격증 취득뿐 아니라 실무에서 실력을 높이는 강의를 전문강사와 함께하세요.</p>
     </div>
-    <div class="faculty-grid fade-up">
+    <div class="faculty-slider fade-up"><div class="faculty-track" id="facultyTrack">
       <div class="faculty-card">
         <div class="faculty-avatar"><img src="image/faculty1.webp" alt="조윤호 대표원장" /></div>
         <div>
@@ -1557,9 +1614,10 @@
           <div class="faculty-creds">애견협회 트리머 1·2·3급<br/>IJA미용경연대회 Best in Show 수상</div>
         </div>
       </div>
-    </div>
+    </div></div>
+    <div class="faculty-dots" id="facultyDots"></div>
     <a href="https://www.evawpet.com/" class="faculty-more fade-up" target="_blank" rel="noopener">
-      👨‍🏫 전체 교수진 보기 (총 20명+)
+      👨‍🏫 전체 교수진 보기
     </a>
   </div>
 </section>
@@ -1776,6 +1834,306 @@
   </div>
   <div class="branch-dots" role="tablist" id="branchDots"></div>
 </section>
+
+
+
+<!-- ── 차이점 팝업 ──────────────────────────── -->
+<div class="course-modal-overlay" id="dModal1">
+  <div class="course-sheet">
+    <div class="course-sheet-header">
+      <span class="course-sheet-icon">🐩</span>
+      <div class="course-sheet-title">100% 가정견 실견 실습</div>
+      <div class="course-sheet-sub">실전 실습 · 보호자 응대까지</div>
+    </div>
+    <div class="course-sheet-body">
+      <div class="course-info-row"><span class="course-info-label">📌 핵심</span><span class="course-info-val">학원 상주견이나 농장견이 아닌<br/>실제 보호자의 가정견으로 진행합니다.</span></div>
+      <div class="course-info-row"><span class="course-info-label">💡 특징</span><span class="course-info-val">보호자 상담 → 미용 → 인계까지<br/>실무 전 과정을 직접 경험합니다.</span></div>
+      <div class="course-info-row"><span class="course-info-label">✅ 효과</span><span class="course-info-val">취업 후 현장 적응이 빠르고<br/>다양한 견종 포트폴리오를 쌓을 수 있어요.</span></div>
+      <div class="course-tag-list">
+        <span class="course-tag-pill">가정견 실습</span>
+        <span class="course-tag-pill">견종 다양</span>
+        <span class="course-tag-pill">실무 직결</span>
+      </div>
+    </div>
+    <div class="course-sheet-footer">
+      <button class="course-cta" onclick="closeCModal('dModal1');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-close-btn" onclick="closeCModal('dModal1')">닫기</button>
+    </div>
+  </div>
+</div>
+
+<div class="course-modal-overlay" id="dModal2">
+  <div class="course-sheet">
+    <div class="course-sheet-header">
+      <span class="course-sheet-icon">👤</span>
+      <div class="course-sheet-title">개별 맞춤 피드백</div>
+      <div class="course-sheet-sub">정예 수업 · 밀착 지도</div>
+    </div>
+    <div class="course-sheet-body">
+      <div class="course-info-row"><span class="course-info-label">📌 핵심</span><span class="course-info-val">수강생 개인의 실력과 목표에 맞춰<br/>강사가 개별로 밀착 지도합니다.</span></div>
+      <div class="course-info-row"><span class="course-info-label">💡 특징</span><span class="course-info-val">획일적인 단체 수업이 아닌<br/>나의 속도에 맞는 맞춤 피드백 제공.</span></div>
+      <div class="course-info-row"><span class="course-info-label">✅ 효과</span><span class="course-info-val">실력이 빠르게 늘고<br/>부족한 부분을 정확히 보완할 수 있어요.</span></div>
+      <div class="course-tag-list">
+        <span class="course-tag-pill">개별 지도</span>
+        <span class="course-tag-pill">맞춤 커리큘럼</span>
+        <span class="course-tag-pill">빠른 성장</span>
+      </div>
+    </div>
+    <div class="course-sheet-footer">
+      <button class="course-cta" onclick="closeCModal('dModal2');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-close-btn" onclick="closeCModal('dModal2')">닫기</button>
+    </div>
+  </div>
+</div>
+
+<div class="course-modal-overlay" id="dModal3">
+  <div class="course-sheet">
+    <div class="course-sheet-header">
+      <span class="course-sheet-icon">✂️</span>
+      <div class="course-sheet-title">미용 도구 제공</div>
+      <div class="course-sheet-sub">도구 지원 · 부담 없이 시작</div>
+    </div>
+    <div class="course-sheet-body">
+      <div class="course-info-row"><span class="course-info-label">📌 핵심</span><span class="course-info-val">수강 등록 시 전문 미용도구를 증정하여<br/>별도 구매 부담 없이 바로 시작합니다.</span></div>
+      <div class="course-info-row"><span class="course-info-label">💡 특징</span><span class="course-info-val">초보자도 처음부터 제대로 된 도구로<br/>배울 수 있는 환경을 제공합니다.</span></div>
+      <div class="course-info-row"><span class="course-info-label">✅ 효과</span><span class="course-info-val">도구 구매 비용 절감<br/>수업에만 온전히 집중할 수 있어요.</span></div>
+      <div class="course-tag-list">
+        <span class="course-tag-pill">도구 증정</span>
+        <span class="course-tag-pill">추가 비용 없음</span>
+        <span class="course-tag-pill">전문 장비</span>
+      </div>
+    </div>
+    <div class="course-sheet-footer">
+      <button class="course-cta" onclick="closeCModal('dModal3');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-close-btn" onclick="closeCModal('dModal3')">닫기</button>
+    </div>
+  </div>
+</div>
+
+<div class="course-modal-overlay" id="dModal4">
+  <div class="course-sheet">
+    <div class="course-sheet-header">
+      <span class="course-sheet-icon">🗓️</span>
+      <div class="course-sheet-title">자율출석 시간제</div>
+      <div class="course-sheet-sub">유연한 스케줄 · 직장인·주부도 OK</div>
+    </div>
+    <div class="course-sheet-body">
+      <div class="course-info-row"><span class="course-info-label">📌 핵심</span><span class="course-info-val">정해진 시간표 없이<br/>내 스케줄에 맞춰 자유롭게 수강합니다.</span></div>
+      <div class="course-info-row"><span class="course-info-label">💡 특징</span><span class="course-info-val">직장인, 주부, 육아 중인 분도<br/>부담 없이 다닐 수 있는 수업 방식.</span></div>
+      <div class="course-info-row"><span class="course-info-label">✅ 효과</span><span class="course-info-val">일과 학업을 병행하면서도<br/>꾸준히 실력을 키울 수 있어요.</span></div>
+      <div class="course-tag-list">
+        <span class="course-tag-pill">자율출석</span>
+        <span class="course-tag-pill">직장인 가능</span>
+        <span class="course-tag-pill">유연한 시간</span>
+      </div>
+    </div>
+    <div class="course-sheet-footer">
+      <button class="course-cta" onclick="closeCModal('dModal4');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-close-btn" onclick="closeCModal('dModal4')">닫기</button>
+    </div>
+  </div>
+</div>
+
+<div class="course-modal-overlay" id="dModal5">
+  <div class="course-sheet">
+    <div class="course-sheet-header">
+      <span class="course-sheet-icon">💼</span>
+      <div class="course-sheet-title">취업·창업 개별 지원</div>
+      <div class="course-sheet-sub">사후 지원 · 졸업 이후도 함께</div>
+    </div>
+    <div class="course-sheet-body">
+      <div class="course-info-row"><span class="course-info-label">📌 핵심</span><span class="course-info-val">전국 20개 직영지점 네트워크를 통해<br/>취업처 연계와 창업 컨설팅을 제공합니다.</span></div>
+      <div class="course-info-row"><span class="course-info-label">💡 특징</span><span class="course-info-val">수료 후에도 취업·창업 지원이 계속되며<br/>이바우펫 네트워크를 활용할 수 있어요.</span></div>
+      <div class="course-info-row"><span class="course-info-label">✅ 효과</span><span class="course-info-val">혼자 취업·창업을 준비하는 막막함 없이<br/>전문가와 함께 방향을 잡을 수 있어요.</span></div>
+      <div class="course-tag-list">
+        <span class="course-tag-pill">취업 연계</span>
+        <span class="course-tag-pill">창업 컨설팅</span>
+        <span class="course-tag-pill">전국 네트워크</span>
+      </div>
+    </div>
+    <div class="course-sheet-footer">
+      <button class="course-cta" onclick="closeCModal('dModal5');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-close-btn" onclick="closeCModal('dModal5')">닫기</button>
+    </div>
+  </div>
+</div>
+
+<div class="course-modal-overlay" id="dModal6">
+  <div class="course-sheet">
+    <div class="course-sheet-header">
+      <span class="course-sheet-icon">✨</span>
+      <div class="course-sheet-title">스페셜 특강 포함</div>
+      <div class="course-sheet-sub">특강 포함 · 원스톱 자격증 준비</div>
+    </div>
+    <div class="course-sheet-body">
+      <div class="course-info-row"><span class="course-info-label">📌 핵심</span><span class="course-info-val">애견미용 외 반려동물 전문 자격증을<br/>추가로 취득할 수 있는 특강 과정.</span></div>
+      <div class="course-info-row"><span class="course-info-label">💡 특징</span><span class="course-info-val">행동교정사 · 펫푸드 · 아로마테라피<br/>장례지도사 자격증을 한 곳에서 준비.</span></div>
+      <div class="course-info-row"><span class="course-info-label">✅ 효과</span><span class="course-info-val">다양한 자격증으로 전문성을 높이고<br/>취업·창업 경쟁력을 키울 수 있어요.</span></div>
+      <div class="course-tag-list">
+        <span class="course-tag-pill">행동교정</span>
+        <span class="course-tag-pill">펫푸드</span>
+        <span class="course-tag-pill">아로마</span>
+        <span class="course-tag-pill">장례지도사</span>
+      </div>
+    </div>
+    <div class="course-sheet-footer">
+      <button class="course-cta" onclick="closeCModal('dModal6');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-close-btn" onclick="closeCModal('dModal6')">닫기</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── 과정별 팝업 ──────────────────────────── -->
+<div class="course-modal-overlay" id="cModal1">
+  <div class="course-sheet">
+    <div class="course-sheet-header">
+      <span class="course-sheet-icon">📚</span>
+      <div class="course-sheet-title">기초과정 (적성파악)</div>
+      <div class="course-sheet-sub">입문 ~ 기본 그루밍</div>
+    </div>
+    <div class="course-sheet-body">
+      <div class="course-info-row"><span class="course-info-label">📌 소개</span><span class="course-info-val">애견미용을 처음 시작하는 분을 위한 입문 과정.<br/>도구 사용법부터 기초 그루밍까지<br/>탄탄하게 단계별로 배웁니다.</span></div>
+      <div class="course-info-row"><span class="course-info-label">⏱ 기간</span><span class="course-info-val">~1개월 (월 수강)</span></div>
+      <div class="course-info-row"><span class="course-info-label">✅ 추천</span><span class="course-info-val">애견미용을 처음 시작하는 사람<br/>애견미용이 적성에 맞는지 확인이 필요한 사람</span></div>
+      <div class="course-info-row"><span class="course-info-label">💡 특징</span><span class="course-info-val">기초 애견미용 이론과 도구 사용법, 가위질 등<br/>개별 맞춤 피드백</span></div>
+      <div class="course-tag-list">
+        <span class="course-tag-pill">입문자 환영</span>
+        <span class="course-tag-pill">실견 실습</span>
+        <span class="course-tag-pill">자율출석</span>
+        <span class="course-tag-pill">상생이벤트</span>
+      </div>
+    </div>
+    <div class="course-sheet-footer">
+      <button class="course-cta" onclick="closeCModal('cModal1');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-close-btn" onclick="closeCModal('cModal1')">닫기</button>
+    </div>
+  </div>
+</div>
+
+<div class="course-modal-overlay" id="cModal2">
+  <div class="course-sheet">
+    <div class="course-sheet-header">
+      <span class="course-sheet-icon">🏅</span>
+      <div class="course-sheet-title">자격증 취득반</div>
+      <div class="course-sheet-sub">애견미용자격증 3급 · 2급</div>
+    </div>
+    <div class="course-sheet-body">
+      <div class="course-info-row"><span class="course-info-label">📌 소개</span><span class="course-info-val">3급·2급 자격증 취득을 목표로 하는 과정.<br/>시험 대비 반복 실습 중심으로 진행됩니다.</span></div>
+      <div class="course-info-row"><span class="course-info-label">⏱ 기간</span><span class="course-info-val">자격증 취득 시까지 기간 보장 (급수별 상이)</span></div>
+      <div class="course-info-row"><span class="course-info-label">✅ 추천</span><span class="course-info-val">자격증으로 취업·창업을 준비하는 분<br/>자기계발이나 스펙업으로 자격증을 취득하는 분</span></div>
+      <div class="course-info-row"><span class="course-info-label">💡 특징</span><span class="course-info-val">급수별 시험 대비 · 합격까지 밀착 지도</span></div>
+      <div class="course-tag-list">
+        <span class="course-tag-pill">3급·2급</span>
+        <span class="course-tag-pill">교육지원 가능</span>
+      </div>
+    </div>
+    <div class="course-sheet-footer">
+      <button class="course-cta" onclick="closeCModal('cModal2');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-close-btn" onclick="closeCModal('cModal2')">닫기</button>
+    </div>
+  </div>
+</div>
+
+<div class="course-modal-overlay" id="cModal3">
+  <div class="course-sheet">
+    <div class="course-sheet-header">
+      <span class="course-sheet-icon">🐶</span>
+      <div class="course-sheet-title">실견 심화반</div>
+      <div class="course-sheet-sub">가정견 실습 집중과정</div>
+    </div>
+    <div class="course-sheet-body">
+      <div class="course-info-row"><span class="course-info-label">📌 소개</span><span class="course-info-val">실제 가정견을 대상으로 다양한 견종의<br/>미용 실습을 집중적으로 진행하는 과정입니다.</span></div>
+      <div class="course-info-row"><span class="course-info-label">⏱ 기간</span><span class="course-info-val">~1개월 (월 수강)</span></div>
+      <div class="course-info-row"><span class="course-info-label">✅ 추천</span><span class="course-info-val">학원 상주견·농장견이 아닌 다채로운 견종으로<br/>포트폴리오 제작을 원하는 분<br/>실무 감각을 빠르게 높이고 싶은 분</span></div>
+      <div class="course-info-row"><span class="course-info-label">💡 특징</span><span class="course-info-val">100% 가정견 실견 수업 · 견종별 맞춤 커리큘럼<br/>개별 피드백</span></div>
+      <div class="course-tag-list">
+        <span class="course-tag-pill">가정견 실습</span>
+        <span class="course-tag-pill">견종별 대응</span>
+        <span class="course-tag-pill">포트폴리오</span>
+      </div>
+    </div>
+    <div class="course-sheet-footer">
+      <button class="course-cta" onclick="closeCModal('cModal3');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-close-btn" onclick="closeCModal('cModal3')">닫기</button>
+    </div>
+  </div>
+</div>
+
+<div class="course-modal-overlay" id="cModal4">
+  <div class="course-sheet">
+    <div class="course-sheet-header">
+      <span class="course-sheet-icon">💼</span>
+      <div class="course-sheet-title">취업·창업반</div>
+      <div class="course-sheet-sub">실무 완성 + 취업 연계 + 창업 컨설팅</div>
+    </div>
+    <div class="course-sheet-body">
+      <div class="course-info-row"><span class="course-info-label">📌 소개</span><span class="course-info-val">애견미용사로 취업하거나<br/>자신의 샵을 열기 위한 실무 완성 과정.<br/>전국 취업처 연계와 창업 컨설팅을 제공합니다.</span></div>
+      <div class="course-info-row"><span class="course-info-label">⏱ 기간</span><span class="course-info-val">최대 36개월 (개인별 상이)</span></div>
+      <div class="course-info-row"><span class="course-info-label">✅ 추천</span><span class="course-info-val">취업·창업을 목표로 하는 분<br/>실무 완성도를 높이고 싶은 분<br/>취업과 창업에 실질적 도움이 필요한 분</span></div>
+      <div class="course-info-row"><span class="course-info-label">💡 특징</span><span class="course-info-val">전국 취업처 연계 · 창업 컨설팅<br/>이바우펫 네트워크 활용</span></div>
+      <div class="course-tag-list">
+        <span class="course-tag-pill">취업 연계</span>
+        <span class="course-tag-pill">창업 컨설팅</span>
+        <span class="course-tag-pill">전국 네트워크</span>
+      </div>
+    </div>
+    <div class="course-sheet-footer">
+      <button class="course-cta" onclick="closeCModal('cModal4');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-close-btn" onclick="closeCModal('cModal4')">닫기</button>
+    </div>
+  </div>
+</div>
+
+<div class="course-modal-overlay" id="cModal5">
+  <div class="course-sheet">
+    <div class="course-sheet-header">
+      <span class="course-sheet-icon">🔥</span>
+      <div class="course-sheet-title">종합·심화반</div>
+      <div class="course-sheet-sub">교육지원으로 합리적인 선택</div>
+    </div>
+    <div class="course-sheet-body">
+      <div class="course-info-row"><span class="course-info-label">📌 소개</span><span class="course-info-val">기초부터 취업·창업까지 한 번에 준비하는 올인원 과정. 교육지원 혜택으로 비용 부담을 크게 줄일 수 있습니다.</span></div>
+      <div class="course-info-row"><span class="course-info-label">⏱ 기간</span><span class="course-info-val">12~36개월 (선택)</span></div>
+      <div class="course-info-row"><span class="course-info-label">✅ 추천</span><span class="course-info-val">전문가 수준까지 목표하는 분<br/>교육지원 혜택을 활용하고 싶은 분</span></div>
+      <div class="course-info-row"><span class="course-info-label">💡 특징</span><span class="course-info-val">교육지원 심사 선발<br/>자격증 + 실습 + 취업 연계 한 번에</span></div>
+      <div class="course-tag-list">
+        <span class="course-tag-pill">🔥 인기 과정</span>
+        <span class="course-tag-pill">교육지원 가능</span>
+        <span class="course-tag-pill">올인원</span>
+      </div>
+    </div>
+    <div class="course-sheet-footer">
+      <button class="course-cta" onclick="closeCModal('cModal5');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-close-btn" onclick="closeCModal('cModal5')">닫기</button>
+    </div>
+  </div>
+</div>
+
+<div class="course-modal-overlay" id="cModal6">
+  <div class="course-sheet">
+    <div class="course-sheet-header">
+      <span class="course-sheet-icon">✨</span>
+      <div class="course-sheet-title">스페셜 특강</div>
+      <div class="course-sheet-sub">행동교정 · 펫푸드 · 아로마 · 장례지도</div>
+    </div>
+    <div class="course-sheet-body">
+      <div class="course-info-row"><span class="course-info-label">📌 소개</span><span class="course-info-val">애견미용 외 반려동물 관련 전문 자격증을 추가로 취득할 수 있는 특강 과정입니다.</span></div>
+      <div class="course-info-row"><span class="course-info-label">⏱ 기간</span><span class="course-info-val">과목별 상이</span></div>
+      <div class="course-info-row"><span class="course-info-label">✅ 추천</span><span class="course-info-val">전문성을 더하고 싶은 분<br/>다양한 자격증을 원스톱으로 준비하는 분</span></div>
+      <div class="course-info-row"><span class="course-info-label">💡 특징</span><span class="course-info-val">반려동물행동교정사 · 펫푸드스타일리스트<br/>아로마테라피 자격증 · 장례지도사</span></div>
+      <div class="course-tag-list">
+        <span class="course-tag-pill">행동교정</span>
+        <span class="course-tag-pill">펫푸드</span>
+        <span class="course-tag-pill">아로마테라피</span>
+        <span class="course-tag-pill">장례지도사</span>
+      </div>
+    </div>
+    <div class="course-sheet-footer">
+      <button class="course-cta" onclick="closeCModal('cModal6');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-close-btn" onclick="closeCModal('cModal6')">닫기</button>
+    </div>
+  </div>
+</div>
 
 <!-- ── FINAL CTA ──────────────────────────────── -->
 <section id="finalCta" aria-label="최종 상담 유도">
@@ -2075,6 +2433,63 @@
 
 <!-- ── JAVASCRIPT ──────────────────────────────── -->
 <script>
+
+
+  /* FACULTY SLIDER */
+  (function() {
+    const track = document.getElementById('facultyTrack');
+    const dotsEl = document.getElementById('facultyDots');
+    if (!track) return;
+    const cards = track.querySelectorAll('.faculty-card');
+    function getPerPage() { return window.innerWidth >= 768 ? 3 : 2; }
+    const total = cards.length;
+    let cur = 0;
+
+    // 도트 생성
+    const pageCount = () => Math.ceil(total / getPerPage());
+    function buildDots() {
+      dotsEl.innerHTML = '';
+      for (let i = 0; i < pageCount(); i++) {
+        const d = document.createElement('button');
+        d.className = 'faculty-dot' + (i === cur ? ' active' : '');
+        d.addEventListener('click', () => goTo(i));
+        dotsEl.appendChild(d);
+      }
+    }
+
+    function goTo(i) {
+      cur = Math.max(0, Math.min(i, pageCount() - 1));
+      const w = cards[0].offsetWidth + 12;
+      track.style.transform = `translateX(${-w * cur * getPerPage()}px)`;
+      dotsEl.querySelectorAll('.faculty-dot').forEach((d, j) => d.classList.toggle('active', j === cur));
+    }
+
+    buildDots();
+    window.addEventListener('resize', () => { buildDots(); goTo(0); });
+
+    let tx = 0;
+    track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - tx;
+      if (Math.abs(dx) > 50) goTo(dx < 0 ? cur + 1 : cur - 1);
+    }, { passive: true });
+  })();
+
+  /* COURSE MODALS */
+  function openCModal(id) {
+    document.getElementById(id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCModal(id) {
+    document.getElementById(id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.course-modal-overlay').forEach(el => {
+    el.addEventListener('click', e => {
+      if (e.target === el) closeCModal(el.id);
+    });
+  });
+
   /* HERO SLIDESHOW */
   function runHeroSlideshow(selector) {
     const slides = document.querySelectorAll(selector);
