@@ -115,8 +115,13 @@
       background:linear-gradient(160deg,var(--navy) 0%,var(--navy-lt) 100%);
       padding:40px 0 32px; text-align:center; position:relative; overflow:hidden;
     }
-    .page-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 80% 0%,rgba(201,168,76,.18),transparent 60%); }
-    .page-hero .wrap { position:relative; }
+    .page-hero::before {
+      content:''; position:absolute; inset:0;
+      background: url('../image/network-bg.webp') center center / cover no-repeat;
+      opacity:0.55;
+    }
+    .page-hero::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 80% 0%,rgba(201,168,76,.18),transparent 60%); }
+    .page-hero .wrap { position:relative; z-index:1; }
     .breadcrumb { font-size:.72rem; color:rgba(255,255,255,.5); margin-bottom:12px; }
     .breadcrumb a { color:rgba(255,255,255,.7); text-decoration:none; }
     .sec-tag {
@@ -304,8 +309,9 @@
   </div>
 </header>
 
-<section aria-labelledby="branch-list-h">
-  <div class="wrap">
+<section aria-labelledby="branch-list-h" style="position:relative; overflow:hidden; background:var(--bg-sub);">
+  <div style="position:absolute; inset:0; background:url('../image/network-bg.webp') center center / cover no-repeat; opacity:0.08;"></div>
+  <div class="wrap" style="position:relative; z-index:1;">
     <div class="sec-header">
       <h2 class="sec-title" id="branch-list-h" style="position:absolute;left:-9999px;">전국 캠퍼스 목록</h2>
     </div>
