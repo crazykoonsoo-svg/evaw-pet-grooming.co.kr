@@ -294,7 +294,7 @@
     .hero-mobile-gallery {
       position: relative;
       width: 100%;
-      aspect-ratio: 1000 / 400;
+      aspect-ratio: 1500 / 600;
       border-radius: 16px;
       overflow: hidden;
       margin: 16px 0 6px;
@@ -929,7 +929,7 @@
   /* 하단: 풀와이드 (과목카드/갤러리) */
   .hero-bottom { width: 100%; margin-top: 24px; }
   .hero-bottom .hero-course-row { width: 100%; }
-  .hero-bottom .hero-mobile-gallery { width: 100%; }
+  .hero-mobile-gallery { width: 100%; margin-bottom: 20px; }
 
   .hero-right { display: none; }
 
@@ -1379,6 +1379,14 @@
 
   <div class="hero-content">
 
+    <!-- 상단: 배너 이미지 갤러리 -->
+    <div class="hero-mobile-gallery" role="region" aria-label="이바우펫 프로그램 안내 이미지 갤러리 (클릭하면 확대됩니다)">
+      <img src="image/hero-banner1.webp" class="hmg-slide" alt="애견미용적성파악 클래스" onclick="this.classList.toggle('hmg-full')" />
+      <img src="image/hero-banner2.webp" class="hmg-slide" alt="애견미용자격증취득 보장반" onclick="this.classList.toggle('hmg-full')" />
+      <img src="image/hero-banner3.webp" class="hmg-slide" alt="애견미용펫미용" onclick="this.classList.toggle('hmg-full')" />
+      <img src="image/hero-banner4.webp" class="hmg-slide" alt="애견미용종합반" onclick="this.classList.toggle('hmg-full')" />
+    </div>
+
     <div class="hero-top-row">
       <!-- 왼쪽: 텍스트 + CTA -->
       <div class="hero-left">
@@ -1421,7 +1429,7 @@
       </div>
     </div>
 
-    <!-- 하단: 풀와이드 (과목카드 / 갤러리 / 자세히보기) -->
+    <!-- 하단: 풀와이드 (과목카드 / 자세히보기) -->
     <div class="hero-bottom">
       <!-- 과목 카드: trust 아래 한 줄 (PC에서 6열) -->
       <div class="course-grid hero-course-row">
@@ -1431,14 +1439,6 @@
         <div class="course-card cc-lavender" onclick="openCModal('cModal6')" style="cursor:pointer"><div class="cc-icon">🕊️</div><div class="cc-name">반려동물<br/>장례지도사</div></div>
         <div class="course-card cc-sage" onclick="openCModal('cModal6')" style="cursor:pointer"><div class="cc-icon">🌿</div><div class="cc-name">아로마<br/>테라피</div></div>
         <div class="course-card cc-gold" onclick="openCModal('cModal5')" style="cursor:pointer"><div class="cc-icon">💼</div><div class="cc-name">취업연계<br/>창업컨설팅</div></div>
-      </div>
-
-      <!-- 모바일 전용 슬라이드 이미지 -->
-      <div class="hero-mobile-gallery" role="region" aria-label="이바우펫 프로그램 안내 이미지 갤러리 (클릭하면 확대됩니다)">
-        <img src="image/hero-banner1.webp" class="hmg-slide" alt="애견미용적성파악 클래스" onclick="this.classList.toggle('hmg-full')" />
-        <img src="image/hero-banner2.webp" class="hmg-slide" alt="애견미용자격증취득 보장반" onclick="this.classList.toggle('hmg-full')" />
-        <img src="image/hero-banner3.webp" class="hmg-slide" alt="애견미용펫미용" onclick="this.classList.toggle('hmg-full')" />
-        <img src="image/hero-banner4.webp" class="hmg-slide" alt="애견미용종합반" onclick="this.classList.toggle('hmg-full')" />
       </div>
 
       <div class="scroll-hint" aria-hidden="true">
