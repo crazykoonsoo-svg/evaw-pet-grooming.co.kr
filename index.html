@@ -684,8 +684,13 @@
 
     /* ── CTA BANNER ── */
     .cta-banner { background:linear-gradient(135deg,var(--navy),var(--navy-lt)); padding:36px 20px; text-align:center; position:relative; overflow:hidden; }
-    .cta-banner::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 80% 50%,rgba(201,168,76,.15),transparent 60%); }
-    .cta-banner .wrap { position:relative; }
+    .cta-banner::before {
+      content:''; position:absolute; inset:0;
+      background: url('image/network-bg.webp') center top / cover no-repeat;
+      opacity: 0.55;
+    }
+    .cta-banner::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 80% 50%,rgba(201,168,76,.15),transparent 60%); }
+    .cta-banner .wrap { position:relative; z-index:1; }
     .cta-banner .t-section { color:#fff; margin-bottom:8px; }
     .cta-banner .sub { color:rgba(255,255,255,.7); font-size:.85rem; margin-bottom:22px; }
     .cta-grid { display:flex; flex-direction:column; gap:9px; }
