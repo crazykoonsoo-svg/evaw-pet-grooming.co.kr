@@ -307,20 +307,20 @@
       opacity: 0;
       transform: scale(1);
       transform-origin: center;
-      animation: hmgFade 12s infinite;
+      animation: hmgFade 16s infinite;
       cursor: zoom-in;
       transition: none;
       will-change: transform, opacity;
     }
     .hmg-slide:nth-child(1) { animation-delay: 0s; }
-    .hmg-slide:nth-child(2) { animation-delay: 3s; }
-    .hmg-slide:nth-child(3) { animation-delay: 6s; }
-    .hmg-slide:nth-child(4) { animation-delay: 9s; }
+    .hmg-slide:nth-child(2) { animation-delay: 4s; }
+    .hmg-slide:nth-child(3) { animation-delay: 8s; }
+    .hmg-slide:nth-child(4) { animation-delay: 12s; }
     @keyframes hmgFade {
       0%      { opacity: 0; transform: scale(1); }
-      8.33%   { opacity: 1; transform: scale(1.02); }
+      6.25%   { opacity: 1; transform: scale(1.02); }
       25%     { opacity: 1; transform: scale(1.05); }
-      33.33%  { opacity: 0; transform: scale(1.08); }
+      31.25%  { opacity: 0; transform: scale(1.08); }
       100%    { opacity: 0; transform: scale(1.08); }
     }
     .hmg-slide.hmg-full {
@@ -509,8 +509,20 @@
     .diff-badge { display:inline-block; background:var(--gold-bg); color:#7a5c10; border:1px solid rgba(201,168,76,.2); border-radius:50px; padding:2px 10px; font-size:.68rem; font-weight:700; margin-top:6px; }
 
     /* ── NETWORK ── */
-    #network { background:var(--bg-sub); }
-    .net-card  { background:linear-gradient(135deg,var(--navy),var(--navy-lt)); border-radius:var(--r16); padding:28px 24px; text-align:center; position:relative; overflow:hidden; margin-bottom:16px; }
+    #network {
+      background: linear-gradient(160deg,var(--navy) 0%,var(--navy-lt) 100%);
+      position: relative; overflow: hidden;
+    }
+    #network::before {
+      content: ''; position: absolute; inset: 0;
+      background: url('image/network-bg.webp') center center / cover no-repeat;
+      opacity: 0.55;
+    }
+    #network > * { position: relative; z-index: 1; }
+    #network .sec-title { color: #fff; }
+    #network .sec-tag { background: rgba(255,255,255,.1); border-color: rgba(201,168,76,.35); color: var(--gold-lt); }
+    #network .divider { background: linear-gradient(90deg,var(--gold),var(--gold-lt)); }
+    .net-card  { background:linear-gradient(135deg,rgba(22,33,62,.7),rgba(42,63,110,.7)); border:1px solid rgba(255,255,255,.12); box-shadow:0 8px 30px rgba(0,0,0,.25); border-radius:var(--r16); padding:28px 24px; text-align:center; position:relative; overflow:hidden; margin-bottom:16px; backdrop-filter:blur(4px); }
     .net-card::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 80% 20%,rgba(201,168,76,.2),transparent 60%); }
     .net-card .inner  { position:relative; }
     .net-num   { font-size:3.5rem; font-weight:900; color:var(--gold-lt); letter-spacing:-0.04em; line-height:1; transition:text-shadow .3s ease; }
