@@ -7,10 +7,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>Evaw Pet 애견미용학원 | 전국 21개 직영 · 이바우펫</title>
-  <meta name="description" content="서울·분당·일산·대전·광주·인천·대구·노원·부천·천호·평택·강남·창원·부산·천안·서면 전국 애견미용학원 애견미용 자격증·시험·국비지원·비용·추천" />
+  <meta name="description" content="서울·분당·일산·대전·광주·인천·대구·노원·부천·상동·평택·강남·창원·부산·천안·서면 전국 애견미용학원 애견미용 자격증·시험·국비지원·비용·추천" />
   <meta name="keywords" content="애견미용학원, 애견미용자격증, 애견미용국비지원, 애견미용비용, 애견미용취업, 애견미용창업, 애견미용자격증3급, 애견미용자격증2급, 서울애견미용학원, 부산애견미용학원, 대구애견미용학원, 인천애견미용학원, 광주애견미용학원, 대전애견미용학원, 수원애견미용학원, 강남애견미용학원, 노원애견미용학원" />
   <meta property="og:title" content="Evaw Pet 애견미용학원 | 전국 21개 직영 · 이바우펫" />
-  <meta property="og:description" content="서울·분당·일산·대전·광주·인천·대구·노원·부천·천호·평택·강남·창원·부산·천안·서면 전국 애견미용학원 애견미용 자격증·시험·국비지원·비용·추천" />
+  <meta property="og:description" content="서울·분당·일산·대전·광주·인천·대구·노원·부천·상동·평택·강남·창원·부산·천안·서면 전국 애견미용학원 애견미용 자격증·시험·국비지원·비용·추천" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://evaw-pet-grooming.co.kr/" />
   <meta property="og:image" content="https://evaw-pet-grooming.co.kr/image/og-image.jpg" />
@@ -509,14 +509,21 @@
       60%  { text-shadow: 0 0 14px rgba(232,201,110,.7), 0 0 30px rgba(201,168,76,.5); color:#f5e07a; }
       100% { text-shadow: 0 0 8px rgba(232,201,110,.35), 0 0 16px rgba(201,168,76,.2); color:var(--gold-lt); }
     }
-    .net-label { color:rgba(255,255,255,.85); font-size:.95rem; font-weight:700; margin:6px 0 12px; opacity:0; transform:translateY(8px); transition:opacity .5s ease .4s, transform .5s ease .4s; }
-    .net-sub   { color:rgba(255,255,255,.45); font-size:.75rem; line-height:1.7; opacity:0; transition:opacity .5s ease .7s; }
+    .net-label { color:rgba(255,255,255,.85); font-size:.95rem; font-weight:700; margin:6px 0 14px; opacity:0; transform:translateY(8px); transition:opacity .5s ease .4s, transform .5s ease .4s; }
     .net-card.counted .net-label { opacity:1; transform:translateY(0); }
-    .net-card.counted .net-sub   { opacity:1; }
-    .assoc-row { display:flex; gap:10px; }
-    .assoc-card { flex:1; background:var(--white); border-radius:var(--r12); padding:16px 10px; text-align:center; border:1px solid var(--gray-2); }
-    .assoc-card .ico  { font-size:24px; margin-bottom:6px; }
-    .assoc-card .name { font-size:.72rem; font-weight:700; color:var(--navy); line-height:1.4; }
+    .net-chips-wrap {
+      overflow:hidden;
+      -webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
+      mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
+    }
+    .net-chips { display:flex; gap:8px; width:max-content; animation:netChipsScroll 24s linear infinite; }
+    .net-chip {
+      background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18);
+      color:rgba(255,255,255,.85); font-size:.74rem; font-weight:700;
+      padding:6px 14px; border-radius:50px; white-space:nowrap; flex-shrink:0;
+    }
+    .net-chip-soon { background:rgba(201,168,76,.18); border-color:rgba(201,168,76,.5); color:var(--gold-lt); }
+    @keyframes netChipsScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
     /* ── 교수진 ── */
     #faculty { background:var(--bg-sub); padding:44px 0; }
@@ -1004,8 +1011,8 @@
 
   /* ── NETWORK ── */
   #network .wrap { text-align: center; }
-  .net-card { max-width: 400px; margin: 0 auto 24px; }
-  .assoc-row { justify-content: center; max-width: 960px; margin: 0 auto; }
+  .net-card { max-width: 500px; margin: 0 auto 24px; }
+  #network .btn { max-width: 500px; margin: 16px auto 0; }
 
   /* ── CURRICULUM ── */
   #curriculum .curr-list {
@@ -1595,9 +1602,58 @@
       <div class="inner">
         <div class="net-num" id="netNum">0<span style="font-size:1.8rem;">개</span></div>
         <div class="net-label">전국 직영 캠퍼스 운영</div>
-        <div class="net-sub">강남 · 노원 · 종로 · 부천 · 분당 · 수원 · 인천 · 일산<br/>평택 · 대전 · 대구 · 부산 · 창원 · 광주 외 다수</div>
+        <div class="net-chips-wrap">
+          <div class="net-chips">
+          <span class="net-chip">광주</span>
+          <span class="net-chip">분당</span>
+          <span class="net-chip">일산</span>
+          <span class="net-chip">대전</span>
+          <span class="net-chip">인천</span>
+          <span class="net-chip">반월당</span>
+          <span class="net-chip">대구</span>
+          <span class="net-chip">신림</span>
+          <span class="net-chip">노원</span>
+          <span class="net-chip">종로</span>
+          <span class="net-chip">부천</span>
+          <span class="net-chip">천호</span>
+          <span class="net-chip">평택</span>
+          <span class="net-chip">수원</span>
+          <span class="net-chip">강남</span>
+          <span class="net-chip">서면</span>
+          <span class="net-chip">창원</span>
+          <span class="net-chip">연산</span>
+          <span class="net-chip">덕천</span>
+          <span class="net-chip">천안</span>
+          <span class="net-chip net-chip-soon">상동</span>
+          <span class="net-chip">광주</span>
+          <span class="net-chip">분당</span>
+          <span class="net-chip">일산</span>
+          <span class="net-chip">대전</span>
+          <span class="net-chip">인천</span>
+          <span class="net-chip">반월당</span>
+          <span class="net-chip">대구</span>
+          <span class="net-chip">신림</span>
+          <span class="net-chip">노원</span>
+          <span class="net-chip">종로</span>
+          <span class="net-chip">부천</span>
+          <span class="net-chip">천호</span>
+          <span class="net-chip">평택</span>
+          <span class="net-chip">수원</span>
+          <span class="net-chip">강남</span>
+          <span class="net-chip">서면</span>
+          <span class="net-chip">창원</span>
+          <span class="net-chip">연산</span>
+          <span class="net-chip">덕천</span>
+          <span class="net-chip">천안</span>
+          <span class="net-chip net-chip-soon">상동</span>
+          </div>
+        </div>
       </div>
     </div>
+
+    <button class="btn btn-gold btn-full mt16 fade-up" onclick="gtag('event','click_cta',{button:'네트워크_상담문의'});openModal();" aria-label="상담 문의">
+      📍 가까운 애견미용학원 조회
+    </button>
 
   </div>
 </section>
@@ -2210,11 +2266,13 @@
   <div style="max-width:480px;margin:0 auto;">
     <p style="color:rgba(255,255,255,.7);font-size:.9rem;font-weight:800;margin-bottom:8px;">Evaw Pet 애견미용학원</p>
     <p style="color:rgba(255,255,255,.35);font-size:.72rem;line-height:2.1;">
+      학원명: 이바우펫 애견미용학원 / Evaw Pet grooming academy<br/>
       대표이사: 김명자<br/>
       사업자등록번호: 211-87-42130<br/>
       경기도 성남시 분당구 수내동 20-5<br/>
       문의 전화: 010-3766-1620 · admin@evawpet.com<br/>
-      운영: 월~목 11:00~21:30 / 토 11:00~15:00
+      운영: 월~목 11:00~21:30 / 토 11:00~15:00<br/>
+      개인정보책임자: 이바우 · 교육담당: 이바우
     </p>
     <div style="display:flex;justify-content:center;gap:14px;margin-top:14px;flex-wrap:wrap;">
       <a href="https://www.evawpet.com/?mode=policy"   style="color:rgba(255,255,255,.3);font-size:.72rem;text-decoration:underline;" target="_blank" rel="noopener">이용약관</a>
