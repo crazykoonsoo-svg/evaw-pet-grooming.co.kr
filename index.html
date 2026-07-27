@@ -683,13 +683,24 @@
     }
 
     /* ── CTA BANNER ── */
-    .cta-banner { background:linear-gradient(135deg,var(--navy),var(--navy-lt)); padding:36px 20px; text-align:center; position:relative; overflow:hidden; }
+    .cta-banner {
+      background:linear-gradient(135deg,var(--navy),var(--navy-lt));
+      padding:36px 20px; text-align:center; position:relative; overflow:hidden;
+      border-top:1px solid rgba(201,168,76,.25);
+      border-bottom:1px solid rgba(201,168,76,.25);
+    }
     .cta-banner::before {
       content:''; position:absolute; inset:0;
-      background: url('image/network-bg.webp') center top / cover no-repeat;
-      opacity: 0.55;
+      background:
+        radial-gradient(ellipse 70% 55% at 85% 10%, rgba(201,168,76,.22), transparent 60%),
+        radial-gradient(ellipse 55% 45% at 8% 100%, rgba(201,168,76,.12), transparent 65%),
+        repeating-linear-gradient(135deg, rgba(201,168,76,.05) 0px, rgba(201,168,76,.05) 1px, transparent 1px, transparent 28px);
+      animation: ctaGlowPulse 7s ease-in-out infinite;
     }
-    .cta-banner::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 80% 50%,rgba(201,168,76,.15),transparent 60%); }
+    @keyframes ctaGlowPulse {
+      0%, 100% { opacity:0.8; }
+      50%      { opacity:1; }
+    }
     .cta-banner .wrap { position:relative; z-index:1; }
     .cta-banner .t-section { color:#fff; margin-bottom:8px; }
     .cta-banner .sub { color:rgba(255,255,255,.7); font-size:.85rem; margin-bottom:22px; }
