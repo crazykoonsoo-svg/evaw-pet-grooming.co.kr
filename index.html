@@ -242,6 +242,7 @@
     }
     .logo-text { color:#fff; font-weight:800; font-size:0.85rem; letter-spacing:-0.02em; }
     .logo-text span { color:var(--gold); }
+    .nav-links { display:none; }
     .nav-cta   { display:flex; gap:7px; }
     .nav-cta a, .nav-cta button { padding:7px 11px; border-radius:50px; font-size:0.72rem; font-weight:700; text-decoration:none; transition:var(--tr); -webkit-tap-highlight-color:transparent; cursor:pointer; font-family:inherit; border:none; outline:none; display:inline-flex; align-items:center; gap:4px; white-space:nowrap; }
     .nc-phone  { background:var(--gold); color:var(--navy); }
@@ -933,6 +934,13 @@
 
   /* ── TOP NAV ── */
   .nav-inner { max-width: 1080px; margin: 0 auto; padding: 0 40px; }
+  .nav-links { display:flex; align-items:center; gap:10px; }
+  .nav-links a {
+    color:#fff; font-size:.8rem; font-weight:700;
+    text-decoration:none; transition:var(--tr);
+    background:var(--navy-lt); padding:8px 16px; border-radius:50px;
+  }
+  .nav-links a:hover { background:var(--gold); color:var(--navy); }
 
   /* ── HERO ── */
   #hero { min-height: auto; padding-bottom: 60px; }
@@ -1400,6 +1408,11 @@
 <!-- ── TOP NAV ─────────────────────────────── -->
 <nav id="topNav" aria-label="메인 네비게이션">
   <div class="logo-text">Evaw Pet <span>애견미용학원</span></div>
+  <div class="nav-links">
+    <a href="/why">Evaw혜택</a>
+    <a href="/curriculum">커리큘럼</a>
+    <a href="/branches">전국 캠퍼스</a>
+  </div>
   <div class="nav-cta">
     <button class="nc-phone" onclick="gtag('event','click_cta',{button:'전화_sticky'});showPhone();" aria-label="전화 상담">📞 전화</button>
     <a href="http://pf.kakao.com/_xaNjrn/chat" class="nc-kakao" target="_blank" rel="noopener" aria-label="카카오톡">💬 카톡</a>
