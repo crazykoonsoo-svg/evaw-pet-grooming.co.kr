@@ -1107,16 +1107,17 @@
   /* 왜 Evaw Pet 카드 */
   .diff-card {
     flex-direction: row;
-    align-items: flex-start;
-    text-align: left;
-    padding: 18px 16px;
+    align-items: center;
+    text-align: center;
+    padding: 20px 18px;
     gap: 14px;
   }
+  .diff-card > div:not(.diff-icon) { flex: 1; }
   .diff-card::before { width: 3px; height: 100%; top: 0; left: 0; right: auto; bottom: 0; }
-  .diff-icon { width: 52px; height: 52px; font-size: 24px; flex-shrink: 0; }
-  .diff-ttl { text-align: left; font-size: 1rem; }
-  .t-body.mt8 { text-align: left; font-size: .8rem; line-height: 1.6; }
-  .diff-badge { display: inline-block; margin: 6px 0 0; font-size: .7rem; padding: 3px 10px; }
+  .diff-icon { width: 56px; height: 56px; font-size: 26px; flex-shrink: 0; }
+  .diff-ttl { text-align: center; font-size: 1rem; }
+  .t-body.mt8 { text-align: center; font-size: .8rem; line-height: 1.6; }
+  .diff-badge { display: block; width: fit-content; margin: 6px auto 0; font-size: .7rem; padding: 3px 10px; }
 
   /* 커리큘럼 카드 */
   .curr-card {
