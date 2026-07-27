@@ -878,20 +878,21 @@
 @media (min-width: 768px) {
 
   /* ── 기본 컨테이너 ── */
-  .wrap { max-width: 960px; padding: 0 40px; margin: 0 auto; }
+  .wrap { max-width: 1080px; padding: 0 40px; margin: 0 auto; }
   section { padding: 64px 0; text-align: center; }
   .sec-header { text-align: center; }
   .sec-tag { margin: 0 auto 10px; }
   .divider { margin: 10px auto 24px; }
   .t-section { font-size: 1.9rem; }
+  .mobile-break { display: none; }
 
   /* ── TOP NAV ── */
-  .nav-inner { max-width: 960px; margin: 0 auto; padding: 0 40px; }
+  .nav-inner { max-width: 1080px; margin: 0 auto; padding: 0 40px; }
 
   /* ── HERO ── */
   #hero { min-height: auto; padding-bottom: 60px; }
   .hero-content {
-    max-width: 960px;
+    max-width: 1080px;
     padding: 0 40px 40px;
     flex-direction: column;
     gap: 0;
@@ -979,36 +980,13 @@
   #faculty .faculty-hero-badge { font-size: .85rem; padding: 8px 18px; }
   #faculty .faculty-more { max-width: 320px; margin: 0 auto; }
 
-  /* ── WHY + CURRICULUM 2단 ── */
-  .why-curr-wrap {
-    display: flex;
-    align-items: stretch;
-    max-width: 1100px;
-    margin: 0 auto;
-    gap: 0;
-  }
-  .why-curr-wrap #why {
-    flex: 1;
-    border-right: 1px solid var(--gray-2);
-    padding: 48px 40px;
-    display: flex;
-    flex-direction: column;
-  }
-  .why-curr-wrap #curriculum {
-    flex: 1;
-    padding: 64px 40px;
-    display: flex;
-    flex-direction: column;
-  }
-  .why-curr-wrap .wrap { max-width: 100%; padding: 0; }
-
   /* ── WHY ── */
   #why .diff-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
     text-align: left;
-    max-width: 960px;
+    max-width: 1080px;
     margin: 0 auto;
   }
   .diff-card { flex-direction: column; gap: 12px; }
@@ -1023,8 +1001,8 @@
   #curriculum .curr-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-    max-width: 960px;
+    gap: 12px;
+    max-width: 1080px;
     margin: 0 auto;
     text-align: left;
   }
@@ -1042,7 +1020,7 @@
 
   /* ── REVIEWS ── */
   #reviews { text-align: center; }
-  #reviews .rv-slider { overflow: hidden; max-width: 960px; margin: 0 auto; }
+  #reviews .rv-slider { overflow: hidden; max-width: 1080px; margin: 0 auto; }
   #reviews .rv-track {
     display: flex !important;
     gap: 18px;
@@ -1067,21 +1045,21 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 14px;
     align-items: start;
-    max-width: 960px;
+    max-width: 1080px;
     margin: 0 auto;
     text-align: left;
   }
 
   /* ── BRANCHES ── */
   #branches { text-align: center; }
-  .branch-slider { max-width: 960px; margin: 0 auto; }
+  .branch-slider { max-width: 1080px; margin: 0 auto; }
   .branch-track { padding: 0 !important; }
   .branch-card { min-width: calc(25% - 12px) !important; max-width: 220px !important; }
   .branch-dots { justify-content: center; }
 
   /* ── NEWS ── */
   #news { text-align: center; }
-  #news .news-slider { overflow: hidden; max-width: 960px; margin: 0 auto; }
+  #news .news-slider { overflow: hidden; max-width: 1080px; margin: 0 auto; }
   #news .news-track {
     display: flex !important;
     gap: 18px;
@@ -1131,28 +1109,28 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 18px 20px;
-    gap: 10px;
+    padding: 16px 10px;
+    gap: 8px;
   }
   .diff-card::before { width: 100%; height: 3px; top: 0; left: 0; right: 0; bottom: auto; }
-  .diff-icon { width: 64px; height: 64px; font-size: 30px; flex-shrink: 0; }
-  .diff-ttl { text-align: center; font-size: 1.1rem; }
-  .t-body.mt8 { text-align: center; font-size: .9rem; line-height: 1.7; }
-  .diff-badge { display: block; margin: 8px auto 0; }
+  .diff-icon { width: 44px; height: 44px; font-size: 20px; flex-shrink: 0; }
+  .diff-ttl { text-align: center; font-size: .82rem; }
+  .t-body.mt8 { text-align: center; font-size: .66rem; line-height: 1.5; }
+  .diff-badge { display: block; margin: 4px auto 0; font-size: .62rem; padding: 2px 8px; }
 
   /* 커리큘럼 카드 */
   .curr-card {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 28px 24px;
-    gap: 12px;
+    padding: 16px 10px;
+    gap: 8px;
   }
-  .curr-left { flex-direction: column; align-items: center; gap: 12px; }
-  .curr-num { width: 42px; height: 42px; font-size: 1rem; }
-  .curr-name { font-size: 1.1rem; text-align: center; }
-  .curr-sub { text-align: center; font-size: .85rem; }
-  .curr-card .tag { margin-top: 6px; font-size: .78rem; padding: 4px 14px; }
+  .curr-left { flex-direction: column; align-items: center; gap: 8px; }
+  .curr-num { width: 34px; height: 34px; font-size: .82rem; }
+  .curr-name { font-size: .82rem; text-align: center; }
+  .curr-sub { text-align: center; font-size: .66rem; }
+  .curr-card .tag { margin-top: 4px; font-size: .62rem; padding: 2px 8px; }
 
   /* 전국 캠퍼스 카드 */
   .branch-card { text-align: center; padding: 22px 16px; }
@@ -1202,16 +1180,20 @@
   .hero-course-row .course-card { padding: 14px 6px; }
   .hero-course-row .cc-icon { font-size: 22px; margin-bottom: 6px; }
   .hero-course-row .cc-name { font-size: .72rem; white-space: normal; }
+
+  #why .diff-list { grid-template-columns: repeat(3, 1fr); }
+  #curriculum .curr-list { grid-template-columns: repeat(3, 1fr); }
 }
 
 /* ── 넓은 화면 (1200px+) ── */
 @media (min-width: 1200px) {
-  .wrap { max-width: 1100px; }
-  .hero-content { max-width: 1100px; }
-  #reviews .rv-track { grid-template-columns: repeat(3, 1fr); max-width: 1100px; }
+  .wrap { max-width: 1280px; }
+  .hero-content { max-width: 1280px; }
+  #reviews .rv-track { grid-template-columns: repeat(3, 1fr); max-width: 1280px; }
   #news .news-track { grid-template-columns: repeat(4, 1fr); }
-  #why .diff-list { max-width: 1100px; }
-  #faq .faq-list { max-width: 1100px; }
+  #why .diff-list { max-width: 1280px; }
+  #curriculum .curr-list { max-width: 1280px; }
+  #faq .faq-list { max-width: 1280px; grid-template-columns: repeat(3, 1fr); }
   .branch-card { min-width: calc(20% - 12px) !important; }
 }
 
@@ -1377,7 +1359,7 @@
   <div class="nav-cta">
     <button class="nc-phone" onclick="gtag('event','click_cta',{button:'전화_sticky'});showPhone();" aria-label="전화 상담">📞 전화</button>
     <a href="http://pf.kakao.com/_xaNjrn/chat" class="nc-kakao" target="_blank" rel="noopener" aria-label="카카오톡">💬 카톡</a>
-    <a href="https://naver.me/51umU1bd" class="nc-naver" target="_blank" rel="noopener" aria-label="네이버 문의">N 문의</a>
+    <a href="http://talk.naver.com/W5IPUB" class="nc-naver" target="_blank" rel="noopener" aria-label="네이버 문의">N 문의</a>
   </div>
 </nav>
 
@@ -1397,7 +1379,7 @@
           <span style="font-size:1.2rem;display:block;">수업 만족도가 높은</span>
           <em style="font-size:1.2rem;">이바우펫 애견미용학원</em>
         </h1>
-        <p class="hero-sub">100% 가정견 실견수업부터 취업·창업 준비까지<br/>교육지원 가능 여부부터 확인해보세요</p>
+        <p class="hero-sub">100% 가정견 실견수업부터 취업·창업 준비까지<br class="mobile-break"/>교육지원 가능 여부부터 확인해보세요</p>
 
         <div class="hero-cta">
           <button class="btn btn-consult btn-full btn-lg" onclick="gtag('event','click_cta',{button:'교육비지원조회'});openModal();" aria-label="무료 상담 신청">
@@ -1406,7 +1388,7 @@
           <div class="row3">
             <button class="btn btn-gold" onclick="gtag('event','click_cta',{button:'전화상담'});showPhone();" aria-label="전화 상담">📞 전화상담</button>
             <a href="http://pf.kakao.com/_xaNjrn/chat" class="btn btn-kakao" target="_blank" rel="noopener" aria-label="카카오톡 문의" onclick="gtag('event','click_cta',{button:'카톡문의'})">💬 카톡문의</a>
-            <a href="https://naver.me/51umU1bd" class="btn btn-naver" target="_blank" rel="noopener" aria-label="네이버 문의" onclick="gtag('event','click_cta',{button:'네이버문의'})">
+            <a href="http://talk.naver.com/W5IPUB" class="btn btn-naver" target="_blank" rel="noopener" aria-label="네이버 문의" onclick="gtag('event','click_cta',{button:'네이버문의'})">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>
               네이버문의
             </a>
@@ -1470,9 +1452,6 @@
 
 <!-- ── MARQUEE ──────────────────────────────── -->
 </div>
-
-<!-- ── WHY + CURRICULUM 2단 래퍼 ── -->
-<div class="why-curr-wrap">
 
 <!-- ── WHY ──────────────────────────────────── -->
 <section id="why" aria-labelledby="why-h">
@@ -1569,8 +1548,6 @@
   </div>
 </section>
 
-</div><!-- end why-curr-wrap -->
-
 
 <!-- ── FACULTY ──────────────────────────────── -->
 <section id="faculty" aria-labelledby="fac-h">
@@ -1596,7 +1573,7 @@
   <div class="wrap">
     <div class="sec-header fade-up">
       <div class="sec-tag">🌐 전국 네트워크</div>
-      <h2 class="t-section sec-title" id="net-h">전국 어디서나<br/>Evaw Pet</h2>
+      <h2 class="t-section sec-title" id="net-h">전국 어디서나<br class="mobile-break"/>Evaw Pet</h2>
       <div class="divider"></div>
     </div>
     <div class="net-card fade-up">
@@ -1662,14 +1639,14 @@
 <!-- ── MID CTA BANNER ────────────────────────── -->
 <div class="cta-banner" aria-label="상담 유도">
   <div class="wrap">
-    <h2 class="t-section">지금 바로<br/><span style="color:var(--gold-lt)">무료 상담</span>받으세요</h2>
+    <h2 class="t-section">지금 바로<br class="mobile-break"/><span style="color:var(--gold-lt)">무료 상담</span>받으세요</h2>
     <p class="sub">커리큘럼부터 수강료까지 부담없이 물어보세요</p>
     <div class="cta-grid fade-up">
       <button class="btn btn-consult btn-full btn-lg" onclick="openModal()" aria-label="교육지원혜택 알아보기">🎓 교육지원혜택 알아보기</button>
       <button class="btn btn-gold btn-full" onclick="gtag('event','click_cta',{button:'전화_sticky'});showPhone();" aria-label="전화 상담">📞 010-3766-1620 전화 상담</button>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;">
         <a href="http://pf.kakao.com/_xaNjrn/chat" class="btn btn-kakao" target="_blank" rel="noopener">💬 카카오톡</a>
-        <a href="https://naver.me/51umU1bd" class="btn btn-naver" target="_blank" rel="noopener">
+        <a href="http://talk.naver.com/W5IPUB" class="btn btn-naver" target="_blank" rel="noopener">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>
           네이버 문의
         </a>
@@ -1683,7 +1660,7 @@
   <div class="wrap">
     <div class="sec-header fade-up">
       <div class="sec-tag">⭐ 수강생 후기</div>
-      <h2 class="t-section sec-title" id="rv-h">실제 수강생<br/>리얼 후기</h2>
+      <h2 class="t-section sec-title" id="rv-h">실제 수강생<br class="mobile-break"/>리얼 후기</h2>
       <div class="divider"></div>
     </div>
   </div>
@@ -1735,7 +1712,7 @@
   <div class="wrap">
     <div class="sec-header fade-up">
       <div class="sec-tag">📸 수업 현장</div>
-      <h2 class="t-section sec-title" id="port-h">수강생들의<br/>실제 수업 모습</h2>
+      <h2 class="t-section sec-title" id="port-h">수강생들의<br class="mobile-break"/>실제 수업 모습</h2>
       <div class="divider"></div>
       <p class="sec-desc">실제 가정견으로 배우는 현장을 확인하세요</p>
     </div>
@@ -2147,7 +2124,7 @@
   <div class="wrap">
     <div class="sec-header fade-up">
       <div class="sec-tag">📞 지금 바로 시작하세요</div>
-      <h2 class="t-section sec-title">오늘 상담하고<br/><span style="color:var(--gold-lt)">내일부터 배우세요</span></h2>
+      <h2 class="t-section sec-title">오늘 상담하고<br class="mobile-break"/><span style="color:var(--gold-lt)">내일부터 배우세요</span></h2>
       <div class="divider"></div>
       <p class="sub">무료 상담 후 등록해도 늦지 않아요</p>
     </div>
@@ -2156,7 +2133,7 @@
       <button class="btn btn-gold btn-full" onclick="gtag('event','click_cta',{button:'전화_sticky'});showPhone();" aria-label="전화 상담">📞 010-3766-1620 전화 상담</button>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;">
         <a href="http://pf.kakao.com/_xaNjrn/chat" class="btn btn-kakao" target="_blank" rel="noopener">💬 카카오톡</a>
-        <a href="https://naver.me/51umU1bd" class="btn btn-naver" target="_blank" rel="noopener">
+        <a href="http://talk.naver.com/W5IPUB" class="btn btn-naver" target="_blank" rel="noopener">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="white"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>
           네이버 문의
         </a>
@@ -2176,7 +2153,7 @@
   <div class="wrap">
     <div class="sec-header fade-up">
       <div class="sec-tag">📰 최근 소식</div>
-      <h2 class="t-section sec-title" id="news-h">Evaw Pet<br/>새소식</h2>
+      <h2 class="t-section sec-title" id="news-h">Evaw Pet<br class="mobile-break"/>새소식</h2>
       <div class="divider"></div>
     </div>
   </div>
@@ -2317,7 +2294,7 @@
     <a href="http://pf.kakao.com/_xaNjrn/chat" class="sb-btn sb-kakao" onclick="gtag('event','click_cta',{button:'카톡_sticky'})" target="_blank" rel="noopener" aria-label="카카오톡">
       <span class="ico">💬</span><span class="lbl">카톡문의</span>
     </a>
-    <a href="https://naver.me/51umU1bd" class="sb-btn sb-naver" onclick="gtag('event','click_cta',{button:'네이버_sticky'})" target="_blank" rel="noopener" aria-label="네이버 문의">
+    <a href="http://talk.naver.com/W5IPUB" class="sb-btn sb-naver" onclick="gtag('event','click_cta',{button:'네이버_sticky'})" target="_blank" rel="noopener" aria-label="네이버 문의">
       <span class="ico">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>
       </span>
@@ -2422,7 +2399,7 @@
       <div style="display:flex;flex-direction:column;gap:10px;padding:0 20px 20px;">
         <button class="btn btn-gold btn-full btn-lg" onclick="closeModal();showPhone();">📞 010-3766-1620 전화 상담</button>
         <a href="http://pf.kakao.com/_xaNjrn/chat" class="btn btn-kakao btn-full" target="_blank" rel="noopener" onclick="closeModal()">💬 카카오톡 바로 문의</a>
-        <a href="https://naver.me/51umU1bd" class="btn btn-naver btn-full" target="_blank" rel="noopener" onclick="closeModal()">
+        <a href="http://talk.naver.com/W5IPUB" class="btn btn-naver btn-full" target="_blank" rel="noopener" onclick="closeModal()">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>
           네이버로 문의하기
         </a>
@@ -3027,7 +3004,7 @@
   }
   document.querySelectorAll('[onclick*="showPhone"]').forEach(el => el.addEventListener('click', () => { naverCnv("2"); ga4('phone_popup','전화번호팝업'); }));
   document.querySelectorAll('a[href*="kakao"]').forEach(el => el.addEventListener('click', () => { naverCnv("1"); ga4('kakao_inquiry','카카오문의'); }));
-  document.querySelectorAll('a[href*="naver.me"]').forEach(el => el.addEventListener('click', () => { naverCnv("3"); ga4('naver_inquiry','네이버문의'); }));
+  document.querySelectorAll('a[href*="talk.naver.com"]').forEach(el => el.addEventListener('click', () => { naverCnv("3"); ga4('naver_inquiry','네이버문의'); }));
 </script>
   <!-- 네이버 애널리틱스 -->
   <script type="text/javascript" src="//wcs.pstatic.net/wcslog.js"></script>
