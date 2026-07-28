@@ -525,10 +525,10 @@
     #network .sec-title { color: #fff; }
     #network .sec-tag { background: rgba(255,255,255,.1); border-color: rgba(201,168,76,.35); color: var(--gold-lt); }
     #network .divider { background: linear-gradient(90deg,var(--gold),var(--gold-lt)); }
-    .net-card  { background:linear-gradient(135deg,rgba(22,33,62,.7),rgba(42,63,110,.7)); border:1px solid rgba(255,255,255,.12); box-shadow:0 8px 30px rgba(0,0,0,.25); border-radius:var(--r16); padding:28px 24px; text-align:center; position:relative; overflow:hidden; margin-bottom:16px; backdrop-filter:blur(4px); }
+    .net-card  { background:linear-gradient(135deg,rgba(22,33,62,.7),rgba(42,63,110,.7)); border:1px solid rgba(255,255,255,.12); box-shadow:0 8px 30px rgba(0,0,0,.25); border-radius:var(--r16); padding:32px 26px; text-align:center; position:relative; overflow:hidden; margin-bottom:16px; backdrop-filter:blur(4px); }
     .net-card::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 80% 20%,rgba(201,168,76,.2),transparent 60%); }
     .net-card .inner  { position:relative; }
-    .net-num   { font-size:3.5rem; font-weight:900; color:var(--gold-lt); letter-spacing:-0.04em; line-height:1; transition:text-shadow .3s ease; }
+    .net-num   { font-size:4.3rem; font-weight:900; color:var(--gold-lt); letter-spacing:-0.04em; line-height:1; transition:text-shadow .3s ease; }
     .net-num.glow {
       animation: goldGlow 2s ease-in-out forwards;
     }
@@ -538,18 +538,18 @@
       60%  { text-shadow: 0 0 14px rgba(232,201,110,.7), 0 0 30px rgba(201,168,76,.5); color:#f5e07a; }
       100% { text-shadow: 0 0 8px rgba(232,201,110,.35), 0 0 16px rgba(201,168,76,.2); color:var(--gold-lt); }
     }
-    .net-label { color:rgba(255,255,255,.85); font-size:.95rem; font-weight:700; margin:6px 0 14px; opacity:0; transform:translateY(8px); transition:opacity .5s ease .4s, transform .5s ease .4s; }
+    .net-label { color:rgba(255,255,255,.85); font-size:1.15rem; font-weight:700; margin:8px 0 16px; opacity:0; transform:translateY(8px); transition:opacity .5s ease .4s, transform .5s ease .4s; }
     .net-card.counted .net-label { opacity:1; transform:translateY(0); }
     .net-chips-wrap {
       overflow:hidden;
       -webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
       mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
     }
-    .net-chips { display:flex; gap:8px; width:max-content; animation:netChipsScroll 24s linear infinite; }
+    .net-chips { display:flex; gap:10px; width:max-content; animation:netChipsScroll 24s linear infinite; }
     .net-chip {
       background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18);
-      color:rgba(255,255,255,.85); font-size:.74rem; font-weight:700;
-      padding:6px 14px; border-radius:50px; white-space:nowrap; flex-shrink:0;
+      color:rgba(255,255,255,.85); font-size:.88rem; font-weight:700;
+      padding:8px 18px; border-radius:50px; white-space:nowrap; flex-shrink:0;
     }
     .net-chip-soon { background:rgba(201,168,76,.18); border-color:rgba(201,168,76,.5); color:var(--gold-lt); }
     @keyframes netChipsScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
@@ -1047,7 +1047,7 @@
 
   /* ── NETWORK ── */
   #network .wrap { text-align: center; }
-  .net-card { max-width: 500px; margin: 0 auto 24px; }
+  .net-card { max-width: 580px; margin: 0 auto 24px; }
   #network .btn { max-width: 500px; margin: 16px auto 0; }
 
   /* ── CURRICULUM ── */
@@ -1638,7 +1638,7 @@
     </div>
     <div class="net-card fade-up">
       <div class="inner">
-        <div class="net-num" id="netNum">0<span style="font-size:1.8rem;">개</span></div>
+        <div class="net-num" id="netNum">0<span style="font-size:2.2rem;">개</span></div>
         <div class="net-label">전국 직영 캠퍼스 운영</div>
         <div class="net-chips-wrap">
           <div class="net-chips">
@@ -1862,26 +1862,26 @@
   </div>
   <div class="branch-slider" role="region" aria-label="전국 캠퍼스">
     <div class="branch-track" id="branchTrack">
-      <div class="branch-card"><div class="branch-region">광주</div><div class="branch-name">광주 애견미용학원</div><div class="branch-addr">광주광역시 서구 상무중앙로 7 10층</div></div>
-      <div class="branch-card"><div class="branch-region">경기</div><div class="branch-name">분당 애견미용학원</div><div class="branch-addr">경기도 성남시 분당구 백현로101번길 13 5층</div></div>
-      <div class="branch-card"><div class="branch-region">경기</div><div class="branch-name">일산 애견미용학원</div><div class="branch-addr">경기도 고양시 일산동구 정발산로 47 웅신아트 5층</div></div>
-      <div class="branch-card"><div class="branch-region">대전</div><div class="branch-name">대전 애견미용학원</div><div class="branch-addr">대전광역시 서구 대덕대로 182 10층</div></div>
-      <div class="branch-card"><div class="branch-region">인천</div><div class="branch-name">인천 애견미용학원</div><div class="branch-addr">인천광역시 남동구 인하로 501 8층</div></div>
-      <div class="branch-card"><div class="branch-region">대구</div><div class="branch-name">반월당 애견미용학원</div><div class="branch-addr">대구광역시 중구 달구벌대로 2118 예미안타워빌딩 7층</div></div>
-      <div class="branch-card"><div class="branch-region">대구</div><div class="branch-name">대구 애견미용학원</div><div class="branch-addr">대구광역시 동구 동대구로 525-1 3층</div></div>
-      <div class="branch-card"><div class="branch-region">서울</div><div class="branch-name">신림 애견미용학원</div><div class="branch-addr">서울특별시 관악구 남부순환로 1630 2층</div></div>
-      <div class="branch-card"><div class="branch-region">서울</div><div class="branch-name">노원 애견미용학원</div><div class="branch-addr">서울특별시 노원구 상계로3길 21 5층 501호</div></div>
-      <div class="branch-card"><div class="branch-region">서울</div><div class="branch-name">종로 애견미용학원</div><div class="branch-addr">서울특별시 종로구 삼일대로17길 51 스타골드빌딩 3층</div></div>
-      <div class="branch-card"><div class="branch-region">경기</div><div class="branch-name">부천 애견미용학원</div><div class="branch-addr">경기도 부천시 원미구 부일로 496</div></div>
-      <div class="branch-card"><div class="branch-region">서울</div><div class="branch-name">천호 애견미용학원</div><div class="branch-addr">서울특별시 강동구 천호대로 1037 10층</div></div>
-      <div class="branch-card"><div class="branch-region">경기</div><div class="branch-name">평택 애견미용학원</div><div class="branch-addr">경기도 평택시 중앙2로 16 2층</div></div>
-      <div class="branch-card"><div class="branch-region">경기</div><div class="branch-name">수원 애견미용학원</div><div class="branch-addr">경기도 수원시 팔달구 덕영대로 905 1101호, 1106호</div></div>
-      <div class="branch-card"><div class="branch-region">서울</div><div class="branch-name">강남 애견미용학원</div><div class="branch-addr">서울특별시 강남구 선릉로86길 39 서영빌딩 5층</div></div>
-      <div class="branch-card"><div class="branch-region">부산</div><div class="branch-name">서면 애견미용학원</div><div class="branch-addr">부산광역시 부산진구 중앙대로 711 3층</div></div>
-      <div class="branch-card"><div class="branch-region">경남</div><div class="branch-name">창원 애견미용학원</div><div class="branch-addr">경상남도 창원시 성산구 원이대로 652 7층</div></div>
-      <div class="branch-card"><div class="branch-region">부산</div><div class="branch-name">연산 애견미용학원</div><div class="branch-addr">부산광역시 연제구 월드컵대로 141 동화빌딩 10층</div></div>
-      <div class="branch-card"><div class="branch-region">부산</div><div class="branch-name">덕천 애견미용학원</div><div class="branch-addr">부산광역시 북구 만덕대로 28 4층</div></div>
-      <div class="branch-card"><div class="branch-region">충남</div><div class="branch-name">천안 애견미용학원</div><div class="branch-addr">충청남도 천안시 동남구 만남로 30 로얄빌딩 5층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">광주</div><div class="branch-name">광주 애견미용학원</div><div class="branch-addr">광주광역시 서구 상무중앙로 7 10층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">경기</div><div class="branch-name">분당 애견미용학원</div><div class="branch-addr">경기도 성남시 분당구 백현로101번길 13 5층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">경기</div><div class="branch-name">일산 애견미용학원</div><div class="branch-addr">경기도 고양시 일산동구 정발산로 47 웅신아트 5층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">대전</div><div class="branch-name">대전 애견미용학원</div><div class="branch-addr">대전광역시 서구 대덕대로 182 10층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">인천</div><div class="branch-name">인천 애견미용학원</div><div class="branch-addr">인천광역시 남동구 인하로 501 8층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">대구</div><div class="branch-name">반월당 애견미용학원</div><div class="branch-addr">대구광역시 중구 달구벌대로 2118 예미안타워빌딩 7층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">대구</div><div class="branch-name">대구 애견미용학원</div><div class="branch-addr">대구광역시 동구 동대구로 525-1 3층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">서울</div><div class="branch-name">신림 애견미용학원</div><div class="branch-addr">서울특별시 관악구 남부순환로 1630 2층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">서울</div><div class="branch-name">노원 애견미용학원</div><div class="branch-addr">서울특별시 노원구 상계로3길 21 5층 501호</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">서울</div><div class="branch-name">종로 애견미용학원</div><div class="branch-addr">서울특별시 종로구 삼일대로17길 51 스타골드빌딩 3층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">경기</div><div class="branch-name">부천 애견미용학원</div><div class="branch-addr">경기도 부천시 원미구 부일로 496</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">서울</div><div class="branch-name">천호 애견미용학원</div><div class="branch-addr">서울특별시 강동구 천호대로 1037 10층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">경기</div><div class="branch-name">평택 애견미용학원</div><div class="branch-addr">경기도 평택시 중앙2로 16 2층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">경기</div><div class="branch-name">수원 애견미용학원</div><div class="branch-addr">경기도 수원시 팔달구 덕영대로 905 1101호, 1106호</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">서울</div><div class="branch-name">강남 애견미용학원</div><div class="branch-addr">서울특별시 강남구 선릉로86길 39 서영빌딩 5층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">부산</div><div class="branch-name">서면 애견미용학원</div><div class="branch-addr">부산광역시 부산진구 중앙대로 711 3층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">경남</div><div class="branch-name">창원 애견미용학원</div><div class="branch-addr">경상남도 창원시 성산구 원이대로 652 7층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">부산</div><div class="branch-name">연산 애견미용학원</div><div class="branch-addr">부산광역시 연제구 월드컵대로 141 동화빌딩 10층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">부산</div><div class="branch-name">덕천 애견미용학원</div><div class="branch-addr">부산광역시 북구 만덕대로 28 4층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">충남</div><div class="branch-name">천안 애견미용학원</div><div class="branch-addr">충청남도 천안시 동남구 만남로 30 로얄빌딩 5층</div></div>
     </div>
   </div>
 </section>
@@ -2546,7 +2546,7 @@
   function runCountUp() {
     netCard.classList.remove('counted');
     netNum.classList.remove('glow');
-    netNum.innerHTML = `0<span style="font-size:1.8rem;">개</span>`;
+    netNum.innerHTML = `0<span style="font-size:2.2rem;">개</span>`;
 
     // 잠깐 후 텍스트 페이드인
     setTimeout(() => netCard.classList.add('counted'), 50);
@@ -2558,7 +2558,7 @@
 
     const counter = setInterval(() => {
       start++;
-      netNum.innerHTML = `${start}<span style="font-size:1.8rem;">개</span>`;
+      netNum.innerHTML = `${start}<span style="font-size:2.2rem;">개</span>`;
       if (start >= target) {
         clearInterval(counter);
         // 글로우 1회
