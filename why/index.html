@@ -110,6 +110,7 @@
     .nc-phone { background:var(--gold); color:var(--navy); }
     .nc-kakao { background:var(--kakao); color:var(--kakao-tx); }
     .nc-naver { background:var(--naver); color:#fff; font-size:.68rem; }
+    .nav-links { display:none; }
 
     .page-hero {
       background:linear-gradient(160deg,var(--navy) 0%,var(--navy-lt) 100%);
@@ -251,6 +252,13 @@
     .success-desc { font-size:.85rem; color:var(--text-lt); line-height:1.6; margin-bottom:24px; }
 
     @media (min-width:768px) {
+      .nav-links { display:flex; align-items:center; gap:10px; }
+      .nav-links a {
+        color:#fff; font-size:.8rem; font-weight:700;
+        text-decoration:none; transition:var(--tr);
+        background:var(--navy-lt); padding:8px 16px; border-radius:50px;
+      }
+      .nav-links a:hover { background:var(--gold); color:var(--navy); }
       .wrap { max-width:1080px; padding:0 40px; }
       .diff-detail { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
       .page-title { font-size:2.2rem; }
@@ -280,6 +288,12 @@
 
 <nav id="topNav" aria-label="메인 네비게이션">
   <a href="../" class="logo-text">Evaw Pet <span>애견미용학원</span></a>
+  <div class="nav-links">
+    <a href="/why">Evaw혜택</a>
+    <a href="/curriculum">커리큘럼</a>
+    <a href="/faculty">교수진</a>
+    <a href="/branches">전국 캠퍼스</a>
+  </div>
   <div class="nav-cta">
     <button class="nc-phone" onclick="gtag('event','click_cta',{button:'전화_why'});showPhone();" aria-label="전화 상담">📞 전화</button>
     <a href="http://pf.kakao.com/_xaNjrn/chat" class="nc-kakao" target="_blank" rel="noopener" aria-label="카카오톡">💬 카톡</a>
