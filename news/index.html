@@ -576,7 +576,7 @@
      게시판 목록 데이터
      새 소식은 별도의 실제 페이지(news/글-slug/index.html)로 만들어지고,
      이 배열엔 그 페이지로 가는 목록 정보만 등록합니다. (검색엔진 개별 색인용)
-     id: 고유 번호 (표시용, 중복 금지)
+     id: 고유 번호 (중복 금지). 새 글일수록 큰 숫자로 부여하세요 — 날짜가 같으면 id가 큰 쪽이 먼저 보입니다.
      category: 배지에 표시될 분류명 (예: '지점소식', '방송·언론', '산학협력')
      title: 목록에 표시될 제목
      excerpt: 카드에 보일 짧은 요약 (1~2문장)
@@ -603,6 +603,15 @@
       image: '../image/news-2026-07-28-suwon-summer-event.webp',
       url: '/news/2026-07-28-suwon-summer-event/'
     },
+    {
+      id: 3,
+      category: '📍 대전 · 지점소식',
+      title: '대전애견미용학원 특별 장학지원 및 무료상담',
+      excerpt: '기초부터 실전까지, 확실한 자격증 취득, 취업·창업 지원까지 — 이바우펫 대전점 특별 장학지원 대상자를 선정합니다.',
+      date: '2026.07.28',
+      image: '../image/news-2026-07-28-daejeon-scholarship.webp',
+      url: '/news/2026-07-28-daejeon-scholarship/'
+    },
     // 예시:
     // {
     //   id: 1,
@@ -621,7 +630,11 @@
       body.innerHTML = '<div class="board-empty">아직 등록된 소식이 없습니다.</div>';
       return;
     }
-    const sorted = [...newsIndex].sort((a, b) => new Date(b.date.replace(/\./g, '-')) - new Date(a.date.replace(/\./g, '-')));
+    const sorted = [...newsIndex].sort((a, b) => {
+      const dateDiff = new Date(b.date.replace(/\./g, '-')) - new Date(a.date.replace(/\./g, '-'));
+      if (dateDiff !== 0) return dateDiff;
+      return b.id - a.id;
+    });
     body.innerHTML = sorted.map(p => `
       <a class="nc-card" href="${p.url}">
         ${p.image ? `<img class="nc-image" src="${p.image}" alt="${p.title}" loading="lazy" />` : ''}
