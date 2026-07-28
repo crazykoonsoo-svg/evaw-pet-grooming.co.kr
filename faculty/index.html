@@ -144,6 +144,7 @@
     }
     .fc-card.visible { opacity:1; transform:translateY(0); }
     .fc-card:hover { box-shadow:var(--shadow-md); border-color:rgba(201,168,76,.4); transform:translateY(-4px); }
+    .fc-card { cursor:pointer; }
     .fc-photo { width:84px; height:84px; border-radius:50%; overflow:hidden; flex-shrink:0; border:2px solid var(--gold); }
     .fc-photo img { width:100%; height:100%; object-fit:cover; object-position:top center; }
     .fc-body { min-width:0; flex:1; }
@@ -153,6 +154,36 @@
       font-size:.75rem; color:var(--text-mid); line-height:1.6; padding-left:12px; position:relative;
     }
     .fc-creds li::before { content:'·'; position:absolute; left:0; color:var(--gold); font-weight:900; }
+
+    /* ── 강사 상세 팝업 ── */
+    #facultyModal {
+      display:none; position:fixed; inset:0; z-index:3500;
+      background:rgba(10,20,50,.75); backdrop-filter:blur(6px);
+      align-items:center; justify-content:center; padding:20px;
+    }
+    #facultyModal.open { display:flex; }
+    .fc-modal-sheet {
+      background:#fff; border-radius:24px; width:100%; max-width:380px;
+      overflow:hidden; position:relative; max-height:88svh; overflow-y:auto;
+      animation:fcPopIn .3s cubic-bezier(.34,1.56,.64,1);
+      box-shadow:0 20px 60px rgba(0,0,0,.3);
+    }
+    @keyframes fcPopIn { from{transform:scale(.9);opacity:0} to{transform:scale(1);opacity:1} }
+    .fc-modal-close {
+      position:absolute; top:14px; right:14px; z-index:2;
+      background:rgba(255,255,255,.85); border:none; width:32px; height:32px;
+      border-radius:50%; font-size:16px; cursor:pointer; display:flex;
+      align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,.15);
+    }
+    .fc-modal-photo { width:100%; aspect-ratio:1/1; background:var(--gray-1); }
+    .fc-modal-photo img { width:100%; height:100%; object-fit:cover; object-position:top center; }
+    .fc-modal-body { padding:22px; }
+    .fc-modal-name { font-size:1.3rem; font-weight:800; color:var(--navy); margin-bottom:14px; }
+    .fc-modal-creds { list-style:none; display:flex; flex-direction:column; gap:6px; margin-bottom:18px; }
+    .fc-modal-creds li {
+      font-size:.85rem; color:var(--text-mid); line-height:1.6; padding-left:14px; position:relative;
+    }
+    .fc-modal-creds li::before { content:'·'; position:absolute; left:0; color:var(--gold); font-weight:900; font-size:1.1rem; }
 
     .final-cta { background:linear-gradient(160deg,var(--navy) 0%,var(--navy-lt) 100%); padding:44px 0 120px; text-align:center; position:relative; overflow:hidden; }
     .final-cta::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.18),transparent 60%); }
@@ -629,6 +660,18 @@
   </div>
 </div>
 
+<div id="facultyModal" role="dialog" aria-modal="true" aria-label="강사 상세 정보" onclick="handleFacultyModalOverlay(event)">
+  <div class="fc-modal-sheet">
+    <button class="fc-modal-close" onclick="closeFacultyModal()" aria-label="닫기">✕</button>
+    <div class="fc-modal-photo"><img id="fmPhoto" src="" alt="" /></div>
+    <div class="fc-modal-body">
+      <div class="fc-modal-name" id="fmName"></div>
+      <ul class="fc-modal-creds" id="fmCreds"></ul>
+      <button class="btn btn-primary btn-full" onclick="closeFacultyModal();openModal();" aria-label="상담 문의하기">🎓 교육비지원 조회하기</button>
+    </div>
+  </div>
+</div>
+
 <div id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" onclick="handleOverlayClick(event)">
   <div class="modal-sheet" id="modalSheet">
     <div class="modal-handle"></div>
@@ -806,7 +849,7 @@
   }
 
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeModal(); closePhone(); }
+    if (e.key === 'Escape') { closeModal(); closePhone(); closeFacultyModal(); }
   });
 
   const stickyBar = document.getElementById('stickyBar');
@@ -825,6 +868,30 @@
     }, { threshold: 0.1 });
     items.forEach(el => io.observe(el));
   })();
+
+  /* 강사 카드 클릭 → 상세 팝업 */
+  function openFacultyCard(card) {
+    const img = card.querySelector('.fc-photo img');
+    const name = card.querySelector('.fc-name').textContent;
+    const creds = Array.from(card.querySelectorAll('.fc-creds li')).map(li => li.textContent);
+    document.getElementById('fmPhoto').src = img.src;
+    document.getElementById('fmPhoto').alt = img.alt;
+    document.getElementById('fmName').textContent = name;
+    document.getElementById('fmCreds').innerHTML = creds.map(c => `<li>${c}</li>`).join('');
+    document.getElementById('facultyModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    ga4('faculty_card_click', name);
+  }
+  function closeFacultyModal() {
+    document.getElementById('facultyModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function handleFacultyModalOverlay(e) {
+    if (e.target.id === 'facultyModal') closeFacultyModal();
+  }
+  document.querySelectorAll('.fc-card').forEach(card => {
+    card.addEventListener('click', () => openFacultyCard(card));
+  });
 
   function naverCnv(type) {
     if (typeof wcs !== 'undefined') {
