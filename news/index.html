@@ -133,31 +133,29 @@
     .sec-title { font-family:'Do Hyeon','Noto Sans KR',sans-serif; font-size:1.3rem; font-weight:800; }
     .divider { width:36px; height:3px; background:linear-gradient(90deg,var(--navy),var(--gold)); border-radius:2px; margin:10px auto 0; }
 
-    /* ── 게시판 목록 ── */
-    .board-table { border:1px solid var(--gray-2); border-radius:var(--r16); overflow:hidden; background:var(--white); box-shadow:var(--shadow-sm); }
-    .board-head {
-      display:none;
-      background:var(--navy); color:#fff; font-size:.78rem; font-weight:700;
-      padding:14px 20px;
+    /* ── 소식 카드 목록 ── */
+    .news-grid { display:flex; flex-direction:column; gap:14px; }
+    .nc-card {
+      display:block; text-decoration:none; color:inherit;
+      background:var(--white); border:1px solid var(--gray-2); border-radius:var(--r16);
+      overflow:hidden; box-shadow:var(--shadow-sm);
+      opacity:0; transform:translateY(20px);
+      transition:opacity .6s ease, transform .6s cubic-bezier(.16,1,.3,1), box-shadow .15s ease-out, border-color .15s ease-out;
     }
-    .board-row {
-      display:flex; flex-direction:column; gap:6px;
-      padding:16px 20px; border-bottom:1px solid var(--gray-2);
-      text-decoration:none; color:inherit; transition:var(--tr);
-      opacity:0; transform:translateY(14px);
-    }
-    .board-row.visible { opacity:1; transform:translateY(0); }
-    .board-row:last-child { border-bottom:none; }
-    .board-row:hover { background:var(--bg-sub); }
-    .board-row .row-top { display:flex; align-items:center; gap:8px; }
-    .col-no { font-size:.72rem; color:var(--text-lt); font-weight:700; flex-shrink:0; }
-    .row-badge {
+    .nc-card.visible { opacity:1; transform:translateY(0); }
+    .nc-card:hover { box-shadow:var(--shadow-md); border-color:rgba(201,168,76,.4); transform:translateY(-4px); }
+    .nc-image { width:100%; aspect-ratio:16/9; object-fit:cover; background:var(--gray-1); display:block; }
+    .nc-content { padding:18px 20px; }
+    .nc-badge {
       display:inline-flex; align-items:center; background:var(--gold-bg); color:#7a5c10;
-      border:1px solid rgba(201,168,76,.25); border-radius:50px; padding:2px 10px;
-      font-size:.68rem; font-weight:700; flex-shrink:0;
+      border:1px solid rgba(201,168,76,.25); border-radius:50px; padding:3px 12px;
+      font-size:.7rem; font-weight:700; width:fit-content; margin-bottom:10px;
     }
-    .row-title { font-size:.92rem; font-weight:700; color:var(--text-dk); line-height:1.4; }
-    .row-date { font-size:.72rem; color:var(--text-lt); }
+    .nc-title { font-size:.96rem; font-weight:800; color:var(--text-dk); line-height:1.45; letter-spacing:-.01em; margin-bottom:8px; }
+    .nc-excerpt { font-size:.82rem; color:var(--text-mid); line-height:1.7; margin-bottom:14px; }
+    .nc-footer { display:flex; align-items:center; justify-content:space-between; padding-top:12px; border-top:1px solid var(--gray-2); }
+    .nc-date { font-size:.74rem; color:var(--text-lt); }
+    .nc-arrow { font-size:.78rem; font-weight:700; color:var(--navy); }
     .board-empty {
       padding:60px 20px; text-align:center; color:var(--text-lt); font-size:.88rem;
     }
@@ -271,15 +269,7 @@
         background:var(--navy-lt); padding:8px 16px; border-radius:50px;
       }
       .nav-links a:hover { background:var(--gold); color:var(--navy); }
-      .board-head {
-        display:grid; grid-template-columns:80px 120px 1fr 120px; align-items:center;
-      }
-      .board-row {
-        display:grid; grid-template-columns:80px 120px 1fr 120px; align-items:center; gap:0;
-      }
-      .board-row .row-top { display:contents; }
-      .col-no { text-align:center; }
-      .row-date { text-align:right; }
+      .news-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
       .page-title { font-size:2.2rem; }
       .page-desc { font-size:.95rem; max-width:560px; margin:0 auto; }
       section { padding:64px 0; }
@@ -288,6 +278,7 @@
     }
     @media (min-width:1200px) {
       .wrap { max-width:1280px; }
+      .news-grid { grid-template-columns:repeat(3,1fr); }
     }
   </style>
 </head>
@@ -336,15 +327,7 @@
       <h2 class="sec-title" id="news-list-h" style="position:absolute;left:-9999px;">전체 소식 목록</h2>
     </div>
 
-    <div class="board-table">
-      <div class="board-head">
-        <span class="col-no">번호</span>
-        <span class="col-cat">분류</span>
-        <span class="col-title">제목</span>
-        <span class="col-date">날짜</span>
-      </div>
-      <div id="boardBody"><!-- JS로 렌더링 --></div>
-    </div>
+    <div class="news-grid" id="boardBody"><!-- JS로 렌더링 --></div>
   </div>
 </section>
 
@@ -596,7 +579,9 @@
      id: 고유 번호 (표시용, 중복 금지)
      category: 배지에 표시될 분류명 (예: '지점소식', '방송·언론', '산학협력')
      title: 목록에 표시될 제목
+     excerpt: 카드에 보일 짧은 요약 (1~2문장)
      date: 'YYYY.MM.DD' 형식 (최신순 자동 정렬)
+     image: (선택) 카드 썸네일 이미지 경로. 없으면 생략 가능
      url: 실제 개별 페이지 경로 (예: '/news/2026-07-28-분당-독피트니스특강/')
   ══════════════════════════════════════════ */
   const newsIndex = [
@@ -604,7 +589,9 @@
       id: 1,
       category: '📍 광주 · 지점소식',
       title: '광주애견미용학원 이바우펫의 적성파악 개강!',
+      excerpt: '애견미용이 나에게 맞는지 고민이라면? 이론·기초실습·미용도구 이해·1:1 상담으로 현실적으로 확인해보는 적성파악 클래스를 진행합니다.',
       date: '2026.07.28',
+      image: '../image/news-2026-07-28-gwangju-aptitude.webp',
       url: '/news/2026-07-28-gwangju-aptitude/'
     },
     // 예시:
@@ -612,7 +599,9 @@
     //   id: 1,
     //   category: '지점소식',
     //   title: '분당애견미용학원 독피트니스 특강 진행!',
+    //   excerpt: '독피트니스 특강을 진행했습니다. 안전한 미용을 위한 필수 교육입니다.',
     //   date: '2026.06.26',
+    //   image: '../image/news-2026-06-26-bundang.webp',
     //   url: '/news/2026-06-26-bundang-dogfitness/'
     // },
   ];
@@ -624,25 +613,29 @@
       return;
     }
     const sorted = [...newsIndex].sort((a, b) => new Date(b.date.replace(/\./g, '-')) - new Date(a.date.replace(/\./g, '-')));
-    body.innerHTML = sorted.map((p, i) => `
-      <a class="board-row" href="${p.url}">
-        <span class="row-top">
-          <span class="col-no">${sorted.length - i}</span>
-          <span class="col-cat"><span class="row-badge">${p.category}</span></span>
-          <span class="col-title row-title">${p.title}</span>
-        </span>
-        <span class="row-date">${p.date}</span>
+    body.innerHTML = sorted.map(p => `
+      <a class="nc-card" href="${p.url}">
+        ${p.image ? `<img class="nc-image" src="${p.image}" alt="${p.title}" loading="lazy" />` : ''}
+        <div class="nc-content">
+          <span class="nc-badge">${p.category}</span>
+          <div class="nc-title">${p.title}</div>
+          ${p.excerpt ? `<div class="nc-excerpt">${p.excerpt}</div>` : ''}
+          <div class="nc-footer">
+            <span class="nc-date">${p.date}</span>
+            <span class="nc-arrow">자세히 보기 →</span>
+          </div>
+        </div>
       </a>
     `).join('');
 
-    const rows = document.querySelectorAll('.board-row');
-    rows.forEach((el, i) => { el.style.transitionDelay = Math.min(i * 0.05, 0.5) + 's'; });
+    const cards = document.querySelectorAll('.nc-card');
+    cards.forEach((el, i) => { el.style.transitionDelay = Math.min(i * 0.06, 0.6) + 's'; });
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
       });
     }, { threshold: 0.1 });
-    rows.forEach(el => io.observe(el));
+    cards.forEach(el => io.observe(el));
   }
   renderBoard();
 
