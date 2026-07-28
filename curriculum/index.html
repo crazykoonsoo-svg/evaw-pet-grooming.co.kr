@@ -116,8 +116,14 @@
       background:linear-gradient(160deg,var(--navy) 0%,var(--navy-lt) 100%);
       padding:40px 0 32px; text-align:center; position:relative; overflow:hidden;
     }
+    .page-hero .bg-img {
+      position:absolute; inset:0;
+      background: url('../image/curriculum-hero-bg.webp') center center / cover no-repeat;
+      opacity:0.6;
+    }
+    .page-hero .scrim { position:absolute; inset:0; background:linear-gradient(160deg,rgba(22,33,62,.55) 0%,rgba(42,63,110,.55) 100%); }
     .page-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 80% 0%,rgba(201,168,76,.18),transparent 60%); }
-    .page-hero .wrap { position:relative; }
+    .page-hero .wrap { position:relative; z-index:1; }
     .breadcrumb { font-size:.72rem; color:rgba(255,255,255,.5); margin-bottom:12px; }
     .breadcrumb a { color:rgba(255,255,255,.7); text-decoration:none; }
     .sec-tag {
@@ -300,6 +306,8 @@
 </nav>
 
 <header class="page-hero">
+  <div class="bg-img"></div>
+  <div class="scrim"></div>
   <div class="wrap">
     <div class="breadcrumb"><a href="../">홈</a> / 커리큘럼 안내</div>
     <div class="sec-tag">📚 커리큘럼</div>
@@ -308,8 +316,9 @@
   </div>
 </header>
 
-<section aria-labelledby="curr-list-h">
-  <div class="wrap">
+<section aria-labelledby="curr-list-h" style="position:relative; overflow:hidden; background:var(--bg-sub);">
+  <div style="position:absolute; inset:0; background:url('../image/curriculum-card-bg.webp') center center / cover no-repeat; opacity:0.35;"></div>
+  <div class="wrap" style="position:relative; z-index:1;">
     <nav class="toc" aria-label="과정 바로가기">
       <a href="#basic">① 기초과정</a>
       <a href="#license">② 자격증 취득반</a>
