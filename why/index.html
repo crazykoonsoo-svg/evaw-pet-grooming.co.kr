@@ -171,6 +171,7 @@
     .dd-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:14px; }
     .dd-tag { font-size:.72rem; font-weight:700; padding:4px 12px; border-radius:50px; background:var(--bg-sub); color:var(--navy); }
     .dd-footer { padding:0 22px 22px; }
+    .dd-image { width:100%; aspect-ratio:1/1; object-fit:cover; }
 
     .final-cta { background:linear-gradient(160deg,var(--navy) 0%,var(--navy-lt) 100%); padding:44px 0 120px; text-align:center; position:relative; overflow:hidden; }
     .final-cta::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.18),transparent 60%); }
@@ -318,8 +319,9 @@
   </div>
 </header>
 
-<section aria-labelledby="diff-list-h">
-  <div class="wrap">
+<section aria-labelledby="diff-list-h" style="position:relative; overflow:hidden; background:var(--bg-sub);">
+  <div style="position:absolute; inset:0; background:url('../image/why-bg.webp') center center / cover no-repeat; opacity:0.20;"></div>
+  <div class="wrap" style="position:relative; z-index:1;">
     <div class="sec-header">
       <h2 class="sec-title" id="diff-list-h" style="position:absolute;left:-9999px;">Evaw Pet만의 차이 목록</h2>
     </div>
@@ -352,9 +354,7 @@
             <span class="dd-tag">실무 직결</span>
           </div>
         </div>
-        <div class="dd-footer">
-          <button class="btn btn-primary btn-full" onclick="openModal('100% 가정견 실견 실습')">🎓 교육비지원 조회하기</button>
-        </div>
+        <img class="dd-image" src="../image/why-homedog.webp" alt="100% 가정견 실견 실습 현장 모습" loading="lazy" />
       </article>
 
       <article class="dd-card" id="feedback">
@@ -375,9 +375,7 @@
             <span class="dd-tag">빠른 성장</span>
           </div>
         </div>
-        <div class="dd-footer">
-          <button class="btn btn-primary btn-full" onclick="openModal('개별 맞춤 피드백')">🎓 교육비지원 조회하기</button>
-        </div>
+        <img class="dd-image" src="../image/why-feedback.webp" alt="개별 맞춤 피드백 상담 모습" loading="lazy" />
       </article>
 
       <article class="dd-card" id="tools">
@@ -398,9 +396,7 @@
             <span class="dd-tag">전문 장비</span>
           </div>
         </div>
-        <div class="dd-footer">
-          <button class="btn btn-primary btn-full" onclick="openModal('미용 도구 제공')">🎓 교육비지원 조회하기</button>
-        </div>
+        <img class="dd-image" src="../image/why-tools.webp" alt="제공되는 미용 도구 세트" loading="lazy" />
       </article>
 
       <article class="dd-card" id="schedule">
@@ -421,9 +417,7 @@
             <span class="dd-tag">유연한 시간</span>
           </div>
         </div>
-        <div class="dd-footer">
-          <button class="btn btn-primary btn-full" onclick="openModal('자율출석 시간제')">🎓 교육비지원 조회하기</button>
-        </div>
+        <img class="dd-image" src="../image/why-schedule.webp" alt="자율출석 시간제 스케줄 관리" loading="lazy" />
       </article>
 
       <article class="dd-card" id="career">
@@ -444,9 +438,7 @@
             <span class="dd-tag">전국 네트워크</span>
           </div>
         </div>
-        <div class="dd-footer">
-          <button class="btn btn-primary btn-full" onclick="openModal('취업·창업 개별 지원')">🎓 교육비지원 조회하기</button>
-        </div>
+        <img class="dd-image" src="../image/why-career.webp" alt="취업·창업 개별 지원 포트폴리오 상담" loading="lazy" />
       </article>
 
       <article class="dd-card" id="special">
@@ -468,9 +460,7 @@
             <span class="dd-tag">장례지도사</span>
           </div>
         </div>
-        <div class="dd-footer">
-          <button class="btn btn-primary btn-full" onclick="openModal('스페셜 특강 포함')">🎓 교육비지원 조회하기</button>
-        </div>
+        <img class="dd-image" src="../image/why-special.webp" alt="스페셜 특강 펫푸드·아로마 실습" loading="lazy" />
       </article>
     </div>
   </div>
