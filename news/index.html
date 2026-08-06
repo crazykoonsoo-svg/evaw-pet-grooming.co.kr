@@ -182,6 +182,19 @@
       padding:60px 20px; text-align:center; color:var(--text-lt); font-size:.88rem;
     }
 
+    /* ── 페이지네이션 ── */
+    .pagination { display:flex; align-items:center; justify-content:center; gap:6px; margin-top:28px; }
+    .page-btn {
+      min-width:36px; height:36px; padding:0 10px; border-radius:50px; border:1px solid var(--gray-2);
+      background:var(--white); color:var(--text-mid); font-size:.85rem; font-weight:700;
+      cursor:pointer; font-family:inherit; transition:var(--tr);
+      display:flex; align-items:center; justify-content:center;
+    }
+    .page-btn:hover { border-color:var(--navy); color:var(--navy); }
+    .page-btn.active { background:var(--navy); color:#fff; border-color:var(--navy); }
+    .page-btn:disabled { opacity:.35; cursor:not-allowed; }
+    .page-btn:disabled:hover { border-color:var(--gray-2); color:var(--text-mid); }
+
     /* ── 상세보기 ── */
     .detail-card {
       background:var(--white); border:1px solid var(--gray-2); border-radius:var(--r16);
@@ -513,6 +526,8 @@
         </div>
       </a>
     </div>
+
+    <div class="pagination" id="pagination"></div>
   </div>
 </section>
 
@@ -761,21 +776,55 @@
      새 소식은 별도의 실제 페이지(news/글-slug/index.html)로 만들고,
      위 .news-grid 안에 .nc-card 블록을 정적 HTML로 직접 추가합니다.
      (검색엔진이 자바스크립트 실행 없이도 링크를 바로 읽을 수 있도록
-      카드 자체를 미리 렌더링해두는 방식입니다)
-     아래 스크립트는 이미 있는 카드에 순차 등장 애니메이션만 적용합니다.
+      카드는 전부 HTML에 존재하고, 화면에는 페이지당 12개씩만 보여줍니다)
   ══════════════════════════════════════════ */
-  function initCardAnimation() {
-    const cards = document.querySelectorAll('.nc-card');
-    if (cards.length === 0) return;
-    cards.forEach((el, i) => { el.style.transitionDelay = Math.min(i * 0.06, 0.6) + 's'; });
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+  function initPagination() {
+    const cards = Array.from(document.querySelectorAll('.nc-card'));
+    const perPage = 12;
+    const totalPages = Math.max(1, Math.ceil(cards.length / perPage));
+    let currentPage = 1;
+
+    function animateCard(el, delay) {
+      el.style.transitionDelay = delay + 's';
+      requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('visible')));
+    }
+
+    function renderButtons() {
+      const pag = document.getElementById('pagination');
+      if (!pag) return;
+      if (totalPages <= 1) { pag.innerHTML = ''; return; }
+      let html = `<button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="goToNewsPage(${currentPage - 1})" aria-label="이전 페이지">‹</button>`;
+      for (let p = 1; p <= totalPages; p++) {
+        html += `<button class="page-btn ${p === currentPage ? 'active' : ''}" onclick="goToNewsPage(${p})">${p}</button>`;
+      }
+      html += `<button class="page-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="goToNewsPage(${currentPage + 1})" aria-label="다음 페이지">›</button>`;
+      pag.innerHTML = html;
+    }
+
+    function showPage(page, scroll) {
+      currentPage = Math.min(Math.max(1, page), totalPages);
+      cards.forEach((el, i) => {
+        const cardPage = Math.floor(i / perPage) + 1;
+        if (cardPage === currentPage) {
+          el.style.display = '';
+          el.classList.remove('visible');
+          animateCard(el, (i % perPage) * 0.06);
+        } else {
+          el.style.display = 'none';
+          el.classList.remove('visible');
+        }
       });
-    }, { threshold: 0.1 });
-    cards.forEach(el => io.observe(el));
+      renderButtons();
+      if (scroll) {
+        document.getElementById('news-list-h')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      ga4('news_page_view', 'page_' + currentPage);
+    }
+
+    window.goToNewsPage = (page) => showPage(page, true);
+    showPage(1, false);
   }
-  initCardAnimation();
+  initPagination();
 
   function naverCnv(type) {
     if (typeof wcs !== 'undefined') {
