@@ -497,7 +497,9 @@
 
     /* ── DIFF CARDS ── */
     #why {
-      background: linear-gradient(rgba(255,255,255,.55),rgba(255,255,255,.55)), url('image/why-section-bg.webp') center center / cover no-repeat;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.5) 0%, rgba(255,255,255,.6) 60%, rgba(255,255,255,1) 100%),
+        url('image/why-section-bg.webp') center center / cover no-repeat;
     }
     .cards-grid { display:flex; flex-direction:column; gap:12px; }
     .diff-card { background:var(--cream); border-radius:var(--r16); padding:20px 18px; border:1px solid var(--gray-2); display:flex; align-items:flex-start; gap:14px; transition:background .3s ease, box-shadow .3s ease, transform .3s ease, border-color .3s ease; position:relative; overflow:hidden; }
@@ -602,7 +604,9 @@
 
     /* ── 교수진 ── */
     #curriculum {
-      background: linear-gradient(rgba(255,255,255,.55),rgba(255,255,255,.55)), url('image/curriculum-section-bg.webp') center center / cover no-repeat;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,.6) 40%, rgba(255,255,255,.5) 100%),
+        url('image/curriculum-section-bg.webp') center center / cover no-repeat;
     }
     .curr-grid  { display:flex; flex-direction:column; gap:10px; }
     .curr-card  { background:var(--cream); border-radius:var(--r12); padding:16px 18px; border:1px solid var(--gray-2); display:flex; align-items:center; justify-content:space-between; }
