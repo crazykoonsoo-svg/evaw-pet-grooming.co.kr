@@ -1359,7 +1359,12 @@
 
     /* ── EVENT POPUP ── */
     #eventPopup, #awardPopup { display:none; position:fixed; inset:0; z-index:4000; background:rgba(10,20,50,.75); backdrop-filter:blur(6px); align-items:center; justify-content:center; padding:20px; }
-    #eventPopup.open, #awardPopup.open { display:flex; }
+    #eventPopup.open, #awardPopup.open { display:flex; animation:popupBgFade .35s ease; }
+    @keyframes popupBgFade { from{background-color:rgba(10,20,50,0); backdrop-filter:blur(0px);} to{background-color:rgba(10,20,50,.75); backdrop-filter:blur(6px);} }
+    #awardPopup .event-sheet {
+      box-shadow:0 0 0 1px rgba(201,168,76,.4), 0 0 40px rgba(201,168,76,.35), 0 20px 60px rgba(0,0,0,.35);
+      animation:popIn .4s cubic-bezier(.34,1.56,.64,1);
+    }
     .event-sheet {
       background:#fff; border-radius:20px; width:100%; max-width:360px;
       overflow:hidden; animation:popIn .3s cubic-bezier(.34,1.56,.64,1);
@@ -2537,11 +2542,10 @@
   runHeroSlideshow('.hero-slide');
   runHeroSlideshow('.hero-slide-pc');
 
-  /* EVENT POPUP */
+  /* EVENT POPUP (지금은 자동 표시 안 함) */
   function closeEvent() {
     document.getElementById('eventPopup').classList.remove('open');
     document.body.style.overflow = '';
-    maybeShowAward();
   }
   function skipEventToday() {
     const today = new Date().toDateString();
@@ -2549,19 +2553,10 @@
     closeEvent();
   }
   window.addEventListener('load', function() {
-    const skip = localStorage.getItem('evawEventSkip');
-    const today = new Date().toDateString();
-    if (skip !== today) {
-      setTimeout(() => {
-        document.getElementById('eventPopup').classList.add('open');
-        document.body.style.overflow = 'hidden';
-      }, 3000);
-    } else {
-      setTimeout(maybeShowAward, 3000);
-    }
+    maybeShowAward();
   });
 
-  /* AWARD POPUP (이벤트 팝업 닫힌 뒤 이어서 표시) */
+  /* AWARD POPUP (단독으로 표시) */
   function closeAward() {
     document.getElementById('awardPopup').classList.remove('open');
     document.body.style.overflow = '';
@@ -2575,10 +2570,8 @@
     const skip = localStorage.getItem('evawAwardSkip');
     const today = new Date().toDateString();
     if (skip !== today) {
-      setTimeout(() => {
-        document.getElementById('awardPopup').classList.add('open');
-        document.body.style.overflow = 'hidden';
-      }, 600);
+      document.getElementById('awardPopup').classList.add('open');
+      document.body.style.overflow = 'hidden';
     }
   }
 
