@@ -1362,8 +1362,12 @@
     #eventPopup.open, #awardPopup.open { display:flex; animation:popupBgFade .35s ease; }
     @keyframes popupBgFade { from{background-color:rgba(10,20,50,0); backdrop-filter:blur(0px);} to{background-color:rgba(10,20,50,.75); backdrop-filter:blur(6px);} }
     #awardPopup .event-sheet {
-      box-shadow:0 0 0 1px rgba(201,168,76,.4), 0 0 40px rgba(201,168,76,.35), 0 20px 60px rgba(0,0,0,.35);
-      animation:popIn .4s cubic-bezier(.34,1.56,.64,1);
+      box-shadow:0 0 0 2px rgba(201,168,76,.7), 0 0 30px rgba(201,168,76,.6), 0 0 70px rgba(201,168,76,.45), 0 20px 60px rgba(0,0,0,.4);
+      animation:popIn .4s cubic-bezier(.34,1.56,.64,1), awardGlowPulse 1s ease-in-out .4s infinite;
+    }
+    @keyframes awardGlowPulse {
+      0%, 100% { box-shadow:0 0 0 2px rgba(201,168,76,.7), 0 0 30px rgba(201,168,76,.6), 0 0 70px rgba(201,168,76,.45), 0 20px 60px rgba(0,0,0,.4); }
+      50%      { box-shadow:0 0 0 2px rgba(232,201,110,.9), 0 0 45px rgba(232,201,110,.8), 0 0 100px rgba(201,168,76,.6), 0 20px 60px rgba(0,0,0,.4); }
     }
     .event-sheet {
       background:#fff; border-radius:20px; width:100%; max-width:360px;
