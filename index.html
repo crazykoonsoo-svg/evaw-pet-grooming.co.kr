@@ -735,6 +735,7 @@
     .rv-avatar { width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg,var(--navy),var(--navy-mid)); display:flex; align-items:center; justify-content:center; font-size:16px; color:#fff; flex-shrink:0; }
     .rv-name   { color:var(--navy); font-size:.85rem; font-weight:700; }
     .rv-meta   { color:var(--text-lt); font-size:.72rem; }
+    .rv-headline { color:var(--navy); font-size:.95rem; font-weight:800; line-height:1.5; margin-bottom:8px; }
     .slider-dots { display:flex; justify-content:center; gap:6px; margin-top:20px; }
     .dot { width:6px; height:6px; border-radius:50%; background:rgba(22,33,62,.2); cursor:pointer; transition:var(--tr); border:none; padding:0; }
     .dot.active { background:var(--gold); width:20px; border-radius:3px; }
@@ -862,6 +863,12 @@
       background:var(--white); font-family:inherit;
     }
     .purpose-chip.selected { background:var(--navy); color:#fff; border-color:var(--navy); }
+
+    /* 2-step modal */
+    .modal-step { display:flex; flex-direction:column; gap:14px; }
+    .step-indicator { display:flex; align-items:baseline; gap:6px; font-size:.95rem; font-weight:800; color:var(--navy); }
+    .step-indicator .step-num { font-size:.68rem; font-weight:800; color:#fff; background:var(--navy); padding:3px 8px; border-radius:50px; letter-spacing:.02em; }
+    .step-back-btn { align-self:flex-start; background:none; border:none; color:var(--text-lt); font-size:.8rem; font-weight:700; cursor:pointer; padding:0; margin-bottom:-4px; }
 
     /* success state */
     .modal-success { display:none; padding:32px 20px; text-align:center; }
@@ -1456,18 +1463,17 @@
     <div class="hero-top-row">
       <!-- 왼쪽: 텍스트 + CTA -->
       <div class="hero-left">
-        <div class="hero-badge">🏆 전국 21개 직영지점 운영</div>
+        <div class="hero-badge">🏆 소비자 만족 브랜드 대상</div>
 
         <h1 class="t-hero hero-title serif">
-          <span style="font-size:1.5rem;display:block;text-shadow:0 0 10px rgba(255,255,255,.9),0 0 20px rgba(255,255,255,.6);">누적 수강생 5,600명 이상</span>
-          <span style="font-size:1.2rem;display:block;">수업 만족도가 높은</span>
-          <em style="font-size:1.2rem;">이바우펫 애견미용학원</em>
+          <span style="display:block;text-shadow:0 0 10px rgba(255,255,255,.9),0 0 20px rgba(255,255,255,.6);">처음 배우는 애견미용,</span>
+          <em>자격증부터 실제 가정견 실습까지</em>
         </h1>
-        <p class="hero-sub">100% 가정견 실견수업부터 취업·창업 준비까지 <br class="mobile-break"/>교육지원 가능 여부부터 확인해보세요</p>
+        <p class="hero-sub">전국 21개 이바우펫에서 <br class="mobile-break"/>수강과정·교육지원 가능 여부를 확인해보세요.</p>
 
         <div class="hero-cta">
           <button class="btn btn-consult btn-full btn-lg" onclick="gtag('event','click_cta',{button:'교육비지원조회'});openModal();" aria-label="무료 상담 신청">
-            🎓 교육비지원 조회하기
+            🎓 무료 상담 + 수강료 확인하기
           </button>
           <div class="row3">
             <button class="btn btn-gold" onclick="gtag('event','click_cta',{button:'전화상담'});showPhone();" aria-label="전화 상담">📞 전화상담</button>
@@ -1481,7 +1487,7 @@
 
         <div class="hero-trust" role="list">
           <div class="trust-item" role="listitem"><span class="num">전국 21개</span><span class="lbl">직영지점 운영</span></div>
-          <div class="trust-item" role="listitem"><span class="num">초보자</span><span class="lbl">맞춤 단계별 커리큘럼</span></div>
+          <div class="trust-item" role="listitem"><span class="num">5,600+명</span><span class="lbl">누적 수강생</span></div>
           <div class="trust-item" role="listitem"><span class="num">100%</span><span class="lbl">가정견 실견수업</span></div>
         </div>
       </div>
@@ -1528,6 +1534,131 @@
 
 <!-- ── MARQUEE ──────────────────────────────── -->
 </div>
+
+<!-- ── PORTFOLIO ─────────────────────────────── -->
+<section id="portfolio" aria-labelledby="port-h">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <div class="sec-tag">📸 수업 현장</div>
+      <h2 class="t-section sec-title" id="port-h">수강생들의 <br class="mobile-break"/>실제 수업 모습</h2>
+      <div class="divider"></div>
+      <p class="sec-desc">실제 가정견으로 배우는 현장을 확인하세요</p>
+    </div>
+    <div class="port-marquee-wrap fade-up" role="region" aria-label="수업 현장 사진">
+      <div class="port-mq-track" id="portTrack">
+        <div class="port-mq-item"><img src="image/class-carousel-01.webp" alt="Evaw Pet 수업 현장 사진 1" /></div>
+        <div class="port-mq-item"><img src="image/class-carousel-02.webp" alt="Evaw Pet 수업 현장 사진 2" /></div>
+        <div class="port-mq-item"><img src="image/class-carousel-03.webp" alt="Evaw Pet 수업 현장 사진 3" /></div>
+        <div class="port-mq-item"><img src="image/class-carousel-04.webp" alt="Evaw Pet 수업 현장 사진 4" /></div>
+        <div class="port-mq-item"><img src="image/class-carousel-05.webp" alt="Evaw Pet 수업 현장 사진 5" /></div>
+        <div class="port-mq-item"><img src="image/class-carousel-06.webp" alt="Evaw Pet 수업 현장 사진 6" /></div>
+        <div class="port-mq-item"><img src="image/class-carousel-07.webp" alt="Evaw Pet 수업 현장 사진 7" /></div>
+        <div class="port-mq-item"><img src="image/class-carousel-08.webp" alt="Evaw Pet 수업 현장 사진 8" /></div>
+        <div class="port-mq-item"><img src="image/class-carousel-09.webp" alt="Evaw Pet 수업 현장 사진 9" /></div>
+        <div class="port-mq-item"><img src="image/class-carousel-10.webp" alt="Evaw Pet 수업 현장 사진 10" /></div>
+        <div class="port-mq-item"><img src="image/class-carousel-11.webp" alt="Evaw Pet 수업 현장 사진 11" /></div>
+        <div class="port-mq-item"><img src="image/class-carousel-12.webp" alt="Evaw Pet 수업 현장 사진 12" /></div>
+      </div>
+    </div>
+    <a href="https://www.instagram.com/evawpet.official/" class="btn btn-full mt20 fade-up" style="background:var(--gray-1);color:var(--text-mid);border:1px solid var(--gray-2);line-height:1.5;height:auto;padding:12px 20px;white-space:normal;" target="_blank" rel="noopener">
+      📷 인스타그램<br/><span style="font-size:.8rem;color:var(--text-lt);font-weight:500;">@evawpet.official</span>
+    </a>
+  </div>
+</section>
+
+<!-- ── REVIEWS ───────────────────────────────── -->
+<section id="reviews" aria-labelledby="rv-h">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <div class="sec-tag">⭐ 수강생 후기</div>
+      <h2 class="t-section sec-title" id="rv-h">실제 수강생 <br class="mobile-break"/>리얼 후기</h2>
+      <div class="divider"></div>
+    </div>
+  </div>
+  <div class="rv-slider" role="region" aria-label="수강생 후기 슬라이더">
+    <div class="rv-track" id="rvTrack" style="padding:0 20px;">
+      <article class="rv-card">
+          <div class="rv-headline">"처음에는 자격증만 따면 취업할 수 있을 줄 알았어요."</div>
+          <p class="rv-text">처음 애견미용을 배울 때는 자격증 취득만 생각했는데, 실제 강아지를 미용해보니까 확실히 다르더라고요. 아이마다 성격도 다르고 털 상태도 달라서 처음에는 많이 긴장했어요. 가정견 실습을 계속하면서 조금씩 대응하는 방법을 익혔고, 지금은 취업 준비도 훨씬 자신 있게 하고 있습니다.</p>
+          <div class="rv-author"><div class="rv-avatar">💼</div><div><div class="rv-name">김○○ 수강생</div><div class="rv-meta">자격증 → 실견미용 → 취업 준비</div></div></div>
+      </article>
+      <article class="rv-card">
+          <div class="rv-headline">"직장을 다니면서도 배울 수 있다는 점이 가장 좋았어요."</div>
+          <p class="rv-text">평일에 일을 하고 있어서 애견미용을 배우는 게 가능할까 걱정했는데, 제 일정에 맞춰 수업을 이어갈 수 있어서 부담이 적었어요. 처음에는 가위 잡는 것도 어색했지만 기초부터 반복해서 배우고 실제 강아지까지 미용해보면서 실력이 조금씩 늘어가는 게 느껴졌습니다.</p>
+          <div class="rv-author"><div class="rv-avatar">👔</div><div><div class="rv-name">박○○ 수강생</div><div class="rv-meta">직장인 · 자격증 과정</div></div></div>
+      </article>
+      <article class="rv-card">
+          <div class="rv-headline">"마네킹 연습과 실제 강아지 미용은 생각보다 차이가 컸어요."</div>
+          <p class="rv-text">자격증 연습을 할 때는 정해진 순서대로 하면 됐는데 실제 강아지는 움직이기도 하고 털 상태도 모두 달랐어요. 처음 실견수업을 했을 때 당황했던 기억이 아직도 납니다. 여러 가정견을 경험하면서 미용 순서뿐 아니라 강아지를 다루는 방법까지 배울 수 있어서 도움이 많이 됐어요.</p>
+          <div class="rv-author"><div class="rv-avatar">✂️</div><div><div class="rv-name">이○○ 수강생</div><div class="rv-meta">자격증 취득 후 실견 심화</div></div></div>
+      </article>
+      <article class="rv-card">
+          <div class="rv-headline">"창업을 생각하니까 실견 경험이 왜 중요한지 알겠더라고요."</div>
+          <p class="rv-text">처음에는 자격증 취득이 목표였는데 배우다 보니 나중에 제 미용샵을 운영해보고 싶다는 생각이 들었어요. 실제 샵에서는 매번 다른 강아지를 만나게 되니까 다양한 가정견을 경험해보는 게 중요하다고 느꼈습니다. 자격증 이후에도 실견미용을 계속 연습할 수 있다는 점이 마음에 들었어요.</p>
+          <div class="rv-author"><div class="rv-avatar">🏪</div><div><div class="rv-name">최○○ 수강생</div><div class="rv-meta">자격증 → 실견미용 → 창업 준비</div></div></div>
+      </article>
+      <article class="rv-card">
+          <div class="rv-headline">"아예 처음 시작해서 걱정했는데 생각보다 단계적으로 배울 수 있었어요."</div>
+          <p class="rv-text">애견미용 경험이 전혀 없어서 처음 상담받을 때도 제가 할 수 있을지부터 물어봤어요. 도구 사용법과 기본 자세부터 하나씩 배우니까 생각했던 것보다 어렵지 않게 적응할 수 있었습니다. 직접 해보면서 적성도 확인할 수 있어서 시작 전에 고민했던 시간이 아깝다는 생각도 들었어요.</p>
+          <div class="rv-author"><div class="rv-avatar">🌱</div><div><div class="rv-name">정○○ 수강생</div><div class="rv-meta">비전공 초보 · 자격증 준비</div></div></div>
+      </article>
+      <article class="rv-card">
+          <div class="rv-headline">"제 강아지를 직접 관리하고 싶어서 시작했는데 더 배우고 싶어졌어요."</div>
+          <p class="rv-text">처음에는 반려견 위생미용이나 목욕 정도만 직접 해보고 싶어서 시작했습니다. 막상 배우다 보니 가위 사용법이나 얼굴 디자인에도 관심이 생겼고, 제대로 배워보고 싶다는 생각이 들었어요. 집에서 혼자 영상만 보고 할 때보다 직접 피드백을 받을 수 있어서 훨씬 이해하기 쉬웠습니다.</p>
+          <div class="rv-author"><div class="rv-avatar">🐾</div><div><div class="rv-name">윤○○ 수강생</div><div class="rv-meta">반려견 케어 → 전문과정 관심</div></div></div>
+      </article>
+    </div>
+  </div>
+  <div class="slider-dots" role="tablist">
+    <button class="dot active" role="tab" aria-selected="true"  data-idx="0" aria-label="후기 1"></button>
+    <button class="dot"        role="tab" aria-selected="false" data-idx="1" aria-label="후기 2"></button>
+    <button class="dot"        role="tab" aria-selected="false" data-idx="2" aria-label="후기 3"></button>
+    <button class="dot"        role="tab" aria-selected="false" data-idx="3" aria-label="후기 4"></button>
+    <button class="dot"        role="tab" aria-selected="false" data-idx="4" aria-label="후기 5"></button>
+    <button class="dot"        role="tab" aria-selected="false" data-idx="5" aria-label="후기 6"></button>
+  </div>
+</section>
+
+<!-- ── CURRICULUM ────────────────────────────── -->
+<section id="curriculum" aria-labelledby="curr-h">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <div class="sec-tag">📚 커리큘럼</div>
+      <h2 class="t-section sec-title" id="curr-h">수강 과정 안내</h2>
+      <div class="divider"></div>
+      <p class="sec-desc">초보부터 프로까지, 목표에 맞는 과정 선택</p>
+    </div>
+    <div class="curr-grid fade-up" role="list">
+      <div class="curr-card fade-up d1" onclick="openCModal('cModal1')" style="cursor:pointer" role="listitem">
+        <div class="curr-left"><div class="curr-num">1</div><div><div class="curr-name">기초과정</div><div class="curr-sub">입문 ~ 기본 그루밍</div></div></div>
+        <span class="tag tag-blue">입문</span>
+      </div>
+      <div class="curr-card fade-up d2" onclick="openCModal('cModal2')" style="cursor:pointer" role="listitem">
+        <div class="curr-left"><div class="curr-num">2</div><div><div class="curr-name">자격증 취득반</div><div class="curr-sub">애견미용자격증 3급 · 2급</div></div></div>
+        <span class="tag tag-green">자격증</span>
+      </div>
+      <div class="curr-card fade-up d3" onclick="openCModal('cModal3')" style="cursor:pointer" role="listitem">
+        <div class="curr-left"><div class="curr-num">3</div><div><div class="curr-name">실견 심화반</div><div class="curr-sub">가정견 실습 집중과정</div></div></div>
+        <span class="tag tag-gold">실습</span>
+      </div>
+      <div class="curr-card fade-up d4" role="listitem" onclick="openCModal('cModal4')" style="cursor:pointer">
+        <div class="curr-left"><div class="curr-num">4</div><div><div class="curr-name">취업·창업반</div><div class="curr-sub">실무 완성 + 취업 연계</div></div></div>
+        <span class="tag tag-red">취업</span>
+      </div>
+      <div class="curr-card curr-hit fade-up d4" onclick="openCModal('cModal5')" style="cursor:pointer" role="listitem">
+        <div class="curr-left"><div class="curr-num curr-num-hit">🔥</div><div><div class="curr-name">종합·심화반</div><div class="curr-sub">교육지원으로 합리적인 선택</div></div></div>
+        <span class="tag tag-hit">추천</span>
+      </div>
+      <div class="curr-card fade-up d4" role="listitem" onclick="openCModal('cModal6')" style="cursor:pointer">
+        <div class="curr-left"><div class="curr-num">+</div><div><div class="curr-name">스페셜 특강</div><div class="curr-sub">행동교정 · 펫푸드 · 아로마</div></div></div>
+        <span class="tag tag-purple">특강</span>
+      </div>
+    </div>
+    <a href="/curriculum" class="btn btn-primary btn-full btn-lg mt20 fade-up" aria-label="커리큘럼 상세 알아보기" onclick="gtag('event','click_cta',{button:'커리큘럼_상세페이지'})" style="text-decoration:none;">
+      📚 커리큘럼 알아보기
+    </a>
+  </div>
+</section>
 
 <!-- ── WHY ──────────────────────────────────── -->
 <section id="why" aria-labelledby="why-h">
@@ -1586,47 +1717,6 @@
     </a>
   </div>
 </section>
-<!-- ── CURRICULUM ────────────────────────────── -->
-<section id="curriculum" aria-labelledby="curr-h">
-  <div class="wrap">
-    <div class="sec-header fade-up">
-      <div class="sec-tag">📚 커리큘럼</div>
-      <h2 class="t-section sec-title" id="curr-h">수강 과정 안내</h2>
-      <div class="divider"></div>
-      <p class="sec-desc">초보부터 프로까지, 목표에 맞는 과정 선택</p>
-    </div>
-    <div class="curr-grid fade-up" role="list">
-      <div class="curr-card fade-up d1" onclick="openCModal('cModal1')" style="cursor:pointer" role="listitem">
-        <div class="curr-left"><div class="curr-num">1</div><div><div class="curr-name">기초과정</div><div class="curr-sub">입문 ~ 기본 그루밍</div></div></div>
-        <span class="tag tag-blue">입문</span>
-      </div>
-      <div class="curr-card fade-up d2" onclick="openCModal('cModal2')" style="cursor:pointer" role="listitem">
-        <div class="curr-left"><div class="curr-num">2</div><div><div class="curr-name">자격증 취득반</div><div class="curr-sub">애견미용자격증 3급 · 2급</div></div></div>
-        <span class="tag tag-green">자격증</span>
-      </div>
-      <div class="curr-card fade-up d3" onclick="openCModal('cModal3')" style="cursor:pointer" role="listitem">
-        <div class="curr-left"><div class="curr-num">3</div><div><div class="curr-name">실견 심화반</div><div class="curr-sub">가정견 실습 집중과정</div></div></div>
-        <span class="tag tag-gold">실습</span>
-      </div>
-      <div class="curr-card fade-up d4" role="listitem" onclick="openCModal('cModal4')" style="cursor:pointer">
-        <div class="curr-left"><div class="curr-num">4</div><div><div class="curr-name">취업·창업반</div><div class="curr-sub">실무 완성 + 취업 연계</div></div></div>
-        <span class="tag tag-red">취업</span>
-      </div>
-      <div class="curr-card curr-hit fade-up d4" onclick="openCModal('cModal5')" style="cursor:pointer" role="listitem">
-        <div class="curr-left"><div class="curr-num curr-num-hit">🔥</div><div><div class="curr-name">종합·심화반</div><div class="curr-sub">교육지원으로 합리적인 선택</div></div></div>
-        <span class="tag tag-hit">추천</span>
-      </div>
-      <div class="curr-card fade-up d4" role="listitem" onclick="openCModal('cModal6')" style="cursor:pointer">
-        <div class="curr-left"><div class="curr-num">+</div><div><div class="curr-name">스페셜 특강</div><div class="curr-sub">행동교정 · 펫푸드 · 아로마</div></div></div>
-        <span class="tag tag-purple">특강</span>
-      </div>
-    </div>
-    <a href="/curriculum" class="btn btn-primary btn-full btn-lg mt20 fade-up" aria-label="커리큘럼 상세 알아보기" onclick="gtag('event','click_cta',{button:'커리큘럼_상세페이지'})" style="text-decoration:none;">
-      📚 커리큘럼 알아보기
-    </a>
-  </div>
-</section>
-
 
 <!-- ── FACULTY ──────────────────────────────── -->
 <section id="faculty" aria-labelledby="fac-h">
@@ -1660,7 +1750,7 @@
     </div>
     <div class="net-card fade-up">
       <div class="inner">
-        <div class="net-num" id="netNum">0<span style="font-size:2.2rem;">개</span></div>
+        <div class="net-num" id="netNum">21<span style="font-size:2.2rem;">개</span></div>
         <div class="net-label">전국 직영 캠퍼스 운영</div>
         <div class="net-chips-wrap">
           <div class="net-chips">
@@ -1718,13 +1808,49 @@
   </div>
 </section>
 
+<!-- ── LOCATION ───────────────────────────────── -->
+<!-- ── 전국 캠퍼스 슬라이더 ──────────────────────── -->
+<section id="branches" aria-labelledby="branch-h">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <div class="sec-tag">📍 전국 직영 캠퍼스</div>
+      <h2 class="t-section sec-title" id="branch-h">전국 직영 캠퍼스</h2>
+      <div class="divider"></div>
+    </div>
+  </div>
+  <div class="branch-slider" role="region" aria-label="전국 캠퍼스">
+    <div class="branch-track" id="branchTrack">
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">광주</div><div class="branch-name">광주 애견미용학원</div><div class="branch-addr">광주광역시 서구 상무중앙로 7 10층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">경기</div><div class="branch-name">분당 애견미용학원</div><div class="branch-addr">경기도 성남시 분당구 백현로101번길 13 5층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">경기</div><div class="branch-name">일산 애견미용학원</div><div class="branch-addr">경기도 고양시 일산동구 정발산로 47 웅신아트 5층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">대전</div><div class="branch-name">대전 애견미용학원</div><div class="branch-addr">대전광역시 서구 대덕대로 182 10층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">인천</div><div class="branch-name">인천 애견미용학원</div><div class="branch-addr">인천광역시 남동구 인하로 501 8층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">대구</div><div class="branch-name">반월당 애견미용학원</div><div class="branch-addr">대구광역시 중구 달구벌대로 2118 예미안타워빌딩 7층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">대구</div><div class="branch-name">대구 애견미용학원</div><div class="branch-addr">대구광역시 동구 동대구로 525-1 3층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">서울</div><div class="branch-name">신림 애견미용학원</div><div class="branch-addr">서울특별시 관악구 남부순환로 1630 2층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">서울</div><div class="branch-name">노원 애견미용학원</div><div class="branch-addr">서울특별시 노원구 상계로3길 21 5층 501호</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">서울</div><div class="branch-name">종로 애견미용학원</div><div class="branch-addr">서울특별시 종로구 삼일대로17길 51 스타골드빌딩 3층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">경기</div><div class="branch-name">부천 애견미용학원</div><div class="branch-addr">경기도 부천시 원미구 부일로 496</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">서울</div><div class="branch-name">천호 애견미용학원</div><div class="branch-addr">서울특별시 강동구 천호대로 1037 10층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">경기</div><div class="branch-name">평택 애견미용학원</div><div class="branch-addr">경기도 평택시 중앙2로 16 2층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">경기</div><div class="branch-name">수원 애견미용학원</div><div class="branch-addr">경기도 수원시 팔달구 덕영대로 905 1101호, 1106호</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">서울</div><div class="branch-name">강남 애견미용학원</div><div class="branch-addr">서울특별시 강남구 선릉로86길 39 서영빌딩 5층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">부산</div><div class="branch-name">서면 애견미용학원</div><div class="branch-addr">부산광역시 부산진구 중앙대로 711 3층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">경남</div><div class="branch-name">창원 애견미용학원</div><div class="branch-addr">경상남도 창원시 성산구 원이대로 652 7층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">부산</div><div class="branch-name">연산 애견미용학원</div><div class="branch-addr">부산광역시 연제구 월드컵대로 141 동화빌딩 10층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">부산</div><div class="branch-name">덕천 애견미용학원</div><div class="branch-addr">부산광역시 북구 만덕대로 28 4층</div></div>
+      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">충남</div><div class="branch-name">천안 애견미용학원</div><div class="branch-addr">충청남도 천안시 동남구 만남로 30 로얄빌딩 5층</div></div>
+    </div>
+  </div>
+</section>
+
 <!-- ── MID CTA BANNER ────────────────────────── -->
 <div class="cta-banner" aria-label="상담 유도">
   <div class="wrap">
     <h2 class="t-section">지금 바로 <br class="mobile-break"/><span style="color:var(--gold-lt)">무료 상담</span> 받으세요</h2>
     <p class="sub">커리큘럼부터 수강료까지 부담없이 물어보세요</p>
     <div class="cta-grid fade-up">
-      <button class="btn btn-consult btn-full btn-lg" onclick="openModal()" aria-label="교육지원혜택 알아보기">🎓 교육지원혜택 알아보기</button>
+      <button class="btn btn-consult btn-full btn-lg" onclick="gtag('event','click_cta',{button:'무료상담_수강료확인'});openModal();" aria-label="무료 상담 + 수강료 확인하기">🎓 무료 상담 + 수강료 확인하기</button>
       <button class="btn btn-gold btn-full" onclick="gtag('event','click_cta',{button:'전화_sticky'});showPhone();" aria-label="전화 상담">📞 010-3766-1620 전화 상담</button>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;">
         <a href="http://pf.kakao.com/_xaNjrn/chat" class="btn btn-kakao" target="_blank" rel="noopener">💬 카카오톡</a>
@@ -1736,89 +1862,6 @@
     </div>
   </div>
 </div>
-
-<!-- ── REVIEWS ───────────────────────────────── -->
-<section id="reviews" aria-labelledby="rv-h">
-  <div class="wrap">
-    <div class="sec-header fade-up">
-      <div class="sec-tag">⭐ 수강생 후기</div>
-      <h2 class="t-section sec-title" id="rv-h">실제 수강생 <br class="mobile-break"/>리얼 후기</h2>
-      <div class="divider"></div>
-    </div>
-  </div>
-  <div class="rv-slider" role="region" aria-label="수강생 후기 슬라이더">
-    <div class="rv-track" id="rvTrack" style="padding:0 20px;">
-      <article class="rv-card">
-        
-          <div class="rv-stars" aria-label="별점 5점">★★★★★</div>
-          <p class="rv-text">"처음엔 걱정이 많았는데 선생님이 개별로 하나하나 다 가르쳐주셔서 자격증도 합격하고 지금은 미용샵에 취업했어요!"</p>
-          <div class="rv-author"><div class="rv-avatar">🐾</div><div><div class="rv-name">김지**님</div><div class="rv-meta">자격증취득반 수료 · 취업 성공</div></div></div>
-      </article>
-      <article class="rv-card">
-        
-          <div class="rv-stars" aria-label="별점 5점">★★★★★</div>
-          <p class="rv-text">"직장 다니면서 자율출석으로 다녔는데 시간 조율이 너무 편했어요. 실견 실습이라 배운 게 실제로 써먹힙니다!"</p>
-          <div class="rv-author"><div class="rv-avatar">✂️</div><div><div class="rv-name">이수**님</div><div class="rv-meta">직장인 수강생 · 자율출석 이용</div></div></div>
-      </article>
-      <article class="rv-card">
-        
-          <div class="rv-stars" aria-label="별점 5점">★★★★★</div>
-          <p class="rv-text">"개별 피드백이 정말 달라요. 내 강아지 데리고 실습하니까 더 열심히 하게 되고 실력도 빠르게 늘었어요!"</p>
-          <div class="rv-author"><div class="rv-avatar">🐶</div><div><div class="rv-name">박예**님</div><div class="rv-meta">가정견 실습반 수료</div></div></div>
-      </article>
-      <article class="rv-card">
-        
-          <div class="rv-stars" aria-label="별점 5점">★★★★★</div>
-          <p class="rv-text">"미용 경험 전혀 없이 왔는데 지금은 창업 준비 중이에요. 전국 네트워크 덕분에 취업·창업 지원도 든든했습니다."</p>
-          <div class="rv-author"><div class="rv-avatar">💼</div><div><div class="rv-name">최민**님</div><div class="rv-meta">창업반 수료 · 샵 오픈 준비</div></div></div>
-      </article>
-      <article class="rv-card">
-        
-          <div class="rv-stars" aria-label="별점 5점">★★★★★</div>
-          <p class="rv-text">"국비지원이 안 된다고 포기하려 했는데, 상담 후 교육지원으로 부담을 줄일 수 있었어요. 덕분에 지금은 창업 준비 중입니다!"</p>
-          <div class="rv-author"><div class="rv-avatar">🏪</div><div><div class="rv-name">이수**님</div><div class="rv-meta">종합반 수강중 · 창업 준비</div></div></div>
-      </article>
-    </div>
-  </div>
-  <div class="slider-dots" role="tablist">
-    <button class="dot active" role="tab" aria-selected="true"  data-idx="0" aria-label="후기 1"></button>
-    <button class="dot"        role="tab" aria-selected="false" data-idx="1" aria-label="후기 2"></button>
-    <button class="dot"        role="tab" aria-selected="false" data-idx="2" aria-label="후기 3"></button>
-    <button class="dot"        role="tab" aria-selected="false" data-idx="3" aria-label="후기 4"></button>
-    <button class="dot"        role="tab" aria-selected="false" data-idx="4" aria-label="후기 5"></button>
-  </div>
-</section>
-
-<!-- ── PORTFOLIO ─────────────────────────────── -->
-<section id="portfolio" aria-labelledby="port-h">
-  <div class="wrap">
-    <div class="sec-header fade-up">
-      <div class="sec-tag">📸 수업 현장</div>
-      <h2 class="t-section sec-title" id="port-h">수강생들의 <br class="mobile-break"/>실제 수업 모습</h2>
-      <div class="divider"></div>
-      <p class="sec-desc">실제 가정견으로 배우는 현장을 확인하세요</p>
-    </div>
-    <div class="port-marquee-wrap fade-up" role="region" aria-label="수업 현장 사진">
-      <div class="port-mq-track" id="portTrack">
-        <div class="port-mq-item"><img src="image/class-carousel-01.webp" alt="Evaw Pet 수업 현장 사진 1" /></div>
-        <div class="port-mq-item"><img src="image/class-carousel-02.webp" alt="Evaw Pet 수업 현장 사진 2" /></div>
-        <div class="port-mq-item"><img src="image/class-carousel-03.webp" alt="Evaw Pet 수업 현장 사진 3" /></div>
-        <div class="port-mq-item"><img src="image/class-carousel-04.webp" alt="Evaw Pet 수업 현장 사진 4" /></div>
-        <div class="port-mq-item"><img src="image/class-carousel-05.webp" alt="Evaw Pet 수업 현장 사진 5" /></div>
-        <div class="port-mq-item"><img src="image/class-carousel-06.webp" alt="Evaw Pet 수업 현장 사진 6" /></div>
-        <div class="port-mq-item"><img src="image/class-carousel-07.webp" alt="Evaw Pet 수업 현장 사진 7" /></div>
-        <div class="port-mq-item"><img src="image/class-carousel-08.webp" alt="Evaw Pet 수업 현장 사진 8" /></div>
-        <div class="port-mq-item"><img src="image/class-carousel-09.webp" alt="Evaw Pet 수업 현장 사진 9" /></div>
-        <div class="port-mq-item"><img src="image/class-carousel-10.webp" alt="Evaw Pet 수업 현장 사진 10" /></div>
-        <div class="port-mq-item"><img src="image/class-carousel-11.webp" alt="Evaw Pet 수업 현장 사진 11" /></div>
-        <div class="port-mq-item"><img src="image/class-carousel-12.webp" alt="Evaw Pet 수업 현장 사진 12" /></div>
-      </div>
-    </div>
-    <a href="https://www.instagram.com/evawpet.official/" class="btn btn-full mt20 fade-up" style="background:var(--gray-1);color:var(--text-mid);border:1px solid var(--gray-2);line-height:1.5;height:auto;padding:12px 20px;white-space:normal;" target="_blank" rel="noopener">
-      📷 인스타그램<br/><span style="font-size:.8rem;color:var(--text-lt);font-weight:500;">@evawpet.official</span>
-    </a>
-  </div>
-</section>
 
 <!-- ── FAQ ──────────────────────────────────── -->
 <section id="faq" aria-labelledby="faq-h">
@@ -1867,47 +1910,10 @@
       </div>
     </div>
     <button class="btn btn-primary btn-full btn-lg mt20 fade-up" onclick="openModal()" aria-label="상담 신청">
-      📋 지금 바로 상담 신청하기
+      🎓 무료 상담 + 수강료 확인하기
     </button>
   </div>
 </section>
-
-<!-- ── LOCATION ───────────────────────────────── -->
-<!-- ── 전국 캠퍼스 슬라이더 ──────────────────────── -->
-<section id="branches" aria-labelledby="branch-h">
-  <div class="wrap">
-    <div class="sec-header fade-up">
-      <div class="sec-tag">📍 전국 직영 캠퍼스</div>
-      <h2 class="t-section sec-title" id="branch-h">전국 직영 캠퍼스</h2>
-      <div class="divider"></div>
-    </div>
-  </div>
-  <div class="branch-slider" role="region" aria-label="전국 캠퍼스">
-    <div class="branch-track" id="branchTrack">
-      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">광주</div><div class="branch-name">광주 애견미용학원</div><div class="branch-addr">광주광역시 서구 상무중앙로 7 10층</div></div>
-      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">경기</div><div class="branch-name">분당 애견미용학원</div><div class="branch-addr">경기도 성남시 분당구 백현로101번길 13 5층</div></div>
-      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">경기</div><div class="branch-name">일산 애견미용학원</div><div class="branch-addr">경기도 고양시 일산동구 정발산로 47 웅신아트 5층</div></div>
-      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">대전</div><div class="branch-name">대전 애견미용학원</div><div class="branch-addr">대전광역시 서구 대덕대로 182 10층</div></div>
-      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">인천</div><div class="branch-name">인천 애견미용학원</div><div class="branch-addr">인천광역시 남동구 인하로 501 8층</div></div>
-      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">대구</div><div class="branch-name">반월당 애견미용학원</div><div class="branch-addr">대구광역시 중구 달구벌대로 2118 예미안타워빌딩 7층</div></div>
-      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">대구</div><div class="branch-name">대구 애견미용학원</div><div class="branch-addr">대구광역시 동구 동대구로 525-1 3층</div></div>
-      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">서울</div><div class="branch-name">신림 애견미용학원</div><div class="branch-addr">서울특별시 관악구 남부순환로 1630 2층</div></div>
-      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">서울</div><div class="branch-name">노원 애견미용학원</div><div class="branch-addr">서울특별시 노원구 상계로3길 21 5층 501호</div></div>
-      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">서울</div><div class="branch-name">종로 애견미용학원</div><div class="branch-addr">서울특별시 종로구 삼일대로17길 51 스타골드빌딩 3층</div></div>
-      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">경기</div><div class="branch-name">부천 애견미용학원</div><div class="branch-addr">경기도 부천시 원미구 부일로 496</div></div>
-      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">서울</div><div class="branch-name">천호 애견미용학원</div><div class="branch-addr">서울특별시 강동구 천호대로 1037 10층</div></div>
-      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">경기</div><div class="branch-name">평택 애견미용학원</div><div class="branch-addr">경기도 평택시 중앙2로 16 2층</div></div>
-      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">경기</div><div class="branch-name">수원 애견미용학원</div><div class="branch-addr">경기도 수원시 팔달구 덕영대로 905 1101호, 1106호</div></div>
-      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">서울</div><div class="branch-name">강남 애견미용학원</div><div class="branch-addr">서울특별시 강남구 선릉로86길 39 서영빌딩 5층</div></div>
-      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">부산</div><div class="branch-name">서면 애견미용학원</div><div class="branch-addr">부산광역시 부산진구 중앙대로 711 3층</div></div>
-      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">경남</div><div class="branch-name">창원 애견미용학원</div><div class="branch-addr">경상남도 창원시 성산구 원이대로 652 7층</div></div>
-      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">부산</div><div class="branch-name">연산 애견미용학원</div><div class="branch-addr">부산광역시 연제구 월드컵대로 141 동화빌딩 10층</div></div>
-      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">부산</div><div class="branch-name">덕천 애견미용학원</div><div class="branch-addr">부산광역시 북구 만덕대로 28 4층</div></div>
-      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">충남</div><div class="branch-name">천안 애견미용학원</div><div class="branch-addr">충청남도 천안시 동남구 만남로 30 로얄빌딩 5층</div></div>
-    </div>
-  </div>
-</section>
-
 
 <!-- ── 차이점 팝업 ──────────────────────────── -->
 <div class="course-modal-overlay" id="dModal1">
@@ -1928,7 +1934,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('dModal1');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-cta" onclick="closeCModal('dModal1');openModal()">🎓 무료 상담 + 수강료 확인하기</button>
       <button class="course-close-btn" onclick="closeCModal('dModal1')">닫기</button>
     </div>
   </div>
@@ -1952,7 +1958,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('dModal2');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-cta" onclick="closeCModal('dModal2');openModal()">🎓 무료 상담 + 수강료 확인하기</button>
       <button class="course-close-btn" onclick="closeCModal('dModal2')">닫기</button>
     </div>
   </div>
@@ -1976,7 +1982,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('dModal3');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-cta" onclick="closeCModal('dModal3');openModal()">🎓 무료 상담 + 수강료 확인하기</button>
       <button class="course-close-btn" onclick="closeCModal('dModal3')">닫기</button>
     </div>
   </div>
@@ -2000,7 +2006,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('dModal4');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-cta" onclick="closeCModal('dModal4');openModal()">🎓 무료 상담 + 수강료 확인하기</button>
       <button class="course-close-btn" onclick="closeCModal('dModal4')">닫기</button>
     </div>
   </div>
@@ -2024,7 +2030,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('dModal5');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-cta" onclick="closeCModal('dModal5');openModal()">🎓 무료 상담 + 수강료 확인하기</button>
       <button class="course-close-btn" onclick="closeCModal('dModal5')">닫기</button>
     </div>
   </div>
@@ -2049,7 +2055,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('dModal6');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-cta" onclick="closeCModal('dModal6');openModal()">🎓 무료 상담 + 수강료 확인하기</button>
       <button class="course-close-btn" onclick="closeCModal('dModal6')">닫기</button>
     </div>
   </div>
@@ -2076,7 +2082,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('cModal1');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-cta" onclick="closeCModal('cModal1');openModal()">🎓 무료 상담 + 수강료 확인하기</button>
       <button class="course-close-btn" onclick="closeCModal('cModal1')">닫기</button>
     </div>
   </div>
@@ -2100,7 +2106,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('cModal2');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-cta" onclick="closeCModal('cModal2');openModal()">🎓 무료 상담 + 수강료 확인하기</button>
       <button class="course-close-btn" onclick="closeCModal('cModal2')">닫기</button>
     </div>
   </div>
@@ -2125,7 +2131,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('cModal3');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-cta" onclick="closeCModal('cModal3');openModal()">🎓 무료 상담 + 수강료 확인하기</button>
       <button class="course-close-btn" onclick="closeCModal('cModal3')">닫기</button>
     </div>
   </div>
@@ -2150,7 +2156,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('cModal4');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-cta" onclick="closeCModal('cModal4');openModal()">🎓 무료 상담 + 수강료 확인하기</button>
       <button class="course-close-btn" onclick="closeCModal('cModal4')">닫기</button>
     </div>
   </div>
@@ -2175,7 +2181,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('cModal5');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-cta" onclick="closeCModal('cModal5');openModal()">🎓 무료 상담 + 수강료 확인하기</button>
       <button class="course-close-btn" onclick="closeCModal('cModal5')">닫기</button>
     </div>
   </div>
@@ -2201,7 +2207,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('cModal6');openModal()">🎓 교육비지원 조회하기</button>
+      <button class="course-cta" onclick="closeCModal('cModal6');openModal()">🎓 무료 상담 + 수강료 확인하기</button>
       <button class="course-close-btn" onclick="closeCModal('cModal6')">닫기</button>
     </div>
   </div>
@@ -2211,13 +2217,13 @@
 <section id="finalCta" aria-label="최종 상담 유도">
   <div class="wrap">
     <div class="sec-header fade-up">
-      <div class="sec-tag">📞 지금 바로 시작하세요</div>
-      <h2 class="t-section sec-title">오늘 상담하고 <br class="mobile-break"/><span style="color:var(--gold-lt)">내일부터 배우세요</span></h2>
+      <div class="sec-tag">📋 부담 없이 비교해보세요</div>
+      <h2 class="t-section sec-title">아직 등록을 <br class="mobile-break"/><span style="color:var(--gold-lt)">결정하지 않아도 괜찮습니다</span></h2>
       <div class="divider"></div>
-      <p class="sub">무료 상담 후 등록해도 늦지 않아요</p>
+      <p class="sub">가까운 지점의 수강과정, 수업시간, 비용부터 비교해보세요</p>
     </div>
     <div class="cta-grid fade-up">
-      <button class="btn btn-consult btn-full btn-lg" onclick="gtag('event','click_cta',{button:'교육비지원조회'});openModal();" aria-label="무료 상담 신청">🎓 교육비지원 조회하기</button>
+      <button class="btn btn-consult btn-full btn-lg" onclick="gtag('event','click_cta',{button:'수강료_교육지원확인'});openModal();" aria-label="수강료 교육지원 확인하기">📋 수강료·교육지원 확인하기</button>
       <button class="btn btn-gold btn-full" onclick="gtag('event','click_cta',{button:'전화_sticky'});showPhone();" aria-label="전화 상담">📞 010-3766-1620 전화 상담</button>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;">
         <a href="http://pf.kakao.com/_xaNjrn/chat" class="btn btn-kakao" target="_blank" rel="noopener">💬 카카오톡</a>
@@ -2359,7 +2365,7 @@
   <div class="event-sheet">
     <img src="image/event-popup.webp" class="event-img" alt="여름 한정 상생 프로모션 SUMMER EVENT" onclick="this.classList.toggle('event-img-full')" style="cursor:zoom-in;" />
     <div class="event-btns">
-      <button class="event-cta" onclick="closeEvent();openModal();">🎉 이벤트 신청하기</button>
+      <button class="event-cta" onclick="closeEvent();openModal();">🎓 무료 상담 + 수강료 확인하기</button>
       <div class="event-footer">
         <button class="event-skip" onclick="skipEventToday()">오늘 하루 보지 않기</button>
         <button class="event-close" onclick="closeEvent()">닫기 ✕</button>
@@ -2372,7 +2378,7 @@
   <div class="event-sheet">
     <img src="image/award-popup.webp" class="event-img" alt="Evaw Pet 2026 소비자 만족도 조사 대상 수상" onclick="this.classList.toggle('event-img-full')" style="cursor:zoom-in;" />
     <div class="event-btns">
-      <button class="event-cta" onclick="closeAward();openModal();">🎉 상담 신청하기</button>
+      <button class="event-cta" onclick="closeAward();openModal();">🎓 무료 상담 + 수강료 확인하기</button>
       <div class="event-footer">
         <button class="event-skip" onclick="skipAwardToday()">오늘 하루 보지 않기</button>
         <button class="event-close" onclick="closeAward()">닫기 ✕</button>
@@ -2426,69 +2432,85 @@
       </div>
 
       <div class="modal-body">
-        <!-- 성함 -->
-        <div>
-          <label class="field-label" for="f-name">성함<span class="req">*</span></label>
-          <input class="field-input" id="f-name" type="text" placeholder="이름을 입력해 주세요" autocomplete="name" />
-        </div>
 
-        <!-- 연락처 -->
-        <div>
-          <label class="field-label" for="f-phone">연락처<span class="req">*</span></label>
-          <input class="field-input" id="f-phone" type="tel" placeholder="010-0000-0000" autocomplete="tel"
-            oninput="this.value=this.value.replace(/[^0-9-]/g,'').replace(/(\d{3})(\d{4})(\d{4})/,'$1-$2-$3')" maxlength="13" />
-        </div>
+        <!-- ── STEP 1: 과정 · 지역 ── -->
+        <div class="modal-step" id="modalStep1">
+          <div class="step-indicator"><span class="step-num">STEP 1</span> 어떤 과정이 궁금하세요?</div>
 
-        <!-- 수강 목적 -->
-        <div>
-          <label class="field-label">수강 목적<span class="req">*</span></label>
-          <div class="purpose-grid" role="group" aria-label="수강 목적 선택 (중복 가능)">
-            <div style="display:flex;gap:8px;flex-wrap:nowrap;">
-              <button class="purpose-chip" data-val="취미"   onclick="togglePurpose(this)" type="button">🎨 취미</button>
+          <!-- 수강 목적 -->
+          <div>
+            <label class="field-label">수강 목적<span class="req">*</span></label>
+            <div class="purpose-grid" role="group" aria-label="수강 목적 선택 (중복 가능)">
               <button class="purpose-chip" data-val="자격증" onclick="togglePurpose(this)" type="button">📜 자격증</button>
-              <button class="purpose-chip" data-val="중·고등"   onclick="togglePurpose(this)" type="button">📚 중·고등</button>
-            </div>
-            <div style="display:flex;gap:8px;flex-wrap:nowrap;">
               <button class="purpose-chip" data-val="취업"   onclick="togglePurpose(this)" type="button">💼 취업</button>
               <button class="purpose-chip" data-val="창업"   onclick="togglePurpose(this)" type="button">🏪 창업</button>
+              <button class="purpose-chip" data-val="취미·반려견케어" onclick="togglePurpose(this)" type="button">🐾 취미·반려견케어</button>
+              <button class="purpose-chip" data-val="중·고등" onclick="togglePurpose(this)" type="button">📚 중·고등</button>
             </div>
           </div>
+
+          <!-- 희망 교육 지역 -->
+          <div>
+            <label class="field-label" for="f-region">어느 지역에서 배우고 싶으세요?<span class="req">*</span></label>
+            <input class="field-input" id="f-region" type="text" placeholder="예: 강남, 분당, 부산 등 원하시는 지역을 입력해 주세요" />
+          </div>
+
+          <!-- 에러 메시지 (STEP1) -->
+          <div id="form-error-1" style="display:none;color:#e84393;font-size:.82rem;font-weight:600;text-align:center;padding:8px;background:#fce4ec;border-radius:var(--r8);"></div>
+
+          <button class="btn btn-consult btn-full btn-lg" onclick="goToStep2()" id="step1-next-btn" type="button">
+            무료 상담 가능 여부 확인하기
+          </button>
         </div>
 
-        <!-- 문의사항 -->
-        <div>
-          <label class="field-label" for="f-message">문의사항 <span style="color:var(--text-lt);font-weight:400;">(선택)</span></label>
-          <textarea class="field-input" id="f-message" rows="3" placeholder="궁금한 점이나 전달할 내용을 자유롭게 입력해 주세요" style="resize:none;height:auto;line-height:1.6;"></textarea>
+        <!-- ── STEP 2: 연락처 ── -->
+        <div class="modal-step" id="modalStep2" style="display:none;">
+          <button class="step-back-btn" onclick="goToStep1()" type="button">← 이전 단계</button>
+          <div class="step-indicator"><span class="step-num">STEP 2</span> 상담 안내를 받을 연락처를 남겨주세요</div>
+
+          <!-- 이름 -->
+          <div>
+            <label class="field-label" for="f-name">이름<span class="req">*</span></label>
+            <input class="field-input" id="f-name" type="text" placeholder="이름을 입력해 주세요" autocomplete="name" />
+          </div>
+
+          <!-- 휴대폰 번호 -->
+          <div>
+            <label class="field-label" for="f-phone">휴대폰 번호<span class="req">*</span></label>
+            <input class="field-input" id="f-phone" type="tel" placeholder="010-0000-0000" autocomplete="tel"
+              oninput="this.value=this.value.replace(/[^0-9-]/g,'').replace(/(\d{3})(\d{4})(\d{4})/,'$1-$2-$3')" maxlength="13" />
+          </div>
+
+          <!-- 문의사항 -->
+          <div>
+            <label class="field-label" for="f-message">문의사항 <span style="color:var(--text-lt);font-weight:400;">(선택)</span></label>
+            <textarea class="field-input" id="f-message" rows="3" placeholder="궁금한 점이나 전달할 내용을 자유롭게 입력해 주세요" style="resize:none;height:auto;line-height:1.6;"></textarea>
+          </div>
+
+          <!-- 개인정보 동의 -->
+          <div style="background:var(--gray-1);border-radius:var(--r12);padding:14px;font-size:.78rem;color:var(--text-lt);line-height:1.8;">
+            <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;">
+              <input type="checkbox" id="f-agree" style="width:16px;height:16px;flex-shrink:0;margin-top:2px;accent-color:var(--navy);" />
+              <span>
+                <strong style="color:var(--text-dk);display:block;margin-bottom:4px;">개인정보 수집 및 이용 동의 <span class="req">*</span></strong>
+                · 수집 항목: 이름, 연락처<br/>
+                · 수집 목적: 교육지원 정보 및 혜택 안내<br/>
+                · 보유 기간: 작성일로부터 1년<br/>
+                위 내용에 동의합니다.
+              </span>
+            </label>
+          </div>
+
+          <!-- 에러 메시지 -->
+          <div id="form-error" style="display:none;color:#e84393;font-size:.82rem;font-weight:600;text-align:center;padding:8px;background:#fce4ec;border-radius:var(--r8);"></div>
+
+          <!-- 제출 버튼 -->
+          <button class="btn btn-consult btn-full btn-lg" onclick="submitForm()" id="submit-btn" type="button">
+            📋 상담 신청하기
+          </button>
+          <p style="text-align:center;font-size:.72rem;color:var(--text-lt);">빠른 시일 내 연락드립니다</p>
         </div>
 
-        <!-- 희망 교육 지역 -->
-        <div>
-          <label class="field-label" for="f-region">희망 교육 지역<span class="req">*</span></label>
-          <input class="field-input" id="f-region" type="text" placeholder="예: 강남, 분당, 부산 등 원하시는 지역을 입력해 주세요" />
-        </div>
-
-        <!-- 개인정보 동의 -->
-        <div style="background:var(--gray-1);border-radius:var(--r12);padding:14px;font-size:.78rem;color:var(--text-lt);line-height:1.8;">
-          <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;">
-            <input type="checkbox" id="f-agree" style="width:16px;height:16px;flex-shrink:0;margin-top:2px;accent-color:var(--navy);" />
-            <span>
-              <strong style="color:var(--text-dk);display:block;margin-bottom:4px;">개인정보 수집 및 이용 동의 <span class="req">*</span></strong>
-              · 수집 항목: 이름, 연락처<br/>
-              · 수집 목적: 교육지원 정보 및 혜택 안내<br/>
-              · 보유 기간: 작성일로부터 1년<br/>
-              위 내용에 동의합니다.
-            </span>
-          </label>
-        </div>
-
-        <!-- 에러 메시지 -->
-        <div id="form-error" style="display:none;color:#e84393;font-size:.82rem;font-weight:600;text-align:center;padding:8px;background:#fce4ec;border-radius:var(--r8);"></div>
-
-        <!-- 제출 버튼 -->
-        <button class="btn btn-consult btn-full btn-lg" onclick="submitForm()" id="submit-btn" type="button">
-          📋 상담 신청 완료하기
-        </button>
-        <p style="text-align:center;font-size:.72rem;color:var(--text-lt);">빠른 시일 내 연락드립니다</p>
       </div>
     </div>
 
@@ -2589,51 +2611,32 @@
     document.body.style.overflow = '';
   }
 
-  /* COUNT UP + GLOW - 무한 반복 */
+  /* GLOW PULSE - 숫자는 항상 21로 고정(SEO/무자바스크립트 대비), 글로우 효과만 무한 반복 */
   const netCard = document.querySelector('.net-card');
   const netNum  = document.getElementById('netNum');
 
-  function runCountUp() {
-    netCard.classList.remove('counted');
-    netNum.classList.remove('glow');
-    netNum.innerHTML = `0<span style="font-size:2.2rem;">개</span>`;
-
-    // 잠깐 후 텍스트 페이드인
-    setTimeout(() => netCard.classList.add('counted'), 50);
-
-    let start = 0;
-    const target = 21;
-    const duration = 1400;
-    const step = duration / target;
-
-    const counter = setInterval(() => {
-      start++;
-      netNum.innerHTML = `${start}<span style="font-size:2.2rem;">개</span>`;
-      if (start >= target) {
-        clearInterval(counter);
-        // 글로우 1회
+  function pulseGlow() {
+    netNum.classList.add('glow');
+    setTimeout(() => {
+      netNum.classList.remove('glow');
+      // 글로우 2회
+      setTimeout(() => {
         netNum.classList.add('glow');
+        // 3초 유지 후 다시 반복
         setTimeout(() => {
           netNum.classList.remove('glow');
-          // 글로우 2회
-          setTimeout(() => {
-            netNum.classList.add('glow');
-            // 3초 유지 후 다시 카운트업
-            setTimeout(() => {
-              netNum.classList.remove('glow');
-              setTimeout(runCountUp, 400);
-            }, 3000);
-          }, 300);
-        }, 2000);
-      }
-    }, step);
+          setTimeout(pulseGlow, 400);
+        }, 3000);
+      }, 300);
+    }, 2000);
   }
 
-  // 처음 화면에 들어올 때 시작
+  // 처음 화면에 들어올 때 페이드인 + 글로우 시작 (숫자 값 자체는 변경하지 않음)
   const countObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        runCountUp();
+        netCard.classList.add('counted');
+        pulseGlow();
         countObs.unobserve(e.target);
       }
     });
@@ -2743,7 +2746,7 @@
     wrap.addEventListener('mouseleave', () => { paused = false; });
   })();
 
-  /* PORTFOLIO MARQUEE - 흐르는 무한 루프 + 중앙 확대 */
+  /* PORTFOLIO MARQUEE - 흐르는 무한 루프 + 중앙 확대 + 스와이프로 넘기기 */
   (function() {
     const wrap = document.querySelector('.port-marquee-wrap');
     const track = document.getElementById('portTrack');
@@ -2754,8 +2757,17 @@
     origItems.forEach(el => track.appendChild(el.cloneNode(true)));
 
     let offset = 0;
-    let paused = false;
+    let paused = false;      // 마우스 호버 시에만 정지 (PC, 드래그 중이 아닐 때)
+    let dragging = false;    // 터치/마우스 드래그 중에는 자동 스크롤 대신 손가락·마우스를 따라감
+    let dragStartX = 0;
+    let dragStartOffset = 0;
     const speed = 0.35;
+
+    track.querySelectorAll('img').forEach(img => {
+      img.setAttribute('draggable', 'false');
+      img.style.webkitUserDrag = 'none';
+      img.style.userSelect = 'none';
+    });
 
     function itemSpan() {
       const style = getComputedStyle(track);
@@ -2763,12 +2775,15 @@
       return track.children[0].getBoundingClientRect().width + gap;
     }
 
+    function wrapOffset(val, span) {
+      const singleSetWidth = span * total;
+      return ((val % singleSetWidth) + singleSetWidth) % singleSetWidth;
+    }
+
     function tick() {
       const span = itemSpan();
-      if (!paused) {
-        offset += speed;
-        const singleSetWidth = span * total;
-        if (offset >= singleSetWidth) offset -= singleSetWidth;
+      if (!paused && !dragging) {
+        offset = wrapOffset(offset + speed, span);
         track.style.transform = `translateX(${-offset}px)`;
       }
 
@@ -2789,10 +2804,46 @@
     }
     requestAnimationFrame(tick);
 
-    wrap.addEventListener('touchstart', () => { paused = true; }, { passive: true });
-    wrap.addEventListener('touchend', () => { paused = false; }, { passive: true });
+    wrap.addEventListener('touchstart', (e) => {
+      dragging = true;
+      dragStartX = e.touches[0].clientX;
+      dragStartOffset = offset;
+    }, { passive: true });
+
+    wrap.addEventListener('touchmove', (e) => {
+      if (!dragging) return;
+      const dx = e.touches[0].clientX - dragStartX;
+      const span = itemSpan();
+      offset = wrapOffset(dragStartOffset - dx, span);
+      track.style.transform = `translateX(${-offset}px)`;
+    }, { passive: true });
+
+    function endDrag() { dragging = false; wrap.style.cursor = 'grab'; }
+    wrap.addEventListener('touchend', endDrag, { passive: true });
+    wrap.addEventListener('touchcancel', endDrag, { passive: true });
+
     wrap.addEventListener('mouseenter', () => { paused = true; });
-    wrap.addEventListener('mouseleave', () => { paused = false; });
+    wrap.addEventListener('mouseleave', () => { paused = false; if (dragging) endDrag(); });
+
+    /* PC: 마우스 드래그로도 스와이프 */
+    wrap.style.cursor = 'grab';
+    wrap.addEventListener('mousedown', (e) => {
+      dragging = true;
+      dragStartX = e.clientX;
+      dragStartOffset = offset;
+      wrap.style.cursor = 'grabbing';
+      e.preventDefault();
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!dragging) return;
+      const dx = e.clientX - dragStartX;
+      const span = itemSpan();
+      offset = wrapOffset(dragStartOffset - dx, span);
+      track.style.transform = `translateX(${-offset}px)`;
+    });
+
+    window.addEventListener('mouseup', () => { if (dragging) endDrag(); });
   })();
 
   /* NEWS SLIDER - 완전 무한 루프 */
@@ -2993,6 +3044,9 @@
     document.body.style.overflow = 'hidden';
     document.getElementById('formState').style.display = 'block';
     document.getElementById('successState').style.display = 'none';
+    document.getElementById('modalStep1').style.display = 'flex';
+    document.getElementById('modalStep2').style.display = 'none';
+    clearError(); clearError('form-error-1');
     ga4('modal_open', '상담신청 모달');
   }
 
@@ -3017,13 +3071,31 @@
     selectedPurpose = selectedPurposes.join(', ');
   }
 
-  function showError(msg) {
-    const el = document.getElementById('form-error');
+  function showError(msg, id) {
+    const el = document.getElementById(id || 'form-error');
     el.style.display = 'block';
     el.textContent = msg;
   }
-  function clearError() {
-    document.getElementById('form-error').style.display = 'none';
+  function clearError(id) {
+    document.getElementById(id || 'form-error').style.display = 'none';
+  }
+
+  /* ─ STEP NAVIGATION ─ */
+  function goToStep2() {
+    clearError('form-error-1');
+    const region = document.getElementById('f-region').value.trim();
+    if (!selectedPurpose) { showError('수강 목적을 선택해 주세요.', 'form-error-1'); return; }
+    if (!region)          { showError('희망 지역을 입력해 주세요.', 'form-error-1'); return; }
+    document.getElementById('modalStep1').style.display = 'none';
+    document.getElementById('modalStep2').style.display = 'flex';
+    document.getElementById('modalSheet').scrollTop = 0;
+    ga4('modal_step2', '상담신청_STEP2진입');
+  }
+
+  function goToStep1() {
+    document.getElementById('modalStep2').style.display = 'none';
+    document.getElementById('modalStep1').style.display = 'flex';
+    document.getElementById('modalSheet').scrollTop = 0;
   }
 
     /* ─ FORM SUBMIT ─ */
@@ -3035,10 +3107,13 @@
       const message = document.getElementById('f-message').value.trim();
       const agreed  = document.getElementById('f-agree').checked;
 
-      if (!name)            { showError('성함을 입력해 주세요.'); return; }
-      if (phone.length < 9) { showError('연락처를 올바르게 입력해 주세요.'); return; }
-      if (!selectedPurpose) { showError('수강 목적을 선택해 주세요.'); return; }
-      if (!region)          { showError('희망 교육 지역을 입력해 주세요.'); return; }
+      if (!selectedPurpose || !region) {
+        goToStep1();
+        showError(!selectedPurpose ? '수강 목적을 선택해 주세요.' : '희망 지역을 입력해 주세요.', 'form-error-1');
+        return;
+      }
+      if (!name)            { showError('이름을 입력해 주세요.'); return; }
+      if (phone.length < 9) { showError('휴대폰 번호를 올바르게 입력해 주세요.'); return; }
       if (!agreed)          { showError('개인정보 수집 및 이용에 동의해 주세요.'); return; }
 
       const btn = document.getElementById('submit-btn');
@@ -3084,7 +3159,7 @@
       } catch(e) {
         showError('네트워크 오류가 발생했습니다. 전화나 카카오톡으로 문의해 주세요.');
       } finally {
-        btn.textContent = '📋 상담 신청 완료하기';
+        btn.textContent = '📋 상담 신청하기';
         btn.disabled = false;
       }
     }
