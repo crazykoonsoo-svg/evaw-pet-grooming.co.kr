@@ -2611,32 +2611,53 @@
     document.body.style.overflow = '';
   }
 
-  /* GLOW PULSE - 숫자는 항상 21로 고정(SEO/무자바스크립트 대비), 글로우 효과만 무한 반복 */
+  /* COUNT UP + GLOW - 무한 반복 (1부터 시작, 0은 노출하지 않음) */
+  /* 정적 HTML 값은 항상 21로 고정 (SEO/무자바스크립트 대비). JS가 화면에 들어오면
+     1→21로 세는 연출을 반복 재생합니다. */
   const netCard = document.querySelector('.net-card');
   const netNum  = document.getElementById('netNum');
 
-  function pulseGlow() {
-    netNum.classList.add('glow');
-    setTimeout(() => {
-      netNum.classList.remove('glow');
-      // 글로우 2회
-      setTimeout(() => {
+  function runCountUp() {
+    netCard.classList.remove('counted');
+    netNum.classList.remove('glow');
+    netNum.innerHTML = `1<span style="font-size:2.2rem;">개</span>`;
+
+    // 잠깐 후 텍스트 페이드인
+    setTimeout(() => netCard.classList.add('counted'), 50);
+
+    let start = 1;
+    const target = 21;
+    const duration = 1400;
+    const step = duration / (target - 1);
+
+    const counter = setInterval(() => {
+      start++;
+      netNum.innerHTML = `${start}<span style="font-size:2.2rem;">개</span>`;
+      if (start >= target) {
+        clearInterval(counter);
+        // 글로우 1회
         netNum.classList.add('glow');
-        // 3초 유지 후 다시 반복
         setTimeout(() => {
           netNum.classList.remove('glow');
-          setTimeout(pulseGlow, 400);
-        }, 3000);
-      }, 300);
-    }, 2000);
+          // 글로우 2회
+          setTimeout(() => {
+            netNum.classList.add('glow');
+            // 3초 유지 후 다시 카운트업
+            setTimeout(() => {
+              netNum.classList.remove('glow');
+              setTimeout(runCountUp, 400);
+            }, 3000);
+          }, 300);
+        }, 2000);
+      }
+    }, step);
   }
 
-  // 처음 화면에 들어올 때 페이드인 + 글로우 시작 (숫자 값 자체는 변경하지 않음)
+  // 처음 화면에 들어올 때 시작
   const countObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        netCard.classList.add('counted');
-        pulseGlow();
+        runCountUp();
         countObs.unobserve(e.target);
       }
     });
