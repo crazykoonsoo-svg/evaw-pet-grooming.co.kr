@@ -622,6 +622,20 @@
     .tag-purple { background:#f3e5f5; color:#7b1fa2; }
     .tag-hit    { background:linear-gradient(135deg,#fff3cd,#ffe08a); color:#7a5010; border:1px solid rgba(201,168,76,.3); }
 
+    /* ── GUIDE ── */
+    #guide { background:var(--bg-sub); }
+    .guide-grid { display:flex; flex-direction:column; gap:10px; }
+    .guide-card {
+      background:var(--white); border-radius:var(--r12); padding:16px 18px; border:1px solid var(--gray-2);
+      display:flex; align-items:center; gap:14px; text-decoration:none; transition:var(--tr);
+    }
+    .guide-card:hover { border-color:rgba(201,168,76,.5); box-shadow:var(--shadow-sm); transform:translateY(-1px); }
+    .guide-icon { width:40px; height:40px; border-radius:50%; background:var(--gold-bg); display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+    .guide-card-body { flex:1; min-width:0; }
+    .guide-card-title { font-weight:700; font-size:.88rem; color:var(--text-dk); line-height:1.4; }
+    .guide-card-sub { font-size:.72rem; color:var(--text-lt); margin-top:3px; }
+    .guide-arrow { color:var(--gold); font-size:1.1rem; flex-shrink:0; }
+
     /* Hit 카드 */
     .curr-hit {
       background:linear-gradient(135deg,#fffbf0,#fff8e1);
@@ -739,6 +753,16 @@
     .slider-dots { display:flex; justify-content:center; gap:6px; margin-top:20px; }
     .dot { width:6px; height:6px; border-radius:50%; background:rgba(22,33,62,.2); cursor:pointer; transition:var(--tr); border:none; padding:0; }
     .dot.active { background:var(--gold); width:20px; border-radius:3px; }
+
+    /* ── REVIEWS CTA NUDGE ── */
+    .rv-cta-nudge { background:var(--bg-sub); padding:0 0 52px; }
+    .rv-cta-box {
+      max-width:480px; margin:0 auto; background:var(--gold-bg);
+      border:1px solid rgba(201,168,76,.3); border-radius:var(--r16);
+      padding:26px 22px; text-align:center;
+    }
+    .rv-cta-title { font-size:1.05rem; font-weight:800; color:var(--navy); margin-bottom:8px; }
+    .rv-cta-sub { font-size:.85rem; color:var(--text-mid); line-height:1.6; margin-bottom:18px; }
 
     /* ── PORTFOLIO ── */
     #portfolio { background:var(--white); }
@@ -1073,6 +1097,15 @@
     max-width: 1080px;
     margin: 0 auto;
     text-align: left;
+  }
+
+  /* ── GUIDE ── */
+  #guide .guide-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    max-width: 1080px;
+    margin: 0 auto;
   }
 
   /* ── MID CTA ── */
@@ -1571,41 +1604,41 @@
   <div class="wrap">
     <div class="sec-header fade-up">
       <div class="sec-tag">⭐ 수강생 후기</div>
-      <h2 class="t-section sec-title" id="rv-h">실제 수강생 <br class="mobile-break"/>리얼 후기</h2>
+      <h2 class="t-section sec-title" id="rv-h">수강생들의 <br class="mobile-break"/>생생한 후기</h2>
       <div class="divider"></div>
     </div>
   </div>
   <div class="rv-slider" role="region" aria-label="수강생 후기 슬라이더">
     <div class="rv-track" id="rvTrack" style="padding:0 20px;">
       <article class="rv-card">
-          <div class="rv-headline">"처음에는 자격증만 따면 취업할 수 있을 줄 알았어요."</div>
-          <p class="rv-text">처음 애견미용을 배울 때는 자격증 취득만 생각했는데, 실제 강아지를 미용해보니까 확실히 다르더라고요. 아이마다 성격도 다르고 털 상태도 달라서 처음에는 많이 긴장했어요. 가정견 실습을 계속하면서 조금씩 대응하는 방법을 익혔고, 지금은 취업 준비도 훨씬 자신 있게 하고 있습니다.</p>
-          <div class="rv-author"><div class="rv-avatar">💼</div><div><div class="rv-name">김○○ 수강생</div><div class="rv-meta">자격증 → 실견미용 → 취업 준비</div></div></div>
-      </article>
-      <article class="rv-card">
-          <div class="rv-headline">"직장을 다니면서도 배울 수 있다는 점이 가장 좋았어요."</div>
-          <p class="rv-text">평일에 일을 하고 있어서 애견미용을 배우는 게 가능할까 걱정했는데, 제 일정에 맞춰 수업을 이어갈 수 있어서 부담이 적었어요. 처음에는 가위 잡는 것도 어색했지만 기초부터 반복해서 배우고 실제 강아지까지 미용해보면서 실력이 조금씩 늘어가는 게 느껴졌습니다.</p>
+          <div class="rv-headline">"회사 다니면서 배울 수 있을지가 제일 걱정됐어요."</div>
+          <p class="rv-text">퇴근하고 수업을 듣다 보니 처음에는 체력적으로 조금 힘들기도 했는데, 제가 가능한 시간에 맞춰 꾸준히 다닐 수 있어서 생각보다 잘 이어가고 있어요. 처음에는 가위 잡는 것도 어색했는데 지금은 자격증 준비하면서 실견수업까지 해보고 있습니다.</p>
           <div class="rv-author"><div class="rv-avatar">👔</div><div><div class="rv-name">박○○ 수강생</div><div class="rv-meta">직장인 · 자격증 과정</div></div></div>
       </article>
       <article class="rv-card">
-          <div class="rv-headline">"마네킹 연습과 실제 강아지 미용은 생각보다 차이가 컸어요."</div>
-          <p class="rv-text">자격증 연습을 할 때는 정해진 순서대로 하면 됐는데 실제 강아지는 움직이기도 하고 털 상태도 모두 달랐어요. 처음 실견수업을 했을 때 당황했던 기억이 아직도 납니다. 여러 가정견을 경험하면서 미용 순서뿐 아니라 강아지를 다루는 방법까지 배울 수 있어서 도움이 많이 됐어요.</p>
-          <div class="rv-author"><div class="rv-avatar">✂️</div><div><div class="rv-name">이○○ 수강생</div><div class="rv-meta">자격증 취득 후 실견 심화</div></div></div>
+          <div class="rv-headline">"강아지를 좋아하긴 했지만 미용은 한 번도 해본 적이 없어서 걱정을 많이 했어요."</div>
+          <p class="rv-text">제가 할 수 있을까 걱정을 많이 했어요. 막상 시작해보니 도구 잡는 법부터 하나씩 알려주셔서 따라갈 수 있었습니다. 아직 배우는 중이지만 처음보다 손도 많이 익었고, 자격증까지 도전해보려고 해요.</p>
+          <div class="rv-author"><div class="rv-avatar">🌱</div><div><div class="rv-name">김○○ 수강생</div><div class="rv-meta">비전공 초보 · 자격증 준비</div></div></div>
       </article>
       <article class="rv-card">
-          <div class="rv-headline">"창업을 생각하니까 실견 경험이 왜 중요한지 알겠더라고요."</div>
-          <p class="rv-text">처음에는 자격증 취득이 목표였는데 배우다 보니 나중에 제 미용샵을 운영해보고 싶다는 생각이 들었어요. 실제 샵에서는 매번 다른 강아지를 만나게 되니까 다양한 가정견을 경험해보는 게 중요하다고 느꼈습니다. 자격증 이후에도 실견미용을 계속 연습할 수 있다는 점이 마음에 들었어요.</p>
-          <div class="rv-author"><div class="rv-avatar">🏪</div><div><div class="rv-name">최○○ 수강생</div><div class="rv-meta">자격증 → 실견미용 → 창업 준비</div></div></div>
+          <div class="rv-headline">"자격증 연습할 때랑 실제 강아지를 미용하는 건 정말 다르더라고요."</div>
+          <p class="rv-text">처음 실견수업 들어갔을 때는 강아지가 움직이니까 당황도 많이 했어요. 여러 아이들을 직접 경험하다 보니 조금씩 대처하는 방법도 알게 되고, 왜 취업 전에 실견 경험이 필요한지 알 것 같아요.</p>
+          <div class="rv-author"><div class="rv-avatar">✂️</div><div><div class="rv-name">이○○ 수강생</div><div class="rv-meta">자격증 취득 · 실견미용 과정</div></div></div>
       </article>
       <article class="rv-card">
-          <div class="rv-headline">"아예 처음 시작해서 걱정했는데 생각보다 단계적으로 배울 수 있었어요."</div>
-          <p class="rv-text">애견미용 경험이 전혀 없어서 처음 상담받을 때도 제가 할 수 있을지부터 물어봤어요. 도구 사용법과 기본 자세부터 하나씩 배우니까 생각했던 것보다 어렵지 않게 적응할 수 있었습니다. 직접 해보면서 적성도 확인할 수 있어서 시작 전에 고민했던 시간이 아깝다는 생각도 들었어요.</p>
-          <div class="rv-author"><div class="rv-avatar">🌱</div><div><div class="rv-name">정○○ 수강생</div><div class="rv-meta">비전공 초보 · 자격증 준비</div></div></div>
+          <div class="rv-headline">"처음에는 자격증만 취득하면 바로 취업할 수 있을 거라고 생각했어요."</div>
+          <p class="rv-text">그런데 배우면서 실제 미용샵에서는 다양한 강아지를 다뤄야 한다는 걸 알게 됐습니다. 지금은 자격증 이후에 가정견 실습을 계속하면서 취업 준비를 하고 있어요. 아직 부족하지만 예전보다는 훨씬 자신감이 생겼습니다.</p>
+          <div class="rv-author"><div class="rv-avatar">💼</div><div><div class="rv-name">최○○ 수강생</div><div class="rv-meta">실견미용 · 취업 준비</div></div></div>
       </article>
       <article class="rv-card">
-          <div class="rv-headline">"제 강아지를 직접 관리하고 싶어서 시작했는데 더 배우고 싶어졌어요."</div>
-          <p class="rv-text">처음에는 반려견 위생미용이나 목욕 정도만 직접 해보고 싶어서 시작했습니다. 막상 배우다 보니 가위 사용법이나 얼굴 디자인에도 관심이 생겼고, 제대로 배워보고 싶다는 생각이 들었어요. 집에서 혼자 영상만 보고 할 때보다 직접 피드백을 받을 수 있어서 훨씬 이해하기 쉬웠습니다.</p>
-          <div class="rv-author"><div class="rv-avatar">🐾</div><div><div class="rv-name">윤○○ 수강생</div><div class="rv-meta">반려견 케어 → 전문과정 관심</div></div></div>
+          <div class="rv-headline">"처음부터 창업이 목표였던 건 아니었어요."</div>
+          <p class="rv-text">자격증을 준비하면서 애견미용을 계속 배우다 보니 나중에는 제 샵을 운영해보고 싶다는 생각이 들었습니다. 실제 강아지 미용을 해보니까 견종이나 털 상태에 따라 정말 많이 다르더라고요. 지금은 실견 경험을 더 쌓으면서 창업까지 천천히 준비하고 있습니다.</p>
+          <div class="rv-author"><div class="rv-avatar">🏪</div><div><div class="rv-name">정○○ 수강생</div><div class="rv-meta">자격증 과정 · 창업 준비</div></div></div>
+      </article>
+      <article class="rv-card">
+          <div class="rv-headline">"처음에는 집에서 키우는 강아지를 제가 직접 관리해주고 싶어서 시작했어요."</div>
+          <p class="rv-text">발톱이나 위생미용 정도만 배워볼 생각이었는데 수업을 듣다 보니 얼굴컷이나 가위미용에도 관심이 생겼습니다. 혼자 영상으로 볼 때보다 직접 해보고 피드백을 받으니까 이해가 훨씬 잘 됐어요. 지금은 자격증 과정도 고민하고 있습니다.</p>
+          <div class="rv-author"><div class="rv-avatar">🐾</div><div><div class="rv-name">윤○○ 수강생</div><div class="rv-meta">반려견 케어 · 전문과정 관심</div></div></div>
       </article>
     </div>
   </div>
@@ -1618,6 +1651,17 @@
     <button class="dot"        role="tab" aria-selected="false" data-idx="5" aria-label="후기 6"></button>
   </div>
 </section>
+
+<!-- ── REVIEWS CTA NUDGE ────────────────────────── -->
+<div class="rv-cta-nudge">
+  <div class="wrap">
+    <div class="rv-cta-box fade-up">
+      <div class="rv-cta-title">나에게 맞는 과정도 확인해보세요</div>
+      <p class="rv-cta-sub">자격증부터 실견수업, 취업·창업 준비까지<br class="mobile-break"/>가까운 지점에서 상담받을 수 있습니다.</p>
+      <button class="btn btn-consult btn-full btn-lg" onclick="gtag('event','click_cta',{button:'후기CTA_무료상담'});openModal();" aria-label="무료 상담 + 수강료 확인하기">🎓 무료 상담 + 수강료 확인하기</button>
+    </div>
+  </div>
+</div>
 
 <!-- ── CURRICULUM ────────────────────────────── -->
 <section id="curriculum" aria-labelledby="curr-h">
@@ -1736,6 +1780,71 @@
     </div>
     <a href="/faculty" class="btn btn-primary btn-full btn-lg mt16 fade-up" style="text-decoration:none;" onclick="gtag('event','click_cta',{button:'교수진_전체보기'})">
       👨‍🏫 전체 강사진 보기
+    </a>
+  </div>
+</section>
+
+<!-- ── GUIDE ──────────────────────────────────── -->
+<section id="guide" aria-labelledby="guide-h">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <div class="sec-tag">⭐ 애견미용 정보 가이드</div>
+      <h2 class="t-section sec-title" id="guide-h">궁금한 점, <br class="mobile-break"/>미리 확인해보세요</h2>
+      <div class="divider"></div>
+      <p class="sec-desc">자격증부터 비용, 실견수업, 취업·창업까지<br class="mobile-break"/>애견미용 준비에 필요한 정보를 정리했습니다</p>
+    </div>
+    <div class="guide-grid fade-up" role="list">
+      <a href="/guide/license/" class="guide-card" role="listitem" onclick="gtag('event','click_guide',{card:'license'})">
+        <div class="guide-icon">📜</div>
+        <div class="guide-card-body">
+          <div class="guide-card-title">애견미용 자격증 3급·2급 차이는?</div>
+          <div class="guide-card-sub">자격증</div>
+        </div>
+        <div class="guide-arrow">→</div>
+      </a>
+      <a href="/guide/cost/" class="guide-card" role="listitem" onclick="gtag('event','click_guide',{card:'cost'})">
+        <div class="guide-icon">💰</div>
+        <div class="guide-card-body">
+          <div class="guide-card-title">애견미용학원 비용은 어떻게 결정될까?</div>
+          <div class="guide-card-sub">비용</div>
+        </div>
+        <div class="guide-arrow">→</div>
+      </a>
+      <a href="/guide/real-dog-training/" class="guide-card" role="listitem" onclick="gtag('event','click_guide',{card:'real-dog-training'})">
+        <div class="guide-icon">🐶</div>
+        <div class="guide-card-body">
+          <div class="guide-card-title">자격증 이후 실견미용이 중요한 이유</div>
+          <div class="guide-card-sub">실견</div>
+        </div>
+        <div class="guide-arrow">→</div>
+      </a>
+      <a href="/guide/support/" class="guide-card" role="listitem" onclick="gtag('event','click_guide',{card:'support'})">
+        <div class="guide-icon">🎗️</div>
+        <div class="guide-card-body">
+          <div class="guide-card-title">국비지원과 교육지원은 무엇이 다를까?</div>
+          <div class="guide-card-sub">지원</div>
+        </div>
+        <div class="guide-arrow">→</div>
+      </a>
+      <a href="/guide/employment/" class="guide-card" role="listitem" onclick="gtag('event','click_guide',{card:'employment'})">
+        <div class="guide-icon">💼</div>
+        <div class="guide-card-body">
+          <div class="guide-card-title">애견미용사 취업 전 준비해야 할 것</div>
+          <div class="guide-card-sub">취업</div>
+        </div>
+        <div class="guide-arrow">→</div>
+      </a>
+      <a href="/guide/startup/" class="guide-card" role="listitem" onclick="gtag('event','click_guide',{card:'startup'})">
+        <div class="guide-icon">🏪</div>
+        <div class="guide-card-body">
+          <div class="guide-card-title">애견미용샵 창업은 무엇부터 준비할까?</div>
+          <div class="guide-card-sub">창업</div>
+        </div>
+        <div class="guide-arrow">→</div>
+      </a>
+    </div>
+    <a href="/guide/" class="btn btn-primary btn-full btn-lg mt16 fade-up" style="text-decoration:none;" onclick="gtag('event','click_cta',{button:'가이드_전체보기'})">
+      📖 애견미용 가이드 전체보기 →
     </a>
   </div>
 </section>
@@ -2445,7 +2554,8 @@
               <button class="purpose-chip" data-val="취업"   onclick="togglePurpose(this)" type="button">💼 취업</button>
               <button class="purpose-chip" data-val="창업"   onclick="togglePurpose(this)" type="button">🏪 창업</button>
               <button class="purpose-chip" data-val="취미·반려견케어" onclick="togglePurpose(this)" type="button">🐾 취미·반려견케어</button>
-              <button class="purpose-chip" data-val="중·고등" onclick="togglePurpose(this)" type="button">📚 중·고등</button>
+              <button class="purpose-chip" data-val="중·고등반" onclick="togglePurpose(this)" type="button">📚 중·고등반</button>
+              <button class="purpose-chip" data-val="아직 고민 중" onclick="togglePurpose(this)" type="button">🤔 아직 고민 중</button>
             </div>
           </div>
 
@@ -2493,10 +2603,10 @@
               <input type="checkbox" id="f-agree" style="width:16px;height:16px;flex-shrink:0;margin-top:2px;accent-color:var(--navy);" />
               <span>
                 <strong style="color:var(--text-dk);display:block;margin-bottom:4px;">개인정보 수집 및 이용 동의 <span class="req">*</span></strong>
-                · 수집 항목: 이름, 연락처<br/>
-                · 수집 목적: 교육지원 정보 및 혜택 안내<br/>
+                · 수집 항목: 이름, 연락처, 수강 목적, 희망 교육지역, 문의내용(선택)<br/>
+                · 수집 목적: 애견미용 교육과정, 수강료, 교육지원 및 상담 안내<br/>
                 · 보유 기간: 작성일로부터 1년<br/>
-                위 내용에 동의합니다.
+                개인정보 수집·이용 동의를 거부할 수 있으며, 필수 항목에 대한 동의 거부 시 상담 신청이 제한될 수 있습니다.
               </span>
             </label>
           </div>
