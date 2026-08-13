@@ -38,6 +38,48 @@
   </url>
 
   <url>
+    <loc>https://evaw-pet-grooming.co.kr/guide/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/guide/license/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/guide/cost/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/guide/real-dog-training/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/guide/support/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/guide/employment/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/guide/startup/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://evaw-pet-grooming.co.kr/news/2026-07-28-daejeon-scholarship/</loc>
     <lastmod>2026-07-28</lastmod>
     <changefreq>yearly</changefreq>
