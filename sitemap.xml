@@ -317,4 +317,32 @@
     <priority>0.6</priority>
   </url>
 
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/news/2026-08-20-gumi-comparison/</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/news/2026-08-20-sejong-comparison/</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/news/2026-08-20-suyeong-comparison/</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/news/2026-08-20-yangsan-comparison/</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
 </urlset>
