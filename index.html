@@ -789,7 +789,9 @@
     .faq-item.open .faq-arr { transform:rotate(180deg); background:var(--navy); color:#fff; }
     .faq-a    { max-height:0; overflow:hidden; transition:max-height .35s cubic-bezier(.4,0,.2,1); padding:0 16px; }
     .faq-a-in { padding-bottom:16px; font-size:.85rem; color:var(--text-mid); line-height:1.7; }
-    .faq-item.open .faq-a { max-height:300px; }
+    .faq-guide-link { display:inline-block; margin-top:8px; font-size:.85rem; font-weight:700; color:var(--navy); text-decoration:none; }
+    .faq-guide-link:hover { text-decoration:underline; }
+    .faq-item.open .faq-a { max-height:360px; }
 
     /* ── LOCATION ── */
     #location { background:var(--white); padding:44px 0; }
@@ -1722,7 +1724,7 @@
         <div class="diff-icon"><img src="image/diff2.webp" alt="개별 맞춤 피드백" /></div>
         <div>
           <p class="diff-ttl">개별 맞춤 피드백</p>
-          <p class="t-body mt8">수강생 개인 수준에 맞춘 밀착 지도.<br/>빠르게 실력이 늘어납니다.</p>
+          <p class="t-body mt8">수강생 개인 수준에 맞춘 밀착 지도.<br/>개인별 피드백으로 부족한 부분을 단계적으로 보완합니다.</p>
           <span class="diff-badge">정예 수업</span>
       </article>
       <article class="diff-card fade-up d3" role="listitem" onclick="openCModal('dModal3')" style="cursor:pointer">
@@ -1767,7 +1769,7 @@
       <div class="sec-tag">👨‍🏫 교수진 소개</div>
       <h2 class="t-section sec-title" id="fac-h">전문 강사진과 함께하세요</h2>
       <div class="divider"></div>
-      <p class="sec-sub">빠른 자격증 취득뿐 아니라 실무에서 실력을 높이는 강의를 전문강사와 함께하세요.</p>
+      <p class="sec-sub">자격증 준비뿐 아니라 실무에서 실력을 높이는 강의를 전문강사와 함께하세요.</p>
     </div>
     <div class="faculty-hero fade-up">
       <img src="image/faculty-group.webp" alt="Evaw Pet 전문 강사진 단체사진" class="faculty-hero-img" />
@@ -1879,30 +1881,28 @@
           <span class="net-chip">서면</span>
           <span class="net-chip">창원</span>
           <span class="net-chip">연산</span>
-          <span class="net-chip">덕천</span>
           <span class="net-chip">천안</span>
           <span class="net-chip net-chip-soon">상동</span>
-          <span class="net-chip">광주</span>
-          <span class="net-chip">분당</span>
-          <span class="net-chip">일산</span>
-          <span class="net-chip">대전</span>
-          <span class="net-chip">인천</span>
-          <span class="net-chip">반월당</span>
-          <span class="net-chip">대구</span>
-          <span class="net-chip">신림</span>
-          <span class="net-chip">노원</span>
-          <span class="net-chip">종로</span>
-          <span class="net-chip">부천</span>
-          <span class="net-chip">천호</span>
-          <span class="net-chip">평택</span>
-          <span class="net-chip">수원</span>
-          <span class="net-chip">강남</span>
-          <span class="net-chip">서면</span>
-          <span class="net-chip">창원</span>
-          <span class="net-chip">연산</span>
-          <span class="net-chip">덕천</span>
-          <span class="net-chip">천안</span>
-          <span class="net-chip net-chip-soon">상동</span>
+          <span class="net-chip" aria-hidden="true">광주</span>
+          <span class="net-chip" aria-hidden="true">분당</span>
+          <span class="net-chip" aria-hidden="true">일산</span>
+          <span class="net-chip" aria-hidden="true">대전</span>
+          <span class="net-chip" aria-hidden="true">인천</span>
+          <span class="net-chip" aria-hidden="true">반월당</span>
+          <span class="net-chip" aria-hidden="true">대구</span>
+          <span class="net-chip" aria-hidden="true">신림</span>
+          <span class="net-chip" aria-hidden="true">노원</span>
+          <span class="net-chip" aria-hidden="true">종로</span>
+          <span class="net-chip" aria-hidden="true">부천</span>
+          <span class="net-chip" aria-hidden="true">천호</span>
+          <span class="net-chip" aria-hidden="true">평택</span>
+          <span class="net-chip" aria-hidden="true">수원</span>
+          <span class="net-chip" aria-hidden="true">강남</span>
+          <span class="net-chip" aria-hidden="true">서면</span>
+          <span class="net-chip" aria-hidden="true">창원</span>
+          <span class="net-chip" aria-hidden="true">연산</span>
+          <span class="net-chip" aria-hidden="true">천안</span>
+          <span class="net-chip net-chip-soon" aria-hidden="true">상동</span>
           </div>
         </div>
       </div>
@@ -1945,7 +1945,6 @@
       <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">부산</div><div class="branch-name">서면 애견미용학원</div><div class="branch-addr">부산광역시 부산진구 중앙대로 711 3층</div></div>
       <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">경남</div><div class="branch-name">창원 애견미용학원</div><div class="branch-addr">경상남도 창원시 성산구 원이대로 652 7층</div></div>
       <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">부산</div><div class="branch-name">연산 애견미용학원</div><div class="branch-addr">부산광역시 연제구 월드컵대로 141 동화빌딩 10층</div></div>
-      <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">부산</div><div class="branch-name">덕천 애견미용학원</div><div class="branch-addr">부산광역시 북구 만덕대로 28 4층</div></div>
       <div class="branch-card" onclick="location.href='/branches'" style="cursor:pointer"><div class="branch-region">충남</div><div class="branch-name">천안 애견미용학원</div><div class="branch-addr">충청남도 천안시 동남구 만남로 30 로얄빌딩 5층</div></div>
     </div>
   </div>
@@ -1985,11 +1984,11 @@
       </div>
       <div class="faq-item" role="listitem">
         <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">자격증 취득까지 얼마나 걸리나요?</span><span class="faq-arr">▼</span></button>
-        <div class="faq-a"><div class="faq-a-in">이바우펫 교육과정 기준으로, 수강 빈도와 개인 진도에 따라 달라지며 3급은 약 4~6개월을 예상할 수 있습니다. 자율출석제로 본인의 속도에 맞게 진행할 수 있습니다.</div></div>
+        <div class="faq-a"><div class="faq-a-in">이바우펫 교육과정 기준으로, 수강 빈도와 개인 진도에 따라 달라지며 3급은 약 4~6개월을 예상할 수 있습니다. 자율출석제로 본인의 속도에 맞게 진행할 수 있습니다.<br/><a href="/guide/license/" class="faq-guide-link">애견미용 자격증 3급·2급 차이는? 자세히 보기 →</a></div></div>
       </div>
       <div class="faq-item" role="listitem">
         <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">실견 실습은 어떻게 진행되나요?</span><span class="faq-arr">▼</span></button>
-        <div class="faq-a"><div class="faq-a-in">실제 가정견을 대상으로 실습합니다. 고객 강아지 미용부터 수강생이 직접 데려온 반려견 실습까지 현장특화 반복 실습으로 진행됩니다.</div></div>
+        <div class="faq-a"><div class="faq-a-in">실제 가정견을 대상으로 실습합니다. 고객 강아지 미용부터 수강생이 직접 데려온 반려견 실습까지 현장특화 반복 실습으로 진행됩니다.<br/><a href="/guide/real-dog-training/" class="faq-guide-link">자격증 이후 실견미용이 중요한 이유 자세히 보기 →</a></div></div>
       </div>
       <div class="faq-item" role="listitem">
         <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">직장인·주부도 수강 가능한가요?</span><span class="faq-arr">▼</span></button>
@@ -1997,11 +1996,11 @@
       </div>
       <div class="faq-item" role="listitem">
         <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">수료 후 취업·창업이 가능한가요?</span><span class="faq-arr">▼</span></button>
-        <div class="faq-a"><div class="faq-a-in">수료 이후 취업처 연계 및 창업 컨설팅을 개별 지원합니다. 전국 캠퍼스 네트워크를 활용해 취업·창업을 준비할 수 있도록 관련 정보를 안내합니다.</div></div>
+        <div class="faq-a"><div class="faq-a-in">수료 이후 취업처 연계 및 창업 컨설팅을 개별 지원합니다. 전국 캠퍼스 네트워크를 활용해 취업·창업을 준비할 수 있도록 관련 정보를 안내합니다.<br/><a href="/guide/employment/" class="faq-guide-link">애견미용사 취업 전 준비해야 할 것 자세히 보기 →</a></div></div>
       </div>
       <div class="faq-item" role="listitem">
         <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">수강료는 얼마인가요?</span><span class="faq-arr">▼</span></button>
-        <div class="faq-a"><div class="faq-a-in">과정별로 수강료가 다양하게 구성되어 있습니다. 정확한 금액은 전화(010-3766-1620) 또는 카카오톡으로 문의 주시면 상세히 안내드립니다.</div></div>
+        <div class="faq-a"><div class="faq-a-in">과정별로 수강료가 다양하게 구성되어 있습니다. 정확한 금액은 전화(010-3766-1620) 또는 카카오톡으로 문의 주시면 상세히 안내드립니다.<br/><a href="/guide/cost/" class="faq-guide-link">애견미용학원 비용은 어떻게 결정될까? 자세히 보기 →</a></div></div>
       </div>
       <div class="faq-item" role="listitem">
         <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">온라인으로도 배울 수 있나요?</span><span class="faq-arr">▼</span></button>
@@ -2009,7 +2008,7 @@
       </div>
       <div class="faq-item" role="listitem">
         <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">국비지원과 교육지원의 차이가 뭔가요?</span><span class="faq-arr">▼</span></button>
-        <div class="faq-a"><div class="faq-a-in">국비지원은 정부(고용노동부 등)에서 운영하는 지원사업으로 대상 조건과 예산이 정해져 있습니다. 교육지원은 사단법인 한국유기견구호연맹에서 지원하는 학비 지원·장학 혜택으로, 심사를 통해 선발됩니다. 정확한 대상 조건과 혜택 내용은 전화(010-3766-1620) 또는 카카오톡으로 문의 주시면 상세히 안내드립니다.</div></div>
+        <div class="faq-a"><div class="faq-a-in">국비지원은 정부(고용노동부 등)에서 운영하는 지원사업으로 대상 조건과 예산이 정해져 있습니다. 교육지원은 사단법인 한국유기견구호연맹에서 지원하는 학비 지원·장학 혜택으로, 심사를 통해 선발됩니다. 정확한 대상 조건과 혜택 내용은 전화(010-3766-1620) 또는 카카오톡으로 문의 주시면 상세히 안내드립니다.<br/><a href="/guide/support/" class="faq-guide-link">국비지원과 교육지원은 무엇이 다를까? 자세히 보기 →</a></div></div>
       </div>
       <div class="faq-item" role="listitem">
         <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">지점이 어디에 있나요?</span><span class="faq-arr">▼</span></button>
@@ -2033,7 +2032,7 @@
     <div class="course-sheet-body">
       <div class="course-info-row"><span class="course-info-label">📌 핵심</span><span class="course-info-val">학원 상주견이나 농장견이 아닌<br/>실제 보호자의 가정견으로 진행합니다.</span></div>
       <div class="course-info-row"><span class="course-info-label">💡 특징</span><span class="course-info-val">보호자 상담 → 미용 → 인계까지<br/>실무 전 과정을 직접 경험합니다.</span></div>
-      <div class="course-info-row"><span class="course-info-label">✅ 효과</span><span class="course-info-val">취업 후 현장 적응이 빠르고<br/>다양한 견종 포트폴리오를 쌓을 수 있어요.</span></div>
+      <div class="course-info-row"><span class="course-info-label">✅ 효과</span><span class="course-info-val">다양한 견종과 상황을 경험하며<br/>현장 적응에 필요한 실무 경험과 포트폴리오를 준비할 수 있습니다.</span></div>
       <div class="course-tag-list">
         <span class="course-tag-pill">가정견 실습</span>
         <span class="course-tag-pill">견종 다양</span>
@@ -2057,7 +2056,7 @@
     <div class="course-sheet-body">
       <div class="course-info-row"><span class="course-info-label">📌 핵심</span><span class="course-info-val">수강생 개인의 실력과 목표에 맞춰<br/>강사가 개별로 밀착 지도합니다.</span></div>
       <div class="course-info-row"><span class="course-info-label">💡 특징</span><span class="course-info-val">획일적인 단체 수업이 아닌<br/>나의 속도에 맞는 맞춤 피드백 제공.</span></div>
-      <div class="course-info-row"><span class="course-info-label">✅ 효과</span><span class="course-info-val">실력이 빠르게 늘고<br/>부족한 부분을 정확히 보완할 수 있어요.</span></div>
+      <div class="course-info-row"><span class="course-info-label">✅ 효과</span><span class="course-info-val">개인별 피드백을 통해<br/>부족한 부분을 확인하고 단계적으로 보완할 수 있습니다.</span></div>
       <div class="course-tag-list">
         <span class="course-tag-pill">개별 지도</span>
         <span class="course-tag-pill">맞춤 커리큘럼</span>
