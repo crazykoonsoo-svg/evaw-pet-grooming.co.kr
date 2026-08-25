@@ -422,4 +422,39 @@
     <priority>0.6</priority>
   </url>
 
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/news/2026-08-25-sillim-comparison/</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/news/2026-08-25-icheon-comparison/</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/news/2026-08-25-guwoldong-comparison/</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/news/2026-08-25-songtan-comparison/</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/news/2026-08-25-seosan-comparison/</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
 </urlset>
