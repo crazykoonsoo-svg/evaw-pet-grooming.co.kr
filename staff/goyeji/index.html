@@ -3254,12 +3254,13 @@
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
             access_key: 'b45d09cf-f309-4553-a511-33909841478b',
-            subject: '[Evaw Pet] 새 상담 신청이 도착했습니다',
+            subject: '[Evaw Pet] 고예지 페이지 상담 신청이 도착했습니다',
             성함: name,
             연락처: phone,
             수강목적: selectedPurpose,
             희망지역: region,
-            문의사항: message || '없음'
+            담당자: '고예지',
+            문의사항: `[유입: 고예지 페이지] ` + (message || '없음')
           })
         });
 
@@ -3267,13 +3268,13 @@
         fetch('https://script.google.com/macros/s/AKfycbzzBkQ19GqbtwzB2eI-9_0KEgpimsYdVWttHz_HGz-Ck4wS_X3xXLy_5mO9d8c_MKULZg/exec', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ 성함: name, 연락처: phone, 수강목적: selectedPurpose, 희망지역: region, 문의사항: message || '없음' }),
+          body: JSON.stringify({ 성함: name, 연락처: phone, 수강목적: selectedPurpose, 희망지역: region, 담당자: '고예지', 문의사항: `[유입: 고예지 페이지] ` + (message || '없음') }),
           mode: 'no-cors'
         }).catch(() => {});
 
         if (res.ok) {
           naverCnv("1");
-          ga4('form_submit', `상담신청_${selectedPurpose}_${region}`);
+          ga4('form_submit', `상담신청_${selectedPurpose}_${region}_고예지`);
           document.getElementById('formState').style.display = 'none';
           document.getElementById('successState').style.display = 'block';
           ['f-name','f-phone','f-region','f-message'].forEach(id => document.getElementById(id).value = '');
