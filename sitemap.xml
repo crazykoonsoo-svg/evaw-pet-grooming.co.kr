@@ -760,4 +760,32 @@
     <priority>0.6</priority>
   </url>
 
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/news/2026-09-08-busan-employment-comparison/</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/news/2026-09-08-cheonan-license-comparison/</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/news/2026-09-08-cheongju-startup-comparison/</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/news/2026-09-08-daegu-support-comparison/</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
 </urlset>
