@@ -364,7 +364,7 @@
 
       <h2>수원이바우펫 위치 및 운영시간</h2>
       <div class="art-addr-box">
-        <strong>📍 수원이바우펫 애견미용학원</strong><br/>
+        <strong>📍 <a href="/branches/suwon/">수원이바우펫 애견미용학원</a></strong><br/>
         경기도 수원시 팔달구 덕영대로 905, 아이메카 상가 11층
       </div>
       <p>운영시간은 공식 안내 기준으로 월요일~목요일 오전 11시부터 오후 9시 30분, 토요일 오전 11시부터 오후 3시까지입니다. 지점 일정이나 공휴일에는 변경될 수 있으므로 방문 전 네이버 플레이스를 통해 당일 상담 가능 시간을 확인하는 것이 좋습니다.</p>
@@ -625,8 +625,9 @@
 
   function naverCnv(type) {
     if (typeof wcs !== 'undefined') {
+      wcs_add["wa"] = "s_142bb34fca15";
       var _nasa = {};
-      wcs_add["wa"] = "s_142bb34fca15"; _nasa["cnv"] = wcs.cnv(type, "1");
+      _nasa["cnv"] = wcs.cnv(type, "1");
       wcs_do(_nasa);
     }
   }

@@ -411,12 +411,12 @@
 
       <h2>서면·연산이바우펫 위치</h2>
       <div class="art-addr-box">
-        <strong>📍 서면이바우펫 애견미용학원</strong><br/>
+        <strong>📍 <a href="/branches/seomyeon/">서면이바우펫 애견미용학원</a></strong><br/>
         부산광역시 부산진구 중앙대로 711, 3층<br/>
         🚶 부산 서면역 1번출구 도보 1분 내 위치
       </div>
       <div class="art-addr-box">
-        <strong>📍 연산이바우펫 애견미용학원</strong><br/>
+        <strong>📍 <a href="/branches/yeonsan/">연산이바우펫 애견미용학원</a></strong><br/>
         부산광역시 연제구 월드컵대로 141, 동화빌딩 10층<br/>
         🚶 연산역 17번출구에서 도보 1분 거리
       </div>
@@ -676,8 +676,9 @@
 
   function naverCnv(type) {
     if (typeof wcs !== 'undefined') {
+      wcs_add["wa"] = "s_142bb34fca15";
       var _nasa = {};
-      wcs_add["wa"] = "s_142bb34fca15"; _nasa["cnv"] = wcs.cnv(type, "1");
+      _nasa["cnv"] = wcs.cnv(type, "1");
       wcs_do(_nasa);
     }
   }

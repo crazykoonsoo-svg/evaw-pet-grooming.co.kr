@@ -364,7 +364,7 @@
 
       <h2>대전이바우펫 위치 및 운영시간</h2>
       <div class="art-addr-box">
-        <strong>📍 대전이바우펫 애견미용학원</strong><br/>
+        <strong>📍 <a href="/branches/daejeon/">대전이바우펫 애견미용학원</a></strong><br/>
         대전광역시 서구 대덕대로 182, 10층
       </div>
       <p>은하수네거리 버스정류장과 가깝고, 갤러리아백화점에서도 도보 약 6분 거리로 안내되어 있습니다.</p>
@@ -626,8 +626,9 @@
 
   function naverCnv(type) {
     if (typeof wcs !== 'undefined') {
+      wcs_add["wa"] = "s_142bb34fca15";
       var _nasa = {};
-      wcs_add["wa"] = "s_142bb34fca15"; _nasa["cnv"] = wcs.cnv(type, "1");
+      _nasa["cnv"] = wcs.cnv(type, "1");
       wcs_do(_nasa);
     }
   }

@@ -411,7 +411,7 @@
 
       <h2>대구이바우펫 위치</h2>
       <div class="art-addr-box">
-        <strong>📍 대구이바우펫 애견미용학원</strong><br/>
+        <strong>📍 <a href="/branches/daegu/">대구이바우펫 애견미용학원</a></strong><br/>
         대구광역시 동구 동대구로 525-1, 3층<br/>
         🚶 지하철 동대구역 2번 출구 도보 3분
       </div>
@@ -671,8 +671,9 @@
 
   function naverCnv(type) {
     if (typeof wcs !== 'undefined') {
+      wcs_add["wa"] = "s_142bb34fca15";
       var _nasa = {};
-      wcs_add["wa"] = "s_142bb34fca15"; _nasa["cnv"] = wcs.cnv(type, "1");
+      _nasa["cnv"] = wcs.cnv(type, "1");
       wcs_do(_nasa);
     }
   }

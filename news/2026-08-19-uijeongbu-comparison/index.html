@@ -432,7 +432,7 @@
       <p>의정부에서 노원까지 이동해서 배우는 것이 부담스럽게 느껴질 수 있지만, 장기간 교육을 생각한다면 단순 이동시간뿐 아니라 전체 커리큘럼까지 함께 비교해야 합니다.</p>
 
       <div class="art-addr-box">
-        <strong>📍 노원이바우펫 애견미용학원</strong><br/>
+        <strong>📍 <a href="/branches/nowon/">노원이바우펫 애견미용학원</a></strong><br/>
         서울특별시 노원구 상계로3길 21, 5층 501호<br/>
         🚶 노원역 9번출구 도보 3분거리
       </div>
@@ -736,8 +736,9 @@
 
   function naverCnv(type) {
     if (typeof wcs !== 'undefined') {
+      wcs_add["wa"] = "s_142bb34fca15";
       var _nasa = {};
-      wcs_add["wa"] = "s_142bb34fca15"; _nasa["cnv"] = wcs.cnv(type, "1");
+      _nasa["cnv"] = wcs.cnv(type, "1");
       wcs_do(_nasa);
     }
   }
