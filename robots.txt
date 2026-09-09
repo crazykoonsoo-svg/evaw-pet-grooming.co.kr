@@ -4,4 +4,4 @@ Allow: /
 User-agent: Yeti
 Allow: /
 
-Sitemap: http://evaw-pet-grooming.co.kr/sitemap.xml
+Sitemap: https://evaw-pet-grooming.co.kr/sitemap.xml
