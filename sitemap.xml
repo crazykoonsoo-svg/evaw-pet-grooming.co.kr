@@ -58,6 +58,27 @@
   </url>
 
   <url>
+    <loc>https://evaw-pet-grooming.co.kr/areas/mokdong/</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/areas/namyangju/</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/areas/gimhae/</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
     <loc>https://evaw-pet-grooming.co.kr/branches/sillim/</loc>
     <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
