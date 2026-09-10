@@ -176,16 +176,21 @@
     .step-body .step-desc { font-size:.78rem; color:var(--text-lt); line-height:1.6; }
 
     /* 지역별 안내글 영역 */
-    .area-list { display:flex; flex-direction:column; gap:12px; }
+    .area-list { display:flex; flex-direction:column; gap:14px; }
     .area-card {
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      background:var(--white); border:1px solid var(--gray-2); border-radius:var(--r12);
-      padding:14px 16px; text-decoration:none; transition:var(--tr);
+      display:block; text-decoration:none; color:inherit;
+      background:var(--white); border:1px solid var(--gray-2); border-radius:var(--r16);
+      overflow:hidden; box-shadow:var(--shadow-sm); transition:var(--tr);
     }
-    .area-card:hover { border-color:rgba(201,168,76,.5); background:var(--gold-bg); }
-    .area-card .ac-region { font-size:.88rem; font-weight:800; color:var(--navy); }
-    .area-card .ac-branch { font-size:.74rem; color:var(--text-lt); margin-top:2px; }
-    .area-card .ac-arrow { color:var(--gold); font-weight:800; flex-shrink:0; }
+    .area-card:hover { box-shadow:var(--shadow-md); border-color:rgba(201,168,76,.4); transform:translateY(-4px); }
+    .ac-image { width:100%; aspect-ratio:16/9; object-fit:cover; background:var(--gray-1); display:block; }
+    .ac-content { padding:16px 18px; }
+    .ac-region-row { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:6px; }
+    .area-card .ac-region { font-size:.96rem; font-weight:800; color:var(--navy); }
+    .area-card .ac-branch { font-size:.74rem; color:var(--text-lt); margin-bottom:8px; }
+    .area-card .ac-desc { font-size:.82rem; color:var(--text-mid); line-height:1.7; margin-bottom:12px; }
+    .area-card .ac-footer { display:flex; align-items:center; justify-content:space-between; padding-top:12px; border-top:1px solid var(--gray-2); }
+    .area-card .ac-arrow { font-size:.78rem; font-weight:700; color:var(--navy); flex-shrink:0; }
     .area-empty {
       border:1.5px dashed var(--gray-2); border-radius:var(--r12); padding:28px 20px;
       text-align:center; color:var(--text-lt); font-size:.82rem; line-height:1.7; background:var(--white);
@@ -402,18 +407,32 @@
     ══════════════════════════════════════════ -->
     <div class="area-list" id="areaListBody">
       <a class="area-card" href="/areas/gimpo/">
-        <div>
-          <div class="ac-region">김포</div>
+        <img class="ac-image" src="../image/area-gimpo.webp" alt="김포애견미용학원 국비지원 찾기 전, 내 조건과 맞는 과정인지 확인하세요 - 이바우펫" loading="lazy" />
+        <div class="ac-content">
+          <div class="ac-region-row">
+            <span class="ac-region">김포</span>
+          </div>
           <div class="ac-branch">일산 · 부천 이바우펫 안내</div>
+          <div class="ac-desc">김포애견미용학원 국비지원을 찾고 있다면 지원 대상과 출석 조건, 별도 교육지원과 수업 과정의 차이를 먼저 확인해보세요.</div>
+          <div class="ac-footer">
+            <span></span>
+            <span class="ac-arrow">자세히 보기 →</span>
+          </div>
         </div>
-        <span class="ac-arrow">→</span>
       </a>
       <a class="area-card" href="/areas/cheongju/">
-        <div>
-          <div class="ac-region">청주</div>
+        <img class="ac-image" src="../image/area-cheongju.webp" alt="청주애견미용학원 비용비교, 중요한 것은 전체 교육 범위입니다 - 이바우펫" loading="lazy" />
+        <div class="ac-content">
+          <div class="ac-region-row">
+            <span class="ac-region">청주</span>
+          </div>
           <div class="ac-branch">천안 · 대전 이바우펫 안내</div>
+          <div class="ac-desc">청주애견미용학원 비용을 비교할 때는 수강료뿐 아니라 자격증, 실견수업, 추가 교육 범위까지 함께 살펴보세요.</div>
+          <div class="ac-footer">
+            <span></span>
+            <span class="ac-arrow">자세히 보기 →</span>
+          </div>
         </div>
-        <span class="ac-arrow">→</span>
       </a>
     </div>
 
