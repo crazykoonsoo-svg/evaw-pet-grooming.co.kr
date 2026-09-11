@@ -839,7 +839,7 @@
 
   <url>
     <loc>https://evaw-pet-grooming.co.kr/cases/</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -854,6 +854,34 @@
   <url>
     <loc>https://evaw-pet-grooming.co.kr/cases/kkakkayou-cheonan/</loc>
     <lastmod>2026-09-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/cases/mukgrooming-masan/</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/cases/3jdogs-paju/</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/cases/lunkko-gwangju/</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/cases/kkomkkomdaeng-naeseo/</loc>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
