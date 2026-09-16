@@ -38,7 +38,7 @@
 
   <url>
     <loc>https://evaw-pet-grooming.co.kr/areas/</loc>
-    <lastmod>2026-09-10</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -74,6 +74,27 @@
   <url>
     <loc>https://evaw-pet-grooming.co.kr/areas/gimhae/</loc>
     <lastmod>2026-09-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/areas/suwon-jangan/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/areas/suwon-gwonseon/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/areas/suwon-yeongtong/</loc>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -909,6 +930,13 @@
 
   <url>
     <loc>https://evaw-pet-grooming.co.kr/news/2026-09-16-academy-cost/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/news/2026-09-16-8th-anniversary-event/</loc>
     <lastmod>2026-09-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
