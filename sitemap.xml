@@ -517,7 +517,7 @@
 
   <url>
     <loc>https://evaw-pet-grooming.co.kr/news/2026-08-20-sejong-comparison/</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -559,7 +559,7 @@
 
   <url>
     <loc>https://evaw-pet-grooming.co.kr/news/2026-08-21-chungnam-comparison/</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1111,6 +1111,24 @@
   </url>
   <url>
     <loc>https://evaw-pet-grooming.co.kr/areas/asan-worker/</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/areas/sejong-support/</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/areas/chungnam-worker/</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/areas/chungbuk-career/</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
