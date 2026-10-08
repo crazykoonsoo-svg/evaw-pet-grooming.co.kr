@@ -38,7 +38,7 @@
 
   <url>
     <loc>https://evaw-pet-grooming.co.kr/areas/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -216,7 +216,7 @@
 
   <url>
     <loc>https://evaw-pet-grooming.co.kr/news</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1039,6 +1039,12 @@
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/news/2026-10-08-cheonan-training-recruit/</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
 
   <url>
     <loc>https://evaw-pet-grooming.co.kr/areas/gyeongbuk/</loc>
@@ -1100,6 +1106,12 @@
   <url>
     <loc>https://evaw-pet-grooming.co.kr/areas/dongtan-federation/</loc>
     <lastmod>2026-09-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/areas/asan-worker/</loc>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
