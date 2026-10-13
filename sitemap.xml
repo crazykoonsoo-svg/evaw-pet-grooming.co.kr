@@ -1141,4 +1141,22 @@
     <priority>0.6</priority>
   </url>
 
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/areas/yongin-worker/</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/areas/paju-realdog/</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/areas/hanam-selfcare/</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
