@@ -986,7 +986,7 @@
 
   <url>
     <loc>https://evaw-pet-grooming.co.kr/cases/</loc>
-    <lastmod>2026-09-11</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1001,6 +1001,13 @@
   <url>
     <loc>https://evaw-pet-grooming.co.kr/cases/kkakkayou-cheonan/</loc>
     <lastmod>2026-09-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://evaw-pet-grooming.co.kr/cases/ppeuddaengdaeng-wolgot/</loc>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
