@@ -5,7 +5,7 @@
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="apple-touch-icon" href="favicon.png" />
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>이바우펫 애견미용학원 | 자격증·실습·취업·창업·비용</title>
   <meta name="description" content="전국 20개 직영 캠퍼스 운영. 이바우펫 애견미용학원 - 자격증 3급·2급, 100% 가정견 실견수업, 국비지원·교육지원, 취업·창업까지 한 곳에서 확인하세요" />
   <meta name="keywords" content="애견미용학원, 애견미용자격증, 애견미용국비지원, 애견미용비용, 애견미용취업, 애견미용창업, 애견미용자격증3급, 애견미용자격증2급, 서울애견미용학원, 부산애견미용학원, 대구애견미용학원, 인천애견미용학원, 광주애견미용학원, 대전애견미용학원, 수원애견미용학원, 강남애견미용학원, 노원애견미용학원" />
@@ -919,6 +919,26 @@
     .modal-body   { padding:20px; display:flex; flex-direction:column; gap:14px; }
     .modal-close  { position:absolute; top:16px; right:20px; background:var(--gray-1); border:none; width:30px; height:30px; border-radius:50%; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--text-mid); }
     .modal-header { position:relative; }
+
+
+    /* Keep consultation controls inside the visible mobile viewport. */
+    #modalOverlay, #nearbyOverlay {
+      top:var(--consult-viewport-top, 0px); bottom:auto;
+      height:var(--consult-viewport-height, 100dvh);
+    }
+    #modalOverlay .modal-sheet, #nearbyOverlay .modal-sheet {
+      max-height:calc(100% - 12px); overscroll-behavior:contain;
+      scroll-padding-block:100px 24px;
+    }
+    .modal-header {
+      position:sticky; top:0; z-index:2; background:var(--white);
+      padding-right:68px;
+    }
+    .modal-close { width:44px; height:44px; top:8px; right:12px; }
+    .field-input { scroll-margin-block:100px 24px; }
+    #stickyBar { padding-bottom:calc(14px + env(safe-area-inset-bottom, 0px)); }
+    body { padding-bottom:var(--sticky-bar-space, 100px); }
+    body:has(#modalOverlay.open, #nearbyOverlay.open) #stickyBar { visibility:hidden; pointer-events:none; }
 
     /* form fields */
     .field-label { font-size:.78rem; font-weight:700; color:var(--navy); margin-bottom:6px; display:block; }
@@ -3345,6 +3365,24 @@
       }
     }, { passive: true });
   })();
+
+  // Account for browser chrome, the on-screen keyboard and the home indicator.
+  function syncConsultViewport() {
+    const viewport = window.visualViewport;
+    document.documentElement.style.setProperty('--consult-viewport-height', `${viewport ? viewport.height : window.innerHeight}px`);
+    document.documentElement.style.setProperty('--consult-viewport-top', `${viewport ? viewport.offsetTop : 0}px`);
+    document.documentElement.style.setProperty('--sticky-bar-space', `${document.getElementById('stickyBar').offsetHeight + 16}px`);
+  }
+  syncConsultViewport();
+  window.addEventListener('resize', syncConsultViewport, { passive:true });
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', syncConsultViewport, { passive:true });
+    window.visualViewport.addEventListener('scroll', syncConsultViewport, { passive:true });
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncConsultViewport).observe(document.getElementById('stickyBar'));
+  }
+
   const stickyBar = document.getElementById('stickyBar');
   window.addEventListener('scroll', () => {
     stickyBar.classList.toggle('visible', window.scrollY > 300);
@@ -3521,7 +3559,9 @@
   let selectedPurpose = '';
   let selectedPurposes = [];
 
+  let consultationReturnFocus = null;
   function openModal(course = '') {
+    consultationReturnFocus = document.activeElement;
     beginLead('consultation');
     if (course) document.getElementById('f-course').value = course;
     document.getElementById('modalOverlay').classList.add('open');
@@ -3531,13 +3571,27 @@
     document.getElementById('modalStep1').style.display = 'flex';
     document.getElementById('modalStep2').style.display = 'none';
     clearError(); clearError('form-error-1');
+    document.getElementById('modalSheet').scrollTop = 0;
+    document.querySelector('#modalOverlay .modal-close').focus({preventScroll:true});
     ga4('modal_open', '상담신청 모달');
   }
 
   function closeModal() {
+    if (!document.getElementById('modalOverlay').classList.contains('open')) return;
     document.getElementById('modalOverlay').classList.remove('open');
     document.body.style.overflow = '';
+    if (consultationReturnFocus) consultationReturnFocus.focus({preventScroll:true});
   }
+
+  document.getElementById('modalOverlay').addEventListener('keydown', e => {
+    if (e.key === 'Escape') { e.stopPropagation(); closeModal(); return; }
+    if (e.key !== 'Tab') return;
+    const items = [...e.currentTarget.querySelectorAll('button, a[href], input, select, textarea, summary, [tabindex="0"]')].filter(el => !el.disabled && el.getClientRects().length);
+    const first = items[0], last = items[items.length - 1];
+    if (!first) return;
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
 
   function handleOverlayClick(e) {
     if (e.target === document.getElementById('modalOverlay')) closeModal();
@@ -3588,6 +3642,7 @@
     document.getElementById('modalStep1').style.display = 'none';
     document.getElementById('modalStep2').style.display = 'flex';
     document.getElementById('modalSheet').scrollTop = 0;
+    document.getElementById('f-name').focus({preventScroll:true});
     ga4('modal_step2', '상담신청_STEP2진입');
     trackLead('lead_form_step2', 'consultation');
   }
@@ -3655,6 +3710,8 @@
           trackLead('lead_submit_success', 'consultation');
           document.getElementById('formState').style.display = 'none';
           document.getElementById('successState').style.display = 'block';
+          document.getElementById('modalSheet').scrollTop = 0;
+          document.querySelector('#successState button').focus({preventScroll:true});
           ['f-name','f-phone','f-region','f-message','f-course'].forEach(id => document.getElementById(id).value = '');
           document.querySelectorAll('.purpose-chip').forEach(c => c.classList.remove('selected'));
           selectedPurposes = [];
@@ -3680,7 +3737,8 @@
     document.getElementById('nearby-error').hidden = true;
     document.getElementById('nearbyOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
-    document.getElementById('nearby-name').focus();
+    document.querySelector('#nearbyOverlay .modal-sheet').scrollTop = 0;
+    document.querySelector('#nearbyOverlay .modal-close').focus({preventScroll:true});
   }
   function closeNearbyModal() {
     const overlay = document.getElementById('nearbyOverlay');
@@ -3692,7 +3750,7 @@
   document.getElementById('nearbyOverlay').addEventListener('keydown', e => {
     if (e.key === 'Escape') { e.stopPropagation(); closeNearbyModal(); }
     if (e.key !== 'Tab') return;
-    const items = [...e.currentTarget.querySelectorAll('button,input,summary')].filter(el => !el.disabled && el.getClientRects().length);
+    const items = [...e.currentTarget.querySelectorAll('button,a[href],input,summary')].filter(el => !el.disabled && el.getClientRects().length);
     const first = items[0], last = items[items.length - 1];
     if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
