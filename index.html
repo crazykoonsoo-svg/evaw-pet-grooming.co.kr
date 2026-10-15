@@ -1618,6 +1618,41 @@
     #reviews .rv-context { color:var(--text-mid); font-size:12px; line-height:1.5; font-weight:700; margin-bottom:10px; word-break:keep-all; }
     body > section#network { padding-bottom:24px; }
     body > section#branches { padding-top:24px; }
+
+    /* Right-aligned decorative photos: keep content and card opacity independent. */
+    body > section.section-photo {
+      --photo-top:#fff;
+      --photo-bottom:#fff;
+      position:relative;
+      isolation:isolate;
+      background:linear-gradient(to bottom,var(--photo-top) 0%,#fff 80px,#fff calc(100% - 64px),var(--photo-bottom) 100%);
+    }
+    body > section.section-photo::before {
+      content:"";
+      position:absolute;
+      z-index:-1;
+      pointer-events:none;
+      inset:0 0 auto;
+      height:min(100%,680px);
+      background-image:linear-gradient(to right,rgba(255,255,255,.94) 0%,rgba(255,255,255,.82) 38%,rgba(255,255,255,.55) 72%,rgba(255,255,255,.38) 100%),var(--section-photo);
+      background-position:right center;
+      background-size:cover;
+      background-repeat:no-repeat;
+      -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 80px,#000 70%,transparent 100%);
+      mask-image:linear-gradient(to bottom,transparent 0%,#000 80px,#000 70%,transparent 100%);
+    }
+    body > section#curriculum.section-photo { --photo-top:var(--bg-main); --photo-bottom:var(--bg-sub); }
+    body > section#why.section-photo { --photo-top:var(--bg-sub); }
+    body > section#reviews.section-photo { --photo-bottom:var(--bg-sub); }
+    body > section#faq.section-photo { --photo-bottom:var(--navy); }
+    @media(max-width:767px) {
+      body > section.section-photo::before {
+        height:min(100%,360px);
+        background-image:linear-gradient(to right,rgba(255,255,255,.92),rgba(255,255,255,.76) 55%,rgba(255,255,255,.62)),var(--section-photo);
+        -webkit-mask-image:linear-gradient(to bottom,transparent,#000 48px,#000 58%,transparent);
+        mask-image:linear-gradient(to bottom,transparent,#000 48px,#000 58%,transparent);
+      }
+    }
   </style>
 </head>
 <body>
@@ -1751,7 +1786,7 @@
 </div>
 
 <!-- ── PORTFOLIO ─────────────────────────────── -->
-<section id="curriculum" aria-labelledby="curr-h">
+<section id="curriculum" class="section-photo" style="--section-photo:url('image/section-career-bg.jpg')" aria-labelledby="curr-h">
   <div class="wrap">
     <div class="sec-header fade-up">
       <div class="sec-tag">📚 커리큘럼</div>
@@ -1817,7 +1852,7 @@
 
 
 <!-- ── CURRICULUM ────────────────────────────── -->
-<section id="why" aria-labelledby="why-h">
+<section id="why" class="section-photo" style="--section-photo:url('image/section-about-bg.jpg')" aria-labelledby="why-h">
   <div class="wrap">
     <div class="sec-header fade-up">
       <div class="sec-tag">✨ Evaw Pet만의 차이</div>
@@ -1875,7 +1910,7 @@
 </section>
 
 <!-- ── 비용·일정 요약 ── -->
-<section id="portfolio" aria-labelledby="port-h">
+<section id="portfolio" class="section-photo" style="--section-photo:url('image/section-breeds-bg.jpg')" aria-labelledby="port-h">
   <div class="wrap">
     <div class="sec-header fade-up">
       <div class="sec-tag">📸 수업 현장</div>
@@ -1903,7 +1938,7 @@
 </section>
 
 <!-- ── WHY ──────────────────────────────────── -->
-<section id="reviews" aria-labelledby="rv-h">
+<section id="reviews" class="section-photo" style="--section-photo:url('image/section-reviews-bg.jpg')" aria-labelledby="rv-h">
   <div class="wrap">
     <div class="sec-header fade-up">
       <div class="sec-tag">⭐ 수강생 사례</div>
@@ -2067,7 +2102,7 @@
 
 <!-- ── LOCATION ───────────────────────────────── -->
 <!-- ── 전국 캠퍼스 슬라이더 ──────────────────────── -->
-<section id="guide" aria-labelledby="guide-h">
+<section id="guide" class="section-photo" style="--section-photo:url('image/section-industry-bg.jpg')" aria-labelledby="guide-h">
   <div class="wrap">
     <div class="sec-header fade-up">
       <div class="sec-tag">⭐ 애견미용 정보 가이드</div>
@@ -2485,7 +2520,7 @@
 </div>
 
 <!-- ── FINAL CTA ──────────────────────────────── -->
-<section id="faq" aria-labelledby="faq-h">
+<section id="faq" class="section-photo" style="--section-photo:url('image/section-qna-bg.jpg')" aria-labelledby="faq-h">
   <div class="wrap">
     <div class="sec-header fade-up">
       <div class="sec-tag">❓ 자주 묻는 질문</div>
