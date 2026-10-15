@@ -1602,7 +1602,12 @@
     /* Compact benefit copy within the existing card text column. */
     #why .diff-card > div:not(.diff-icon) { min-width:0; container-type:inline-size; }
     #why .diff-card .t-body { font-size:11px; font-size:clamp(9px,5.3cqi,12px); line-height:1.65; letter-spacing:-.03em; }
-    #guide-h { font-size:clamp(16px,4.3vw,24px); letter-spacing:-.04em; }
+    /* Keep the section heading scale; compact only the guide card copy. */
+    #guide .guide-card-title { font-size:13px; line-height:1.45; word-break:keep-all; overflow-wrap:break-word; }
+    #guide .guide-card-sub { font-size:11px; }
+    @media(max-width:767px) {
+      #guide .guide-card-title { font-size:12px; }
+    }
 </style>
 </head>
 <body>
