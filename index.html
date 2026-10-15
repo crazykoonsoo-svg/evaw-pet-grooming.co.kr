@@ -1544,6 +1544,34 @@
     #enrollment-info .btn { white-space:normal; text-align:center; }
     @media(max-width:900px) { .enrollment-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
     @media(max-width:600px) { .enrollment-grid { grid-template-columns:minmax(0,1fr); } .enrollment-carousel { grid-template-columns:32px minmax(0,1fr) 32px; gap:7px; } .enrollment-arrow { width:32px; height:32px; } .enrollment-card { padding:16px 12px; column-gap:9px; } }
+
+    /* Homepage reading rhythm: preserve compact cards and carousel geometry. */
+    :root { --reading-size:16px; --section-space:48px; --content-gap:14px; }
+    body > section:not(#hero) { padding-top:var(--section-space); padding-bottom:var(--section-space); }
+    .t-section { font-size:26px; line-height:1.4; }
+    .sec-header { text-align:center; }
+    .sec-desc, .t-body, .t-body.mt8, #reviews .rv-text,
+    .faq-a-in, .course-info-val, .news-desc, .guide-desc,
+    .enrollment-note, #finalCta .sub {
+      font-size:var(--reading-size); line-height:1.7;
+      word-break:keep-all; overflow-wrap:anywhere;
+    }
+    .t-body.mt8, #reviews .rv-text, .faq-a-in, .course-sheet-body,
+    .course-info-val, .news-desc, .guide-desc, .local-planning-content { text-align:left; }
+    #why .cards-grid, #guide .guide-grid, #faq .faq-list { gap:var(--content-gap); }
+    body > #curriculum { padding-bottom:24px; }
+    body > #enrollment-info { padding-top:24px; }
+    .course-sheet { max-height:calc(100svh - 40px); overflow-y:auto; }
+    .course-info-val { min-width:0; }
+    .course-cta { white-space:normal; }
+    .faq-item.open .faq-a { max-height:900px; }
+    @media(max-width:767px) { .wrap { padding-left:20px; padding-right:20px; } }
+    @media(min-width:768px) {
+      :root { --reading-size:17px; --section-space:72px; --content-gap:20px; }
+      .t-section { font-size:32px; }
+      body > #curriculum { padding-bottom:32px; }
+      body > #enrollment-info { padding-top:32px; }
+    }
 </style>
 </head>
 <body>
