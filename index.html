@@ -1700,6 +1700,14 @@
       font-weight:600;
       text-shadow:0 1px 4px rgba(0,0,0,.45);
     }
+    @media (max-width:767px) {
+      #reviews .rv-track { padding:0 !important; }
+      #reviews .rv-card {
+        flex:0 0 calc(100% - 40px);
+        min-width:0;
+        max-width:380px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -3309,21 +3317,27 @@
 
     // 앞뒤에 전체 카드 복제 (충분한 버퍼)
     origCards.forEach(c => track.appendChild(c.cloneNode(true)));
-    origCards.forEach(c => track.insertBefore(c.cloneNode(true), track.firstChild));
+    origCards.slice().reverse().forEach(c => track.insertBefore(c.cloneNode(true), track.firstChild));
 
     // 인덱스: 0~total-1 = 앞쪽 클론 / total~2*total-1 = 원본 / 2*total~3*total-1 = 뒷쪽 클론
     let cur = total; // 원본 첫 카드부터 시작
     let locked = false;
     let autoTimer;
 
-    function getW() {
-      return track.querySelectorAll('.rv-card')[0].offsetWidth + 18;
+    function getOffset(idx) {
+      const card = track.children[idx];
+      const cardRect = card.getBoundingClientRect();
+      const trackRect = track.getBoundingClientRect();
+      const inset = window.matchMedia('(max-width:767px)').matches
+        ? (track.parentElement.clientWidth - cardRect.width) / 2
+        : 0;
+      return inset - (cardRect.left - trackRect.left);
     }
 
     function jump(idx) {
       track.style.transition = 'none';
       cur = idx;
-      track.style.transform = `translateX(${-getW() * cur}px)`;
+      track.style.transform = `translateX(${getOffset(cur)}px)`;
       requestAnimationFrame(() => requestAnimationFrame(() => {
         track.style.transition = 'transform .45s cubic-bezier(.4,0,.2,1)';
         locked = false;
@@ -3335,7 +3349,7 @@
       locked = true;
       cur = idx;
       track.style.transition = 'transform .45s cubic-bezier(.4,0,.2,1)';
-      track.style.transform = `translateX(${-getW() * cur}px)`;
+      track.style.transform = `translateX(${getOffset(cur)}px)`;
       updateDots(cur);
     }
 
@@ -3355,6 +3369,8 @@
 
     // 초기 위치
     jump(cur);
+
+    window.addEventListener('resize', () => jump(cur));
 
     // 자동 재생
     function startAuto() {
