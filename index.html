@@ -1493,19 +1493,25 @@
 
     /* 과정 선택 직후 비용·일정 안내 */
     #enrollment-info { background:var(--bg-sub); text-align:center; }
-    .enrollment-grid { display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; overscroll-behavior-x:contain; padding:4px 2px 14px; scrollbar-width:thin; scrollbar-color:var(--gold) transparent; }
-    .enrollment-card { flex:0 0 calc((100% - 28px) / 3); min-width:0; scroll-snap-align:start; background:#fff; border:1px solid var(--gray-2); border-radius:var(--r12); padding:24px 20px; }
-    .enrollment-grid:focus-visible { outline:2px solid var(--gold); outline-offset:4px; }
-    .enrollment-icon { display:flex; align-items:center; justify-content:center; width:48px; height:48px; margin:0 auto 12px; border-radius:50%; background:var(--gold-bg); color:var(--navy); }
-    .enrollment-icon svg { width:26px; height:26px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
-    .enrollment-card h3 { color:var(--navy); font-size:1.05rem; margin-bottom:8px; }
-    .enrollment-card p, .enrollment-note { font-size:.9rem; line-height:1.8; word-break:keep-all; overflow-wrap:anywhere; }
+    .enrollment-carousel { display:grid; grid-template-columns:40px minmax(0,1fr) 40px; align-items:center; gap:12px; }
+    .enrollment-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+    .enrollment-card { min-width:0; display:grid; grid-template-columns:38px minmax(0,1fr); align-content:center; column-gap:12px; background:#fff; border:1px solid var(--gray-2); border-radius:var(--r12); padding:18px 16px; text-align:left; }
+    .enrollment-card[hidden] { display:none; }
+    .enrollment-icon { grid-row:1 / 3; display:flex; align-items:center; justify-content:center; width:38px; height:38px; align-self:center; border-radius:50%; background:var(--gold-bg); color:var(--navy); }
+    .enrollment-icon svg { width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+    .enrollment-card h3 { color:var(--navy); font-size:1rem; margin-bottom:6px; }
+    .enrollment-card p { grid-column:2; font-size:.85rem; line-height:1.65; word-break:keep-all; overflow-wrap:anywhere; }
+    .enrollment-note { font-size:.9rem; line-height:1.8; word-break:keep-all; overflow-wrap:anywhere; }
+    .enrollment-arrow { width:40px; height:40px; display:flex; align-items:center; justify-content:center; border:1px solid var(--gold); border-radius:50%; background:var(--navy); color:#fff; cursor:pointer; }
+    .enrollment-arrow svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .enrollment-arrow:disabled { opacity:.3; cursor:default; }
+    .enrollment-arrow:focus-visible { outline:2px solid var(--gold); outline-offset:3px; }
     .enrollment-note { margin:20px 0 14px; }
     .enrollment-links { display:flex; flex-wrap:wrap; justify-content:center; gap:12px 24px; margin-top:16px; font-size:.85rem; }
     .enrollment-links a { color:var(--navy); text-decoration:underline; text-underline-offset:4px; }
     #enrollment-info .btn { white-space:normal; text-align:center; }
-    @media(max-width:900px) { .enrollment-card { flex-basis:calc((100% - 14px) / 2); } }
-    @media(max-width:600px) { .enrollment-card { flex-basis:86%; padding:22px 18px; } }
+    @media(max-width:900px) { .enrollment-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media(max-width:600px) { .enrollment-grid { grid-template-columns:minmax(0,1fr); } .enrollment-carousel { grid-template-columns:32px minmax(0,1fr) 32px; gap:7px; } .enrollment-arrow { width:32px; height:32px; } .enrollment-card { padding:16px 12px; column-gap:9px; } }
 </style>
 </head>
 <body>
@@ -1771,12 +1777,16 @@
       <h2 class="t-section sec-title" id="enrollment-h">수강 전, 비용과 일정을 확인하세요</h2>
       <div class="divider"></div>
     </div>
-    <div class="enrollment-grid" tabindex="0" role="region" aria-label="수강 비용과 일정 카드 슬라이더">
+    <div class="enrollment-carousel" role="region" aria-label="수강 비용과 일정 카드">
+    <button type="button" class="enrollment-arrow" id="enrollment-prev" aria-label="이전 비용·일정 카드" aria-controls="enrollment-cards" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+    <div class="enrollment-grid" id="enrollment-cards" aria-live="polite">
       <article class="enrollment-card"><div class="enrollment-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg></div><h3>수업·상담 시간</h3><p>월~금 <strong>11:00~21:30</strong><br/>토요일 <strong>11:00~15:00</strong></p></article>
       <article class="enrollment-card"><div class="enrollment-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18m-14 5h3m4 0h3"/></svg></div><h3>출석 방식</h3><p>본인의 일정에 맞춰 수강하는 선택 수업제입니다. 희망 과정의 실습 일정과 출석 방식은 상담으로 확인하세요.</p></article>
       <article class="enrollment-card"><div class="enrollment-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6m-6 5h6m-6 5h4"/></svg></div><h3>교육기간</h3><p>선택 과정과 출석 빈도, 개인 진도에 따라 달라집니다. 목표와 참여 가능한 일정을 기준으로 학습 계획을 안내드립니다.</p></article>
       <article class="enrollment-card"><div class="enrollment-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 4 16 4 16 0V6M4 12v6c0 4 16 4 16 0v-6"/></svg></div><h3>수강료·도구</h3><p>동일 과정 기준 수강료와 도구 제공 조건은 전 지점 공통입니다. 선택 과정의 포함 항목과 별도 비용을 함께 확인하세요.</p></article>
       <article class="enrollment-card"><div class="enrollment-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="3"/><path d="M6 21v-4a6 6 0 0 1 12 0v4M4 6a3 3 0 0 0 0 6m16-6a3 3 0 0 1 0 6M2 20v-3m20 3v-3"/></svg></div><h3>교육지원</h3><p>사단법인 한국유기견구호연맹의 전문가 양성 목적 교육지원입니다. 적용 여부와 혜택은 심사 후 확정됩니다.</p></article>
+    </div>
+    <button type="button" class="enrollment-arrow" id="enrollment-next" aria-label="다음 비용·일정 카드" aria-controls="enrollment-cards"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
     </div>
     <p class="enrollment-note">희망 과정과 출석 가능한 요일·시간을 알려주시면 교육기간과 비용을 함께 안내드립니다.</p>
     <button type="button" class="btn btn-primary btn-full btn-lg" onclick="gtag('event','click_cta',{button:'비용일정_상담신청'});openModal();">내 일정에 맞는 과정·비용 상담 신청</button>
@@ -3334,6 +3344,28 @@
         btn.disabled = false;
       }
     }
+
+  /* 비용·일정: 화살표로 한 카드씩 전환 */
+  (() => {
+    const cards = [...document.querySelectorAll('.enrollment-card')];
+    const prev = document.getElementById('enrollment-prev');
+    const next = document.getElementById('enrollment-next');
+    const mobile = window.matchMedia('(max-width:600px)');
+    const tablet = window.matchMedia('(max-width:900px)');
+    let start = 0;
+    function render() {
+      const count = mobile.matches ? 1 : tablet.matches ? 2 : 3;
+      start = Math.max(0, Math.min(start, cards.length - count));
+      cards.forEach((card, i) => { card.hidden = i < start || i >= start + count; });
+      prev.disabled = start === 0;
+      next.disabled = start >= cards.length - count;
+    }
+    prev.addEventListener('click', () => { start--; render(); });
+    next.addEventListener('click', () => { start++; render(); });
+    mobile.addEventListener('change', render);
+    tablet.addEventListener('change', render);
+    render();
+  })();
 
   /* ESC 닫기 */
   document.addEventListener('keydown', e => {
