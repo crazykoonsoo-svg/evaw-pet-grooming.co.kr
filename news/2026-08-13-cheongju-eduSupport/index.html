@@ -492,13 +492,14 @@
         </div>
         <div style="background:var(--gray-1);border-radius:var(--r12);padding:14px;font-size:.78rem;color:var(--text-lt);line-height:1.8;">
           <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;">
-            <input type="checkbox" id="f-agree" style="width:16px;height:16px;flex-shrink:0;margin-top:2px;accent-color:var(--navy);" />
+            <input type="checkbox" id="f-agree" checked style="width:16px;height:16px;flex-shrink:0;margin-top:2px;accent-color:var(--navy);" />
             <span>
               <strong style="color:var(--text-dk);display:block;margin-bottom:4px;">개인정보 수집 및 이용 동의 <span class="req">*</span></strong>
-              · 수집 항목: 이름, 연락처<br/>
-              · 수집 목적: 교육지원 정보 및 혜택 안내<br/>
+              · 필수 수집 항목: 이름, 연락처, 수강 목적, 희망 교육지역<br/>
+                · 선택 수집 항목: 문의내용<br/>
+              · 이용 목적: 애견미용 교육과정·수강료·교육지원 상담 및 문의 응대<br/>
               · 보유 기간: 작성일로부터 1년<br/>
-              위 내용에 동의합니다.
+              개인정보 수집·이용에 동의하지 않을 수 있습니다. 필수 항목에 동의하지 않으면 온라인 상담 신청이 제한되며, 선택 항목을 입력하지 않아도 신청할 수 있습니다.
             </span>
           </label>
         </div>
@@ -600,7 +601,7 @@
         ['f-name','f-phone','f-message'].forEach(id => document.getElementById(id).value = '');
         document.querySelectorAll('.purpose-chip').forEach(c => c.classList.remove('selected'));
         selectedPurposes = [];
-        document.getElementById('f-agree').checked = false;
+        document.getElementById('f-agree').checked = true;
         selectedPurpose = '';
       } else {
         showError('전송에 실패했습니다. 다시 시도해 주세요.');
