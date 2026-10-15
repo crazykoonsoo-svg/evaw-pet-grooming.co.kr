@@ -1481,6 +1481,16 @@
     .local-planning-content ul {padding-left:22px;list-style:disc;}
     .local-planning-content a {text-decoration:underline;text-underline-offset:4px;color:var(--navy);}
     @media(max-width:768px) {.field-input {font-size:16px;}}
+
+    /* Preserve the existing hero design; show explanation before banners. */
+    #hero .hero-top-row { order:1; }
+    #hero .hero-mobile-gallery { order:2; margin-top:24px; margin-bottom:0; }
+    #hero .hero-bottom { order:3; }
+    .hero-primary-actions { display:grid; grid-template-columns:minmax(0,1.7fr) minmax(0,1fr); gap:8px; }
+    .hero-branch-link { border:1px solid var(--navy); color:var(--navy); background:transparent; padding:12px 8px; font-size:.9rem; }
+    @media(max-width:480px) {
+      .hero-primary-actions { grid-template-columns:1fr; }
+    }
 </style>
 </head>
 <body>
@@ -1527,14 +1537,6 @@
 
   <div class="hero-content">
 
-    <!-- 상단: 배너 이미지 갤러리 -->
-    <div class="hero-mobile-gallery" role="region" aria-label="이바우펫 프로그램 안내 이미지 갤러리 (클릭하면 확대됩니다)">
-      <img src="image/hero-banner1.webp" class="hmg-slide" alt="애견미용적성파악 클래스" onclick="this.classList.toggle('hmg-full')" />
-      <img src="image/hero-banner2.webp" class="hmg-slide" alt="애견미용자격증취득 보장반" onclick="this.classList.toggle('hmg-full')" />
-      <img src="image/hero-banner3.webp" class="hmg-slide" alt="애견미용펫미용" onclick="this.classList.toggle('hmg-full')" />
-      <img src="image/hero-banner4.webp" class="hmg-slide" alt="애견미용종합반" onclick="this.classList.toggle('hmg-full')" />
-    </div>
-
     <div class="hero-top-row">
       <!-- 왼쪽: 텍스트 + CTA -->
       <div class="hero-left">
@@ -1547,9 +1549,12 @@
         <p class="hero-sub">전국 19개 직영 캠퍼스에서 <br class="mobile-break"/>수강과정·교육지원 가능 여부를 확인해보세요.</p>
 
         <div class="hero-cta">
+          <div class="hero-primary-actions">
           <button class="btn btn-consult btn-full btn-lg" onclick="gtag('event','click_cta',{button:'교육비지원조회'});openModal();" aria-label="무료 상담 신청">
             🎓 수강료 무료 상담 신청
           </button>
+          <a href="/branches/" class="btn hero-branch-link" onclick="gtag('event','click_cta',{button:'가까운지점_hero'})">📍 가까운 지점 보기</a>
+          </div>
           <div class="row3">
             <button class="btn btn-gold" onclick="gtag('event','click_cta',{button:'전화상담'});showPhone();" aria-label="전화 상담">📞 전화상담</button>
             <a href="http://pf.kakao.com/_xaNjrn/chat" class="btn btn-kakao" target="_blank" rel="noopener" aria-label="카카오톡 문의" onclick="gtag('event','click_cta',{button:'카톡문의'})">💬 카톡문의</a>
@@ -1574,6 +1579,14 @@
         <img src="image/hero-bg4.webp" class="hero-slide-pc" alt="" />
         <img src="image/hero-bg5.webp" class="hero-slide-pc" alt="" />
       </div>
+    </div>
+
+    <!-- 핵심 설명 다음: 배너 이미지 갤러리 -->
+    <div class="hero-mobile-gallery" role="region" aria-label="이바우펫 프로그램 안내 이미지 갤러리 (클릭하면 확대됩니다)">
+      <img src="image/hero-banner1.webp" class="hmg-slide" alt="애견미용적성파악 클래스" onclick="this.classList.toggle('hmg-full')" />
+      <img src="image/hero-banner2.webp" class="hmg-slide" alt="애견미용자격증취득 보장반" onclick="this.classList.toggle('hmg-full')" />
+      <img src="image/hero-banner3.webp" class="hmg-slide" alt="애견미용펫미용" onclick="this.classList.toggle('hmg-full')" />
+      <img src="image/hero-banner4.webp" class="hmg-slide" alt="애견미용종합반" onclick="this.classList.toggle('hmg-full')" />
     </div>
 
     <!-- 하단: 풀와이드 (과목카드) -->
