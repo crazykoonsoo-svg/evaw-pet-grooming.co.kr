@@ -1708,6 +1708,9 @@
         max-width:380px;
       }
     }
+    #branches .branch-slider { touch-action:pan-y; cursor:grab; }
+    #branches .branch-slider.is-dragging { cursor:grabbing; }
+    #branches .branch-card { user-select:none; -webkit-user-drag:none; }
   </style>
 </head>
 <body>
@@ -2163,7 +2166,7 @@
       <div class="sec-tag">⭐ 애견미용 정보 가이드</div>
       <h2 class="t-section sec-title" id="guide-h">궁금한 점, <br class="mobile-break"/>미리 확인해보세요</h2>
       <div class="divider"></div>
-      <p class="sec-desc">자격증부터 비용, 실견수업, 취업·창업까지<br class="mobile-break"/>애견미용 준비에 필요한 정보를 정리했습니다</p>
+      <p class="sec-desc">자격증부터 비용, 실견수업, 취업·창업까지<br/>애견미용 준비에 필요한 정보를 정리했습니다</p>
     </div>
     <div class="guide-grid fade-up" role="list">
       <a href="/guide/license/" class="guide-card" role="listitem" onclick="gtag('event','click_guide',{card:'license'})">
@@ -3072,43 +3075,68 @@
     setTimeout(type, 800);
   })();
 
-  /* BRANCH MARQUEE - 흐르는 무한 루프 */
+  /* BRANCH MARQUEE - automatic movement with touch and mouse dragging */
   (function() {
     const wrap = document.querySelector('.branch-slider');
     const track = document.getElementById('branchTrack');
     if (!track || !wrap) return;
-
-    const origCards = Array.from(track.children);
-    const total = origCards.length;
-    origCards.forEach(el => track.appendChild(el.cloneNode(true)));
-
-    let offset = 0;
-    let paused = false;
-    const speed = 0.4;
-
-    function trackSpan() {
-      const style = getComputedStyle(track);
-      const gap = parseFloat(style.gap) || 0;
-      let span = 0;
-      for (let i = 0; i < total; i++) span += track.children[i].getBoundingClientRect().width + gap;
-      return span;
+    const originals = Array.from(track.children);
+    originals.forEach(el => track.appendChild(el.cloneNode(true)));
+    track.querySelectorAll('a').forEach(el => el.draggable = false);
+    let offset = 0, span = 0, pointer = null, startX = 0, startOffset = 0;
+    let hovered = false, moved = false, lastTime = 0;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    function measure() {
+      span = track.children[originals.length].getBoundingClientRect().left
+        - track.children[0].getBoundingClientRect().left;
     }
-
-    function tick() {
-      if (!paused) {
-        offset += speed;
-        const singleSetWidth = trackSpan();
-        if (offset >= singleSetWidth) offset -= singleSetWidth;
-        track.style.transform = `translateX(${-offset}px)`;
+    function render(value) {
+      if (!span) return;
+      offset = ((value % span) + span) % span;
+      track.style.transform = `translateX(${-offset}px)`;
+    }
+    measure();
+    window.addEventListener('resize', () => { measure(); render(offset); });
+    function tick(time) {
+      const elapsed = lastTime ? Math.min(time - lastTime, 50) : 0;
+      lastTime = time;
+      if (pointer === null && !hovered && !reducedMotion.matches && !wrap.contains(document.activeElement)) {
+        render(offset + elapsed * .024);
       }
       requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
-
-    wrap.addEventListener('touchstart', () => { paused = true; }, { passive: true });
-    wrap.addEventListener('touchend', () => { paused = false; }, { passive: true });
-    wrap.addEventListener('mouseenter', () => { paused = true; });
-    wrap.addEventListener('mouseleave', () => { paused = false; });
+    wrap.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') hovered = true; });
+    wrap.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') hovered = false; });
+    wrap.addEventListener('pointerdown', e => {
+      if (!e.isPrimary || e.button !== 0) return;
+      pointer = e.pointerId;
+      startX = e.clientX;
+      startOffset = offset;
+      moved = false;
+    });
+    window.addEventListener('pointermove', e => {
+      if (e.pointerId !== pointer) return;
+      const dx = e.clientX - startX;
+      if (!moved && Math.abs(dx) > 6) {
+        moved = true;
+        wrap.setPointerCapture(pointer);
+        wrap.classList.add('is-dragging');
+      }
+      if (moved) render(startOffset - dx);
+    });
+    function endDrag(e) {
+      if (e.pointerId !== pointer) return;
+      if (wrap.hasPointerCapture(pointer)) wrap.releasePointerCapture(pointer);
+      pointer = null;
+      wrap.classList.remove('is-dragging');
+    }
+    window.addEventListener('pointerup', endDrag);
+    window.addEventListener('pointercancel', endDrag);
+    wrap.addEventListener('click', e => {
+      if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; }
+    }, true);
+    wrap.addEventListener('dragstart', e => e.preventDefault());
   })();
 
   /* PORTFOLIO MARQUEE - 흐르는 무한 루프 + 중앙 확대 + 스와이프로 넘기기 */
