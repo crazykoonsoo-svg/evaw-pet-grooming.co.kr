@@ -1572,6 +1572,32 @@
       body > section#curriculum { padding-bottom:32px; }
       body > section#enrollment-info { padding-top:32px; }
     }
+
+    /* Responsive text sizing: short labels stay on one line. */
+    .t-section { font-size:clamp(18px,5.2vw,28px); letter-spacing:-.04em; }
+    .t-section .mobile-break { display:none; }
+    #finalCta .t-section { font-size:clamp(13px,3.8vw,28px); }
+    .curr-left, .curr-left > div:last-child { min-width:0; }
+    .curr-name { font-size:clamp(13px,3.5vw,15px); white-space:nowrap; }
+    .curr-sub { font-size:12px; word-break:keep-all; }
+    .enrollment-card h3 { font-size:14px; white-space:nowrap; }
+    .diff-ttl { font-size:14px; word-break:keep-all; }
+    .btn, .btn-lg { font-size:clamp(12px,3.4vw,15px); }
+    #enrollment-info .btn, .course-cta { font-size:clamp(12px,3.4vw,15px); white-space:nowrap; }
+    .course-cta { padding-left:8px; padding-right:8px; }
+    .sec-desc, .t-body, .t-body.mt8, #reviews .rv-text,
+    .faq-a-in, .course-info-val, .news-desc, .guide-desc,
+    .enrollment-note, #finalCta .sub { font-size:15px; word-break:keep-all; overflow-wrap:break-word; }
+    @media(min-width:768px) {
+      .sec-desc, .t-body, .t-body.mt8, #reviews .rv-text,
+      .faq-a-in, .course-info-val, .news-desc, .guide-desc,
+      .enrollment-note, #finalCta .sub { font-size:16px; }
+    }
+    @media(max-width:767px) {
+      .hero-title em { font-size:clamp(16px,4.5vw,24px); white-space:nowrap; }
+      .sec-desc .mobile-break { display:none; }
+      .enrollment-note, #finalCta .sub { font-size:14px; }
+    }
 </style>
 </head>
 <body>
