@@ -1734,6 +1734,7 @@
           <button class="btn btn-consult btn-full btn-lg" onclick="gtag('event','click_cta',{button:'교육비지원조회'});openModal();" aria-label="무료 상담 신청">
             🎓 수강료 무료 상담 신청
           </button>
+          <button type="button" class="btn hero-branch-link" onclick="ga4('click_cta','가까운지점_hero');openNearbyModal();">📍 가까운 지점 문의하기</button>
           <div class="row3">
             <button class="btn btn-gold" onclick="gtag('event','click_cta',{button:'전화상담'});showPhone();" aria-label="전화 상담">📞 전화상담</button>
             <a href="https://open.kakao.com/o/scvkaNKi" class="btn btn-kakao" target="_blank" rel="noopener" aria-label="카카오톡 문의" onclick="gtag('event','click_cta',{button:'카톡문의'})">💬 카톡문의</a>
@@ -2738,6 +2739,28 @@
 <!-- ══════════════════════════════════════════════
      CONSULTATION MODAL
 ═══════════════════════════════════════════════ -->
+<div id="nearbyOverlay" role="dialog" aria-modal="true" aria-labelledby="nearby-title" onclick="if(event.target===this)closeNearbyModal();">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div class="modal-title" id="nearby-title">📍 가까운 지점 문의</div>
+      <button type="button" class="modal-close" onclick="closeNearbyModal()" aria-label="닫기">✕</button>
+    </div>
+    <form class="modal-body" id="nearby-form" onsubmit="submitNearbyForm(event)" novalidate>
+      <div><label class="field-label" for="nearby-name">성함 <span class="req">*</span></label><input class="field-input" id="nearby-name" name="name" autocomplete="name" placeholder="성함을 입력해 주세요" required /></div>
+      <div><label class="field-label" for="nearby-phone">연락처 <span class="req">*</span></label><input class="field-input" id="nearby-phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="010-0000-0000" maxlength="13" oninput="this.value=this.value.replace(/\D/g,'').slice(0,11).replace(/^(\d{3})(\d{1,4})?(\d{1,4})?$/,(_,a,b,c)=>[a,b,c].filter(Boolean).join('-'))" required /></div>
+      <div><label class="field-label" for="nearby-region">희망지역 <span class="req">*</span></label><input class="field-input" id="nearby-region" name="region" placeholder="예: 부천 상동, 대전 유성구" required /></div>
+      <div style="font-size:.78rem;color:var(--text-lt);line-height:1.7;">
+        <label style="display:flex;gap:8px;align-items:center;"><input type="checkbox" id="nearby-agree" checked required style="accent-color:var(--navy);" /> 개인정보 수집 및 이용 동의 (필수)</label>
+        <details style="margin-top:6px;"><summary style="cursor:pointer;">개인정보 수집·이용 안내</summary><p>수집 항목: 성함, 연락처, 희망지역<br/>이용 목적: 가까운 지점 안내 및 문의 응대<br/>보유 기간: 작성일로부터 1년<br/>동의를 거부할 수 있으며, 동의하지 않으면 온라인 문의 신청이 제한됩니다.</p></details>
+      </div>
+      <p id="nearby-error" role="alert" hidden style="color:#c0395d;font-size:.82rem;"></p>
+      <button class="btn btn-consult btn-full btn-lg" id="nearby-submit" type="submit">가까운 지점 문의하기</button>
+    </form>
+    <div id="nearby-success" hidden style="padding:28px 20px;text-align:center;" role="status"><div class="success-title">문의가 접수되었습니다.</div><p class="success-desc">담당자가 남겨주신 연락처로 가까운 지점을 안내드립니다.</p><button type="button" class="btn btn-primary btn-full" onclick="closeNearbyModal()">닫기</button></div>
+  </div>
+</div>
+
 <div id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" onclick="handleOverlayClick(event)">
   <div class="modal-sheet" id="modalSheet">
     <div class="modal-handle"></div>
@@ -3552,6 +3575,61 @@
         btn.disabled = false;
       }
     }
+
+  let nearbyReturnFocus = null;
+  function openNearbyModal() {
+    nearbyReturnFocus = document.activeElement;
+    document.getElementById('nearby-form').style.display = '';
+    document.getElementById('nearby-success').hidden = true;
+    document.getElementById('nearby-error').hidden = true;
+    document.getElementById('nearbyOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('nearby-name').focus();
+  }
+  function closeNearbyModal() {
+    const overlay = document.getElementById('nearbyOverlay');
+    if (!overlay.classList.contains('open')) return;
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    if (nearbyReturnFocus) nearbyReturnFocus.focus();
+  }
+  document.getElementById('nearbyOverlay').addEventListener('keydown', e => {
+    if (e.key === 'Escape') { e.stopPropagation(); closeNearbyModal(); }
+    if (e.key !== 'Tab') return;
+    const items = [...e.currentTarget.querySelectorAll('button,input,summary')].filter(el => !el.disabled && el.getClientRects().length);
+    const first = items[0], last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+  async function submitNearbyForm(event) {
+    event.preventDefault();
+    const btn = document.getElementById('nearby-submit');
+    if (btn.disabled) return;
+    const name = document.getElementById('nearby-name').value.trim();
+    const phone = document.getElementById('nearby-phone').value.trim();
+    const region = document.getElementById('nearby-region').value.trim();
+    const error = document.getElementById('nearby-error');
+    error.hidden = true;
+    function fail(message, id) { error.textContent = message; error.hidden = false; if (id) document.getElementById(id).focus(); }
+    if (!name) return fail('성함을 입력해 주세요.', 'nearby-name');
+    if (!/^[0-9+() -]+$/.test(phone) || !/^\d{9,11}$/.test(phone.replace(/\D/g,''))) return fail('연락처를 올바르게 입력해 주세요.', 'nearby-phone');
+    if (!region) return fail('희망지역을 입력해 주세요.', 'nearby-region');
+    if (!document.getElementById('nearby-agree').checked) return fail('개인정보 수집 및 이용에 동의해 주세요.', 'nearby-agree');
+    btn.disabled = true; btn.textContent = '전송 중...';
+    const inquiry = {성함:name, 연락처:phone, 수강목적:'가까운 지점 문의', 희망지역:region, 담당자:'한수미나', 문의사항:'[유입: 한수미나 페이지] 가까운 지점 안내 요청'};
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify({access_key:'b45d09cf-f309-4553-a511-33909841478b',subject:'[Evaw Pet] 한수미나 페이지 가까운 지점 문의가 도착했습니다',...inquiry})});
+      const result = await response.json();
+      if (!response.ok || !result.success) throw new Error('submit failed');
+      fetch('https://script.google.com/macros/s/AKfycbzzBkQ19GqbtwzB2eI-9_0KEgpimsYdVWttHz_HGz-Ck4wS_X3xXLy_5mO9d8c_MKULZg/exec', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(inquiry),mode:'no-cors'}).catch(() => {});
+      document.getElementById('nearby-form').reset();
+      document.getElementById('nearby-form').style.display = 'none';
+      document.getElementById('nearby-success').hidden = false;
+      document.querySelector('#nearby-success button').focus();
+      naverCnv('1'); ga4('form_submit','가까운지점_문의_한수미나');
+    } catch (err) { fail('전송하지 못했습니다. 잠시 후 다시 시도해 주세요.'); }
+    finally { btn.disabled = false; btn.textContent = '가까운 지점 문의하기'; }
+  }
 
   /* ESC 닫기 */
   document.addEventListener('keydown', e => {
