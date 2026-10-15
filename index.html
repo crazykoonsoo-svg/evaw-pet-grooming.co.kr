@@ -1614,6 +1614,10 @@
     #reviews .rv-details summary::-webkit-details-marker { display:none; }
     #reviews .rv-details summary:focus-visible { outline:2px solid var(--gold); outline-offset:3px; border-radius:4px; }
     #reviews .rv-details .rv-text { margin:8px 0 0; }
+      /* Keep related decisions together using the existing visual style. */
+    #reviews .rv-context { color:var(--text-mid); font-size:12px; line-height:1.5; font-weight:700; margin-bottom:10px; word-break:keep-all; }
+    body > section#network { padding-bottom:24px; }
+    body > section#branches { padding-top:24px; }
   </style>
 </head>
 <body>
@@ -1676,7 +1680,7 @@
           <button class="btn btn-consult btn-full btn-lg" onclick="gtag('event','click_cta',{button:'교육비지원조회'});openModal();" aria-label="무료 상담 신청">
             🎓 수강료 무료 상담 신청
           </button>
-          <button type="button" class="btn hero-branch-link" onclick="ga4('click_cta','가까운지점_hero');openNearbyModal();">📍 가까운 지점 보기</button>
+          <button type="button" class="btn hero-branch-link" onclick="ga4('click_cta','가까운지점_hero');openNearbyModal();">📍 가까운 지점 문의하기</button>
           </div>
           <div class="row3">
             <button class="btn btn-gold" onclick="gtag('event','click_cta',{button:'전화상담'});showPhone();" aria-label="전화 상담">📞 전화상담</button>
@@ -1747,91 +1751,6 @@
 </div>
 
 <!-- ── PORTFOLIO ─────────────────────────────── -->
-<section id="portfolio" aria-labelledby="port-h">
-  <div class="wrap">
-    <div class="sec-header fade-up">
-      <div class="sec-tag">📸 수업 현장</div>
-      <h2 class="t-section sec-title" id="port-h">수강생들의 <br class="mobile-break"/>실제 수업 모습</h2>
-      <div class="divider"></div>
-      <p class="sec-desc">실제 가정견으로 배우는 현장을 확인하세요</p>
-    </div>
-    <div class="port-marquee-wrap fade-up" role="region" aria-label="수업 현장 사진">
-      <div class="port-mq-track" id="portTrack">
-        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-01.webp" alt="Evaw Pet 수업 현장 사진 1" /></div>
-        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-02.webp" alt="Evaw Pet 수업 현장 사진 2" /></div>
-        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-03.webp" alt="Evaw Pet 수업 현장 사진 3" /></div>
-        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-04.webp" alt="Evaw Pet 수업 현장 사진 4" /></div>
-        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-05.webp" alt="Evaw Pet 수업 현장 사진 5" /></div>
-        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-06.webp" alt="Evaw Pet 수업 현장 사진 6" /></div>
-        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-07.webp" alt="Evaw Pet 수업 현장 사진 7" /></div>
-        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-08.webp" alt="Evaw Pet 수업 현장 사진 8" /></div>
-        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-09.webp" alt="Evaw Pet 수업 현장 사진 9" /></div>
-        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-10.webp" alt="Evaw Pet 수업 현장 사진 10" /></div>
-        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-11.webp" alt="Evaw Pet 수업 현장 사진 11" /></div>
-        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-12.webp" alt="Evaw Pet 수업 현장 사진 12" /></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── REVIEWS ───────────────────────────────── -->
-<section id="reviews" aria-labelledby="rv-h">
-  <div class="wrap">
-    <div class="sec-header fade-up">
-      <div class="sec-tag">⭐ 수강생 사례</div>
-      <h2 class="t-section sec-title" id="rv-h">수강생들의 <br class="mobile-break"/>생생한 사례</h2>
-      <div class="divider"></div>
-    </div>
-  </div>
-  <div class="rv-slider" role="region" aria-label="수강생 사례 슬라이더">
-    <div class="rv-track" id="rvTrack" style="padding:0 20px;">
-      <article class="rv-card">
-          <div class="rv-headline">"회사 다니면서 배울 수 있을지가 제일 걱정됐어요."</div>
-          <details class="rv-details"><summary>후기 더보기</summary><p class="rv-text">퇴근하고 수업을 듣다 보니 처음에는 체력적으로 조금 힘들기도 했는데, 제가 가능한 시간에 맞춰 꾸준히 다닐 수 있어서 생각보다 잘 이어가고 있어요. 처음에는 가위 잡는 것도 어색했는데 지금은 자격증 준비하면서 실견수업까지 해보고 있습니다.</p></details>
-          <div class="rv-author"><div class="rv-avatar">👔</div><div><div class="rv-name">박○○ 수강생</div><div class="rv-meta">직장 병행 · 자격증 준비·실견 실습</div></div></div>
-      </article>
-      <article class="rv-card">
-          <div class="rv-headline">"강아지를 좋아하긴 했지만 미용은 한 번도 해본 적이 없어서 걱정을 많이 했어요."</div>
-          <details class="rv-details"><summary>후기 더보기</summary><p class="rv-text">제가 할 수 있을까 걱정을 많이 했어요. 막상 시작해보니 도구 잡는 법부터 하나씩 알려주셔서 따라갈 수 있었습니다. 아직 배우는 중이지만 처음보다 손도 많이 익었고, 자격증까지 도전해보려고 해요.</p></details>
-          <div class="rv-author"><div class="rv-avatar">🌱</div><div><div class="rv-name">김○○ 수강생</div><div class="rv-meta">미용 경험 없이 시작 · 기초 학습 중</div></div></div>
-      </article>
-      <article class="rv-card">
-          <div class="rv-headline">"자격증 연습할 때랑 실제 강아지를 미용하는 건 정말 다르더라고요."</div>
-          <details class="rv-details"><summary>후기 더보기</summary><p class="rv-text">처음 실견수업 들어갔을 때는 강아지가 움직이니까 당황도 많이 했어요. 여러 아이들을 직접 경험하다 보니 조금씩 대처하는 방법도 알게 되고, 왜 취업 전에 실견 경험이 필요한지 알 것 같아요.</p></details>
-          <div class="rv-author"><div class="rv-avatar">✂️</div><div><div class="rv-name">이○○ 수강생</div><div class="rv-meta">자격증 취득 · 실견미용 과정</div></div></div>
-      </article>
-      <article class="rv-card">
-          <div class="rv-headline">"처음에는 자격증만 취득하면 바로 취업할 수 있을 거라고 생각했어요."</div>
-          <details class="rv-details"><summary>후기 더보기</summary><p class="rv-text">그런데 배우면서 실제 미용샵에서는 다양한 강아지를 다뤄야 한다는 걸 알게 됐습니다. 지금은 자격증 이후에 가정견 실습을 계속하면서 취업 준비를 하고 있어요. 아직 부족하지만 예전보다는 훨씬 자신감이 생겼습니다.</p></details>
-          <div class="rv-author"><div class="rv-avatar">💼</div><div><div class="rv-name">최○○ 수강생</div><div class="rv-meta">취업 준비 · 자격증 이후 가정견 실습</div></div></div>
-      </article>
-      <article class="rv-card">
-          <div class="rv-headline">"처음부터 창업이 목표였던 건 아니었어요."</div>
-          <details class="rv-details"><summary>후기 더보기</summary><p class="rv-text">자격증을 준비하면서 애견미용을 계속 배우다 보니 나중에는 제 샵을 운영해보고 싶다는 생각이 들었습니다. 실제 강아지 미용을 해보니까 견종이나 털 상태에 따라 정말 많이 다르더라고요. 지금은 실견 경험을 더 쌓으면서 창업까지 천천히 준비하고 있습니다.</p></details>
-          <div class="rv-author"><div class="rv-avatar">🏪</div><div><div class="rv-name">정○○ 수강생</div><div class="rv-meta">창업 준비 · 실견 경험 쌓는 중</div></div></div>
-      </article>
-      <article class="rv-card">
-          <div class="rv-headline">"처음에는 집에서 키우는 강아지를 제가 직접 관리해주고 싶어서 시작했어요."</div>
-          <details class="rv-details"><summary>후기 더보기</summary><p class="rv-text">발톱이나 위생미용 정도만 배워볼 생각이었는데 수업을 듣다 보니 얼굴컷이나 가위미용에도 관심이 생겼습니다. 혼자 영상으로 볼 때보다 직접 해보고 피드백을 받으니까 이해가 훨씬 잘 됐어요. 지금은 자격증 과정도 고민하고 있습니다.</p></details>
-          <div class="rv-author"><div class="rv-avatar">🐾</div><div><div class="rv-name">윤○○ 수강생</div><div class="rv-meta">내 반려견 관리 목적 · 자격증 과정 관심</div></div></div>
-      </article>
-    </div>
-  </div>
-  <div class="slider-dots" role="tablist">
-    <button class="dot active" role="tab" aria-selected="true"  data-idx="0" aria-label="사례 1"></button>
-    <button class="dot"        role="tab" aria-selected="false" data-idx="1" aria-label="사례 2"></button>
-    <button class="dot"        role="tab" aria-selected="false" data-idx="2" aria-label="사례 3"></button>
-    <button class="dot"        role="tab" aria-selected="false" data-idx="3" aria-label="사례 4"></button>
-    <button class="dot"        role="tab" aria-selected="false" data-idx="4" aria-label="사례 5"></button>
-    <button class="dot"        role="tab" aria-selected="false" data-idx="5" aria-label="사례 6"></button>
-  </div>
-  <div class="wrap" style="text-align:center;margin-top:18px;">
-    <a href="/cases/" class="btn btn-primary" style="text-decoration:none;display:inline-flex;" onclick="gtag('event','click_cta',{button:'사례_더보기'})">📖 취업·창업 사례 더보기 →</a>
-  </div>
-</section>
-
-
-<!-- ── CURRICULUM ────────────────────────────── -->
 <section id="curriculum" aria-labelledby="curr-h">
   <div class="wrap">
     <div class="sec-header fade-up">
@@ -1872,7 +1791,7 @@
   </div>
 </section>
 
-<!-- ── 비용·일정 요약 ── -->
+<!-- ── REVIEWS ───────────────────────────────── -->
 <section id="enrollment-info" aria-labelledby="enrollment-h">
   <div class="wrap">
     <div class="sec-header">
@@ -1882,10 +1801,10 @@
     <div class="enrollment-carousel" role="region" aria-label="수강 비용과 일정 카드">
     <button type="button" class="enrollment-arrow" id="enrollment-prev" aria-label="이전 비용·일정 카드" aria-controls="enrollment-cards" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
     <div class="enrollment-grid" id="enrollment-cards" aria-live="polite">
-      <article class="enrollment-card"><div class="enrollment-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg></div><h3>수업·상담 시간</h3><p>월~금 <strong>11:00~21:30</strong><br/>토요일 <strong>11:00~15:00</strong></p></article>
-      <article class="enrollment-card"><div class="enrollment-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18m-14 5h3m4 0h3"/></svg></div><h3>출석 방식</h3><p>본인의 일정에 맞춰 수강하는 선택 수업제입니다. 희망 과정의 실습 일정과 출석 방식은 상담으로 확인하세요.</p></article>
-      <article class="enrollment-card"><div class="enrollment-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6m-6 5h6m-6 5h4"/></svg></div><h3>교육기간</h3><p>선택 과정과 출석 빈도, 개인 진도에 따라 달라집니다. 목표와 참여 가능한 일정을 기준으로 학습 계획을 안내드립니다.</p></article>
       <article class="enrollment-card"><div class="enrollment-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 4 16 4 16 0V6M4 12v6c0 4 16 4 16 0v-6"/></svg></div><h3>수강료·도구</h3><p>동일 과정 기준 수강료와 도구 제공 조건은 전 지점 공통입니다. 선택 과정의 포함 항목과 별도 비용을 함께 확인하세요.</p></article>
+      <article class="enrollment-card"><div class="enrollment-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg></div><h3>수업·상담 시간</h3><p>월~금 <strong>11:00~21:30</strong><br/>토요일 <strong>11:00~15:00</strong></p></article>
+      <article class="enrollment-card"><div class="enrollment-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6m-6 5h6m-6 5h4"/></svg></div><h3>교육기간</h3><p>선택 과정과 출석 빈도, 개인 진도에 따라 달라집니다. 목표와 참여 가능한 일정을 기준으로 학습 계획을 안내드립니다.</p></article>
+      <article class="enrollment-card"><div class="enrollment-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18m-14 5h3m4 0h3"/></svg></div><h3>출석 방식</h3><p>본인의 일정에 맞춰 수강하는 선택 수업제입니다. 희망 과정의 실습 일정과 출석 방식은 상담으로 확인하세요.</p></article>
       <article class="enrollment-card"><div class="enrollment-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="3"/><path d="M6 21v-4a6 6 0 0 1 12 0v4M4 6a3 3 0 0 0 0 6m16-6a3 3 0 0 1 0 6M2 20v-3m20 3v-3"/></svg></div><h3>교육지원</h3><p>사단법인 한국유기견구호연맹의 전문가 양성 목적 교육지원입니다. 적용 여부와 혜택은 심사 후 확정됩니다.</p></article>
     </div>
     <button type="button" class="enrollment-arrow" id="enrollment-next" aria-label="다음 비용·일정 카드" aria-controls="enrollment-cards"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
@@ -1896,7 +1815,8 @@
   </div>
 </section>
 
-<!-- ── WHY ──────────────────────────────────── -->
+
+<!-- ── CURRICULUM ────────────────────────────── -->
 <section id="why" aria-labelledby="why-h">
   <div class="wrap">
     <div class="sec-header fade-up">
@@ -1954,6 +1874,96 @@
   </div>
 </section>
 
+<!-- ── 비용·일정 요약 ── -->
+<section id="portfolio" aria-labelledby="port-h">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <div class="sec-tag">📸 수업 현장</div>
+      <h2 class="t-section sec-title" id="port-h">수강생들의 <br class="mobile-break"/>실제 수업 모습</h2>
+      <div class="divider"></div>
+      <p class="sec-desc">실제 가정견으로 배우는 현장을 확인하세요</p>
+    </div>
+    <div class="port-marquee-wrap fade-up" role="region" aria-label="수업 현장 사진">
+      <div class="port-mq-track" id="portTrack">
+        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-01.webp" alt="Evaw Pet 수업 현장 사진 1" /></div>
+        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-02.webp" alt="Evaw Pet 수업 현장 사진 2" /></div>
+        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-03.webp" alt="Evaw Pet 수업 현장 사진 3" /></div>
+        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-04.webp" alt="Evaw Pet 수업 현장 사진 4" /></div>
+        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-05.webp" alt="Evaw Pet 수업 현장 사진 5" /></div>
+        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-06.webp" alt="Evaw Pet 수업 현장 사진 6" /></div>
+        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-07.webp" alt="Evaw Pet 수업 현장 사진 7" /></div>
+        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-08.webp" alt="Evaw Pet 수업 현장 사진 8" /></div>
+        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-09.webp" alt="Evaw Pet 수업 현장 사진 9" /></div>
+        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-10.webp" alt="Evaw Pet 수업 현장 사진 10" /></div>
+        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-11.webp" alt="Evaw Pet 수업 현장 사진 11" /></div>
+        <div class="port-mq-item"><img loading="lazy" decoding="async" src="image/class-carousel-12.webp" alt="Evaw Pet 수업 현장 사진 12" /></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY ──────────────────────────────────── -->
+<section id="reviews" aria-labelledby="rv-h">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <div class="sec-tag">⭐ 수강생 사례</div>
+      <h2 class="t-section sec-title" id="rv-h">수강생들의 <br class="mobile-break"/>생생한 사례</h2>
+      <div class="divider"></div>
+    </div>
+  </div>
+  <div class="rv-slider" role="region" aria-label="수강생 사례 슬라이더">
+    <div class="rv-track" id="rvTrack" style="padding:0 20px;">
+      <article class="rv-card">
+          <div class="rv-context">직장 병행 · 자격증 준비·실견 실습</div>
+          <div class="rv-headline">"회사 다니면서 배울 수 있을지가 제일 걱정됐어요."</div>
+          <details class="rv-details"><summary>후기 더보기</summary><p class="rv-text">퇴근하고 수업을 듣다 보니 처음에는 체력적으로 조금 힘들기도 했는데, 제가 가능한 시간에 맞춰 꾸준히 다닐 수 있어서 생각보다 잘 이어가고 있어요. 처음에는 가위 잡는 것도 어색했는데 지금은 자격증 준비하면서 실견수업까지 해보고 있습니다.</p></details>
+          <div class="rv-author"><div class="rv-avatar">👔</div><div><div class="rv-name">박○○ 수강생</div></div></div>
+      </article>
+      <article class="rv-card">
+          <div class="rv-context">미용 경험 없이 시작 · 기초 학습 중</div>
+          <div class="rv-headline">"강아지를 좋아하긴 했지만 미용은 한 번도 해본 적이 없어서 걱정을 많이 했어요."</div>
+          <details class="rv-details"><summary>후기 더보기</summary><p class="rv-text">제가 할 수 있을까 걱정을 많이 했어요. 막상 시작해보니 도구 잡는 법부터 하나씩 알려주셔서 따라갈 수 있었습니다. 아직 배우는 중이지만 처음보다 손도 많이 익었고, 자격증까지 도전해보려고 해요.</p></details>
+          <div class="rv-author"><div class="rv-avatar">🌱</div><div><div class="rv-name">김○○ 수강생</div></div></div>
+      </article>
+      <article class="rv-card">
+          <div class="rv-context">자격증 취득 · 실견미용 과정</div>
+          <div class="rv-headline">"자격증 연습할 때랑 실제 강아지를 미용하는 건 정말 다르더라고요."</div>
+          <details class="rv-details"><summary>후기 더보기</summary><p class="rv-text">처음 실견수업 들어갔을 때는 강아지가 움직이니까 당황도 많이 했어요. 여러 아이들을 직접 경험하다 보니 조금씩 대처하는 방법도 알게 되고, 왜 취업 전에 실견 경험이 필요한지 알 것 같아요.</p></details>
+          <div class="rv-author"><div class="rv-avatar">✂️</div><div><div class="rv-name">이○○ 수강생</div></div></div>
+      </article>
+      <article class="rv-card">
+          <div class="rv-context">취업 준비 · 자격증 이후 가정견 실습</div>
+          <div class="rv-headline">"처음에는 자격증만 취득하면 바로 취업할 수 있을 거라고 생각했어요."</div>
+          <details class="rv-details"><summary>후기 더보기</summary><p class="rv-text">그런데 배우면서 실제 미용샵에서는 다양한 강아지를 다뤄야 한다는 걸 알게 됐습니다. 지금은 자격증 이후에 가정견 실습을 계속하면서 취업 준비를 하고 있어요. 아직 부족하지만 예전보다는 훨씬 자신감이 생겼습니다.</p></details>
+          <div class="rv-author"><div class="rv-avatar">💼</div><div><div class="rv-name">최○○ 수강생</div></div></div>
+      </article>
+      <article class="rv-card">
+          <div class="rv-context">창업 준비 · 실견 경험 쌓는 중</div>
+          <div class="rv-headline">"처음부터 창업이 목표였던 건 아니었어요."</div>
+          <details class="rv-details"><summary>후기 더보기</summary><p class="rv-text">자격증을 준비하면서 애견미용을 계속 배우다 보니 나중에는 제 샵을 운영해보고 싶다는 생각이 들었습니다. 실제 강아지 미용을 해보니까 견종이나 털 상태에 따라 정말 많이 다르더라고요. 지금은 실견 경험을 더 쌓으면서 창업까지 천천히 준비하고 있습니다.</p></details>
+          <div class="rv-author"><div class="rv-avatar">🏪</div><div><div class="rv-name">정○○ 수강생</div></div></div>
+      </article>
+      <article class="rv-card">
+          <div class="rv-context">내 반려견 관리 목적 · 자격증 과정 관심</div>
+          <div class="rv-headline">"처음에는 집에서 키우는 강아지를 제가 직접 관리해주고 싶어서 시작했어요."</div>
+          <details class="rv-details"><summary>후기 더보기</summary><p class="rv-text">발톱이나 위생미용 정도만 배워볼 생각이었는데 수업을 듣다 보니 얼굴컷이나 가위미용에도 관심이 생겼습니다. 혼자 영상으로 볼 때보다 직접 해보고 피드백을 받으니까 이해가 훨씬 잘 됐어요. 지금은 자격증 과정도 고민하고 있습니다.</p></details>
+          <div class="rv-author"><div class="rv-avatar">🐾</div><div><div class="rv-name">윤○○ 수강생</div></div></div>
+      </article>
+    </div>
+  </div>
+  <div class="slider-dots" role="tablist">
+    <button class="dot active" role="tab" aria-selected="true"  data-idx="0" aria-label="사례 1"></button>
+    <button class="dot"        role="tab" aria-selected="false" data-idx="1" aria-label="사례 2"></button>
+    <button class="dot"        role="tab" aria-selected="false" data-idx="2" aria-label="사례 3"></button>
+    <button class="dot"        role="tab" aria-selected="false" data-idx="3" aria-label="사례 4"></button>
+    <button class="dot"        role="tab" aria-selected="false" data-idx="4" aria-label="사례 5"></button>
+    <button class="dot"        role="tab" aria-selected="false" data-idx="5" aria-label="사례 6"></button>
+  </div>
+  <div class="wrap" style="text-align:center;margin-top:18px;">
+    <a href="/cases/" class="btn btn-primary" style="text-decoration:none;display:inline-flex;" onclick="gtag('event','click_cta',{button:'사례_더보기'})">📖 취업·창업 사례 더보기 →</a>
+  </div>
+</section>
+
 <!-- ── FACULTY ──────────────────────────────── -->
 <section id="faculty" aria-labelledby="fac-h">
   <div class="wrap">
@@ -1977,6 +1987,86 @@
 </section>
 
 <!-- ── GUIDE ──────────────────────────────────── -->
+<section id="network" aria-labelledby="net-h">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <div class="sec-tag">🌐 전국 네트워크</div>
+      <h2 class="t-section sec-title" id="net-h">전국 어디서나 <br class="mobile-break"/>Evaw Pet</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="net-card fade-up">
+      <div class="inner">
+        <div class="net-num" id="netNum">20<span style="font-size:2.2rem;">개</span></div>
+        <div class="net-label">전국 직영 캠퍼스 운영</div>
+
+      </div>
+    </div>
+
+    <a href="/branches/" class="btn btn-gold btn-full mt16 fade-up" style="text-decoration:none;" onclick="gtag('event','click_cta',{button:'전체지점보기'})">
+      📍 전체 지점 보기 →
+    </a>
+
+  </div>
+</section>
+
+<!-- ── NETWORK ──────────────────────────────── -->
+<section id="branches" aria-labelledby="branch-h">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <div class="sec-tag">📍 전국 직영 캠퍼스</div>
+      <h2 class="t-section sec-title" id="branch-h">전국 직영 캠퍼스</h2>
+      <div class="divider"></div>
+    </div>
+  </div>
+  <div class="branch-slider" role="region" aria-label="전국 캠퍼스">
+    <div class="branch-track" id="branchTrack">
+      <a class="branch-card" href="/branches/gwangju/"><div class="branch-region">광주</div><div class="branch-name">광주 애견미용학원</div><div class="branch-addr">광주광역시 서구 상무중앙로 7 10층</div></a>
+      <a class="branch-card" href="/branches/bundang/"><div class="branch-region">경기</div><div class="branch-name">분당 애견미용학원</div><div class="branch-addr">경기도 성남시 분당구 백현로101번길 13 5층</div></a>
+      <a class="branch-card" href="/branches/ilsan/"><div class="branch-region">경기</div><div class="branch-name">일산 애견미용학원</div><div class="branch-addr">경기도 고양시 일산동구 정발산로 47 웅신아트 5층</div></a>
+      <a class="branch-card" href="/branches/daejeon/"><div class="branch-region">대전</div><div class="branch-name">대전 애견미용학원</div><div class="branch-addr">대전광역시 서구 대덕대로 182 10층</div></a>
+      <a class="branch-card" href="/branches/incheon/"><div class="branch-region">인천</div><div class="branch-name">인천 애견미용학원</div><div class="branch-addr">인천광역시 남동구 인하로 501 8층</div></a>
+      <a class="branch-card" href="/branches/banwoldang/"><div class="branch-region">대구</div><div class="branch-name">반월당 애견미용학원</div><div class="branch-addr">대구광역시 중구 달구벌대로 2118 예미안타워빌딩 7층</div></a>
+      <a class="branch-card" href="/branches/daegu/"><div class="branch-region">대구</div><div class="branch-name">대구 애견미용학원</div><div class="branch-addr">대구광역시 동구 동대구로 525-1 3층</div></a>
+      <a class="branch-card" href="/branches/sillim/"><div class="branch-region">서울</div><div class="branch-name">신림 애견미용학원</div><div class="branch-addr">서울특별시 관악구 남부순환로 1630 2층</div></a>
+      <a class="branch-card" href="/branches/nowon/"><div class="branch-region">서울</div><div class="branch-name">노원 애견미용학원</div><div class="branch-addr">서울특별시 노원구 상계로3길 21 5층 501호</div></a>
+      <a class="branch-card" href="/branches/jongno/"><div class="branch-region">서울</div><div class="branch-name">종로 애견미용학원</div><div class="branch-addr">서울특별시 종로구 삼일대로17길 51 스타골드빌딩 3층</div></a>
+      <a class="branch-card" href="/branches/bucheon/"><div class="branch-region">경기</div><div class="branch-name">부천 애견미용학원</div><div class="branch-addr">경기도 부천시 원미구 부일로 496</div></a>
+      <a class="branch-card" href="/branches/sangdong/"><div class="branch-region">경기</div><div class="branch-name">상동 애견미용학원</div><div class="branch-addr">경기도 부천시 원미구 상동 544-1, 7층</div></a>
+      <a class="branch-card" href="/branches/cheonho/"><div class="branch-region">서울</div><div class="branch-name">천호 애견미용학원</div><div class="branch-addr">서울특별시 강동구 천호대로 1037 10층</div></a>
+      <a class="branch-card" href="/branches/pyeongtaek/"><div class="branch-region">경기</div><div class="branch-name">평택 애견미용학원</div><div class="branch-addr">경기도 평택시 중앙2로 16 2층</div></a>
+      <a class="branch-card" href="/branches/suwon/"><div class="branch-region">경기</div><div class="branch-name">수원 애견미용학원</div><div class="branch-addr">경기도 수원시 팔달구 덕영대로 905 1101호, 1106호</div></a>
+      <a class="branch-card" href="/branches/gangnam/"><div class="branch-region">서울</div><div class="branch-name">강남 애견미용학원</div><div class="branch-addr">서울특별시 강남구 선릉로86길 39 서영빌딩 5층</div></a>
+      <a class="branch-card" href="/branches/seomyeon/"><div class="branch-region">부산</div><div class="branch-name">서면 애견미용학원</div><div class="branch-addr">부산광역시 부산진구 중앙대로 711 3층</div></a>
+      <a class="branch-card" href="/branches/changwon/"><div class="branch-region">경남</div><div class="branch-name">창원 애견미용학원</div><div class="branch-addr">경상남도 창원시 성산구 원이대로 652 7층</div></a>
+      <a class="branch-card" href="/branches/yeonsan/"><div class="branch-region">부산</div><div class="branch-name">연산 애견미용학원</div><div class="branch-addr">부산광역시 연제구 월드컵대로 141 동화빌딩 10층</div></a>
+      <a class="branch-card" href="/branches/cheonan/"><div class="branch-region">충남</div><div class="branch-name">천안 애견미용학원</div><div class="branch-addr">충청남도 천안시 동남구 만남로 30 로얄빌딩 5층</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ── MID CTA BANNER ────────────────────────── -->
+<div class="cta-banner" aria-label="상담 유도">
+  <div class="wrap">
+    <h2 class="t-section">지금 바로 <br class="mobile-break"/><span style="color:var(--gold-lt)">무료 상담</span> 받으세요</h2>
+    <p class="sub">커리큘럼부터 수강료까지 부담없이 물어보세요</p>
+    <div class="cta-grid fade-up">
+      <button class="btn btn-consult btn-full btn-lg" onclick="gtag('event','click_cta',{button:'무료상담_수강료확인'});openModal();" aria-label="수강료 무료 상담 신청">🎓 수강료 무료 상담 신청</button>
+      <button class="btn btn-gold btn-full" onclick="gtag('event','click_cta',{button:'전화_sticky'});showPhone();" aria-label="전화 상담">📞 010-3766-1620 전화 상담</button>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;">
+        <a href="http://pf.kakao.com/_xaNjrn/chat" class="btn btn-kakao" target="_blank" rel="noopener">💬 카카오톡</a>
+        <a href="http://talk.naver.com/W5IPUB" class="btn btn-naver" target="_blank" rel="noopener">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>
+          네이버 문의
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ── LOCATION ───────────────────────────────── -->
+<!-- ── 전국 캠퍼스 슬라이더 ──────────────────────── -->
 <section id="guide" aria-labelledby="guide-h">
   <div class="wrap">
     <div class="sec-header fade-up">
@@ -2041,180 +2131,89 @@
   </div>
 </section>
 
-<!-- ── NETWORK ──────────────────────────────── -->
-<section id="network" aria-labelledby="net-h">
-  <div class="wrap">
-    <div class="sec-header fade-up">
-      <div class="sec-tag">🌐 전국 네트워크</div>
-      <h2 class="t-section sec-title" id="net-h">전국 어디서나 <br class="mobile-break"/>Evaw Pet</h2>
-      <div class="divider"></div>
-    </div>
-    <div class="net-card fade-up">
-      <div class="inner">
-        <div class="net-num" id="netNum">20<span style="font-size:2.2rem;">개</span></div>
-        <div class="net-label">전국 직영 캠퍼스 운영</div>
-        <div class="net-chips-wrap">
-          <div class="net-chips">
-          <span class="net-chip">광주</span>
-          <span class="net-chip">분당</span>
-          <span class="net-chip">일산</span>
-          <span class="net-chip">대전</span>
-          <span class="net-chip">인천</span>
-          <span class="net-chip">반월당</span>
-          <span class="net-chip">대구</span>
-          <span class="net-chip">신림</span>
-          <span class="net-chip">노원</span>
-          <span class="net-chip">종로</span>
-          <span class="net-chip">부천</span>
-          <span class="net-chip">천호</span>
-          <span class="net-chip">평택</span>
-          <span class="net-chip">수원</span>
-          <span class="net-chip">강남</span>
-          <span class="net-chip">서면</span>
-          <span class="net-chip">창원</span>
-          <span class="net-chip">연산</span>
-          <span class="net-chip">천안</span>
-          <span class="net-chip">상동</span>
-          <span class="net-chip" aria-hidden="true">광주</span>
-          <span class="net-chip" aria-hidden="true">분당</span>
-          <span class="net-chip" aria-hidden="true">일산</span>
-          <span class="net-chip" aria-hidden="true">대전</span>
-          <span class="net-chip" aria-hidden="true">인천</span>
-          <span class="net-chip" aria-hidden="true">반월당</span>
-          <span class="net-chip" aria-hidden="true">대구</span>
-          <span class="net-chip" aria-hidden="true">신림</span>
-          <span class="net-chip" aria-hidden="true">노원</span>
-          <span class="net-chip" aria-hidden="true">종로</span>
-          <span class="net-chip" aria-hidden="true">부천</span>
-          <span class="net-chip" aria-hidden="true">천호</span>
-          <span class="net-chip" aria-hidden="true">평택</span>
-          <span class="net-chip" aria-hidden="true">수원</span>
-          <span class="net-chip" aria-hidden="true">강남</span>
-          <span class="net-chip" aria-hidden="true">서면</span>
-          <span class="net-chip" aria-hidden="true">창원</span>
-          <span class="net-chip" aria-hidden="true">연산</span>
-          <span class="net-chip" aria-hidden="true">천안</span>
-          <span class="net-chip" aria-hidden="true">상동</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <a href="/branches/" class="btn btn-gold btn-full mt16 fade-up" style="text-decoration:none;" onclick="gtag('event','click_cta',{button:'전체지점보기'})">
-      📍 전체 지점 보기 →
-    </a>
-
-  </div>
-</section>
-
-<!-- ── LOCATION ───────────────────────────────── -->
-<!-- ── 전국 캠퍼스 슬라이더 ──────────────────────── -->
-<section id="branches" aria-labelledby="branch-h">
-  <div class="wrap">
-    <div class="sec-header fade-up">
-      <div class="sec-tag">📍 전국 직영 캠퍼스</div>
-      <h2 class="t-section sec-title" id="branch-h">전국 직영 캠퍼스</h2>
-      <div class="divider"></div>
-    </div>
-  </div>
-  <div class="branch-slider" role="region" aria-label="전국 캠퍼스">
-    <div class="branch-track" id="branchTrack">
-      <a class="branch-card" href="/branches/gwangju/"><div class="branch-region">광주</div><div class="branch-name">광주 애견미용학원</div><div class="branch-addr">광주광역시 서구 상무중앙로 7 10층</div></a>
-      <a class="branch-card" href="/branches/bundang/"><div class="branch-region">경기</div><div class="branch-name">분당 애견미용학원</div><div class="branch-addr">경기도 성남시 분당구 백현로101번길 13 5층</div></a>
-      <a class="branch-card" href="/branches/ilsan/"><div class="branch-region">경기</div><div class="branch-name">일산 애견미용학원</div><div class="branch-addr">경기도 고양시 일산동구 정발산로 47 웅신아트 5층</div></a>
-      <a class="branch-card" href="/branches/daejeon/"><div class="branch-region">대전</div><div class="branch-name">대전 애견미용학원</div><div class="branch-addr">대전광역시 서구 대덕대로 182 10층</div></a>
-      <a class="branch-card" href="/branches/incheon/"><div class="branch-region">인천</div><div class="branch-name">인천 애견미용학원</div><div class="branch-addr">인천광역시 남동구 인하로 501 8층</div></a>
-      <a class="branch-card" href="/branches/banwoldang/"><div class="branch-region">대구</div><div class="branch-name">반월당 애견미용학원</div><div class="branch-addr">대구광역시 중구 달구벌대로 2118 예미안타워빌딩 7층</div></a>
-      <a class="branch-card" href="/branches/daegu/"><div class="branch-region">대구</div><div class="branch-name">대구 애견미용학원</div><div class="branch-addr">대구광역시 동구 동대구로 525-1 3층</div></a>
-      <a class="branch-card" href="/branches/sillim/"><div class="branch-region">서울</div><div class="branch-name">신림 애견미용학원</div><div class="branch-addr">서울특별시 관악구 남부순환로 1630 2층</div></a>
-      <a class="branch-card" href="/branches/nowon/"><div class="branch-region">서울</div><div class="branch-name">노원 애견미용학원</div><div class="branch-addr">서울특별시 노원구 상계로3길 21 5층 501호</div></a>
-      <a class="branch-card" href="/branches/jongno/"><div class="branch-region">서울</div><div class="branch-name">종로 애견미용학원</div><div class="branch-addr">서울특별시 종로구 삼일대로17길 51 스타골드빌딩 3층</div></a>
-      <a class="branch-card" href="/branches/bucheon/"><div class="branch-region">경기</div><div class="branch-name">부천 애견미용학원</div><div class="branch-addr">경기도 부천시 원미구 부일로 496</div></a>
-      <a class="branch-card" href="/branches/sangdong/"><div class="branch-region">경기</div><div class="branch-name">상동 애견미용학원</div><div class="branch-addr">경기도 부천시 원미구 상동 544-1, 7층</div></a>
-      <a class="branch-card" href="/branches/cheonho/"><div class="branch-region">서울</div><div class="branch-name">천호 애견미용학원</div><div class="branch-addr">서울특별시 강동구 천호대로 1037 10층</div></a>
-      <a class="branch-card" href="/branches/pyeongtaek/"><div class="branch-region">경기</div><div class="branch-name">평택 애견미용학원</div><div class="branch-addr">경기도 평택시 중앙2로 16 2층</div></a>
-      <a class="branch-card" href="/branches/suwon/"><div class="branch-region">경기</div><div class="branch-name">수원 애견미용학원</div><div class="branch-addr">경기도 수원시 팔달구 덕영대로 905 1101호, 1106호</div></a>
-      <a class="branch-card" href="/branches/gangnam/"><div class="branch-region">서울</div><div class="branch-name">강남 애견미용학원</div><div class="branch-addr">서울특별시 강남구 선릉로86길 39 서영빌딩 5층</div></a>
-      <a class="branch-card" href="/branches/seomyeon/"><div class="branch-region">부산</div><div class="branch-name">서면 애견미용학원</div><div class="branch-addr">부산광역시 부산진구 중앙대로 711 3층</div></a>
-      <a class="branch-card" href="/branches/changwon/"><div class="branch-region">경남</div><div class="branch-name">창원 애견미용학원</div><div class="branch-addr">경상남도 창원시 성산구 원이대로 652 7층</div></a>
-      <a class="branch-card" href="/branches/yeonsan/"><div class="branch-region">부산</div><div class="branch-name">연산 애견미용학원</div><div class="branch-addr">부산광역시 연제구 월드컵대로 141 동화빌딩 10층</div></a>
-      <a class="branch-card" href="/branches/cheonan/"><div class="branch-region">충남</div><div class="branch-name">천안 애견미용학원</div><div class="branch-addr">충청남도 천안시 동남구 만남로 30 로얄빌딩 5층</div></a>
-    </div>
-  </div>
-</section>
-
-<!-- ── MID CTA BANNER ────────────────────────── -->
-<div class="cta-banner" aria-label="상담 유도">
-  <div class="wrap">
-    <h2 class="t-section">지금 바로 <br class="mobile-break"/><span style="color:var(--gold-lt)">무료 상담</span> 받으세요</h2>
-    <p class="sub">커리큘럼부터 수강료까지 부담없이 물어보세요</p>
-    <div class="cta-grid fade-up">
-      <button class="btn btn-consult btn-full btn-lg" onclick="gtag('event','click_cta',{button:'무료상담_수강료확인'});openModal();" aria-label="수강료 무료 상담 신청">🎓 수강료 무료 상담 신청</button>
-      <button class="btn btn-gold btn-full" onclick="gtag('event','click_cta',{button:'전화_sticky'});showPhone();" aria-label="전화 상담">📞 010-3766-1620 전화 상담</button>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;">
-        <a href="http://pf.kakao.com/_xaNjrn/chat" class="btn btn-kakao" target="_blank" rel="noopener">💬 카카오톡</a>
-        <a href="http://talk.naver.com/W5IPUB" class="btn btn-naver" target="_blank" rel="noopener">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>
-          네이버 문의
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- ── FAQ ──────────────────────────────────── -->
-<section id="faq" aria-labelledby="faq-h">
+<section id="news" aria-labelledby="news-h">
   <div class="wrap">
     <div class="sec-header fade-up">
-      <div class="sec-tag">❓ 자주 묻는 질문</div>
-      <h2 class="t-section sec-title" id="faq-h">FAQ</h2>
+      <div class="sec-tag">📰 최근 소식</div>
+      <h2 class="t-section sec-title" id="news-h">Evaw Pet <br class="mobile-break"/>새소식</h2>
       <div class="divider"></div>
     </div>
-    <div class="faq-list fade-up" role="list">
-      <div class="faq-item" role="listitem">
-        <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">초보자도 수강 가능한가요?</span><span class="faq-arr">▼</span></button>
-        <div class="faq-a"><div class="faq-a-in">네! 미용 경험이 전혀 없으셔도 됩니다. 기초과정부터 차근차근 배울 수 있으며, 개별 피드백으로 본인 수준에 맞게 진행됩니다.</div></div>
-      </div>
-      <div class="faq-item" role="listitem">
-        <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">직장인·주부도 수강 가능한가요?</span><span class="faq-arr">▼</span></button>
-        <div class="faq-a"><div class="faq-a-in">네. 수업시간은 월~금 11:00~21:30, 토요일 11:00~15:00입니다. 선택 수업제로 운영하며, 출석 가능한 요일과 시간대를 알려주시면 희망 과정에 맞는 일정을 안내드립니다.</div></div>
-      </div>
-      <div class="faq-item" role="listitem">
-        <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">수강료와 추가 비용은 어떻게 확인하나요?</span><span class="faq-arr">▼</span></button>
-        <div class="faq-a"><div class="faq-a-in">동일 과정 기준으로 전 지점에 같은 수강료와 도구 제공·교육지원 조건을 적용합니다. 선택 과정과 교육 범위, 교육지원 적용 여부에 따라 최종 안내 금액은 달라질 수 있습니다. 상담 시 수강료에 포함되는 항목과 도구·재료·응시료 등 별도 비용 여부를 함께 안내받으세요.<br/><a href="/guide/cost/" class="faq-guide-link">애견미용학원 비용은 어떻게 결정될까? 자세히 보기 →</a></div></div>
-      </div>
-      <div class="faq-item" role="listitem">
-        <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">실견 실습은 어떻게 진행되나요?</span><span class="faq-arr">▼</span></button>
-        <div class="faq-a"><div class="faq-a-in">실제 가정견을 대상으로 실습합니다. 고객 강아지 미용부터 수강생이 직접 데려온 반려견 실습까지 현장특화 반복 실습으로 진행됩니다.<br/><a href="/guide/real-dog-training/" class="faq-guide-link">자격증 이후 실견미용이 중요한 이유 자세히 보기 →</a></div></div>
-      </div>
-      <div class="faq-item" role="listitem">
-        <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">자격증 취득까지 얼마나 걸리나요?</span><span class="faq-arr">▼</span></button>
-        <div class="faq-a"><div class="faq-a-in">이바우펫 교육과정 기준으로, 수강 빈도와 개인 진도에 따라 달라지며 3급은 약 4~6개월을 예상할 수 있습니다. 선택 수업제로 본인의 속도에 맞게 진행할 수 있습니다.<br/><a href="/guide/license/" class="faq-guide-link">애견미용 자격증 3급·2급 차이는? 자세히 보기 →</a></div></div>
-      </div>
-      <div class="faq-item" role="listitem">
-        <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">국비지원과 교육지원의 차이가 뭔가요?</span><span class="faq-arr">▼</span></button>
-        <div class="faq-a"><div class="faq-a-in">국비지원은 정부(고용노동부 등)에서 운영하는 지원사업으로 대상 조건과 예산이 정해져 있습니다. 교육지원은 사단법인 한국유기견구호연맹에서 지원하는 학비 지원·장학 혜택으로, 심사를 통해 선발됩니다. 정확한 대상 조건과 혜택 내용은 전화(010-3766-1620) 또는 카카오톡으로 문의 주시면 상세히 안내드립니다.<br/><a href="/guide/support/" class="faq-guide-link">국비지원과 교육지원은 무엇이 다를까? 자세히 보기 →</a></div></div>
-      </div>
-      <div class="faq-item" role="listitem">
-        <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">상담을 신청하면 어떻게 진행되나요?</span><span class="faq-arr">▼</span></button>
-        <div class="faq-a"><div class="faq-a-in">신청서를 남겨주시면 담당자가 연락드려 희망 목표와 출석 일정을 확인하고, 과정·비용·교육지원 조건을 안내드립니다. 안내를 받은 뒤 등록 여부를 결정하시면 됩니다. 상담만으로 등록이 확정되지는 않습니다.</div></div>
-      </div>
-      <div class="faq-item" role="listitem">
-        <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">가까운 지점은 어떻게 문의하나요?</span><span class="faq-arr">▼</span></button>
-        <div class="faq-a"><div class="faq-a-in">전국 20개 직영 캠퍼스를 운영합니다. ‘가까운 지점 문의하기’를 눌러 성함·연락처·희망지역을 남겨주시면 담당자가 가까운 지점을 안내드립니다.<br/><button type="button" class="btn btn-primary" style="margin-top:12px;" onclick="ga4('click_cta','가까운지점_FAQ');openNearbyModal();">가까운 지점 문의하기</button></div></div>
-      </div>
-      <div class="faq-item" role="listitem">
-        <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">수료 후 취업·창업이 가능한가요?</span><span class="faq-arr">▼</span></button>
-        <div class="faq-a"><div class="faq-a-in">수료 이후 취업처 연계 및 창업 컨설팅을 개별 지원합니다. 전국 캠퍼스 네트워크를 활용해 취업·창업을 준비할 수 있도록 관련 정보를 안내합니다.<br/><a href="/guide/employment/" class="faq-guide-link">애견미용사 취업 전 준비해야 할 것 자세히 보기 →</a></div></div>
-      </div>
-      <div class="faq-item" role="listitem">
-        <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">온라인으로도 배울 수 있나요?</span><span class="faq-arr">▼</span></button>
-        <div class="faq-a"><div class="faq-a-in">Evaw Pet 사이버스쿨(evawedu.com)을 통해 온라인 학습도 가능합니다. 자격증 이론, 실견 교육 영상, 스페셜 특강까지 온라인으로 수강하실 수 있습니다.</div></div>
-      </div>
+  </div>
+
+  <div class="news-slider" role="region" aria-label="최근 소식 슬라이더">
+    <div class="news-track" id="newsTrack" style="padding:0 20px;">
+      <article class="news-card">
+        <div class="news-badge">📍 천안 · 지점소식</div>
+        <div class="news-title">천안애견미용학원 교육지원 추가모집, 2급까지 비용 부담 줄이려면?</div>
+        <div class="news-desc">천안애견미용학원 수업으로 3급·2급 자격증과 실견교육을 준비한다면 한국유기견구호연맹 교육지원 연수생 추가모집과 적용 조건을 확인해보세요.</div>
+        <div class="news-footer">
+          <span class="news-date">2026.10.08</span>
+          <a href="/news/2026-10-08-cheonan-training-recruit/" class="news-link">보기 →</a>
+      </article>
+      <article class="news-card">
+        <div class="news-badge">🏫 진로전망</div>
+        <div class="news-title">애견미용사 전망, 앞으로도 꾸준히 필요한 직업일까요?</div>
+        <div class="news-desc">애견미용사 전망을 반려동물 양육가구 증가, 미용업 시장 규모, 취업·창업 경쟁과 실제 현장에서 요구되는 역량을 기준으로 살펴봅니다.</div>
+        <div class="news-footer">
+          <span class="news-date">2026.09.17</span>
+          <a href="/news/2026-09-17-career-outlook/" class="news-link">보기 →</a>
+      </article>
+      <article class="news-card">
+        <div class="news-badge">🎉 8주년</div>
+        <div class="news-title">전국 이바우펫 창립 8주년, 등록자·소개자 특별 사은품 EVENT</div>
+        <div class="news-desc">이바우펫 애견미용학원이 창립 8주년을 맞아 2026년 9월 14일부터 19일까지 전국 지점에서 신규 등록자와 소개자를 위한 특별 사은품 이벤트를 진행합니다.</div>
+        <div class="news-footer">
+          <span class="news-date">2026.09.16</span>
+          <a href="/news/2026-09-16-8th-anniversary-event/" class="news-link">보기 →</a>
+      </article>
+      <article class="news-card">
+        <div class="news-badge">🏫 학원비용</div>
+        <div class="news-title">애견미용학원비용 얼마일까? 일반수강·국비·교육지원 현실 비교</div>
+        <div class="news-desc">애견미용학원비용 비교를 일반수강, 국민내일배움카드 국비과정, 별도 교육지원으로 나눠 실제 공개 금액과 부담 구조를 비교했습니다.</div>
+        <div class="news-footer">
+          <span class="news-date">2026.09.16</span>
+          <a href="/news/2026-09-16-academy-cost/" class="news-link">보기 →</a>
+      </article>
+      <article class="news-card">
+        <div class="news-badge">🏫 주말반</div>
+        <div class="news-title">애견미용학원주말반 | 주말에만 배워도 자격증 준비가 가능할까요?</div>
+        <div class="news-desc">애견미용학원주말반 수업을 찾는다면 토·일 수업 여부뿐 아니라 주당 실습시간, 실견수업, 자격증 준비기간과 보강 가능 여부를 함께 확인하세요.</div>
+        <div class="news-footer">
+          <span class="news-date">2026.09.16</span>
+          <a href="/news/2026-09-16-weekend-class/" class="news-link">보기 →</a>
+      </article>
+      <article class="news-card">
+        <div class="news-badge">🏫 학원추천</div>
+        <div class="news-title">애견미용학원추천 좋은 학원을 찾을 때 무엇부터 비교해야 할까요?</div>
+        <div class="news-desc">애견미용학원추천 많은 곳을 찾고 있다면 후기나 거리만 보지 말고 자격증, 실견수업, 개별 피드백, 비용과 취업·창업 지원을 비교하세요.</div>
+        <div class="news-footer">
+          <span class="news-date">2026.09.16</span>
+          <a href="/news/2026-09-16-academy-recommend/" class="news-link">보기 →</a>
+      </article>
+      <article class="news-card">
+        <div class="news-badge">🏫 창업준비</div>
+        <div class="news-title">애견미용창업 자격증 취득 후 무엇부터 준비해야 할까요?</div>
+        <div class="news-desc">애견미용창업 준비한다면 미용기술뿐 아니라 동물미용업 등록, 시설기준, 법정교육, 초기비용과 고객관리까지 함께 확인해야 합니다.</div>
+        <div class="news-footer">
+          <span class="news-date">2026.09.16</span>
+          <a href="/news/2026-09-16-startup/" class="news-link">보기 →</a>
+      </article>
+      <article class="news-card">
+        <div class="news-badge">🏫 취업준비</div>
+        <div class="news-title">애견미용취업 준비, 자격증만 있으면 충분할까요?</div>
+        <div class="news-desc">애견미용취업 준비한다면 자격증뿐 아니라 실견 경험, 포트폴리오, 채용처 유형과 실제 채용조건까지 함께 확인해보세요.</div>
+        <div class="news-footer">
+          <span class="news-date">2026.09.16</span>
+          <a href="/news/2026-09-16-employment/" class="news-link">보기 →</a>
+      </article>
     </div>
-    <button class="btn btn-primary btn-full btn-lg mt20 fade-up" onclick="openModal()" aria-label="상담 신청">
-      🎓 수강료 무료 상담 신청
-    </button>
+  </div>
+
+  <div class="wrap">
+    <a href="/news/" class="btn btn-primary btn-full btn-lg mt16 fade-up" style="text-decoration:none;" onclick="gtag('event','click_cta',{button:'새소식_전체보기'})">
+      📰 전체 소식 보기
+    </a>
   </div>
 </section>
 
@@ -2486,6 +2485,62 @@
 </div>
 
 <!-- ── FINAL CTA ──────────────────────────────── -->
+<section id="faq" aria-labelledby="faq-h">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <div class="sec-tag">❓ 자주 묻는 질문</div>
+      <h2 class="t-section sec-title" id="faq-h">FAQ</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="faq-list fade-up" role="list">
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">초보자도 수강 가능한가요?</span><span class="faq-arr">▼</span></button>
+        <div class="faq-a"><div class="faq-a-in">네! 미용 경험이 전혀 없으셔도 됩니다. 기초과정부터 차근차근 배울 수 있으며, 개별 피드백으로 본인 수준에 맞게 진행됩니다.</div></div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">직장인·주부도 수강 가능한가요?</span><span class="faq-arr">▼</span></button>
+        <div class="faq-a"><div class="faq-a-in">네. 수업시간은 월~금 11:00~21:30, 토요일 11:00~15:00입니다. 선택 수업제로 운영하며, 출석 가능한 요일과 시간대를 알려주시면 희망 과정에 맞는 일정을 안내드립니다.</div></div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">수강료와 추가 비용은 어떻게 확인하나요?</span><span class="faq-arr">▼</span></button>
+        <div class="faq-a"><div class="faq-a-in">동일 과정 기준으로 전 지점에 같은 수강료와 도구 제공·교육지원 조건을 적용합니다. 선택 과정과 교육 범위, 교육지원 적용 여부에 따라 최종 안내 금액은 달라질 수 있습니다. 상담 시 수강료에 포함되는 항목과 도구·재료·응시료 등 별도 비용 여부를 함께 안내받으세요.<br/><a href="/guide/cost/" class="faq-guide-link">애견미용학원 비용은 어떻게 결정될까? 자세히 보기 →</a></div></div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">실견 실습은 어떻게 진행되나요?</span><span class="faq-arr">▼</span></button>
+        <div class="faq-a"><div class="faq-a-in">실제 가정견을 대상으로 실습합니다. 고객 강아지 미용부터 수강생이 직접 데려온 반려견 실습까지 현장특화 반복 실습으로 진행됩니다.<br/><a href="/guide/real-dog-training/" class="faq-guide-link">자격증 이후 실견미용이 중요한 이유 자세히 보기 →</a></div></div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">자격증 취득까지 얼마나 걸리나요?</span><span class="faq-arr">▼</span></button>
+        <div class="faq-a"><div class="faq-a-in">이바우펫 교육과정 기준으로, 수강 빈도와 개인 진도에 따라 달라지며 3급은 약 4~6개월을 예상할 수 있습니다. 선택 수업제로 본인의 속도에 맞게 진행할 수 있습니다.<br/><a href="/guide/license/" class="faq-guide-link">애견미용 자격증 3급·2급 차이는? 자세히 보기 →</a></div></div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">국비지원과 교육지원의 차이가 뭔가요?</span><span class="faq-arr">▼</span></button>
+        <div class="faq-a"><div class="faq-a-in">국비지원은 정부(고용노동부 등)에서 운영하는 지원사업으로 대상 조건과 예산이 정해져 있습니다. 교육지원은 사단법인 한국유기견구호연맹에서 지원하는 학비 지원·장학 혜택으로, 심사를 통해 선발됩니다. 정확한 대상 조건과 혜택 내용은 전화(010-3766-1620) 또는 카카오톡으로 문의 주시면 상세히 안내드립니다.<br/><a href="/guide/support/" class="faq-guide-link">국비지원과 교육지원은 무엇이 다를까? 자세히 보기 →</a></div></div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">상담을 신청하면 어떻게 진행되나요?</span><span class="faq-arr">▼</span></button>
+        <div class="faq-a"><div class="faq-a-in">신청서를 남겨주시면 담당자가 연락드려 희망 목표와 출석 일정을 확인하고, 과정·비용·교육지원 조건을 안내드립니다. 안내를 받은 뒤 등록 여부를 결정하시면 됩니다. 상담만으로 등록이 확정되지는 않습니다.</div></div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">가까운 지점은 어떻게 문의하나요?</span><span class="faq-arr">▼</span></button>
+        <div class="faq-a"><div class="faq-a-in">전국 20개 직영 캠퍼스를 운영합니다. ‘가까운 지점 문의하기’를 눌러 성함·연락처·희망지역을 남겨주시면 담당자가 가까운 지점을 안내드립니다.<br/><button type="button" class="btn btn-primary" style="margin-top:12px;" onclick="ga4('click_cta','가까운지점_FAQ');openNearbyModal();">가까운 지점 문의하기</button></div></div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">수료 후 취업·창업이 가능한가요?</span><span class="faq-arr">▼</span></button>
+        <div class="faq-a"><div class="faq-a-in">수료 이후 취업처 연계 및 창업 컨설팅을 개별 지원합니다. 전국 캠퍼스 네트워크를 활용해 취업·창업을 준비할 수 있도록 관련 정보를 안내합니다.<br/><a href="/guide/employment/" class="faq-guide-link">애견미용사 취업 전 준비해야 할 것 자세히 보기 →</a></div></div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">온라인으로도 배울 수 있나요?</span><span class="faq-arr">▼</span></button>
+        <div class="faq-a"><div class="faq-a-in">Evaw Pet 사이버스쿨(evawedu.com)을 통해 온라인 학습도 가능합니다. 자격증 이론, 실견 교육 영상, 스페셜 특강까지 온라인으로 수강하실 수 있습니다.</div></div>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-full btn-lg mt20 fade-up" onclick="openModal()" aria-label="상담 신청">
+      🎓 수강료 무료 상담 신청
+    </button>
+  </div>
+</section>
+
+<!-- ── NEWS SECTION ──────────────────────────── -->
 <section id="finalCta" aria-label="최종 상담 유도">
   <div class="wrap">
     <div class="sec-header fade-up">
@@ -2511,92 +2566,6 @@
       <div class="ft-item"><div class="icon">⚡</div><div class="txt">즉시 연결</div></div>
       <div class="ft-item"><div class="icon">💯</div><div class="txt">무료 상담</div></div>
     </div>
-  </div>
-</section>
-
-<!-- ── NEWS SECTION ──────────────────────────── -->
-<section id="news" aria-labelledby="news-h">
-  <div class="wrap">
-    <div class="sec-header fade-up">
-      <div class="sec-tag">📰 최근 소식</div>
-      <h2 class="t-section sec-title" id="news-h">Evaw Pet <br class="mobile-break"/>새소식</h2>
-      <div class="divider"></div>
-    </div>
-  </div>
-
-  <div class="news-slider" role="region" aria-label="최근 소식 슬라이더">
-    <div class="news-track" id="newsTrack" style="padding:0 20px;">
-      <article class="news-card">
-        <div class="news-badge">📍 천안 · 지점소식</div>
-        <div class="news-title">천안애견미용학원 교육지원 추가모집, 2급까지 비용 부담 줄이려면?</div>
-        <div class="news-desc">천안애견미용학원 수업으로 3급·2급 자격증과 실견교육을 준비한다면 한국유기견구호연맹 교육지원 연수생 추가모집과 적용 조건을 확인해보세요.</div>
-        <div class="news-footer">
-          <span class="news-date">2026.10.08</span>
-          <a href="/news/2026-10-08-cheonan-training-recruit/" class="news-link">보기 →</a>
-      </article>
-      <article class="news-card">
-        <div class="news-badge">🏫 진로전망</div>
-        <div class="news-title">애견미용사 전망, 앞으로도 꾸준히 필요한 직업일까요?</div>
-        <div class="news-desc">애견미용사 전망을 반려동물 양육가구 증가, 미용업 시장 규모, 취업·창업 경쟁과 실제 현장에서 요구되는 역량을 기준으로 살펴봅니다.</div>
-        <div class="news-footer">
-          <span class="news-date">2026.09.17</span>
-          <a href="/news/2026-09-17-career-outlook/" class="news-link">보기 →</a>
-      </article>
-      <article class="news-card">
-        <div class="news-badge">🎉 8주년</div>
-        <div class="news-title">전국 이바우펫 창립 8주년, 등록자·소개자 특별 사은품 EVENT</div>
-        <div class="news-desc">이바우펫 애견미용학원이 창립 8주년을 맞아 2026년 9월 14일부터 19일까지 전국 지점에서 신규 등록자와 소개자를 위한 특별 사은품 이벤트를 진행합니다.</div>
-        <div class="news-footer">
-          <span class="news-date">2026.09.16</span>
-          <a href="/news/2026-09-16-8th-anniversary-event/" class="news-link">보기 →</a>
-      </article>
-      <article class="news-card">
-        <div class="news-badge">🏫 학원비용</div>
-        <div class="news-title">애견미용학원비용 얼마일까? 일반수강·국비·교육지원 현실 비교</div>
-        <div class="news-desc">애견미용학원비용 비교를 일반수강, 국민내일배움카드 국비과정, 별도 교육지원으로 나눠 실제 공개 금액과 부담 구조를 비교했습니다.</div>
-        <div class="news-footer">
-          <span class="news-date">2026.09.16</span>
-          <a href="/news/2026-09-16-academy-cost/" class="news-link">보기 →</a>
-      </article>
-      <article class="news-card">
-        <div class="news-badge">🏫 주말반</div>
-        <div class="news-title">애견미용학원주말반 | 주말에만 배워도 자격증 준비가 가능할까요?</div>
-        <div class="news-desc">애견미용학원주말반 수업을 찾는다면 토·일 수업 여부뿐 아니라 주당 실습시간, 실견수업, 자격증 준비기간과 보강 가능 여부를 함께 확인하세요.</div>
-        <div class="news-footer">
-          <span class="news-date">2026.09.16</span>
-          <a href="/news/2026-09-16-weekend-class/" class="news-link">보기 →</a>
-      </article>
-      <article class="news-card">
-        <div class="news-badge">🏫 학원추천</div>
-        <div class="news-title">애견미용학원추천 좋은 학원을 찾을 때 무엇부터 비교해야 할까요?</div>
-        <div class="news-desc">애견미용학원추천 많은 곳을 찾고 있다면 후기나 거리만 보지 말고 자격증, 실견수업, 개별 피드백, 비용과 취업·창업 지원을 비교하세요.</div>
-        <div class="news-footer">
-          <span class="news-date">2026.09.16</span>
-          <a href="/news/2026-09-16-academy-recommend/" class="news-link">보기 →</a>
-      </article>
-      <article class="news-card">
-        <div class="news-badge">🏫 창업준비</div>
-        <div class="news-title">애견미용창업 자격증 취득 후 무엇부터 준비해야 할까요?</div>
-        <div class="news-desc">애견미용창업 준비한다면 미용기술뿐 아니라 동물미용업 등록, 시설기준, 법정교육, 초기비용과 고객관리까지 함께 확인해야 합니다.</div>
-        <div class="news-footer">
-          <span class="news-date">2026.09.16</span>
-          <a href="/news/2026-09-16-startup/" class="news-link">보기 →</a>
-      </article>
-      <article class="news-card">
-        <div class="news-badge">🏫 취업준비</div>
-        <div class="news-title">애견미용취업 준비, 자격증만 있으면 충분할까요?</div>
-        <div class="news-desc">애견미용취업 준비한다면 자격증뿐 아니라 실견 경험, 포트폴리오, 채용처 유형과 실제 채용조건까지 함께 확인해보세요.</div>
-        <div class="news-footer">
-          <span class="news-date">2026.09.16</span>
-          <a href="/news/2026-09-16-employment/" class="news-link">보기 →</a>
-      </article>
-    </div>
-  </div>
-
-  <div class="wrap">
-    <a href="/news/" class="btn btn-primary btn-full btn-lg mt16 fade-up" style="text-decoration:none;" onclick="gtag('event','click_cta',{button:'새소식_전체보기'})">
-      📰 전체 소식 보기
-    </a>
   </div>
 </section>
 
