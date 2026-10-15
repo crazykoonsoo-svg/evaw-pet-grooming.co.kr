@@ -1653,6 +1653,46 @@
         mask-image:linear-gradient(to bottom,transparent,#000 48px,#000 58%,transparent);
       }
     }
+
+    /* Complete remaining section backgrounds using the existing six assets. */
+    body > section#enrollment-info.section-photo { --photo-top:var(--bg-sub); --photo-bottom:var(--bg-sub); }
+    body > section#faculty.section-photo { --photo-top:var(--bg-sub); --photo-bottom:var(--navy); }
+    body > section#branches.section-photo { --photo-top:var(--navy); --photo-bottom:var(--navy); }
+    body > section#guide.section-photo { --photo-top:var(--navy); }
+    /* White copy stays on a dark overlay in the consultation sections. */
+    body > .section-photo-dark {
+      position:relative;
+      isolation:isolate;
+      background:var(--navy);
+      border-top:0;
+      border-bottom:0;
+    }
+    body > .section-photo-dark::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      background-image:linear-gradient(to right,rgba(22,33,62,.94),rgba(22,33,62,.88) 45%,rgba(22,33,62,.75)),var(--section-photo);
+      background-position:right center;
+      background-size:cover;
+      background-repeat:no-repeat;
+      opacity:1;
+      animation:none;
+      -webkit-mask-image:linear-gradient(to bottom,transparent,#000 56px,#000 calc(100% - 56px),transparent);
+      mask-image:linear-gradient(to bottom,transparent,#000 56px,#000 calc(100% - 56px),transparent);
+    }
+    body > section#network { background:var(--navy); }
+    body > section#network::before {
+      background-position:right center;
+      -webkit-mask-image:linear-gradient(to bottom,transparent,#000 64px,#000 calc(100% - 48px),transparent);
+      mask-image:linear-gradient(to bottom,transparent,#000 64px,#000 calc(100% - 48px),transparent);
+    }
+    @media(max-width:767px) {
+      body > .section-photo-dark::before {
+        background-image:linear-gradient(to right,rgba(22,33,62,.95),rgba(22,33,62,.84)),var(--section-photo);
+      }
+    }
   </style>
 </head>
 <body>
@@ -1827,7 +1867,7 @@
 </section>
 
 <!-- ── REVIEWS ───────────────────────────────── -->
-<section id="enrollment-info" aria-labelledby="enrollment-h">
+<section id="enrollment-info" class="section-photo" style="--section-photo:url('image/section-qna-bg.jpg')" aria-labelledby="enrollment-h">
   <div class="wrap">
     <div class="sec-header">
       <h2 class="t-section sec-title" id="enrollment-h">비용과 일정을 확인하세요</h2>
@@ -2000,7 +2040,7 @@
 </section>
 
 <!-- ── FACULTY ──────────────────────────────── -->
-<section id="faculty" aria-labelledby="fac-h">
+<section id="faculty" class="section-photo" style="--section-photo:url('image/section-about-bg.jpg')" aria-labelledby="fac-h">
   <div class="wrap">
     <div class="sec-header fade-up">
       <div class="sec-tag">👨‍🏫 교수진 소개</div>
@@ -2045,7 +2085,7 @@
 </section>
 
 <!-- ── NETWORK ──────────────────────────────── -->
-<section id="branches" aria-labelledby="branch-h">
+<section id="branches" class="section-photo" style="--section-photo:url('image/section-breeds-bg.jpg')" aria-labelledby="branch-h">
   <div class="wrap">
     <div class="sec-header fade-up">
       <div class="sec-tag">📍 전국 직영 캠퍼스</div>
@@ -2080,7 +2120,7 @@
 </section>
 
 <!-- ── MID CTA BANNER ────────────────────────── -->
-<div class="cta-banner" aria-label="상담 유도">
+<div class="cta-banner section-photo-dark" style="--section-photo:url('image/section-reviews-bg.jpg')" aria-label="상담 유도">
   <div class="wrap">
     <h2 class="t-section">지금 바로 <br class="mobile-break"/><span style="color:var(--gold-lt)">무료 상담</span> 받으세요</h2>
     <p class="sub">커리큘럼부터 수강료까지 부담없이 물어보세요</p>
@@ -2167,7 +2207,7 @@
 </section>
 
 <!-- ── FAQ ──────────────────────────────────── -->
-<section id="news" aria-labelledby="news-h">
+<section id="news" class="section-photo" style="--section-photo:url('image/section-industry-bg.jpg')" aria-labelledby="news-h">
   <div class="wrap">
     <div class="sec-header fade-up">
       <div class="sec-tag">📰 최근 소식</div>
@@ -2576,7 +2616,7 @@
 </section>
 
 <!-- ── NEWS SECTION ──────────────────────────── -->
-<section id="finalCta" aria-label="최종 상담 유도">
+<section id="finalCta" class="section-photo-dark" style="--section-photo:url('image/section-career-bg.jpg')" aria-label="최종 상담 유도">
   <div class="wrap">
     <div class="sec-header fade-up">
       <div class="sec-tag">📋 부담 없이 비교해보세요</div>
