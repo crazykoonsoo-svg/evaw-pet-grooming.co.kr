@@ -2587,7 +2587,7 @@
     </div>
     <form class="modal-body" id="nearby-form" onsubmit="submitNearbyForm(event)" novalidate>
       <div><label class="field-label" for="nearby-name">성함 <span class="req">*</span></label><input class="field-input" id="nearby-name" name="name" autocomplete="name" placeholder="성함을 입력해 주세요" required /></div>
-      <div><label class="field-label" for="nearby-phone">연락처 <span class="req">*</span></label><input class="field-input" id="nearby-phone" name="phone" type="tel" autocomplete="tel" placeholder="연락처를 입력해 주세요" required /></div>
+      <div><label class="field-label" for="nearby-phone">연락처 <span class="req">*</span></label><input class="field-input" id="nearby-phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="010-0000-0000" maxlength="13" oninput="this.value=this.value.replace(/\D/g,'').slice(0,11).replace(/^(\d{3})(\d{1,4})?(\d{1,4})?$/,(_,a,b,c)=>[a,b,c].filter(Boolean).join('-'))" required /></div>
       <div><label class="field-label" for="nearby-region">희망지역 <span class="req">*</span></label><input class="field-input" id="nearby-region" name="region" placeholder="예: 부천 상동, 대전 유성구" required /></div>
       <div style="font-size:.78rem;color:var(--text-lt);line-height:1.7;">
         <label style="display:flex;gap:8px;align-items:center;"><input type="checkbox" id="nearby-agree" checked required style="accent-color:var(--navy);" /> 개인정보 수집 및 이용 동의 (필수)</label>
