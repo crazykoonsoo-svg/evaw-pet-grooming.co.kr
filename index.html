@@ -262,7 +262,7 @@
     }
     *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
     html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
-    body { font-family:'Noto Sans KR',sans-serif; background:var(--bg-main); color:var(--text-dk); line-height:1.6; overflow-x:hidden; }
+    body { font-family:'Noto Sans KR',sans-serif; background:#FFFFFF; color:var(--text-dk); line-height:1.6; overflow-x:hidden; }
     img  { max-width:100%; display:block; }
     .serif { font-family:'Noto Serif KR',serif; }
 
@@ -312,7 +312,7 @@
 
     /* ── HERO ── */
     #hero {
-      background-color: #F8F9FC;
+      background-color: #FFFFFF;
       padding:0; position:relative; overflow:hidden; min-height:100svh;
       display:flex; flex-direction:column;
     }
@@ -365,7 +365,7 @@
       position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: contain;
-      background: var(--bg-main);
+      background: #FFFFFF;
       opacity: 0;
       transform: scale(1);
       transform-origin: center;
@@ -815,7 +815,7 @@
     .dot.active { background:var(--gold); width:20px; border-radius:3px; }
 
     /* ── REVIEWS CTA NUDGE ── */
-    .rv-cta-nudge { background:var(--bg-sub); padding:0 0 52px; }
+    .rv-cta-nudge { background:#FFFFFF; padding:0 0 52px; }
     .rv-cta-box {
       max-width:480px; margin:0 auto; background:var(--gold-bg);
       border:1px solid rgba(201,168,76,.3); border-radius:var(--r16);
@@ -1641,9 +1641,9 @@
       -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 80px,#000 70%,transparent 100%);
       mask-image:linear-gradient(to bottom,transparent 0%,#000 80px,#000 70%,transparent 100%);
     }
-    body > section#curriculum.section-photo { --photo-top:var(--bg-main); --photo-bottom:var(--bg-sub); }
-    body > section#why.section-photo { --photo-top:var(--bg-sub); }
-    body > section#reviews.section-photo { --photo-bottom:var(--bg-sub); }
+    body > section#curriculum.section-photo { --photo-top:#FFFFFF; --photo-bottom:#FFFFFF; }
+    body > section#why.section-photo { --photo-top:#FFFFFF; }
+    body > section#reviews.section-photo { --photo-bottom:#FFFFFF; }
     body > section#faq.section-photo { --photo-bottom:var(--navy); }
     @media(max-width:767px) {
       body > section.section-photo::before {
@@ -1655,8 +1655,8 @@
     }
 
     /* Complete remaining section backgrounds using the existing six assets. */
-    body > section#enrollment-info.section-photo { --photo-top:var(--bg-sub); --photo-bottom:var(--bg-sub); }
-    body > section#faculty.section-photo { --photo-top:var(--bg-sub); --photo-bottom:var(--navy); }
+    body > section#enrollment-info.section-photo { --photo-top:#FFFFFF; --photo-bottom:#FFFFFF; }
+    body > section#faculty.section-photo { --photo-top:#FFFFFF; --photo-bottom:var(--navy); }
     body > section#branches.section-photo { --photo-top:var(--navy); --photo-bottom:var(--navy); }
     body > section#guide.section-photo { --photo-top:var(--navy); }
     /* White copy stays on a dark overlay in the consultation sections. */
