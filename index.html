@@ -1685,6 +1685,26 @@
         background-image:linear-gradient(to right,rgba(22,33,62,.95),rgba(22,33,62,.84)),var(--section-photo);
       }
     }
+
+    /* Keep section introductions legible over photography. */
+    body > section.section-photo .sec-header > p {
+      display:inline-block;
+      max-width:100%;
+      box-sizing:border-box;
+      padding:6px 12px;
+      border-radius:8px;
+      background:rgba(255,255,255,.9);
+      color:#24334b;
+      font-weight:600;
+      line-height:1.7;
+      word-break:keep-all;
+      overflow-wrap:break-word;
+    }
+    .section-photo-dark .sub {
+      color:#fff;
+      font-weight:600;
+      text-shadow:0 1px 4px rgba(0,0,0,.45);
+    }
   </style>
 </head>
 <body>
@@ -1740,7 +1760,7 @@
           <span style="display:block;text-shadow:0 0 10px rgba(255,255,255,.9),0 0 20px rgba(255,255,255,.6);">처음 배우는 애견미용,</span>
           <em>자격증부터 실제 가정견 실습까지</em>
         </h1>
-        <p class="hero-sub">전국 20개 직영 캠퍼스에서 <br class="mobile-break"/>수강과정·교육지원 가능 여부를 확인해보세요.</p>
+        <p class="hero-sub">전국 20개 직영 캠퍼스에서<br/>수강과정·교육지원 가능 여부를 확인해보세요.</p>
 
         <div class="hero-cta">
           <div class="hero-primary-actions">
