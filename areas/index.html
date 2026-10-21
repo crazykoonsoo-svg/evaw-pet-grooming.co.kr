@@ -317,6 +317,15 @@
       .wrap { max-width:1280px; }
       .area-list { grid-template-columns:repeat(3,1fr); }
     }
+    /* ── 지역별 안내글 페이지네이션 (6개씩) ── */
+    .area-pagination { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:6px; margin:28px 0 8px; }
+    .area-pagination[hidden], .area-list > .area-card[hidden] { display:none; }
+    .area-pagination a, .area-pagination span { min-width:40px; height:40px; padding:0 12px; display:inline-flex; align-items:center; justify-content:center; border-radius:10px; font-size:.88rem; font-weight:700; text-decoration:none; }
+    .area-pagination a { color:var(--navy); background:var(--white); border:1px solid var(--gray-2); transition:border-color .2s, background .2s; }
+    .area-pagination a:hover { border-color:var(--gold); background:var(--gold-bg); }
+    .area-pagination a[aria-current="page"] { background:var(--navy); border-color:var(--navy); color:var(--white); pointer-events:none; }
+    .area-pagination a.is-disabled { opacity:.35; pointer-events:none; }
+    .area-pagination .ap-ellipsis { min-width:24px; padding:0; color:var(--text-lt); }
   </style>
 </head>
 <body>
@@ -901,6 +910,8 @@
       </a>
     </div>
 
+    <nav class="area-pagination" id="areaPagination" aria-label="지역별 안내글 페이지 이동" hidden></nav>
+
     <div class="branches-cta-box">
       <p>지금 바로 가까운 캠퍼스를 확인하고 싶다면<br/>전국 캠퍼스 목록에서 찾아보세요.</p>
       <a href="/branches/" class="btn btn-primary">🌐 전국 캠퍼스 전체보기</a>
@@ -1195,6 +1206,68 @@
   if (!wcs_add) var wcs_add = {};
   wcs_add["wa"] = "cf421df2fe08a8";
   if (window.wcs) { wcs_do(); }
+</script>
+<script>
+/* 지역별 안내글: 한 페이지에 6개씩 표시 (모든 카드는 HTML에 그대로 두고 화면에서만 나눔) */
+(function () {
+  var PER_PAGE = 6;
+  var list = document.getElementById('areaListBody');
+  var nav = document.getElementById('areaPagination');
+  if (!list || !nav) return;
+  var cards = Array.prototype.filter.call(list.children, function (el) { return el.classList.contains('area-card'); });
+  var total = Math.ceil(cards.length / PER_PAGE);
+  if (total <= 1) return;
+
+  function getPage() {
+    var m = location.hash.match(/^#page-(\d+)$/);
+    var p = m ? parseInt(m[1], 10) : 1;
+    return Math.min(Math.max(p, 1), total);
+  }
+  function link(label, page, opts) {
+    opts = opts || {};
+    var a = document.createElement('a');
+    a.href = '#page-' + page;
+    a.textContent = label;
+    if (opts.current) a.setAttribute('aria-current', 'page');
+    if (opts.disabled) { a.className = 'is-disabled'; a.setAttribute('aria-disabled', 'true'); a.tabIndex = -1; }
+    if (opts.aria) a.setAttribute('aria-label', opts.aria);
+    return a;
+  }
+  function render(page, scroll) {
+    cards.forEach(function (c, i) {
+      c.hidden = !(i >= (page - 1) * PER_PAGE && i < page * PER_PAGE);
+    });
+    nav.innerHTML = '';
+    nav.appendChild(link('‹ 이전', page - 1, { disabled: page === 1, aria: '이전 페이지' }));
+    var pages = [];
+    for (var p = 1; p <= total; p++) {
+      if (p === 1 || p === total || Math.abs(p - page) <= 2) pages.push(p);
+      else if (pages[pages.length - 1] !== '…') pages.push('…');
+    }
+    pages.forEach(function (p) {
+      if (p === '…') { var s = document.createElement('span'); s.className = 'ap-ellipsis'; s.textContent = '…'; nav.appendChild(s); }
+      else nav.appendChild(link(String(p), p, { current: p === page, aria: p + '페이지' }));
+    });
+    nav.appendChild(link('다음 ›', page + 1, { disabled: page === total, aria: '다음 페이지' }));
+    nav.hidden = false;
+    if (scroll) {
+      var top = list.getBoundingClientRect().top + window.pageYOffset - 120;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    }
+  }
+  nav.addEventListener('click', function (e) {
+    var a = e.target.closest('a');
+    if (!a || a.classList.contains('is-disabled')) return;
+    e.preventDefault();
+    var page = parseInt(a.getAttribute('href').replace('#page-', ''), 10);
+    if (page === 1) history.pushState(null, '', location.pathname + location.search);
+    else history.pushState(null, '', '#page-' + page);
+    render(page, true);
+  });
+  window.addEventListener('popstate', function () { render(getPage(), true); });
+  window.addEventListener('hashchange', function () { render(getPage(), true); });
+  render(getPage(), false);
+})();
 </script>
 </body>
 </html>
