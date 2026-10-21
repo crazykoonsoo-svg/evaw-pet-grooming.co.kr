@@ -1,0 +1,10 @@
+/* 지점 페이지: 상담 버튼 + 내 주변 학원 조회 버튼 */
+.hero-cta-pair { display:flex; flex-direction:column; gap:8px; }
+.hero-cta-pair .btn { width:100%; }
+.btn-nearby { background:#fff; color:var(--navy); border:2px solid var(--navy); box-shadow:0 4px 16px rgba(22,33,62,.12); }
+.btn-nearby:hover { background:var(--gold-bg, #fdf8ee); border-color:var(--gold, #C9A84C); }
+@media (min-width:768px) {
+  .hero-cta-pair { flex-direction:row; }
+  .hero-cta-pair .btn { flex:1 1 0; min-width:0; padding-left:14px; padding-right:14px; font-size:.98rem; word-break:keep-all; }
+}
+#nearbyOverlay .consult-hours { font-size:.8rem; color:var(--text-mid); line-height:1.7; background:var(--gray-1, #f4f6fb); border-radius:12px; padding:12px 14px; margin-bottom:14px; }
