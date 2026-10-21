@@ -1208,7 +1208,7 @@
   if (window.wcs) { wcs_do(); }
 </script>
 <script>
-/* 지역별 안내글: 한 페이지에 6개씩 표시 (모든 카드는 HTML에 그대로 두고 화면에서만 나눔) */
+/* 지역별 안내글: 한 페이지에 6개씩 표시 (모든 카드는 HTML에 그대로 두고 화면에서만 나눔, 주소는 바뀌지 않음) */
 (function () {
   var PER_PAGE = 6;
   var list = document.getElementById('areaListBody');
@@ -1218,15 +1218,11 @@
   var total = Math.ceil(cards.length / PER_PAGE);
   if (total <= 1) return;
 
-  function getPage() {
-    var m = location.hash.match(/^#page-(\d+)$/);
-    var p = m ? parseInt(m[1], 10) : 1;
-    return Math.min(Math.max(p, 1), total);
-  }
   function link(label, page, opts) {
     opts = opts || {};
     var a = document.createElement('a');
-    a.href = '#page-' + page;
+    a.href = '#';
+    a.setAttribute('data-page', page);
     a.textContent = label;
     if (opts.current) a.setAttribute('aria-current', 'page');
     if (opts.disabled) { a.className = 'is-disabled'; a.setAttribute('aria-disabled', 'true'); a.tabIndex = -1; }
@@ -1259,14 +1255,9 @@
     var a = e.target.closest('a');
     if (!a || a.classList.contains('is-disabled')) return;
     e.preventDefault();
-    var page = parseInt(a.getAttribute('href').replace('#page-', ''), 10);
-    if (page === 1) history.pushState(null, '', location.pathname + location.search);
-    else history.pushState(null, '', '#page-' + page);
-    render(page, true);
+    render(parseInt(a.getAttribute('data-page'), 10), true);
   });
-  window.addEventListener('popstate', function () { render(getPage(), true); });
-  window.addEventListener('hashchange', function () { render(getPage(), true); });
-  render(getPage(), false);
+  render(1, false);
 })();
 </script>
 </body>
