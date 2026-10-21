@@ -1417,6 +1417,8 @@
     .branch-detail-links {display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;}
     .branch-detail-links a {display:inline-flex;align-items:center;min-height:44px;padding:9px 14px;background:#fff;border:1px solid #cbd5e1;border-radius:10px;}
 </style>
+  <link rel="stylesheet" href="/assets/area-nearby.css" />
+  <link rel="stylesheet" href="/assets/branch-nearby.css" />
 </head>
 <body>
 
@@ -1476,9 +1478,14 @@
         <p class="hero-sub">분당 이바우펫에서 <br class="mobile-break"/>수강과정·교육지원 가능 여부를 확인해보세요.</p>
 
         <div class="hero-cta">
-          <button class="btn btn-consult btn-full btn-lg" onclick="gtag('event','click_cta',{button:'상담_hero_branch_bundang'});openModal();" aria-label="무료 상담 신청">
-            🎓 수강료 무료 상담 신청
-          </button>
+          <div class="hero-cta-pair">
+            <button class="btn btn-consult btn-full btn-lg" onclick="gtag('event','click_cta',{button:'상담_hero_branch_bundang'});openModal();" aria-label="무료 상담 신청">
+              🎓 수강료 무료 상담 신청
+            </button>
+            <button type="button" class="btn btn-nearby btn-full btn-lg" aria-haspopup="dialog" aria-controls="nearbyOverlay" onclick="gtag('event','click_cta',{button:'가까운지점_hero_branch_bundang'});openNearbyModal();">
+              분당이 아니라면? 내 주변 학원 조회
+            </button>
+          </div>
           <div class="row3">
             <button class="btn btn-gold" onclick="gtag('event','click_cta',{button:'전화_hero_branch_bundang'});showPhone();" aria-label="전화 상담">📞 전화상담</button>
             <a href="http://pf.kakao.com/_xaNjrn/chat" class="btn btn-kakao" target="_blank" rel="noopener" aria-label="카카오톡 문의">💬 카톡문의</a>
@@ -2326,5 +2333,28 @@
   wcs_add["wa"] = "cf421df2fe08a8";
   if (window.wcs) { wcs_do(); }
 </script>
+<!-- 📍 가까운 지점 문의 모달 -->
+<div id="nearbyOverlay" role="dialog" aria-modal="true" aria-labelledby="nearby-title" onclick="if(event.target===this)closeNearbyModal();">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div class="modal-title" id="nearby-title">📍 가까운 지점 문의</div>
+      <button type="button" class="modal-close" onclick="closeNearbyModal()" aria-label="닫기">✕</button>
+    </div>
+    <form class="modal-body" id="nearby-form" onsubmit="submitNearbyForm(event)" novalidate>
+      <div><label class="field-label" for="nearby-name">성함 <span class="req">*</span></label><input class="field-input" id="nearby-name" name="name" autocomplete="name" placeholder="성함을 입력해 주세요" required /></div>
+      <div><label class="field-label" for="nearby-phone">연락처 <span class="req">*</span></label><input class="field-input" id="nearby-phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="010-0000-0000" maxlength="13" oninput="this.value=formatNearbyContact(this.value)" required /></div>
+      <div><label class="field-label" for="nearby-region">희망지역 <span class="req">*</span></label><input class="field-input" id="nearby-region" name="region" placeholder="예: 부천 상동, 대전 유성구" required /></div>
+      <div style="font-size:.78rem;color:var(--text-lt);line-height:1.7;">
+        <label style="display:flex;gap:8px;align-items:center;"><input type="checkbox" id="nearby-agree" checked required style="accent-color:var(--navy);" /> 개인정보 수집 및 이용 동의 (필수)</label>
+        <details style="margin-top:6px;"><summary style="cursor:pointer;">개인정보 수집·이용 안내</summary><p>수집 항목: 성함, 연락처, 희망지역<br/>이용 목적: 가까운 지점 안내 및 문의 응대<br/>보유 기간: 작성일로부터 1년<br/>동의를 거부할 수 있으며, 동의하지 않으면 온라인 문의 신청이 제한됩니다.</p></details>
+      </div>
+      <p id="nearby-error" role="alert" hidden style="color:#c0395d;font-size:.82rem;"></p>
+      <button class="btn btn-consult btn-full btn-lg" id="nearby-submit" type="submit">가까운 지점 문의하기</button>
+    </form>
+    <div id="nearby-success" hidden style="padding:28px 20px;text-align:center;" role="status"><div class="success-title">문의가 접수되었습니다.</div><p class="success-desc">담당자가 남겨주신 연락처로 가까운 지점을 안내드립니다.</p><div class="consult-hours">상담시간: 평일 11:00~21:30 · 토요일 11:00~15:00<br/>전화를 받기 어려우시면 네이버톡톡에 문의 내용을 남겨주세요.</div><a href="http://talk.naver.com/W5IPUB" class="btn btn-naver btn-full" target="_blank" rel="noopener" style="margin-bottom:10px;" onclick="closeNearbyModal()">네이버톡톡으로 문의하기</a><button type="button" class="btn btn-primary btn-full" onclick="closeNearbyModal()">닫기</button></div>
+  </div>
+</div>
+<script src="/assets/branch-nearby.js"></script>
 </body>
 </html>
