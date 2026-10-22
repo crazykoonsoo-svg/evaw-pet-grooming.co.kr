@@ -1,0 +1,55 @@
+# 새 글이 올라오면 rss.xml을 자동으로 다시 만듭니다. (네이버 서치어드바이저 RSS 제출용)
+name: Update RSS
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'news/**'
+      - 'areas/**'
+      - 'guide/**'
+      - 'cases/**'
+      - 'sitemap.xml'
+      - 'scripts/build-rss.mjs'
+      - '.github/workflows/rss.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: update-rss
+  cancel-in-progress: false
+
+jobs:
+  rss:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build rss.xml
+        run: node scripts/build-rss.mjs
+
+      - name: Commit rss.xml if changed
+        run: |
+          if git diff --quiet -- rss.xml; then
+            echo "rss.xml 변경 없음"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add rss.xml
+          git commit -m "Update rss.xml (auto)"
+          git pull --rebase origin main
+          git push
+          # 봇 커밋은 Pages 재배포가 자동으로 안 될 수 있어 재배포를 직접 요청합니다.
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Pages 재배포 요청 실패(다음 배포 때 반영됨)"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
