@@ -85,7 +85,7 @@
         "name": "자격증 취득까지 얼마나 걸리나요?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "수강 빈도와 개인 진도에 따라 달라지며 3급은 약 4~6개월을 예상할 수 있습니다. 선택 수업제로 본인의 속도에 맞게 진행할 수 있습니다."
+          "text": "출석률에 따라 차이가 있지만 3급은 보통 3~6개월, 2급은 6~9개월 정도 걸립니다. 선택 수업제로 본인의 속도에 맞게 진행할 수 있습니다."
         }
       },
       {
@@ -109,7 +109,7 @@
         "name": "수강료는 얼마인가요?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "수강료는 동일 과정 기준 전 지점 동일하며, 도구 제공과 교육지원 조건도 공통 적용됩니다. 최종 안내 금액은 선택 과정과 교육지원 적용 여부에 따라 달라집니다. 정확한 금액은 전화(010-3766-1620) 또는 카카오톡으로 문의 주시면 상세히 안내드립니다."
+          "text": "수강료는 과정에 따라 다르지만 월 30만원대부터 수강할 수 있으며, 동일 과정 기준 전 지점 동일합니다. 도구 제공과 교육지원 조건도 공통 적용됩니다. 최종 안내 금액은 선택 과정과 교육지원 적용 여부에 따라 달라집니다. 정확한 금액은 전화(010-3766-1620) 또는 카카오톡으로 문의 주시면 상세히 안내드립니다."
         }
       },
       {
@@ -1416,7 +1416,17 @@
     .branch-common {padding:16px;border:1px solid #d7dce4;border-radius:12px;background:#fff;}
     .branch-detail-links {display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;}
     .branch-detail-links a {display:inline-flex;align-items:center;min-height:44px;padding:9px 14px;background:#fff;border:1px solid #cbd5e1;border-radius:10px;}
-</style>
+
+    /* 지점 한눈에 보기 (AI 브리핑 대비) */
+    #summary { padding:40px 0 8px; background:var(--white, #fff); text-align:left; }
+    #summary .wrap { max-width:860px; }
+    #summary h2 { font-size:1.25rem; color:var(--navy); margin:0 0 12px; font-weight:800; }
+    #summary .bs-lead { font-size:.95rem; line-height:1.8; color:var(--text-dk, #10192E); margin:0 0 16px; }
+    #summary .bs-table { width:100%; border-collapse:collapse; font-size:.88rem; border:1px solid var(--gray-2, #DDE3F0); }
+    #summary .bs-table th, #summary .bs-table td { padding:10px 12px; border-bottom:1px solid var(--gray-2, #DDE3F0); text-align:left; vertical-align:top; line-height:1.6; }
+    #summary .bs-table th { width:30%; background:var(--gray-1, #F0F3F9); color:var(--navy); font-weight:700; white-space:nowrap; }
+    #summary .bs-meta { font-size:.76rem; color:var(--text-lt, #7A82A0); margin:10px 0 0; }
+  </style>
   <link rel="stylesheet" href="/assets/area-nearby.css" />
   <link rel="stylesheet" href="/assets/branch-nearby.css" />
 </head>
@@ -1512,6 +1522,26 @@
       </div>
     </div>
 
+  </div>
+</section>
+
+<section id="summary" aria-labelledby="summary-h">
+  <div class="wrap">
+    <h2 id="summary-h">부천애견미용학원 이바우펫 한눈에 보기</h2>
+    <p class="bs-lead">부천애견미용학원 이바우펫 부천점은 경기도 부천시 원미구 부일로 496에 있으며, 월~금 11:00~21:30 / 토요일 11:00~15:00에 수업합니다. 수강료는 과정에 따라 다르지만 월 30만원대부터 수강할 수 있고, 자격증은 출석률에 따라 3급 보통 3~6개월, 2급 6~9개월 정도 걸립니다. 실습은 100% 가정견 실견수업으로 진행합니다.</p>
+    <table class="bs-table">
+      <tbody>
+        <tr><th scope="row">지점명</th><td>부천이바우펫 애견미용학원</td></tr>
+        <tr><th scope="row">주소</th><td>경기도 부천시 원미구 부일로 496</td></tr>
+        <tr><th scope="row">찾아오는 길</th><td>부천역 5번 출구 296m</td></tr>
+        <tr><th scope="row">수업시간</th><td>월~금 11:00~21:30 / 토요일 11:00~15:00 (전 지점 동일)</td></tr>
+        <tr><th scope="row">수강료</th><td>과정에 따라 다르며 월 30만원대부터 (동일 과정은 전 지점 같은 수강료)</td></tr>
+        <tr><th scope="row">자격증 취득 기간</th><td>출석률에 따라 3급 보통 3~6개월, 2급 6~9개월</td></tr>
+        <tr><th scope="row">실습 방식</th><td>100% 가정견 실견수업</td></tr>
+        <tr><th scope="row">상담 문의</th><td>010-3766-1620 · 카카오톡 · 네이버 톡톡</td></tr>
+      </tbody>
+    </table>
+    <p class="bs-meta">정보 확인 2026.10.24 · 감수 이바우펫 본부장</p>
   </div>
 </section>
 
@@ -1763,7 +1793,7 @@
       </div>
       <div class="faq-item" role="listitem">
         <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">자격증 취득까지 얼마나 걸리나요?</span><span class="faq-arr">▼</span></button>
-        <div class="faq-a"><div class="faq-a-in">수강 빈도와 개인 진도에 따라 달라지며 3급은 약 4~6개월을 예상할 수 있습니다. 선택 수업제로 본인의 속도에 맞게 진행할 수 있습니다.<br/><a href="/guide/license/" class="faq-guide-link">애견미용 자격증 3급·2급 차이는? 자세히 보기 →</a></div></div>
+        <div class="faq-a"><div class="faq-a-in">출석률에 따라 차이가 있지만 3급은 보통 3~6개월, 2급은 6~9개월 정도 걸립니다. 선택 수업제로 본인의 속도에 맞게 진행할 수 있습니다.<br/><a href="/guide/license/" class="faq-guide-link">애견미용 자격증 3급·2급 차이는? 자세히 보기 →</a></div></div>
       </div>
       <div class="faq-item" role="listitem">
         <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">직장인·주부도 수강 가능한가요?</span><span class="faq-arr">▼</span></button>
@@ -1775,7 +1805,7 @@
       </div>
       <div class="faq-item" role="listitem">
         <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">수강료는 얼마인가요?</span><span class="faq-arr">▼</span></button>
-        <div class="faq-a"><div class="faq-a-in">수강료는 동일 과정 기준 전 지점 동일하며, 도구 제공과 교육지원 조건도 공통 적용됩니다. 최종 안내 금액은 선택 과정과 교육지원 적용 여부에 따라 달라집니다. 정확한 금액은 전화(010-3766-1620) 또는 카카오톡으로 문의 주시면 상세히 안내드립니다.<br/><a href="/guide/cost/" class="faq-guide-link">애견미용학원 비용은 어떻게 결정될까? 자세히 보기 →</a></div></div>
+        <div class="faq-a"><div class="faq-a-in">수강료는 과정에 따라 다르지만 월 30만원대부터 수강할 수 있으며, 동일 과정 기준 전 지점 동일합니다. 도구 제공과 교육지원 조건도 공통 적용됩니다. 최종 안내 금액은 선택 과정과 교육지원 적용 여부에 따라 달라집니다. 정확한 금액은 전화(010-3766-1620) 또는 카카오톡으로 문의 주시면 상세히 안내드립니다.<br/><a href="/guide/cost/" class="faq-guide-link">애견미용학원 비용은 어떻게 결정될까? 자세히 보기 →</a></div></div>
       </div>
       <div class="faq-item" role="listitem">
         <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">국비지원과 교육지원의 차이가 뭔가요?</span><span class="faq-arr">▼</span></button>
