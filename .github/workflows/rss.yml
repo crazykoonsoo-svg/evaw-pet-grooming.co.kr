@@ -11,6 +11,7 @@ on:
       - 'cases/**'
       - 'sitemap.xml'
       - 'scripts/build-rss.mjs'
+      - 'scripts/sync-news.mjs'
       - '.github/workflows/rss.yml'
   workflow_dispatch:
 
@@ -35,17 +36,19 @@ jobs:
           node-version: 20
 
       - name: Build rss.xml
-        run: node scripts/build-rss.mjs
+        run: |
+          node scripts/sync-news.mjs
+          node scripts/build-rss.mjs
 
       - name: Commit rss.xml if changed
         run: |
-          if git diff --quiet -- rss.xml; then
+          if git diff --quiet -- rss.xml news/index.html sitemap.xml; then
             echo "rss.xml 변경 없음"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
-          git add rss.xml
+          git add rss.xml news/index.html sitemap.xml
           git commit -m "Update rss.xml (auto)"
           git pull --rebase origin main
           git push
