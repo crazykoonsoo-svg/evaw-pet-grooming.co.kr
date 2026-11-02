@@ -1,0 +1,24 @@
+/* Readable local guides and consultation controls on small screens. */
+.branch-detail-body, .local-planning-content, .gwangju-local-content {text-align:left;}
+.branch-detail-body ul, .local-planning-content ul, .gwangju-local-content ul {padding-inline-start:1.4em;}
+.branch-detail-body li, .local-planning-content li, .gwangju-local-content li {margin-block:10px;}
+.branch-reading-links {list-style:none;padding:0!important;display:grid;gap:10px;}
+.branch-reading-links li {margin:0;}
+.branch-reading-links a {display:block;padding:14px 16px;border:1px solid #cbd5e1;border-radius:12px;background:#fff;line-height:1.65;}
+#modalOverlay, #nearbyOverlay {top:var(--consult-viewport-top,0px);bottom:auto;height:var(--consult-viewport-height,100dvh);}
+#modalOverlay .modal-sheet, #nearbyOverlay .modal-sheet {max-height:calc(100% - 12px);overscroll-behavior:contain;scroll-padding-block:100px 24px;}
+#modalOverlay .modal-header, #nearbyOverlay .modal-header {position:sticky;top:0;z-index:2;background:#fff;padding-right:68px;}
+#modalOverlay .modal-close, #nearbyOverlay .modal-close {width:44px;height:44px;top:8px;right:12px;}
+.field-input {scroll-margin-block:100px 24px;}
+#stickyBar {padding-bottom:calc(14px + env(safe-area-inset-bottom,0px));}
+body {padding-bottom:var(--sticky-bar-space,100px);}
+body:has(#modalOverlay.open, #nearbyOverlay.open) #stickyBar {visibility:hidden;pointer-events:none;}
+#form-error {scroll-margin-block:100px 24px;}
+@media(max-width:600px){
+  .field-input {font-size:16px;}
+  .t-section, #summary h2 {overflow-wrap:anywhere;}
+  #summary .bs-table {table-layout:fixed;}
+  #summary .bs-table th {width:32%;white-space:normal;}
+  #summary .bs-table th, #summary .bs-table td {overflow-wrap:anywhere;padding:10px 8px;}
+  .purpose-chip {min-height:44px;}
+}
