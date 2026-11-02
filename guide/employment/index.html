@@ -630,6 +630,7 @@
     if (!agreed) { showError('개인정보 수집 및 이용에 동의해 주세요.'); return; }
 
     const btn = document.getElementById('submit-btn');
+    if (btn.disabled) return;
     btn.textContent = '전송 중...';
     btn.disabled = true;
 
@@ -644,6 +645,9 @@
         })
       });
 
+      const submission = await res.json();
+      if (!res.ok || !submission.success) throw new Error('submit failed');
+
       fetch('https://script.google.com/macros/s/AKfycbzzBkQ19GqbtwzB2eI-9_0KEgpimsYdVWttHz_HGz-Ck4wS_X3xXLy_5mO9d8c_MKULZg/exec', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -652,8 +656,8 @@
       }).catch(() => {});
 
       if (res.ok) {
-        naverCnv("1");
-        ga4('form_submit', `상담신청_employment_${selectedPurpose}_${region}`);
+        naverCnv('4');
+        ga4('generate_lead', 'consultation');
         document.getElementById('formState').style.display = 'none';
         document.getElementById('successState').style.display = 'block';
         ['f-name','f-phone','f-region','f-message'].forEach(id => document.getElementById(id).value = '');
@@ -694,20 +698,25 @@
   }, { passive: true });
 
   function naverCnv(type) {
+    try {
     if (typeof wcs !== 'undefined') {
       var _nasa = {};
       wcs_add["wa"] = "s_142bb34fca15"; _nasa["cnv"] = wcs.cnv(type, "1");
       wcs_do(_nasa);
     }
+    } catch (_) { /* Measurement is best effort. */ }
   }
   function ga4(action, label) {
-    if (typeof gtag !== 'undefined') {
-      gtag('event', action, { event_category: 'CTA', event_label: label, send_to: 'G-HCPV87VR4G' });
-    }
+    try {
+      if (typeof gtag !== 'function') return;
+      const params = {event_category:'CTA', event_label:label, page_path:location.pathname, send_to:'G-HCPV87VR4G'};
+      if (action === 'generate_lead') { params.form_type = label; params.method = 'website_form'; }
+      gtag('event', action, params);
+    } catch (_) { /* Measurement must not interrupt a confirmed submission. */ }
   }
-  document.querySelectorAll('[onclick*="showPhone"]').forEach(el => el.addEventListener('click', () => { naverCnv("2"); ga4('phone_popup','전화번호팝업_employment'); }));
-  document.querySelectorAll('a[href*="kakao"]').forEach(el => el.addEventListener('click', () => { naverCnv("1"); ga4('kakao_inquiry','카카오문의_employment'); }));
-  document.querySelectorAll('a[href*="talk.naver.com"]').forEach(el => el.addEventListener('click', () => { naverCnv("3"); ga4('naver_inquiry','네이버문의_employment'); }));
+  document.querySelectorAll('[onclick*="showPhone"]').forEach(el => el.addEventListener('click', () => { ga4('phone_popup','전화번호팝업_employment'); }));
+  document.querySelectorAll('a[href*="kakao"]').forEach(el => el.addEventListener('click', () => { ga4('kakao_inquiry','카카오문의_employment'); }));
+  document.querySelectorAll('a[href*="talk.naver.com"]').forEach(el => el.addEventListener('click', () => { ga4('naver_inquiry','네이버문의_employment'); }));
 </script>
 <script type="text/javascript" src="//wcs.pstatic.net/wcslog.js"></script>
 <script type="text/javascript">

@@ -15,7 +15,7 @@
   }
   var branch = (location.pathname.match(/\/branches\/([^\/]+)/) || [])[1] || 'branch';
   function track(eventName) {
-    if (typeof gtag === 'function') gtag('event', eventName, { form_type: 'nearby', cta_location: 'hero', page_variant: 'branch_' + branch, send_to: 'G-HCPV87VR4G' });
+    if (typeof gtag === 'function') try { gtag('event', eventName, { form_type: 'nearby', cta_location: 'hero', page_variant: 'branch_' + branch, send_to: 'G-HCPV87VR4G' }); } catch (_) {}
   }
 
   var overlay = document.getElementById('nearbyOverlay');
@@ -77,8 +77,8 @@
       form.style.display = 'none';
       document.getElementById('nearby-success').hidden = false;
       document.querySelector('#nearby-success button').focus();
-      if (typeof naverCnv === 'function') naverCnv('1');
-      if (typeof ga4 === 'function') ga4('form_submit', '가까운지점_문의_branch_' + branch);
+      if (typeof naverCnv === 'function') naverCnv('4');
+      if (typeof ga4 === 'function') ga4('generate_lead', 'nearby');
       track('lead_submit_success');
     } catch (err) { fail('전송하지 못했습니다. 잠시 후 다시 시도해 주세요.'); }
     finally { btn.disabled = false; btn.textContent = '가까운 지점 문의하기'; }

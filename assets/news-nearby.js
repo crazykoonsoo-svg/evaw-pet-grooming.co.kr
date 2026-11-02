@@ -17,7 +17,7 @@
   function trackLead(eventName, formType) {
     if (typeof gtag !== 'function') return;
     const variant = location.pathname.includes('/staff/goyeji/') ? 'goyeji' : location.pathname.includes('/staff/hansumina/') ? 'hansumina' : 'news';
-    gtag('event', eventName, {form_type:formType, cta_location:leadSessions[formType].source, page_variant:variant, send_to:'G-HCPV87VR4G'});
+    try { gtag('event', eventName, {form_type:formType, cta_location:leadSessions[formType].source, page_variant:variant, send_to:'G-HCPV87VR4G'}); } catch (_) {}
   }
   function beginLead(formType) {
     leadSessions[formType] = {started:false, source:leadClickSource};
@@ -95,7 +95,7 @@
       document.getElementById('nearby-form').style.display = 'none';
       document.getElementById('nearby-success').hidden = false;
       document.querySelector('#nearby-success button').focus();
-      naverCnv('1'); ga4('form_submit','가까운지점_문의'); trackLead('lead_submit_success', 'nearby');
+      naverCnv('4'); ga4('generate_lead', 'nearby'); trackLead('lead_submit_success', 'nearby');
     } catch (err) { fail('전송하지 못했습니다. 잠시 후 다시 시도해 주세요.'); }
     finally { btn.disabled = false; btn.textContent = '가까운 지점 문의하기'; }
   }

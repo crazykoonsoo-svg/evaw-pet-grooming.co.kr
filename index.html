@@ -3622,7 +3622,7 @@
   function trackLead(eventName, formType) {
     if (typeof gtag !== 'function') return;
     const variant = location.pathname.includes('/staff/goyeji/') ? 'goyeji' : location.pathname.includes('/staff/hansumina/') ? 'hansumina' : 'main';
-    gtag('event', eventName, {form_type:formType, cta_location:leadSessions[formType].source, page_variant:variant, send_to:'G-HCPV87VR4G'});
+    try { gtag('event', eventName, {form_type:formType, cta_location:leadSessions[formType].source, page_variant:variant, send_to:'G-HCPV87VR4G'}); } catch (_) {}
   }
   function beginLead(formType) {
     leadSessions[formType] = {started:false, source:leadClickSource};
@@ -3797,8 +3797,8 @@
         }).catch(() => {});
 
         if (res.ok) {
-          naverCnv("1");
-          ga4('form_submit', `상담신청_${selectedPurpose}`);
+          naverCnv('4');
+          ga4('generate_lead', 'consultation');
           trackLead('lead_submit_success', 'consultation');
           document.getElementById('formState').style.display = 'none';
           document.getElementById('successState').style.display = 'block';
@@ -3872,7 +3872,7 @@
       document.getElementById('nearby-form').style.display = 'none';
       document.getElementById('nearby-success').hidden = false;
       document.querySelector('#nearby-success button').focus();
-      naverCnv('1'); ga4('form_submit','가까운지점_문의'); trackLead('lead_submit_success', 'nearby');
+      naverCnv('4'); ga4('generate_lead', 'nearby'); trackLead('lead_submit_success', 'nearby');
     } catch (err) { fail('전송하지 못했습니다. 잠시 후 다시 시도해 주세요.'); }
     finally { btn.disabled = false; btn.textContent = '가까운 지점 문의하기'; }
   }
@@ -3906,21 +3906,26 @@
 
   /* ── CONVERSION TRACKING ── */
   function naverCnv(type) {
+    try {
     if (typeof wcs !== 'undefined') {
       wcs_add["wa"] = "s_142bb34fca15";
       var _nasa = {};
       _nasa["cnv"] = wcs.cnv(type, "1");
       wcs_do(_nasa);
     }
+    } catch (_) { /* Measurement is best effort. */ }
   }
   function ga4(action, label) {
-    if(typeof gtag !== 'undefined') {
-      gtag('event', action, { event_category: 'CTA', event_label: label, send_to: 'G-HCPV87VR4G' });
-    }
+    try {
+      if (typeof gtag !== 'function') return;
+      const params = {event_category:'CTA', event_label:label, page_path:location.pathname, send_to:'G-HCPV87VR4G'};
+      if (action === 'generate_lead') { params.form_type = label; params.method = 'website_form'; }
+      gtag('event', action, params);
+    } catch (_) { /* Measurement must not interrupt a confirmed submission. */ }
   }
-  document.querySelectorAll('[onclick*="showPhone"]').forEach(el => el.addEventListener('click', () => { naverCnv("2"); ga4('phone_popup','전화번호팝업'); }));
-  document.querySelectorAll('a[href*="kakao"]').forEach(el => el.addEventListener('click', () => { naverCnv("1"); ga4('kakao_inquiry','카카오문의'); }));
-  document.querySelectorAll('a[href*="talk.naver.com"]').forEach(el => el.addEventListener('click', () => { naverCnv("3"); ga4('naver_inquiry','네이버문의'); }));
+  document.querySelectorAll('[onclick*="showPhone"]').forEach(el => el.addEventListener('click', () => { ga4('phone_popup','전화번호팝업'); }));
+  document.querySelectorAll('a[href*="kakao"]').forEach(el => el.addEventListener('click', () => { ga4('kakao_inquiry','카카오문의'); }));
+  document.querySelectorAll('a[href*="talk.naver.com"]').forEach(el => el.addEventListener('click', () => { ga4('naver_inquiry','네이버문의'); }));
 </script>
   <!-- 네이버 애널리틱스 -->
   <script type="text/javascript" src="//wcs.pstatic.net/wcslog.js"></script>
