@@ -97,3 +97,14 @@
 .branch-prep .bp-cta button{background:#ff91ac;color:#18243c}
 .branch-prep .bp-cta button:hover{background:#ffb4c7}
 @media(max-width:760px){.branch-prep #bp-support{padding:26px 16px 20px;border-radius:22px 22px 0 0}.branch-prep .bp-support-grid{padding:0 16px 20px;border-radius:0 0 22px 22px}.branch-prep .bp-support-grid .bp-card{padding:22px 18px}}
+
+/* Wanted Sans is scoped to the branch preparation section. */
+.branch-prep{font-family:"Wanted Sans Variable","Wanted Sans","Noto Sans KR",sans-serif;font-weight:400;letter-spacing:-.015em}
+.branch-prep button,.branch-prep input,.branch-prep select,.branch-prep textarea{font-family:inherit}
+.branch-prep .bp-head h2{font-weight:750;letter-spacing:-.035em}
+.branch-prep h3,.branch-prep h4{font-weight:700;letter-spacing:-.025em}
+.branch-prep p,.branch-prep li,.branch-prep dd{line-height:1.85}
+.branch-prep strong,.branch-prep b{font-weight:650}
+.branch-prep .bp-metrics strong{font-weight:750;letter-spacing:-.03em}
+.branch-prep .bp-schedule dd{font-weight:700}
+.branch-prep .bp-eyebrow,.branch-prep .bp-label,.branch-prep .bp-cta button{font-weight:700}
