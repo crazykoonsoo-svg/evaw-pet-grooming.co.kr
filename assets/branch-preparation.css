@@ -138,7 +138,7 @@
 @media(prefers-reduced-motion:reduce){.branch-prep :is(.bp-card,.bp-location-title,.bp-metrics article,.bp-schedule,.bp-ready li,.bp-cta){transition:none;transform:none!important}}
 
 /* One-time typewriter reveal; inline spans preserve natural wrapping. */
-.branch-prep .bp-type-char{animation:bp-type-reveal 1ms step-end both;animation-delay:var(--bp-type-delay)}
+.branch-prep .bp-type-char{animation:bp-type-reveal 360ms cubic-bezier(.22,.61,.36,1) both;animation-delay:var(--bp-type-delay)}
 @keyframes bp-type-reveal{from{opacity:0}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){.branch-prep .bp-type-char{animation:none;opacity:1}}
 @media print{.branch-prep .bp-type-char{animation:none;opacity:1}}

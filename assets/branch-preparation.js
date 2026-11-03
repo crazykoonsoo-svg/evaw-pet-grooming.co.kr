@@ -16,7 +16,7 @@
       const nodes = [];
       while (walker.nextNode()) nodes.push(walker.currentNode);
       const length = nodes.reduce((sum, node) => sum + split(node.nodeValue).length, 0);
-      const interval = Math.min(38, 1500 / Math.max(length, 1));
+      const interval = Math.min(24, 640 / Math.max(length - 1, 1));
       let index = 0;
       nodes.forEach(node => {
         const fragment = document.createDocumentFragment();
@@ -33,7 +33,7 @@
       window.setTimeout(() => {
         heading.querySelectorAll('.bp-type-char').forEach(span => span.replaceWith(document.createTextNode(span.textContent)));
         heading.normalize();
-      }, index * interval + 100);
+      }, index * interval + 400);
     }
   }, { threshold: 0.2, rootMargin: '0px 0px -24px 0px' });
   section.querySelectorAll('.bp-eyebrow, h2, h3, h4').forEach(heading => observer.observe(heading));
