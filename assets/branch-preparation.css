@@ -136,3 +136,9 @@
 .branch-prep :is(.bp-card,.bp-location-title,.bp-cta):focus-within{box-shadow:0 0 0 2px #e9a7bd,0 10px 26px rgba(104,42,62,.1)}
 @media(max-width:760px){.branch-prep .bp-section-heading::before{width:80px;height:28px;top:-34px;right:12px}.branch-prep #bp-cost::before{left:12px}.branch-prep .bp-weekend{margin-top:36px}.branch-prep .bp-weekend::before{width:80px;height:28px;top:-30px}.branch-prep .bp-metrics{gap:12px}}
 @media(prefers-reduced-motion:reduce){.branch-prep :is(.bp-card,.bp-location-title,.bp-metrics article,.bp-schedule,.bp-ready li,.bp-cta){transition:none;transform:none!important}}
+
+/* One-time typewriter reveal; inline spans preserve natural wrapping. */
+.branch-prep .bp-type-char{animation:bp-type-reveal 1ms step-end both;animation-delay:var(--bp-type-delay)}
+@keyframes bp-type-reveal{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.branch-prep .bp-type-char{animation:none;opacity:1}}
+@media print{.branch-prep .bp-type-char{animation:none;opacity:1}}
