@@ -108,3 +108,6 @@
 .branch-prep .bp-metrics strong{font-weight:750;letter-spacing:-.03em}
 .branch-prep .bp-schedule dd{font-weight:700}
 .branch-prep .bp-eyebrow,.branch-prep .bp-label,.branch-prep .bp-cta button{font-weight:700}
+
+/* Soft display typography for section and card headings only. */
+.branch-prep .bp-head h2,.branch-prep h3,.branch-prep h4{font-family:"Jua","Wanted Sans Variable","Noto Sans KR",sans-serif;font-weight:400;letter-spacing:0}
