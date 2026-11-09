@@ -1669,6 +1669,8 @@
     #branches .branch-slider.is-filtered { overflow-x:auto; touch-action:pan-x pan-y; padding-bottom:12px; }
     #branches .branch-slider.is-filtered .branch-track { transform:none !important; animation:none !important; }
     .consult-hours { color:#24334b; font-size:.85rem; line-height:1.75; margin:12px 0 18px; }
+  .hero-badge-src { display:block; font-size:.68em; font-weight:600; opacity:.8; margin-top:2px; }
+  .hero-badge:has(.hero-badge-src) { flex-direction:column; align-items:flex-start; gap:0; border-radius:14px; }
 </style>
 </head>
 <body>
@@ -1725,7 +1727,7 @@
     <div class="hero-top-row">
       <!-- 왼쪽: 텍스트 + CTA -->
       <div class="hero-left">
-        <div class="hero-badge">🏆 소비자 만족 브랜드 대상</div>
+        <div class="hero-badge" title="KBSN·동아일보·국민일보 후원 2026 대한민국 소비자 만족도 조사 대상">🏆 2026 대한민국 소비자 만족도 조사 대상<small class="hero-badge-src">KBSN·동아일보·국민일보 후원</small></div>
 
         <h1 class="t-hero hero-title serif">
           <span style="display:block;text-shadow:0 0 10px rgba(255,255,255,.9),0 0 20px rgba(255,255,255,.6);">처음 배우는 애견미용,</span>
@@ -1736,7 +1738,7 @@
         <div class="hero-cta">
           <div class="hero-primary-actions">
           <button class="btn btn-consult btn-full btn-lg" onclick="gtag('event','click_cta',{button:'교육비지원조회'});openModal();" aria-label="무료 상담 신청">
-            🎓 수강료 무료 상담 신청
+            🎓 수강료 조회하기
           </button>
           <button type="button" class="btn hero-branch-link" onclick="ga4('click_cta','가까운지점_hero');openNearbyModal();">📍 가까운 지점 문의하기</button>
           </div>
@@ -1752,7 +1754,7 @@
 
         <div class="hero-trust" role="list">
           <div class="trust-item" role="listitem"><span class="num">전국 20개</span><span class="lbl">직영 캠퍼스 운영</span></div>
-          <div class="trust-item" role="listitem"><span class="num">5,600+명</span><span class="lbl">누적 수강생</span></div>
+          <div class="trust-item" role="listitem"><span class="num">5,600+명</span><span class="lbl">누적 수강생<small style="display:block;font-size:.85em;opacity:.75;">전 지점 · 2026 기준</small></span></div>
           <div class="trust-item" role="listitem"><span class="num">100%</span><span class="lbl">가정견 실견수업</span></div>
         </div>
       </div>
@@ -2128,7 +2130,7 @@
     <h2 class="t-section">지금 바로 <br class="mobile-break"/><span style="color:var(--gold-lt)">무료 상담</span> 받으세요</h2>
     <p class="sub">커리큘럼부터 수강료까지 부담없이 물어보세요</p>
     <div class="cta-grid fade-up">
-      <button class="btn btn-consult btn-full btn-lg" onclick="gtag('event','click_cta',{button:'무료상담_수강료확인'});openModal();" aria-label="수강료 무료 상담 신청">🎓 수강료 무료 상담 신청</button>
+      <button class="btn btn-consult btn-full btn-lg" onclick="gtag('event','click_cta',{button:'무료상담_수강료확인'});openModal();" aria-label="수강료 조회하기">🎓 수강료 조회하기</button>
       <button class="btn btn-gold btn-full" onclick="gtag('event','click_cta',{button:'전화_sticky'});showPhone();" aria-label="전화 상담">📞 010-6784-1177 전화 상담</button>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;">
         <a href="https://open.kakao.com/o/scvkaNKi" class="btn btn-kakao" target="_blank" rel="noopener">💬 카카오톡</a>
@@ -2319,7 +2321,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('dModal1');openModal()">🎓 수강료 무료 상담 신청</button>
+      <button class="course-cta" onclick="closeCModal('dModal1');openModal()">🎓 수강료 조회하기</button>
       <button class="course-close-btn" onclick="closeCModal('dModal1')">닫기</button>
     </div>
   </div>
@@ -2343,7 +2345,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('dModal2');openModal()">🎓 수강료 무료 상담 신청</button>
+      <button class="course-cta" onclick="closeCModal('dModal2');openModal()">🎓 수강료 조회하기</button>
       <button class="course-close-btn" onclick="closeCModal('dModal2')">닫기</button>
     </div>
   </div>
@@ -2367,7 +2369,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('dModal3');openModal()">🎓 수강료 무료 상담 신청</button>
+      <button class="course-cta" onclick="closeCModal('dModal3');openModal()">🎓 수강료 조회하기</button>
       <button class="course-close-btn" onclick="closeCModal('dModal3')">닫기</button>
     </div>
   </div>
@@ -2391,7 +2393,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('dModal4');openModal()">🎓 수강료 무료 상담 신청</button>
+      <button class="course-cta" onclick="closeCModal('dModal4');openModal()">🎓 수강료 조회하기</button>
       <button class="course-close-btn" onclick="closeCModal('dModal4')">닫기</button>
     </div>
   </div>
@@ -2415,7 +2417,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('dModal5');openModal()">🎓 수강료 무료 상담 신청</button>
+      <button class="course-cta" onclick="closeCModal('dModal5');openModal()">🎓 수강료 조회하기</button>
       <button class="course-close-btn" onclick="closeCModal('dModal5')">닫기</button>
     </div>
   </div>
@@ -2440,7 +2442,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('dModal6');openModal()">🎓 수강료 무료 상담 신청</button>
+      <button class="course-cta" onclick="closeCModal('dModal6');openModal()">🎓 수강료 조회하기</button>
       <button class="course-close-btn" onclick="closeCModal('dModal6')">닫기</button>
     </div>
   </div>
@@ -2467,7 +2469,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('cModal1');openModal('기초과정')">🎓 수강료 무료 상담 신청</button>
+      <button class="course-cta" onclick="closeCModal('cModal1');openModal('기초과정')">🎓 수강료 조회하기</button>
       <button class="course-close-btn" onclick="closeCModal('cModal1')">닫기</button>
     </div>
   </div>
@@ -2491,7 +2493,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('cModal2');openModal('자격증 취득반')">🎓 수강료 무료 상담 신청</button>
+      <button class="course-cta" onclick="closeCModal('cModal2');openModal('자격증 취득반')">🎓 수강료 조회하기</button>
       <button class="course-close-btn" onclick="closeCModal('cModal2')">닫기</button>
     </div>
   </div>
@@ -2516,7 +2518,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('cModal3');openModal('실견 심화반')">🎓 수강료 무료 상담 신청</button>
+      <button class="course-cta" onclick="closeCModal('cModal3');openModal('실견 심화반')">🎓 수강료 조회하기</button>
       <button class="course-close-btn" onclick="closeCModal('cModal3')">닫기</button>
     </div>
   </div>
@@ -2541,7 +2543,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('cModal4');openModal('취업·창업반')">🎓 수강료 무료 상담 신청</button>
+      <button class="course-cta" onclick="closeCModal('cModal4');openModal('취업·창업반')">🎓 수강료 조회하기</button>
       <button class="course-close-btn" onclick="closeCModal('cModal4')">닫기</button>
     </div>
   </div>
@@ -2566,7 +2568,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('cModal5');openModal('종합·심화반')">🎓 수강료 무료 상담 신청</button>
+      <button class="course-cta" onclick="closeCModal('cModal5');openModal('종합·심화반')">🎓 수강료 조회하기</button>
       <button class="course-close-btn" onclick="closeCModal('cModal5')">닫기</button>
     </div>
   </div>
@@ -2592,7 +2594,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('cModal6');openModal('스페셜 특강')">🎓 수강료 무료 상담 신청</button>
+      <button class="course-cta" onclick="closeCModal('cModal6');openModal('스페셜 특강')">🎓 수강료 조회하기</button>
       <button class="course-close-btn" onclick="closeCModal('cModal6')">닫기</button>
     </div>
   </div>
@@ -2644,7 +2646,7 @@
       </div>
     </div>
     <button class="btn btn-primary btn-full btn-lg mt20 fade-up" onclick="openModal()" aria-label="상담 신청">
-      🎓 수강료 무료 상담 신청
+      🎓 수강료 조회하기
     </button>
   </div>
 </section>
@@ -2700,33 +2702,6 @@
     <p style="color:rgba(255,255,255,.18);font-size:.68rem;margin-top:12px;">Copyright © Evawpet. All rights reserved.</p>
   </div>
 </footer>
-
-<!-- ── 이벤트 팝업 ────────────────────────────────── -->
-<div id="eventPopup">
-  <div class="event-sheet">
-    <img src="/image/event-popup.webp" class="event-img" alt="여름 한정 상생 프로모션 SUMMER EVENT" onclick="this.classList.toggle('event-img-full')" style="cursor:zoom-in;" width="1254" height="1254" />
-    <div class="event-btns">
-      <button class="event-cta" onclick="closeEvent();openModal();">🎓 수강료 무료 상담 신청</button>
-      <div class="event-footer">
-        <button class="event-skip" onclick="skipEventToday()">오늘 하루 보지 않기</button>
-        <button class="event-close" onclick="closeEvent()">닫기 ✕</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div id="awardPopup">
-  <div class="event-sheet">
-    <img src="/image/award-popup.webp" class="event-img" alt="Evaw Pet 2026 소비자 만족도 조사 대상 수상" onclick="this.classList.toggle('event-img-full')" style="cursor:zoom-in;" width="1254" height="1254" />
-    <div class="event-btns">
-      <button class="event-cta" onclick="closeAward();openModal();">🎓 수강료 무료 상담 신청</button>
-      <div class="event-footer">
-        <button class="event-skip" onclick="skipAwardToday()">오늘 하루 보지 않기</button>
-        <button class="event-close" onclick="closeAward()">닫기 ✕</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- ── 수강료 모달 ──────────────────────────────── -->
 <div id="tuitionModal" onclick="if(event.target===this)closeTuition()">
@@ -2933,39 +2908,6 @@
   }
   runHeroSlideshow('.hero-slide');
   runHeroSlideshow('.hero-slide-pc');
-
-  /* EVENT POPUP (지금은 자동 표시 안 함) */
-  function closeEvent() {
-    document.getElementById('eventPopup').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function skipEventToday() {
-    const today = new Date().toDateString();
-    localStorage.setItem('evawEventSkip', today);
-    closeEvent();
-  }
-  window.addEventListener('load', function() {
-    // 2026-08-27: 사용자 요청으로 접속 시 자동 팝업 표시 비활성화 (maybeShowAward 호출 제거)
-  });
-
-  /* AWARD POPUP (단독으로 표시) */
-  function closeAward() {
-    document.getElementById('awardPopup').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function skipAwardToday() {
-    const today = new Date().toDateString();
-    localStorage.setItem('evawAwardSkip', today);
-    closeAward();
-  }
-  function maybeShowAward() {
-    const skip = localStorage.getItem('evawAwardSkip');
-    const today = new Date().toDateString();
-    if (skip !== today) {
-      document.getElementById('awardPopup').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-  }
 
   /* TUITION MODAL */
   function openTuition() {

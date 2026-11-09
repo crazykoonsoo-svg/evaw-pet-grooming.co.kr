@@ -152,7 +152,7 @@
       "name": "실견 실습은 어떻게 진행되나요?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "실제 가정견을 대상으로 실습합니다. 고객 강아지 미용부터 수강생이 직접 데려온 반려견 실습까지 현장특화 반복 실습으로 진행됩니다."
+        "text": "실제 가정견을 대상으로 실습합니다. 고객 강아지 미용부터 수강생이 직접 데려온 반려견 실습까지 현장특화 반복 실습으로 진행됩니다. 가정견 실습은 지도교사와 메인원장이 개별 지도합니다."
       }
     },
     {
@@ -168,7 +168,7 @@
       "name": "국비지원과 교육지원의 차이가 뭔가요?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "국비지원은 정부(고용노동부 등)에서 운영하는 지원사업으로 대상 조건과 예산이 정해져 있습니다. 교육지원은 사단법인 한국유기견구호연맹에서 지원하는 학비 지원·장학 혜택으로, 심사를 통해 선발됩니다. 정확한 대상 조건과 혜택 내용은 전화(010-3766-1620) 또는 카카오톡으로 문의 주시면 상세히 안내드립니다."
+        "text": "국비지원은 정부(고용노동부 등)에서 운영하는 지원사업으로 대상 조건과 예산이 정해져 있습니다. 교육지원은 이바우펫과 후원 관계인 사단법인 한국유기견구호연맹의 전문가 양성 목적 교육지원으로, 취업·창업을 목표로 하는 애견미용 예비 전문가를 심사로 선발하며, 선정되면 총 수강료의 50%를 지원합니다. 지원액은 과정에 따라 다르며 최대 500만원대입니다. 두 제도는 운영 주체와 재원이 다른 별개의 제도입니다. 정확한 대상 조건과 혜택 내용은 전화(010-3766-1620) 또는 카카오톡으로 문의 주시면 상세히 안내드립니다."
       }
     },
     {
@@ -1762,6 +1762,8 @@
     #branches .branch-slider.is-filtered { overflow-x:auto; touch-action:pan-x pan-y; padding-bottom:12px; }
     #branches .branch-slider.is-filtered .branch-track { transform:none !important; animation:none !important; }
     .consult-hours { color:#24334b; font-size:.85rem; line-height:1.75; margin:12px 0 18px; }
+  .hero-badge-src { display:block; font-size:.68em; font-weight:600; opacity:.8; margin-top:2px; }
+  .hero-badge:has(.hero-badge-src) { flex-direction:column; align-items:flex-start; gap:0; border-radius:14px; }
 </style>
   <noscript><style>
     .section-photo, .section-photo-dark { --section-photo:var(--section-photo-source); }
@@ -1817,7 +1819,7 @@
     <div class="hero-top-row">
       <!-- 왼쪽: 텍스트 + CTA -->
       <div class="hero-left">
-        <div class="hero-badge">🏆 소비자 만족 브랜드 대상</div>
+        <div class="hero-badge" title="KBSN·동아일보·국민일보 후원 2026 대한민국 소비자 만족도 조사 대상">🏆 2026 대한민국 소비자 만족도 조사 대상<small class="hero-badge-src">KBSN·동아일보·국민일보 후원</small></div>
 
         <h1 class="t-hero hero-title serif">
           <span style="display:block;text-shadow:0 0 10px rgba(255,255,255,.9),0 0 20px rgba(255,255,255,.6);">처음 배우는 애견미용,</span>
@@ -1828,7 +1830,7 @@
         <div class="hero-cta">
           <div class="hero-primary-actions">
           <button class="btn btn-consult btn-full btn-lg" onclick="gtag('event','click_cta',{button:'교육비지원조회'});openModal();" aria-label="무료 상담 신청">
-            🎓 수강료 무료 상담 신청
+            🎓 수강료 조회하기
           </button>
           <button type="button" class="btn hero-branch-link" onclick="ga4('click_cta','가까운지점_hero');openNearbyModal();">📍 가까운 지점 문의하기</button>
           </div>
@@ -1844,7 +1846,7 @@
 
         <div class="hero-trust" role="list">
           <div class="trust-item" role="listitem"><span class="num">전국 20개</span><span class="lbl">직영 캠퍼스 운영</span></div>
-          <div class="trust-item" role="listitem"><span class="num">5,600+명</span><span class="lbl">누적 수강생</span></div>
+          <div class="trust-item" role="listitem"><span class="num">5,600+명</span><span class="lbl">누적 수강생<small style="display:block;font-size:.85em;opacity:.75;">전 지점 · 2026 기준</small></span></div>
           <div class="trust-item" role="listitem"><span class="num">100%</span><span class="lbl">가정견 실견수업</span></div>
         </div>
       </div>
@@ -1915,7 +1917,7 @@
         <span class="tag tag-blue">입문</span>
       </div>
       <div class="curr-card fade-up d2" onclick="openCModal('cModal2')" style="cursor:pointer" role="button" tabindex="0" aria-haspopup="dialog">
-        <div class="curr-left"><div class="curr-num">2</div><div><div class="curr-name">자격증 취득반</div><div class="curr-sub">애견미용사 3급·2급 · 등록 민간자격 제2020-005038</div></div></div>
+        <div class="curr-left"><div class="curr-num">2</div><div><div class="curr-name">자격증 취득반</div><div class="curr-sub">애견미용자격증 3급 · 2급</div></div></div>
         <span class="tag tag-green">자격증</span>
       </div>
       <div class="curr-card fade-up d3" onclick="openCModal('cModal3')" style="cursor:pointer" role="button" tabindex="0" aria-haspopup="dialog">
@@ -1952,11 +1954,11 @@
     <button type="button" class="enrollment-arrow" id="enrollment-prev" aria-label="이전 비용·일정 카드" aria-controls="enrollment-cards" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
     <div class="enrollment-grid" id="enrollment-cards" aria-live="polite">
       <article class="enrollment-card"><div class="enrollment-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 4 16 4 16 0V6M4 12v6c0 4 16 4 16 0v-6"/></svg></div><h3>수강료·도구</h3><p>동일 과정 기준 수강료와 도구 제공 조건은 전 지점 공통입니다. 선택 과정의 포함 항목과 별도 비용을 함께 확인하세요.</p></article>
-      <article class="enrollment-card"><div class="enrollment-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></div><h3>환불 기준</h3><p>학원법 시행령의 교습비 반환 기준을 따릅니다. 교습 시작 전에는 전액, 총 교습시간의 1/3 경과 전 2/3, 1/2 경과 전 1/2을 반환합니다.</p></article>
       <article class="enrollment-card"><div class="enrollment-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg></div><h3>수업·상담 시간</h3><p>월~금 <strong>11:00~21:30</strong><br/>토요일 <strong>11:00~15:00</strong></p></article>
       <article class="enrollment-card"><div class="enrollment-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6m-6 5h6m-6 5h4"/></svg></div><h3>교육기간</h3><p>선택 과정과 출석 빈도, 개인 진도에 따라 달라집니다. 목표와 참여 가능한 일정을 기준으로 학습 계획을 안내드립니다.</p></article>
+      <article class="enrollment-card"><div class="enrollment-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></div><h3>환불 기준</h3><p>학원법 시행령의 교습비 반환 기준을 따릅니다. 교습 시작 전에는 전액, 총 교습시간의 1/3 경과 전 2/3, 1/2 경과 전 1/2을 반환합니다.</p></article>
       <article class="enrollment-card"><div class="enrollment-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18m-14 5h3m4 0h3"/></svg></div><h3>출석 방식</h3><p>본인의 일정에 맞춰 수강하는 선택 수업제입니다. 희망 과정의 실습 일정과 출석 방식은 상담으로 확인하세요.</p></article>
-      <article class="enrollment-card"><div class="enrollment-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="3"/><path d="M6 21v-4a6 6 0 0 1 12 0v4M4 6a3 3 0 0 0 0 6m16-6a3 3 0 0 1 0 6M2 20v-3m20 3v-3"/></svg></div><h3>교육지원</h3><p>사단법인 한국유기견구호연맹의 전문가 양성 목적 교육지원입니다. 적용 여부와 혜택은 심사 후 확정됩니다.</p></article>
+      <article class="enrollment-card"><div class="enrollment-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="3"/><path d="M6 21v-4a6 6 0 0 1 12 0v4M4 6a3 3 0 0 0 0 6m16-6a3 3 0 0 1 0 6M2 20v-3m20 3v-3"/></svg></div><h3>교육지원</h3><p>이바우펫과 후원 관계인 사단법인 한국유기견구호연맹의 전문가 양성 목적 교육지원입니다. 취업·창업 목표의 예비 전문가를 심사로 선발해 <strong>총 수강료의 50%</strong>(최대 500만원대)를 지원합니다.</p></article>
     </div>
     <button type="button" class="enrollment-arrow" id="enrollment-next" aria-label="다음 비용·일정 카드" aria-controls="enrollment-cards"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
     </div>
@@ -2218,7 +2220,7 @@
     <h2 class="t-section">지금 바로 <br class="mobile-break"/><span style="color:var(--gold-lt)">무료 상담</span> 받으세요</h2>
     <p class="sub">커리큘럼부터 수강료까지 부담없이 물어보세요</p>
     <div class="cta-grid fade-up">
-      <button class="btn btn-consult btn-full btn-lg" onclick="gtag('event','click_cta',{button:'무료상담_수강료확인'});openModal();" aria-label="수강료 무료 상담 신청">🎓 수강료 무료 상담 신청</button>
+      <button class="btn btn-consult btn-full btn-lg" onclick="gtag('event','click_cta',{button:'무료상담_수강료확인'});openModal();" aria-label="수강료 조회하기">🎓 수강료 조회하기</button>
       <button class="btn btn-gold btn-full" onclick="gtag('event','click_cta',{button:'전화_sticky'});showPhone();" aria-label="전화 상담">📞 010-3766-1620 전화 상담</button>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;">
         <a href="https://pf.kakao.com/_xaNjrn/chat" class="btn btn-kakao" target="_blank" rel="noopener">💬 카카오톡</a>
@@ -2339,7 +2341,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('dModal1');openModal()">🎓 수강료 무료 상담 신청</button>
+      <button class="course-cta" onclick="closeCModal('dModal1');openModal()">🎓 수강료 조회하기</button>
       <button class="course-close-btn" onclick="closeCModal('dModal1')">닫기</button>
     </div>
   </div>
@@ -2363,7 +2365,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('dModal2');openModal()">🎓 수강료 무료 상담 신청</button>
+      <button class="course-cta" onclick="closeCModal('dModal2');openModal()">🎓 수강료 조회하기</button>
       <button class="course-close-btn" onclick="closeCModal('dModal2')">닫기</button>
     </div>
   </div>
@@ -2387,7 +2389,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('dModal3');openModal()">🎓 수강료 무료 상담 신청</button>
+      <button class="course-cta" onclick="closeCModal('dModal3');openModal()">🎓 수강료 조회하기</button>
       <button class="course-close-btn" onclick="closeCModal('dModal3')">닫기</button>
     </div>
   </div>
@@ -2411,7 +2413,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('dModal4');openModal()">🎓 수강료 무료 상담 신청</button>
+      <button class="course-cta" onclick="closeCModal('dModal4');openModal()">🎓 수강료 조회하기</button>
       <button class="course-close-btn" onclick="closeCModal('dModal4')">닫기</button>
     </div>
   </div>
@@ -2435,7 +2437,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('dModal5');openModal()">🎓 수강료 무료 상담 신청</button>
+      <button class="course-cta" onclick="closeCModal('dModal5');openModal()">🎓 수강료 조회하기</button>
       <button class="course-close-btn" onclick="closeCModal('dModal5')">닫기</button>
     </div>
   </div>
@@ -2460,7 +2462,7 @@
       </div>
     </div>
     <div class="course-sheet-footer">
-      <button class="course-cta" onclick="closeCModal('dModal6');openModal()">🎓 수강료 무료 상담 신청</button>
+      <button class="course-cta" onclick="closeCModal('dModal6');openModal()">🎓 수강료 조회하기</button>
       <button class="course-close-btn" onclick="closeCModal('dModal6')">닫기</button>
     </div>
   </div>
@@ -2497,9 +2499,9 @@
     <div class="course-sheet-body">
       <div class="course-info-row"><span class="course-info-label">추천 대상</span><span class="course-info-val">자격증으로 취업·창업을 준비하는 분<br/>자기계발이나 스펙업으로 자격증을 취득하는 분</span></div>
       <div class="course-info-row"><span class="course-info-label">배우는 내용</span><span class="course-info-val">애견미용자격증 3급·2급 준비를 위한 급수별 시험 대비와 반복 실습을 진행합니다.</span></div>
-      <div class="course-info-row"><span class="course-info-label">자격 정보</span><span class="course-info-val">한국애견미용인협회 애견미용사 3급·2급 · 등록 민간자격 제2020-005038 (국가공인 자격이 아닙니다)<br/>자격관리기관: 한국애견미용인협회 (1551-1309) · 자격 유효기간 10년<br/>응시료: 필기 8만원 / 실기 18만원 (수강료와 별도 · 협회 안내 기준)<br/><a href="https://www.pqi.or.kr" target="_blank" rel="noopener" style="color:var(--navy);font-weight:700;">민간자격정보서비스에서 등록번호 조회하기 →</a></span></div>
+      <div class="course-info-row"><span class="course-info-label">자격 정보</span><span class="course-info-val">한국애견미용인협회 애견미용사 3급·2급 · 등록 민간자격 제2020-005038<br/>자격관리기관: 한국애견미용인협회 (1551-1309) · 자격 유효기간 10년<br/>응시료: 필기 8만원 / 실기 18만원 (수강료와 별도 · 협회 안내 기준)<br/><a href="https://www.pqi.or.kr" target="_blank" rel="noopener" style="color:var(--navy);font-weight:700;">민간자격정보서비스에서 등록번호 조회하기 →</a></span></div>
       <div class="course-info-row"><span class="course-info-label">일정·기간</span><span class="course-info-val">수업·상담: 월~금 11:00~21:30 / 토요일 11:00~15:00<br/>기간 안내: 급수별 자격증 준비기간 안내 · 개인 진도에 따라 상이<br/>참여 일정과 교육기간은 선택 과정·출석 빈도·개인 진도에 맞춰 상담합니다.</span></div>
-      <div class="course-info-row"><span class="course-info-label">비용</span><span class="course-info-val">동일 과정 기준 수강료와 도구 제공 조건은 전 지점 공통입니다. 과정별 포함 항목과 도구·재료·시험 관련 별도 비용 여부를 상담에서 안내받으세요.<br/>사단법인 한국유기견구호연맹의 전문가 양성 목적 교육지원은 적용 여부와 혜택이 심사 후 확정됩니다.</span></div>
+      <div class="course-info-row"><span class="course-info-label">비용</span><span class="course-info-val">동일 과정 기준 수강료와 도구 제공 조건은 전 지점 공통입니다. 과정별 포함 항목과 도구·재료·시험 관련 별도 비용 여부를 상담에서 안내받으세요.<br/>연맹지원(사단법인 한국유기견구호연맹의 전문가 양성 목적 교육지원)은 심사 후 확정되며, 선정 시 총 수강료의 50%(과정별 상이, 최대 500만원대)를 지원합니다.</span></div>
     </div>
     <div class="course-sheet-footer">
       <button class="course-cta" onclick="closeCModal('cModal2');openModal('자격증 취득반')">자격증 취득반 일정·비용 상담 신청</button>
@@ -2559,7 +2561,7 @@
       <div class="course-info-row"><span class="course-info-label">추천 대상</span><span class="course-info-val">전문가 수준까지 목표하는 분<br/>교육지원 혜택을 활용하고 싶은 분</span></div>
       <div class="course-info-row"><span class="course-info-label">배우는 내용</span><span class="course-info-val">기초교육부터 자격증 준비, 가정견 실습, 취업·창업 준비까지 연결하는 과정입니다.</span></div>
       <div class="course-info-row"><span class="course-info-label">일정·기간</span><span class="course-info-val">수업·상담: 월~금 11:00~21:30 / 토요일 11:00~15:00<br/>기간 안내: 수강생 출결에 따라 상이함<br/>참여 일정과 교육기간은 선택 과정·출석 빈도·개인 진도에 맞춰 상담합니다.</span></div>
-      <div class="course-info-row"><span class="course-info-label">비용</span><span class="course-info-val">동일 과정 기준 수강료와 도구 제공 조건은 전 지점 공통입니다. 과정별 포함 항목과 도구·재료·시험 관련 별도 비용 여부를 상담에서 안내받으세요.<br/>사단법인 한국유기견구호연맹의 전문가 양성 목적 교육지원은 적용 여부와 혜택이 심사 후 확정됩니다.</span></div>
+      <div class="course-info-row"><span class="course-info-label">비용</span><span class="course-info-val">동일 과정 기준 수강료와 도구 제공 조건은 전 지점 공통입니다. 과정별 포함 항목과 도구·재료·시험 관련 별도 비용 여부를 상담에서 안내받으세요.<br/>연맹지원(사단법인 한국유기견구호연맹의 전문가 양성 목적 교육지원)은 심사 후 확정되며, 선정 시 총 수강료의 50%(과정별 상이, 최대 500만원대)를 지원합니다.</span></div>
     </div>
     <div class="course-sheet-footer">
       <button class="course-cta" onclick="closeCModal('cModal5');openModal('종합·심화반')">종합·심화반 일정·비용 상담 신청</button>
@@ -2578,7 +2580,7 @@
     <div class="course-sheet-body">
       <div class="course-info-row"><span class="course-info-label">추천 대상</span><span class="course-info-val">전문성을 더하고 싶은 분<br/>다양한 자격증을 원스톱으로 준비하는 분</span></div>
       <div class="course-info-row"><span class="course-info-label">배우는 내용</span><span class="course-info-val">반려동물행동교정사, 펫푸드스타일리스트, 아로마테라피 자격증, 장례지도사 관련 특강입니다. 희망 과목의 개설 일정을 확인하세요.</span></div>
-      <div class="course-info-row"><span class="course-info-label">자격 정보</span><span class="course-info-val">반려동물행동교정사: 한국애견미용인협회 등록 민간자격 제2020-005037 (국가공인 자격이 아닙니다) · 응시료 10만원(수강료와 별도) · 문의 1551-1309</span></div>
+      <div class="course-info-row"><span class="course-info-label">자격 정보</span><span class="course-info-val">반려동물행동교정사: 한국애견미용인협회 등록 민간자격 제2020-005037 · 응시료 10만원(수강료와 별도) · 문의 1551-1309</span></div>
       <div class="course-info-row"><span class="course-info-label">일정·기간</span><span class="course-info-val">수업·상담: 월~금 11:00~21:30 / 토요일 11:00~15:00<br/>기간 안내: 과목별 상이<br/>참여 일정과 교육기간은 선택 과정·출석 빈도·개인 진도에 맞춰 상담합니다.</span></div>
       <div class="course-info-row"><span class="course-info-label">비용</span><span class="course-info-val">동일 과정 기준 수강료와 도구 제공 조건은 전 지점 공통입니다. 과정별 포함 항목과 도구·재료·시험 관련 별도 비용 여부를 상담에서 안내받으세요.</span></div>
     </div>
@@ -2612,7 +2614,7 @@
       </div>
       <div class="faq-item" role="listitem">
         <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">실견 실습은 어떻게 진행되나요?</span><span class="faq-arr">▼</span></button>
-        <div class="faq-a"><div class="faq-a-in">실제 가정견을 대상으로 실습합니다. 고객 강아지 미용부터 수강생이 직접 데려온 반려견 실습까지 현장특화 반복 실습으로 진행됩니다.<br/><a href="/guide/real-dog-training/" class="faq-guide-link">자격증 이후 실견미용이 중요한 이유 자세히 보기 →</a></div></div>
+        <div class="faq-a"><div class="faq-a-in">실제 가정견을 대상으로 실습합니다. 고객 강아지 미용부터 수강생이 직접 데려온 반려견 실습까지 현장특화 반복 실습으로 진행됩니다. 가정견 실습은 지도교사와 메인원장이 개별 지도합니다.<br/><a href="/guide/real-dog-training/" class="faq-guide-link">자격증 이후 실견미용이 중요한 이유 자세히 보기 →</a></div></div>
       </div>
       <div class="faq-item" role="listitem">
         <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">자격증 취득까지 얼마나 걸리나요?</span><span class="faq-arr">▼</span></button>
@@ -2620,7 +2622,7 @@
       </div>
       <div class="faq-item" role="listitem">
         <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">국비지원과 교육지원의 차이가 뭔가요?</span><span class="faq-arr">▼</span></button>
-        <div class="faq-a"><div class="faq-a-in">국비지원은 정부(고용노동부 등)에서 운영하는 지원사업으로 대상 조건과 예산이 정해져 있습니다. 교육지원은 사단법인 한국유기견구호연맹에서 지원하는 학비 지원·장학 혜택으로, 심사를 통해 선발됩니다. 정확한 대상 조건과 혜택 내용은 전화(010-3766-1620) 또는 카카오톡으로 문의 주시면 상세히 안내드립니다.<br/><a href="/guide/support/" class="faq-guide-link">국비지원과 교육지원은 무엇이 다를까? 자세히 보기 →</a></div></div>
+        <div class="faq-a"><div class="faq-a-in">국비지원은 정부(고용노동부 등)에서 운영하는 지원사업으로 대상 조건과 예산이 정해져 있습니다. 교육지원은 이바우펫과 후원 관계인 사단법인 한국유기견구호연맹의 전문가 양성 목적 교육지원으로, 취업·창업을 목표로 하는 애견미용 예비 전문가를 심사로 선발하며, 선정되면 총 수강료의 50%를 지원합니다. 지원액은 과정에 따라 다르며 최대 500만원대입니다. 두 제도는 운영 주체와 재원이 다른 별개의 제도입니다. 정확한 대상 조건과 혜택 내용은 전화(010-3766-1620) 또는 카카오톡으로 문의 주시면 상세히 안내드립니다.<br/><a href="/guide/support/" class="faq-guide-link">국비지원과 교육지원은 무엇이 다를까? 자세히 보기 →</a></div></div>
       </div>
       <div class="faq-item" role="listitem">
         <button class="faq-q" aria-expanded="false"><span class="faq-qi">Q</span><span class="faq-qt">상담을 신청하면 어떻게 진행되나요?</span><span class="faq-arr">▼</span></button>
@@ -2640,7 +2642,7 @@
       </div>
     </div>
     <button class="btn btn-primary btn-full btn-lg mt20 fade-up" onclick="openModal()" aria-label="상담 신청">
-      🎓 수강료 무료 상담 신청
+      🎓 수강료 조회하기
     </button>
   </div>
 </section>
@@ -2698,21 +2700,6 @@
     <p style="color:rgba(255,255,255,.18);font-size:.68rem;margin-top:12px;">Copyright © EVAWPET. All rights reserved.</p>
   </div>
 </footer>
-
-<!-- ── 이벤트 팝업 ────────────────────────────────── -->
-<!-- 여름 이벤트 종료: 팝업 제거 -->
-<div id="awardPopup">
-  <div class="event-sheet">
-    <img width="1254" height="1254" loading="lazy" decoding="async" src="image/award-popup.webp" class="event-img" alt="EVAWPET 2026 소비자 만족도 조사 대상 수상" onclick="this.classList.toggle('event-img-full')" style="cursor:zoom-in;" />
-    <div class="event-btns">
-      <button class="event-cta" onclick="closeAward();openModal();">🎓 수강료 무료 상담 신청</button>
-      <div class="event-footer">
-        <button class="event-skip" onclick="skipAwardToday()">오늘 하루 보지 않기</button>
-        <button class="event-close" onclick="closeAward()">닫기 ✕</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- ── 수강료 모달 ──────────────────────────────── -->
 <div id="tuitionModal" onclick="if(event.target===this)closeTuition()">
@@ -2964,25 +2951,6 @@
   }
   runHeroSlideshow('.hero-slide');
   runHeroSlideshow('.hero-slide-pc');
-
-  /* AWARD POPUP (단독으로 표시) */
-  function closeAward() {
-    document.getElementById('awardPopup').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function skipAwardToday() {
-    const today = new Date().toDateString();
-    localStorage.setItem('evawAwardSkip', today);
-    closeAward();
-  }
-  function maybeShowAward() {
-    const skip = localStorage.getItem('evawAwardSkip');
-    const today = new Date().toDateString();
-    if (skip !== today) {
-      document.getElementById('awardPopup').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-  }
 
   /* TUITION MODAL */
   function openTuition() {
