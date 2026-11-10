@@ -328,7 +328,47 @@
       padding:0; position:relative; overflow:hidden; min-height:100svh;
       display:flex; flex-direction:column;
     }
-    #hero::before { content: none; }
+    @media (prefers-reduced-motion: no-preference) {
+      #hero::before, #hero::after {
+        content: "";
+        position: absolute;
+        inset: calc(-1 * var(--snow-step)) -18px 0;
+        z-index: 0;
+        pointer-events: none;
+        background-size: var(--snow-width) var(--snow-step);
+        animation: hero-snowfall var(--snow-duration) linear infinite;
+      }
+      #hero::before {
+        --snow-width: 192px;
+        --snow-step: 228px;
+        --snow-duration: 13s;
+        --snow-drift: 12px;
+        --snow-color: rgba(139, 176, 203, .32);
+        background-image:
+          radial-gradient(circle at 22px 28px, var(--snow-color) 1px, transparent 1.8px),
+          radial-gradient(circle at 144px 54px, var(--snow-color) 1.3px, transparent 2px),
+          radial-gradient(circle at 75px 105px, var(--snow-color) 1px, transparent 1.7px),
+          radial-gradient(circle at 173px 147px, var(--snow-color) 1px, transparent 1.8px),
+          radial-gradient(circle at 38px 188px, var(--snow-color) 1.2px, transparent 2px);
+      }
+      #hero::after {
+        --snow-width: 264px;
+        --snow-step: 288px;
+        --snow-duration: 9s;
+        --snow-drift: -15px;
+        --snow-color: rgba(161, 192, 213, .44);
+        background-image:
+          radial-gradient(circle at 59px 57px, var(--snow-color) 2px, transparent 3.5px),
+          radial-gradient(circle at 205px 111px, var(--snow-color) 1.7px, transparent 3.2px),
+          radial-gradient(circle at 115px 199px, var(--snow-color) 2px, transparent 3.5px),
+          radial-gradient(circle at 240px 253px, var(--snow-color) 2.2px, transparent 3.7px);
+      }
+      @keyframes hero-snowfall {
+        from { transform: translate3d(0, 0, 0); }
+        50% { transform: translate3d(var(--snow-drift), calc(var(--snow-step) / 2), 0); }
+        to { transform: translate3d(0, var(--snow-step), 0); }
+      }
+    }
     #hero .hero-bg, #hero .hero-paw, #hero .hero-content { position:relative; z-index:1; }
 
     /* 히어로 우측 이미지 */
