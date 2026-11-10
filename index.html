@@ -365,7 +365,7 @@
           var(--snow-width) var(--snow-step),
           var(--snow-width) var(--snow-step);
         background-image:
-          url("/image/hero-snow-crystals.svg?v=large"),
+          var(--hero-crystals, url("/image/hero-snow-crystals.svg?v=large")),
           radial-gradient(circle at 59px 57px, var(--snow-color) 2px, transparent 3.5px),
           radial-gradient(circle at 205px 111px, var(--snow-color) 1.7px, transparent 3.2px),
           radial-gradient(circle at 115px 199px, var(--snow-color) 2px, transparent 3.5px),
@@ -391,6 +391,15 @@
       overflow: hidden;
       z-index: -1;
       pointer-events: none;
+      opacity: .5;
+      --hero-photo-mask:
+        linear-gradient(to left, rgba(0,0,0,1) 70%, transparent 100%),
+        linear-gradient(to right, rgba(0,0,0,1) 96%, transparent 100%),
+        linear-gradient(to top, transparent 0%, rgba(0,0,0,1) 30%);
+      mask-image: var(--hero-photo-mask);
+      mask-composite: intersect;
+      -webkit-mask-image: var(--hero-photo-mask);
+      -webkit-mask-composite: source-in;
     }
     .hero-slide {
       position: absolute; inset: 0;
@@ -398,20 +407,6 @@
       object-fit: cover;
       object-position: center center;
       opacity: 0;
-      transition: opacity 1.2s ease-in-out;
-    }
-    .hero-slide.active { opacity: .5; }
-    .hero-slide {
-      mask-image:
-        linear-gradient(to left, rgba(0,0,0,1) 70%, transparent 100%),
-        linear-gradient(to right, rgba(0,0,0,1) 96%, transparent 100%),
-        linear-gradient(to top, transparent 0%, rgba(0,0,0,1) 30%);
-      mask-composite: intersect;
-      -webkit-mask-image:
-        linear-gradient(to left, rgba(0,0,0,1) 70%, transparent 100%),
-        linear-gradient(to right, rgba(0,0,0,1) 96%, transparent 100%),
-        linear-gradient(to top, transparent 0%, rgba(0,0,0,1) 30%);
-      -webkit-mask-composite: source-in;
     }
     .hero-mobile-gallery {
       position: relative;
@@ -455,6 +450,26 @@
       opacity: 1 !important;
       animation: none !important;
       cursor: zoom-out;
+    }
+    @media (max-width: 767px) {
+      #hero { --hero-crystals: url("/image/hero-snow-crystals-mobile.svg"); }
+      .hero-slide, .hero-mobile-gallery .hmg-slide {
+        transition: opacity 0s linear .7s;
+      }
+      .hero-mobile-gallery .hmg-slide {
+        animation: none;
+        transform: none;
+        will-change: auto;
+        pointer-events: none;
+      }
+      .hero-slide.active, .hero-mobile-gallery .hmg-slide.active:not(.hmg-full) {
+        z-index: 1;
+        opacity: 1;
+        transition: opacity .7s ease-in-out;
+      }
+      .hero-mobile-gallery .hmg-slide.active, .hero-mobile-gallery .hmg-slide.hmg-full {
+        pointer-events: auto;
+      }
     }
     .hero-bg  { position:absolute; inset:0; pointer-events:none;
       background-image:
@@ -1909,7 +1924,7 @@
 
     <!-- 핵심 설명 다음: 배너 이미지 갤러리 -->
     <div class="hero-mobile-gallery" role="region" aria-label="이바우펫 프로그램 안내 이미지 갤러리 (클릭하면 확대됩니다)">
-      <img width="1983" height="793" decoding="async" fetchpriority="high" src="image/hero-banner1.webp" class="hmg-slide" alt="애견미용적성파악 클래스" onclick="this.classList.toggle('hmg-full')" />
+      <img width="1983" height="793" decoding="async" fetchpriority="high" src="image/hero-banner1.webp" class="hmg-slide active" alt="애견미용적성파악 클래스" onclick="this.classList.toggle('hmg-full')" />
       <img width="1983" height="793" decoding="async" fetchpriority="low" src="image/hero-banner2.webp" class="hmg-slide" alt="상주견·유기견이 아닌 가정견으로 진행하는 실습 안내" onclick="this.classList.toggle('hmg-full')" />
       <img width="1983" height="793" decoding="async" fetchpriority="low" src="image/hero-banner3.webp" class="hmg-slide" alt="애견미용펫미용" onclick="this.classList.toggle('hmg-full')" />
       <img width="1983" height="793" decoding="async" fetchpriority="low" src="image/hero-banner4.webp" class="hmg-slide" alt="애견미용종합반" onclick="this.classList.toggle('hmg-full')" />
@@ -2985,17 +3000,22 @@
   });
 
   /* HERO SLIDESHOW */
-  function runHeroSlideshow(selector) {
+  function runHeroSlideshow(selector, interval = 2000, viewport) {
     const slides = document.querySelectorAll(selector);
-    if (!slides.length) return;
+    if (slides.length < 2) return;
     let cur = 0;
     setInterval(() => {
+      const next = (cur + 1) % slides.length;
+      if (viewport && !viewport.matches) return;
+      if (slides[cur].classList.contains('hmg-full') || !slides[next].complete || !slides[next].naturalWidth) return;
       slides[cur].classList.remove('active');
-      cur = (cur + 1) % slides.length;
-      slides[cur].classList.add('active');
-    }, 2000);
+      slides[next].classList.add('active');
+      cur = next;
+    }, interval);
   }
-  runHeroSlideshow('.hero-slide');
+  const mobileHeroMotion = window.matchMedia('(max-width: 767px) and (prefers-reduced-motion: no-preference)');
+  runHeroSlideshow('.hero-slide', 5200, mobileHeroMotion);
+  runHeroSlideshow('.hero-mobile-gallery .hmg-slide', 5800, mobileHeroMotion);
   runHeroSlideshow('.hero-slide-pc');
 
   /* TUITION MODAL */

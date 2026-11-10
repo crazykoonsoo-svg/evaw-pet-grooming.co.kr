@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 792 288" width="792" height="288">
+  <defs>
+    <path id="arm" d="M0 0V-6 M-1.8-4.9 0-3.1 1.8-4.9"/>
+    <g id="crystal" fill="none" stroke="#8caec5" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#arm"/>
+      <use href="#arm" transform="rotate(60)"/>
+      <use href="#arm" transform="rotate(120)"/>
+      <use href="#arm" transform="rotate(180)"/>
+      <use href="#arm" transform="rotate(240)"/>
+      <use href="#arm" transform="rotate(300)"/>
+    </g>
+    <g id="small-crystals">
+      <use href="#crystal" transform="translate(117 27) rotate(12) scale(1.8)" opacity="0.54"/>
+      <use href="#crystal" transform="translate(35 129) rotate(28) scale(1.26)" opacity="0.46"/>
+      <use href="#crystal" transform="translate(178 175) rotate(8) scale(2)" opacity="0.55"/>
+      <use href="#crystal" transform="translate(81 252) rotate(18) scale(1.5)" opacity="0.50"/>
+    </g>
+    <radialGradient id="glow">
+      <stop offset="0" stop-color="#fff" stop-opacity="1"/>
+      <stop offset=".3" stop-color="#aad9f4" stop-opacity=".95"/>
+      <stop offset=".62" stop-color="#85c4e9" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#75b7e1" stop-opacity="0"/>
+    </radialGradient>
+    <path id="glint-star" d="M0-11 2.3-2.3 11 0 2.3 2.3 0 11-2.3 2.3-11 0-2.3-2.3Z"
+      fill="#fff" stroke="#5b9cc3" stroke-width="1.2" stroke-linejoin="round"/>
+    <g id="glint">
+      <circle r="24" fill="url(#glow)"/>
+      <use href="#glint-star" transform="translate(14 -13) scale(.36)" opacity=".85"/>
+      <use href="#glint-star" transform="translate(-16 9) scale(.3)" opacity=".72"/>
+    </g>
+  </defs>
+  <use href="#small-crystals"/>
+  <use href="#small-crystals" x="264"/>
+  <use href="#small-crystals" x="528"/>
+  <use href="#crystal" transform="translate(220 107) rotate(18) scale(5.4)" opacity="0.35"/>
+  <use href="#glint" transform="translate(220 107)" opacity=".32"/>
+  <use href="#glint" transform="translate(117 27) scale(.66)" opacity=".32"/>
+  <use href="#glint" transform="translate(442 175) scale(.72)" opacity=".32"/>
+</svg>
