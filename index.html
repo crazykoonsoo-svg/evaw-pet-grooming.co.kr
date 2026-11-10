@@ -358,8 +358,14 @@
         --snow-duration: 9s;
         --snow-drift: -15px;
         --snow-color: rgba(161, 192, 213, .44);
+        background-size:
+          792px var(--snow-step),
+          var(--snow-width) var(--snow-step),
+          var(--snow-width) var(--snow-step),
+          var(--snow-width) var(--snow-step),
+          var(--snow-width) var(--snow-step);
         background-image:
-          url("/image/hero-snow-crystals.svg"),
+          url("/image/hero-snow-crystals.svg?v=large"),
           radial-gradient(circle at 59px 57px, var(--snow-color) 2px, transparent 3.5px),
           radial-gradient(circle at 205px 111px, var(--snow-color) 1.7px, transparent 3.2px),
           radial-gradient(circle at 115px 199px, var(--snow-color) 2px, transparent 3.5px),
