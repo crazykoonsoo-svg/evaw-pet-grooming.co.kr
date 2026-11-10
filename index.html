@@ -24,22 +24,25 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Noto+Serif+KR:wght@400;600;700;900&family=Do+Hyeon&family=Jua&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Jua&family=Noto+Sans+KR:wght@300..900&family=Noto+Serif+KR:wght@400..900&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Jua&family=Noto+Sans+KR:wght@300..900&family=Noto+Serif+KR:wght@400..900&display=swap" rel="stylesheet" /></noscript>
 
   <!-- =====================================================
        📌 TRACKING CODE INSERTION POINTS
   ====================================================== -->
   <!-- 1. 네이버 공통 스크립트 + 애널리틱스 -->
-  <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
-  <script type="text/javascript">
-    if (!wcs_add) var wcs_add = {};
-    wcs_add["wa"] = "s_142bb34fca15";
-    if (!_nasa) var _nasa = {};
-    if (window.wcs) {
-      wcs.inflow();
-      wcs_do();
+  <script>
+    var wcs_add = window.wcs_add || {};
+    var _nasa = window._nasa || {};
+    function startNaverSearchMeasurement() {
+      wcs_add["wa"] = "s_142bb34fca15";
+      if (window.wcs) {
+        wcs.inflow();
+        wcs_do();
+      }
     }
   </script>
+  <script defer src="https://wcs.naver.net/wcslog.js" onload="startNaverSearchMeasurement()"></script>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HCPV87VR4G"></script>
@@ -422,24 +425,16 @@
       object-fit: contain;
       background: #FFFFFF;
       opacity: 0;
-      transform: scale(1);
-      transform-origin: center;
-      animation: hmgFade 16s infinite;
+      pointer-events: none;
       cursor: zoom-in;
-      transition: none;
-      will-change: transform, opacity;
+      transition: opacity 0s linear .7s;
     }
-    .hmg-slide:nth-child(1) { animation-delay: 0s; }
-    .hmg-slide:nth-child(2) { animation-delay: 4s; }
-    .hmg-slide:nth-child(3) { animation-delay: 8s; }
-    .hmg-slide:nth-child(4) { animation-delay: 12s; }
-    @keyframes hmgFade {
-      0%      { opacity: 0; transform: scale(1); }
-      6.25%   { opacity: 1; transform: scale(1.02); }
-      25%     { opacity: 1; transform: scale(1.05); }
-      31.25%  { opacity: 0; transform: scale(1.08); }
-      100%    { opacity: 0; transform: scale(1.08); }
+    .hmg-slide.active:not(.hmg-full) {
+      z-index: 1;
+      opacity: 1;
+      transition: opacity .7s ease-in-out;
     }
+    .hmg-slide.active, .hmg-slide.hmg-full { pointer-events: auto; }
     .hmg-slide.hmg-full {
       position: fixed !important;
       inset: 0 !important;
@@ -453,22 +448,11 @@
     }
     @media (max-width: 767px) {
       #hero { --hero-crystals: url("/image/hero-snow-crystals-mobile.svg"); }
-      .hero-slide, .hero-mobile-gallery .hmg-slide {
-        transition: opacity 0s linear .7s;
-      }
-      .hero-mobile-gallery .hmg-slide {
-        animation: none;
-        transform: none;
-        will-change: auto;
-        pointer-events: none;
-      }
-      .hero-slide.active, .hero-mobile-gallery .hmg-slide.active:not(.hmg-full) {
+      .hero-slide { transition: opacity 0s linear .7s; }
+      .hero-slide.active {
         z-index: 1;
         opacity: 1;
         transition: opacity .7s ease-in-out;
-      }
-      .hero-mobile-gallery .hmg-slide.active, .hero-mobile-gallery .hmg-slide.hmg-full {
-        pointer-events: auto;
       }
     }
     .hero-bg  { position:absolute; inset:0; pointer-events:none;
@@ -573,17 +557,12 @@
     .course-card:hover .cc-icon { transform:scale(1.25); }
     .course-card:hover .cc-name { transform:scale(1.06); }
 
-    /* 펄스 반복 */
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(22,33,62,.0); }
-      50%       { transform: scale(1.03); box-shadow: 0 0 0 6px rgba(22,33,62,.06); }
-    }
-    .course-card:nth-child(1) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) .2s both, pulse 2.4s ease-in-out 1.0s infinite; }
-    .course-card:nth-child(2) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) .4s both, pulse 2.4s ease-in-out 1.4s infinite; }
-    .course-card:nth-child(3) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) .6s both, pulse 2.4s ease-in-out 1.8s infinite; }
-    .course-card:nth-child(4) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) .8s both, pulse 2.4s ease-in-out 1.2s infinite; }
-    .course-card:nth-child(5) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) 1.0s both, pulse 2.4s ease-in-out 1.6s infinite; }
-    .course-card:nth-child(6) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) 1.2s both, pulse 2.4s ease-in-out 2.0s infinite; }
+    .course-card:nth-child(1) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) .2s both; }
+    .course-card:nth-child(2) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) .4s both; }
+    .course-card:nth-child(3) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) .6s both; }
+    .course-card:nth-child(4) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) .8s both; }
+    .course-card:nth-child(5) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) 1.0s both; }
+    .course-card:nth-child(6) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) 1.2s both; }
 
     /* hero CTA grid */
     .hero-cta { display:flex; flex-direction:column; gap:8px; margin-bottom:16px; }
@@ -635,7 +614,7 @@
     #why {
       background:
         linear-gradient(180deg, rgba(255,255,255,.5) 0%, rgba(255,255,255,.6) 60%, rgba(255,255,255,1) 100%),
-        url('image/why-section-bg.webp') center center / cover no-repeat;
+        var(--section-base-photo, none) center center / cover no-repeat;
     }
     .cards-grid { display:flex; flex-direction:column; gap:12px; }
     .diff-card { background:var(--cream); border-radius:var(--r16); padding:20px 18px; border:1px solid var(--gray-2); display:flex; align-items:flex-start; gap:14px; transition:background .3s ease, box-shadow .3s ease, transform .3s ease, border-color .3s ease; position:relative; overflow:hidden; }
@@ -658,7 +637,7 @@
     }
     #network::before {
       content: ''; position: absolute; inset: 0;
-      background: url('image/network-bg.webp') center center / cover no-repeat;
+      background: var(--section-base-photo, none) center center / cover no-repeat;
       opacity: 0.55;
     }
     #network > * { position: relative; z-index: 1; }
@@ -1830,6 +1809,7 @@
 </style>
   <noscript><style>
     .section-photo, .section-photo-dark { --section-photo:var(--section-photo-source); }
+    #why, #network { --section-base-photo:var(--section-base-photo-source); }
   </style></noscript>
   <link rel="alternate" type="application/rss+xml" title="이바우펫 애견미용학원 새 글" href="https://evaw-pet-grooming.co.kr/rss.xml" />
 <link rel="stylesheet" href="/assets/faculty-carousel.css" />
@@ -1917,17 +1897,17 @@
       <!-- PC 전용 우측 이미지 -->
       <div class="hero-pc-bg" id="heroPcBg" aria-hidden="true">
         <img width="880" height="1080" decoding="async" src="image/evawpet-winter-hero-01-cocker-spaniel.webp" class="hero-slide-pc active" alt="" />
-        <img width="880" height="1080" decoding="async" src="image/evawpet-winter-hero-02-bichon.webp" class="hero-slide-pc" alt="" />
-        <img width="880" height="1080" decoding="async" src="image/evawpet-winter-hero-03-pomspitz.webp" class="hero-slide-pc" alt="" />
+        <img width="880" height="1080" decoding="async" fetchpriority="low" data-src="image/evawpet-winter-hero-02-bichon.webp" class="hero-slide-pc" alt="" />
+        <img width="880" height="1080" decoding="async" fetchpriority="low" data-src="image/evawpet-winter-hero-03-pomspitz.webp" class="hero-slide-pc" alt="" />
       </div>
     </div>
 
     <!-- 핵심 설명 다음: 배너 이미지 갤러리 -->
     <div class="hero-mobile-gallery" role="region" aria-label="이바우펫 프로그램 안내 이미지 갤러리 (클릭하면 확대됩니다)">
       <img width="1983" height="793" decoding="async" fetchpriority="high" src="image/hero-banner1.webp" class="hmg-slide active" alt="애견미용적성파악 클래스" onclick="this.classList.toggle('hmg-full')" />
-      <img width="1983" height="793" decoding="async" fetchpriority="low" src="image/hero-banner2.webp" class="hmg-slide" alt="상주견·유기견이 아닌 가정견으로 진행하는 실습 안내" onclick="this.classList.toggle('hmg-full')" />
-      <img width="1983" height="793" decoding="async" fetchpriority="low" src="image/hero-banner3.webp" class="hmg-slide" alt="애견미용펫미용" onclick="this.classList.toggle('hmg-full')" />
-      <img width="1983" height="793" decoding="async" fetchpriority="low" src="image/hero-banner4.webp" class="hmg-slide" alt="애견미용종합반" onclick="this.classList.toggle('hmg-full')" />
+      <img width="1983" height="793" decoding="async" fetchpriority="low" data-src="image/hero-banner2.webp" class="hmg-slide" alt="상주견·유기견이 아닌 가정견으로 진행하는 실습 안내" onclick="this.classList.toggle('hmg-full')" />
+      <img width="1983" height="793" decoding="async" fetchpriority="low" data-src="image/hero-banner3.webp" class="hmg-slide" alt="애견미용펫미용" onclick="this.classList.toggle('hmg-full')" />
+      <img width="1983" height="793" decoding="async" fetchpriority="low" data-src="image/hero-banner4.webp" class="hmg-slide" alt="애견미용종합반" onclick="this.classList.toggle('hmg-full')" />
     </div>
 
     <!-- 하단: 풀와이드 (과목카드) -->
@@ -1952,8 +1932,8 @@
     <div class="hero-right">
       <div class="hero-side-img" id="heroSlider">
         <img width="880" height="1080" decoding="async" src="image/evawpet-winter-hero-01-cocker-spaniel.webp" class="hero-slide active" alt="코카스파니엘 가위 미용" />
-        <img width="880" height="1080" decoding="async" src="image/evawpet-winter-hero-02-bichon.webp" class="hero-slide" alt="비숑 가위 미용" />
-        <img width="880" height="1080" decoding="async" src="image/evawpet-winter-hero-03-pomspitz.webp" class="hero-slide" alt="폼피츠 가위 미용" />
+        <img width="880" height="1080" decoding="async" fetchpriority="low" data-src="image/evawpet-winter-hero-02-bichon.webp" class="hero-slide" alt="비숑 가위 미용" />
+        <img width="880" height="1080" decoding="async" fetchpriority="low" data-src="image/evawpet-winter-hero-03-pomspitz.webp" class="hero-slide" alt="폼피츠 가위 미용" />
       </div>
     </div>
 
@@ -2031,7 +2011,7 @@
 
 
 <!-- ── CURRICULUM ────────────────────────────── -->
-<section id="why" class="section-photo" style="--section-photo-source:url('image/section-about-bg.jpg')" aria-labelledby="why-h">
+<section id="why" class="section-photo" style="--section-photo-source:url('image/section-about-bg.jpg');--section-base-photo-source:url('image/why-section-bg.webp')" aria-labelledby="why-h">
   <div class="wrap">
     <div class="sec-header fade-up">
       <div class="sec-tag">✨ 이바우펫만의 차이</div>
@@ -2217,7 +2197,7 @@
 </section>
 
 <!-- ── GUIDE ──────────────────────────────────── -->
-<section id="network" aria-labelledby="net-h">
+<section id="network" style="--section-base-photo-source:url('image/network-bg.webp')" aria-labelledby="net-h">
   <div class="wrap">
     <div class="sec-header fade-up">
       <div class="sec-tag">🌐 전국 네트워크</div>
@@ -2938,8 +2918,13 @@
 <script>
   // Load decorative section photos shortly before they enter the viewport.
   (() => {
-    const sections = document.querySelectorAll('[style*="--section-photo-source:"]');
-    const reveal = section => section.style.setProperty('--section-photo', section.style.getPropertyValue('--section-photo-source'));
+    const sections = document.querySelectorAll('[style*="--section-photo-source:"], [style*="--section-base-photo-source:"]');
+    const reveal = section => {
+      for (const property of ['--section-photo', '--section-base-photo']) {
+        const source = section.style.getPropertyValue(property + '-source');
+        if (source) section.style.setProperty(property, source);
+      }
+    };
     if (!('IntersectionObserver' in window)) { sections.forEach(reveal); return; }
     try {
       const observer = new IntersectionObserver(entries => {
@@ -2948,7 +2933,7 @@
           reveal(entry.target);
           observer.unobserve(entry.target);
         });
-      }, { rootMargin:'600px 0px' });
+      }, { rootMargin:'140px 0px' });
       sections.forEach(section => observer.observe(section));
     } catch (error) { sections.forEach(reveal); }
   })();
@@ -2999,6 +2984,15 @@
     });
   });
 
+  function observeCarousel(track, start, stop) {
+    if (!('IntersectionObserver' in window)) { start(); return; }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) start();
+      else stop();
+    });
+    observer.observe(track.parentElement);
+  }
+
   /* HERO SLIDESHOW */
   function runHeroSlideshow(selector, interval = 2000, viewport) {
     const slides = document.querySelectorAll(selector);
@@ -3007,16 +3001,23 @@
     setInterval(() => {
       const next = (cur + 1) % slides.length;
       if (viewport && !viewport.matches) return;
-      if (slides[cur].classList.contains('hmg-full') || !slides[next].complete || !slides[next].naturalWidth) return;
+      if (document.hidden || slides[cur].classList.contains('hmg-full')) return;
+      const upcoming = slides[next];
+      if (upcoming.dataset.src) {
+        upcoming.src = upcoming.dataset.src;
+        delete upcoming.dataset.src;
+      }
+      if (!upcoming.complete || !upcoming.naturalWidth) return;
       slides[cur].classList.remove('active');
       slides[next].classList.add('active');
       cur = next;
     }, interval);
   }
   const mobileHeroMotion = window.matchMedia('(max-width: 767px) and (prefers-reduced-motion: no-preference)');
+  const desktopHeroMotion = window.matchMedia('(min-width: 768px) and (prefers-reduced-motion: no-preference)');
   runHeroSlideshow('.hero-slide', 5200, mobileHeroMotion);
-  runHeroSlideshow('.hero-mobile-gallery .hmg-slide', 5800, mobileHeroMotion);
-  runHeroSlideshow('.hero-slide-pc');
+  runHeroSlideshow('.hero-mobile-gallery .hmg-slide', 5800, window.matchMedia('(prefers-reduced-motion: no-preference)'));
+  runHeroSlideshow('.hero-slide-pc', 4000, desktopHeroMotion);
 
   /* TUITION MODAL */
   function openTuition() {
@@ -3387,9 +3388,12 @@
 
     jump(cur);
 
-    function startAuto() { autoTimer = setInterval(() => slide(cur + 1), 5000); }
+    function startAuto() {
+      stopAuto();
+      autoTimer = setInterval(() => slide(cur + 1), 5000);
+    }
     function stopAuto()  { clearInterval(autoTimer); }
-    startAuto();
+    observeCarousel(track, startAuto, stopAuto);
 
     dots.forEach((d, i) => {
       d.addEventListener('click', () => {
@@ -3522,7 +3526,7 @@
       }
     }
     function stopAuto() { clearInterval(autoTimer); }
-    startAuto();
+    observeCarousel(track, startAuto, stopAuto);
 
     // Pause the carousel while an expanded review is being read (including clones).
     track.addEventListener('toggle', e => {
@@ -3889,14 +3893,13 @@
   document.querySelectorAll('a[href*="talk.naver.com"]').forEach(el => el.addEventListener('click', () => { ga4('naver_inquiry','네이버문의'); }));
 </script>
   <!-- 네이버 애널리틱스 -->
-  <script type="text/javascript" src="//wcs.pstatic.net/wcslog.js"></script>
-  <script type="text/javascript">
-    if(!wcs_add) var wcs_add = {};
-    wcs_add["wa"] = "cf421df2fe08a8";
-    if(window.wcs) {
-      wcs_do();
+  <script>
+    function startNaverPageMeasurement() {
+      wcs_add["wa"] = "cf421df2fe08a8";
+      if (window.wcs) wcs_do();
     }
   </script>
+  <script defer src="https://wcs.pstatic.net/wcslog.js" onload="startNaverPageMeasurement()"></script>
   <!-- Smartlog -->
   <script type="text/javascript">
     var hpt_info={'_account':'UHPT-301199', '_server': 'a300'};
