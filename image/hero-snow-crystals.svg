@@ -10,8 +10,8 @@
       <use href="#arm" transform="rotate(300)"/>
     </g>
   </defs>
-  <use href="#crystal" transform="translate(117 27) rotate(12) scale(1.2)" opacity="0.67"/>
-  <use href="#crystal" transform="translate(35 129) rotate(28) scale(0.84)" opacity="0.58"/>
-  <use href="#crystal" transform="translate(178 175) rotate(8) scale(1.33)" opacity="0.69"/>
-  <use href="#crystal" transform="translate(81 252) rotate(18)" opacity="0.62"/>
+  <use href="#crystal" transform="translate(117 27) rotate(12) scale(1.8)" opacity="0.54"/>
+  <use href="#crystal" transform="translate(35 129) rotate(28) scale(1.26)" opacity="0.46"/>
+  <use href="#crystal" transform="translate(178 175) rotate(8) scale(2)" opacity="0.55"/>
+  <use href="#crystal" transform="translate(81 252) rotate(18) scale(1.5)" opacity="0.50"/>
 </svg>
