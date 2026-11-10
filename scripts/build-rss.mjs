@@ -55,7 +55,7 @@ for (const [section, category] of Object.entries(SECTIONS)) {
     const canonTag = (html.match(/<link\b[^>]*rel=["']canonical["'][^>]*>/i) || [])[0];
     const link = (canonTag && attr(canonTag, 'href')) || SITE + path;
     const title = decode((html.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1] || slug)
-      .replace(/\s+/g, ' ').replace(/\s*\|\s*(Evaw Pet|이바우펫)[^|]*$/, '').trim();
+      .replace(/\s+/g, ' ').replace(/\s*\|\s*(EVAWPET|Evaw Pet|이바우펫)[^|]*$/, '').trim();
     const description = metaContent(html, 'name', 'description');
     let pub = metaContent(html, 'property', 'article:published_time');
     if (!pub) {
