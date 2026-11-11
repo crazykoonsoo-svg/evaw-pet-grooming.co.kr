@@ -3043,7 +3043,7 @@
     setInterval(() => {
       const next = (cur + 1) % slides.length;
       if (viewport && !viewport.matches) return;
-      if (document.hidden || slides[cur].classList.contains('hmg-full')) return;
+      if (document.hidden || document.querySelector('#modalOverlay.open,#nearbyOverlay.open,#phonePopup.open') || slides[cur].classList.contains('hmg-full')) return;
       const upcoming = slides[next];
       if (upcoming.dataset.src) {
         upcoming.src = upcoming.dataset.src;
@@ -3465,20 +3465,33 @@
   })();
 
   // Account for browser chrome, the on-screen keyboard and the home indicator.
+  let consultViewportFrame = 0;
+  const consultMetrics = {};
   function syncConsultViewport() {
+    consultViewportFrame = 0;
     const viewport = window.visualViewport;
-    document.documentElement.style.setProperty('--consult-viewport-height', `${viewport ? viewport.height : window.innerHeight}px`);
-    document.documentElement.style.setProperty('--consult-viewport-top', `${viewport ? viewport.offsetTop : 0}px`);
-    document.documentElement.style.setProperty('--sticky-bar-space', `${document.getElementById('stickyBar').offsetHeight + 16}px`);
+    const values = {
+      '--consult-viewport-height': `${viewport ? viewport.height : innerHeight}px`,
+      '--consult-viewport-top': `${viewport ? viewport.offsetTop : 0}px`,
+      '--sticky-bar-space': `${document.getElementById('stickyBar').offsetHeight + 16}px`
+    };
+    for (const [name,value] of Object.entries(values)) {
+      if (consultMetrics[name] === value) continue;
+      consultMetrics[name] = value;
+      document.documentElement.style.setProperty(name,value);
+    }
+  }
+  function queueConsultViewport() {
+    if (!consultViewportFrame) consultViewportFrame = requestAnimationFrame(syncConsultViewport);
   }
   syncConsultViewport();
-  window.addEventListener('resize', syncConsultViewport, { passive:true });
+  window.addEventListener('resize', queueConsultViewport, {passive:true});
   if (window.visualViewport) {
-    window.visualViewport.addEventListener('resize', syncConsultViewport, { passive:true });
-    window.visualViewport.addEventListener('scroll', syncConsultViewport, { passive:true });
+    window.visualViewport.addEventListener('resize', queueConsultViewport, {passive:true});
+    window.visualViewport.addEventListener('scroll', queueConsultViewport, {passive:true});
   }
   if (typeof ResizeObserver !== 'undefined') {
-    new ResizeObserver(syncConsultViewport).observe(document.getElementById('stickyBar'));
+    new ResizeObserver(queueConsultViewport).observe(document.getElementById('stickyBar'));
   }
 
   const stickyBar = document.getElementById('stickyBar');
