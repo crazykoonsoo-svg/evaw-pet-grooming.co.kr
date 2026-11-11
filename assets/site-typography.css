@@ -10,3 +10,6 @@ body button,body input,body select,body textarea{font-family:var(--font-body)!im
  main p,main li{line-height:1.8;word-break:keep-all;overflow-wrap:break-word}
  input,select,textarea{font-size:16px}
 }
+
+/* Keep long news pagination within narrow mobile viewports. */
+@media(max-width:767px){.pagination{flex-wrap:wrap;max-width:100%;row-gap:8px}}
