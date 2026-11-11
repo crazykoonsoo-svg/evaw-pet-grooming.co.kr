@@ -1818,6 +1818,42 @@
     #hero .hero-title em { margin-top:6px; font-size:clamp(21px,5.7vw,28px)!important; line-height:1.45; white-space:normal; }
   }
 </style>
+<style id="main-section-flow">
+  /* Give each section a consistent rhythm and blend adjacent background edges. */
+  body > section:not(#hero) { padding-top:64px; padding-bottom:64px; }
+  body > section.section-photo {
+    background:linear-gradient(to bottom,var(--photo-top,#fff) 0%,#fff 96px,#fff calc(100% - 96px),var(--photo-bottom,#fff) 100%);
+    border-top:0; border-bottom:0;
+  }
+  body > section.section-photo::before {
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 112px,#000 58%,transparent 100%);
+    mask-image:linear-gradient(to bottom,transparent 0%,#000 112px,#000 58%,transparent 100%);
+  }
+  body > section#curriculum { padding-bottom:32px; }
+  body > section#enrollment-info { padding-top:32px; }
+  body > section#faculty,body > section#faq { padding-bottom:112px; }
+  body > section#branches { padding-top:112px; padding-bottom:112px; }
+  body > section#guide { padding-top:112px; }
+  body > section#network { padding-bottom:56px; }
+  body > .cta-banner { padding-top:56px; padding-bottom:56px; }
+  @media(max-width:767px) {
+    body > section:not(#hero) { padding-top:44px; padding-bottom:44px; }
+    body > section.section-photo {
+      background:linear-gradient(to bottom,var(--photo-top,#fff) 0%,#fff 64px,#fff calc(100% - 64px),var(--photo-bottom,#fff) 100%);
+    }
+    body > section.section-photo::before {
+      -webkit-mask-image:linear-gradient(to bottom,transparent,#000 64px,#000 54%,transparent);
+      mask-image:linear-gradient(to bottom,transparent,#000 64px,#000 54%,transparent);
+    }
+    body > section#curriculum { padding-bottom:24px; }
+    body > section#enrollment-info { padding-top:24px; }
+    body > section#faculty,body > section#faq { padding-bottom:80px; }
+    body > section#branches { padding-top:80px; padding-bottom:80px; }
+    body > section#guide { padding-top:80px; }
+    body > section#network { padding-bottom:40px; }
+    body > .cta-banner { padding-top:40px; padding-bottom:40px; }
+  }
+</style>
 </head>
 <body>
 
