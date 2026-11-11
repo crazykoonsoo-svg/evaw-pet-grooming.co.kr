@@ -2266,7 +2266,6 @@
       <div class="divider"></div>
     </div>
   </div>
-  <p class="branch-filter-status" id="branch-filter-status" role="status">전체 20개 지점 · 좌우로 넘겨보세요</p>
   <div class="branch-slider" role="region" aria-label="전국 캠퍼스">
     <div class="branch-track" id="branchTrack">
       <a class="branch-card" href="/branches/gwangju/"><div class="branch-region">광주</div><div class="branch-name">광주 애견미용학원</div><div class="branch-addr">광주광역시 서구 상무중앙로 7 10층</div></a>
@@ -3267,7 +3266,6 @@
       wrap.scrollLeft = 0; offset = 0; moved = false;
       track.style.transform = 'translateX(0px)';
       document.querySelectorAll('.branch-filter').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-      document.getElementById('branch-filter-status').textContent = `${button.textContent} ${cards.length}개 지점 · 좌우로 넘겨보세요`;
       measure();
       ga4('branch_filter', region);
     }));
