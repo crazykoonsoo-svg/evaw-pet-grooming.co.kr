@@ -13,3 +13,7 @@ body button,body input,body select,body textarea{font-family:var(--font-body)!im
 
 /* Keep long news pagination within narrow mobile viewports. */
 @media(max-width:767px){.pagination{flex-wrap:wrap;max-width:100%;row-gap:8px}}
+
+/* Let the approved transparent feature illustrations blend into each card. */
+#why .diff-icon{background:transparent;box-shadow:none}
+#why .diff-card:hover .diff-icon{box-shadow:none}
