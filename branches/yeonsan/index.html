@@ -18,15 +18,18 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Do+Hyeon&family=Jua&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300..900&family=Do+Hyeon&family=Jua&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300..900&family=Do+Hyeon&family=Jua&display=swap" rel="stylesheet" /></noscript>
 
-  <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
-  <script type="text/javascript">
-    if (!wcs_add) var wcs_add = {};
-    wcs_add["wa"] = "s_142bb34fca15";
-    if (!_nasa) var _nasa = {};
-    if (window.wcs) { wcs.inflow(); wcs_do(); }
+  <script>
+    var wcs_add = window.wcs_add || {};
+    var _nasa = window._nasa || {};
+    function startNaverSearchMeasurement() {
+      wcs_add["wa"] = "s_142bb34fca15";
+      if (window.wcs) { wcs.inflow(); wcs_do(); }
+    }
   </script>
+  <script defer src="https://wcs.naver.net/wcslog.js" onload="startNaverSearchMeasurement()"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HCPV87VR4G"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -205,11 +208,59 @@
 
     /* ── HERO ── */
     #hero {
-      background-color: #F8F9FC;
+      background-color: #FFFFFF;
       padding:0; position:relative; overflow:hidden; min-height:100svh;
       display:flex; flex-direction:column;
     }
-    #hero::before { content: none; }
+    @media (prefers-reduced-motion: no-preference) {
+      #hero::before, #hero::after {
+        content: "";
+        position: absolute;
+        inset: calc(-1 * var(--snow-step)) -18px 0;
+        z-index: 0;
+        pointer-events: none;
+        opacity: .7;
+        background-size: var(--snow-width) var(--snow-step);
+        animation: hero-snowfall var(--snow-duration) linear infinite;
+      }
+      #hero::before {
+        --snow-width: 192px;
+        --snow-step: 228px;
+        --snow-duration: 13s;
+        --snow-drift: 12px;
+        --snow-color: rgba(139, 176, 203, .32);
+        background-image:
+          radial-gradient(circle at 22px 28px, var(--snow-color) 1px, transparent 1.8px),
+          radial-gradient(circle at 144px 54px, var(--snow-color) 1.3px, transparent 2px),
+          radial-gradient(circle at 75px 105px, var(--snow-color) 1px, transparent 1.7px),
+          radial-gradient(circle at 173px 147px, var(--snow-color) 1px, transparent 1.8px),
+          radial-gradient(circle at 38px 188px, var(--snow-color) 1.2px, transparent 2px);
+      }
+      #hero::after {
+        --snow-width: 264px;
+        --snow-step: 288px;
+        --snow-duration: 9s;
+        --snow-drift: -15px;
+        --snow-color: rgba(161, 192, 213, .44);
+        background-size:
+          792px var(--snow-step),
+          var(--snow-width) var(--snow-step),
+          var(--snow-width) var(--snow-step),
+          var(--snow-width) var(--snow-step),
+          var(--snow-width) var(--snow-step);
+        background-image:
+          var(--hero-crystals, url("/image/hero-snow-crystals.svg?v=large")),
+          radial-gradient(circle at 59px 57px, var(--snow-color) 2px, transparent 3.5px),
+          radial-gradient(circle at 205px 111px, var(--snow-color) 1.7px, transparent 3.2px),
+          radial-gradient(circle at 115px 199px, var(--snow-color) 2px, transparent 3.5px),
+          radial-gradient(circle at 240px 253px, var(--snow-color) 2.2px, transparent 3.7px);
+      }
+      @keyframes hero-snowfall {
+        from { transform: translate3d(0, 0, 0); }
+        50% { transform: translate3d(var(--snow-drift), calc(var(--snow-step) / 2), 0); }
+        to { transform: translate3d(0, var(--snow-step), 0); }
+      }
+    }
     #hero .hero-bg, #hero .hero-paw, #hero .hero-content { position:relative; z-index:1; }
 
     /* 히어로 우측 이미지 */
@@ -224,6 +275,15 @@
       overflow: hidden;
       z-index: -1;
       pointer-events: none;
+      opacity: .5;
+      --hero-photo-mask:
+        linear-gradient(to left, rgba(0,0,0,1) 70%, transparent 100%),
+        linear-gradient(to right, rgba(0,0,0,1) 96%, transparent 100%),
+        linear-gradient(to top, transparent 0%, rgba(0,0,0,1) 30%);
+      mask-image: var(--hero-photo-mask);
+      mask-composite: intersect;
+      -webkit-mask-image: var(--hero-photo-mask);
+      -webkit-mask-composite: source-in;
     }
     .hero-slide {
       position: absolute; inset: 0;
@@ -231,20 +291,6 @@
       object-fit: cover;
       object-position: center center;
       opacity: 0;
-      transition: opacity 1.2s ease-in-out;
-    }
-    .hero-slide.active { opacity: .5; }
-    .hero-slide {
-      mask-image:
-        linear-gradient(to left, rgba(0,0,0,1) 70%, transparent 100%),
-        linear-gradient(to right, rgba(0,0,0,1) 96%, transparent 100%),
-        linear-gradient(to top, transparent 0%, rgba(0,0,0,1) 30%);
-      mask-composite: intersect;
-      -webkit-mask-image:
-        linear-gradient(to left, rgba(0,0,0,1) 70%, transparent 100%),
-        linear-gradient(to right, rgba(0,0,0,1) 96%, transparent 100%),
-        linear-gradient(to top, transparent 0%, rgba(0,0,0,1) 30%);
-      -webkit-mask-composite: source-in;
     }
     .hero-mobile-gallery {
       position: relative;
@@ -258,26 +304,18 @@
       position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: contain;
-      background: var(--bg-main);
+      background: #FFFFFF;
       opacity: 0;
-      transform: scale(1);
-      transform-origin: center;
-      animation: hmgFade 16s infinite;
+      pointer-events: none;
       cursor: zoom-in;
-      transition: none;
-      will-change: transform, opacity;
+      transition: opacity 0s linear .7s;
     }
-    .hmg-slide:nth-child(1) { animation-delay: 0s; }
-    .hmg-slide:nth-child(2) { animation-delay: 4s; }
-    .hmg-slide:nth-child(3) { animation-delay: 8s; }
-    .hmg-slide:nth-child(4) { animation-delay: 12s; }
-    @keyframes hmgFade {
-      0%      { opacity: 0; transform: scale(1); }
-      6.25%   { opacity: 1; transform: scale(1.02); }
-      25%     { opacity: 1; transform: scale(1.05); }
-      31.25%  { opacity: 0; transform: scale(1.08); }
-      100%    { opacity: 0; transform: scale(1.08); }
+    .hmg-slide.active:not(.hmg-full) {
+      z-index: 1;
+      opacity: 1;
+      transition: opacity .7s ease-in-out;
     }
+    .hmg-slide.active, .hmg-slide.hmg-full { pointer-events: auto; }
     .hmg-slide.hmg-full {
       position: fixed !important;
       inset: 0 !important;
@@ -288,6 +326,15 @@
       opacity: 1 !important;
       animation: none !important;
       cursor: zoom-out;
+    }
+    @media (max-width: 767px) {
+      #hero { --hero-crystals: url("/image/hero-snow-crystals-mobile.svg"); }
+      .hero-slide { transition: opacity 0s linear .7s; }
+      .hero-slide.active {
+        z-index: 1;
+        opacity: 1;
+        transition: opacity .7s ease-in-out;
+      }
     }
     .hero-bg  { position:absolute; inset:0; pointer-events:none;
       background-image:
@@ -396,12 +443,12 @@
       0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(22,33,62,.0); }
       50%       { transform: scale(1.03); box-shadow: 0 0 0 6px rgba(22,33,62,.06); }
     }
-    .course-card:nth-child(1) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) .2s both, pulse 2.4s ease-in-out 1.0s infinite; }
-    .course-card:nth-child(2) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) .4s both, pulse 2.4s ease-in-out 1.4s infinite; }
-    .course-card:nth-child(3) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) .6s both, pulse 2.4s ease-in-out 1.8s infinite; }
-    .course-card:nth-child(4) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) .8s both, pulse 2.4s ease-in-out 1.2s infinite; }
-    .course-card:nth-child(5) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) 1.0s both, pulse 2.4s ease-in-out 1.6s infinite; }
-    .course-card:nth-child(6) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) 1.2s both, pulse 2.4s ease-in-out 2.0s infinite; }
+    .course-card:nth-child(1) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) .2s both; }
+    .course-card:nth-child(2) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) .4s both; }
+    .course-card:nth-child(3) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) .6s both; }
+    .course-card:nth-child(4) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) .8s both; }
+    .course-card:nth-child(5) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) 1.0s both; }
+    .course-card:nth-child(6) { animation: cardSlideUp .5s cubic-bezier(.34,1.56,.64,1) 1.2s both; }
 
     /* hero CTA grid */
     .hero-cta { display:flex; flex-direction:column; gap:8px; margin-bottom:16px; }
@@ -453,7 +500,7 @@
     #why {
       background:
         linear-gradient(180deg, rgba(255,255,255,.5) 0%, rgba(255,255,255,.6) 60%, rgba(255,255,255,1) 100%),
-        url('../../image/why-section-bg.webp') center center / cover no-repeat;
+        var(--section-base-photo, none) center center / cover no-repeat;
     }
     .cards-grid { display:flex; flex-direction:column; gap:12px; }
     .diff-card { background:var(--cream); border-radius:var(--r16); padding:20px 18px; border:1px solid var(--gray-2); display:flex; align-items:flex-start; gap:14px; transition:background .3s ease, box-shadow .3s ease, transform .3s ease, border-color .3s ease; position:relative; overflow:hidden; cursor:pointer; -webkit-tap-highlight-color:transparent; }
@@ -478,7 +525,7 @@
     }
     #network::before {
       content: ''; position: absolute; inset: 0;
-      background: url('../../image/network-bg.webp') center center / cover no-repeat;
+      background: var(--section-base-photo, none) center center / cover no-repeat;
       opacity: 0.55;
     }
     #network > * { position: relative; z-index: 1; }
@@ -1433,6 +1480,14 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css" />
   <link rel="stylesheet" href="/assets/branch-preparation.css?v=20261103-soft-type" />
+<style>
+    /* Match the current homepage hero order on desktop and mobile. */
+    #hero .hero-top-row { order:1; }
+    #hero .hero-mobile-gallery { order:2; margin-top:24px; margin-bottom:0; }
+    #hero .hero-bottom { order:3; }
+    #hero .scroll-hint { order:4; }
+</style>
+<noscript><style>.section-photo,.section-photo-dark{--section-photo:var(--section-photo-source)}#why,#network{--section-base-photo:var(--section-base-photo-source)}</style></noscript>
 </head>
 <body>
 
@@ -1473,12 +1528,7 @@
   <div class="hero-content">
 
     <!-- 상단: 배너 이미지 갤러리 -->
-    <div class="hero-mobile-gallery" role="region" aria-label="이바우펫 프로그램 안내 이미지 갤러리 (클릭하면 확대됩니다)">
-      <img src="../../image/hero-banner1.webp" class="hmg-slide" alt="애견미용적성파악 클래스" onclick="this.classList.toggle('hmg-full')" width="1983" height="793" />
-      <img src="../../image/hero-banner2.webp" class="hmg-slide" alt="애견미용자격증취득 보장반" onclick="this.classList.toggle('hmg-full')" width="1983" height="793" />
-      <img src="../../image/hero-banner3.webp" class="hmg-slide" alt="애견미용펫미용" onclick="this.classList.toggle('hmg-full')" width="1983" height="793" />
-      <img src="../../image/hero-banner4.webp" class="hmg-slide" alt="애견미용종합반" onclick="this.classList.toggle('hmg-full')" width="1983" height="793" />
-    </div>
+    
 
     <div class="hero-top-row">
       <!-- 왼쪽: 텍스트 + CTA -->
@@ -1512,21 +1562,35 @@
 
         <div class="hero-trust" role="list">
           <div class="trust-item" role="listitem"><span class="num">수강료 절감</span><span class="lbl">장학지원혜택</span></div>
-          <div class="trust-item" role="listitem"><span class="num">5,600+명</span><span class="lbl">누적 수강생<small style="display:block;font-size:.85em;opacity:.75;">전 지점 · 2026 기준</small></span></div>
+          <div class="trust-item" role="listitem"><span class="num">5,600+명</span><span class="lbl">누적 수강생</span></div>
           <div class="trust-item" role="listitem"><span class="num">100%</span><span class="lbl">가정견 실견수업</span></div>
         </div>
       </div>
 
       <!-- PC 전용 우측 이미지 -->
       <div class="hero-pc-bg" id="heroPcBg" aria-hidden="true">
-        <img src="../../image/hero-bg2.webp" class="hero-slide-pc active" alt="" width="440" height="540" />
-        <img src="../../image/hero-bg3.webp" class="hero-slide-pc" alt="" width="440" height="540" />
-        <img src="../../image/hero-bg4.webp" class="hero-slide-pc" alt="" width="440" height="540" />
-        <img src="../../image/hero-bg5.webp" class="hero-slide-pc" alt="" width="440" height="540" />
+        <img width="880" height="1080" decoding="async" src="/image/evawpet-winter-hero-01-cocker-spaniel.webp" class="hero-slide-pc active" alt="" />
+        <img width="880" height="1080" decoding="async" fetchpriority="low" data-src="/image/evawpet-winter-hero-02-bichon.webp" class="hero-slide-pc" alt="" />
+        <img width="880" height="1080" decoding="async" fetchpriority="low" data-src="/image/evawpet-winter-hero-03-pomspitz.webp" class="hero-slide-pc" alt="" />
       </div>
     </div>
 
-  </div>
+    <div class="hero-mobile-gallery" role="region" aria-label="이바우펫 프로그램 안내 이미지 갤러리 (클릭하면 확대됩니다)">
+      <img width="1983" height="793" decoding="async" fetchpriority="high" src="/image/hero-banner-winter-01-certificates.webp" class="hmg-slide active" alt="자격증 속성 교육 — 애견미용·행동교정·아로마·장례지도, 물개컷 포메라니안 겨울 배너" onclick="this.classList.toggle('hmg-full')" />
+      <img width="1983" height="793" decoding="async" fetchpriority="low" data-src="/image/hero-banner-winter-02-practice.webp" class="hmg-slide" alt="농장견·유기견 실습이 아닌 100% 가정견 실습 — 베들링턴 테리어 겨울 미용 배너" onclick="this.classList.toggle('hmg-full')" />
+      <img width="1983" height="793" decoding="async" fetchpriority="low" data-src="/image/hero-banner-winter-03-benefits.webp" class="hmg-slide" alt="시즌 등록혜택 — 교육비 지원과 미용도구 증정으로 수강 부담과 실습 준비를 돕는 겨울 배너" onclick="this.classList.toggle('hmg-full')" />
+      <img width="1983" height="793" decoding="async" fetchpriority="low" data-src="/image/hero-banner-winter-04-network.webp" class="hmg-slide" alt="전국 20개 직영 운영 — 취업 지원, 창업 지원, 전국 지점 연계 상담 겨울 배너" onclick="this.classList.toggle('hmg-full')" />
+    </div>
+
+  
+    <div class="hero-right">
+      <div class="hero-side-img" id="heroSlider">
+        <img width="880" height="1080" decoding="async" src="/image/evawpet-winter-hero-01-cocker-spaniel.webp" class="hero-slide active" alt="코카스파니엘 가위 미용" />
+        <img width="880" height="1080" decoding="async" fetchpriority="low" data-src="/image/evawpet-winter-hero-02-bichon.webp" class="hero-slide" alt="비숑 가위 미용" />
+        <img width="880" height="1080" decoding="async" fetchpriority="low" data-src="/image/evawpet-winter-hero-03-pomspitz.webp" class="hero-slide" alt="폼피츠 가위 미용" />
+      </div>
+    </div>
+</div>
 </section>
 
 <section id="curriculum" aria-labelledby="curr-h">
@@ -1593,7 +1657,7 @@
   </div>
 </section>
 
-<section id="why" aria-labelledby="why-h">
+<section id="why" aria-labelledby="why-h" style="--section-base-photo-source:url('/image/why-section-bg.webp')">
   <div class="wrap">
     <div class="sec-header fade-up">
       <div class="sec-tag">✨ 이바우펫만의 차이</div>
@@ -2265,18 +2329,40 @@
     });
   });
 
+  function observeCarousel(track, start, stop) {
+    if (!('IntersectionObserver' in window)) { start(); return; }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) start();
+      else stop();
+    });
+    observer.observe(track.parentElement);
+  }
+
   /* HERO SLIDESHOW */
-  function runHeroSlideshow(selector) {
+  function runHeroSlideshow(selector, interval = 2000, viewport) {
     const slides = document.querySelectorAll(selector);
-    if (!slides.length) return;
+    if (slides.length < 2) return;
     let cur = 0;
     setInterval(() => {
+      const next = (cur + 1) % slides.length;
+      if (viewport && !viewport.matches) return;
+      if (document.hidden || slides[cur].classList.contains('hmg-full')) return;
+      const upcoming = slides[next];
+      if (upcoming.dataset.src) {
+        upcoming.src = upcoming.dataset.src;
+        delete upcoming.dataset.src;
+      }
+      if (!upcoming.complete || !upcoming.naturalWidth) return;
       slides[cur].classList.remove('active');
-      cur = (cur + 1) % slides.length;
-      slides[cur].classList.add('active');
-    }, 2000);
+      slides[next].classList.add('active');
+      cur = next;
+    }, interval);
   }
-  runHeroSlideshow('.hero-slide-pc');
+  const mobileHeroMotion = window.matchMedia('(max-width: 767px) and (prefers-reduced-motion: no-preference)');
+  const desktopHeroMotion = window.matchMedia('(min-width: 768px) and (prefers-reduced-motion: no-preference)');
+  runHeroSlideshow('.hero-slide', 5200, mobileHeroMotion);
+  runHeroSlideshow('.hero-mobile-gallery .hmg-slide', 3000, window.matchMedia('(prefers-reduced-motion: no-preference)'));
+  runHeroSlideshow('.hero-slide-pc', 4000, desktopHeroMotion);
 
   /* PORTFOLIO MARQUEE - 흐르는 무한 루프 + 중앙 확대 + 스와이프로 넘기기 */
   (function() {
@@ -2289,8 +2375,8 @@
     origItems.forEach(el => track.appendChild(el.cloneNode(true)));
 
     let offset = 0;
-    let paused = false;
-    let dragging = false;
+    let paused = false;      // 마우스 호버 시에만 정지 (PC, 드래그 중이 아닐 때)
+    let dragging = false;    // 터치/마우스 드래그 중에는 자동 스크롤 대신 손가락·마우스를 따라감
     let dragStartX = 0;
     let dragStartOffset = 0;
     const speed = 0.35;
@@ -2301,40 +2387,50 @@
       img.style.userSelect = 'none';
     });
 
-    function itemSpan() {
-      const style = getComputedStyle(track);
-      const gap = parseFloat(style.gap) || 0;
-      return track.children[0].getBoundingClientRect().width + gap;
-    }
+    const cards = Array.from(track.children);
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let span = 0, halfCard = 0, centerX = 0, frame = 0, lastFrame = 0;
 
-    function wrapOffset(val, span) {
-      const singleSetWidth = span * total;
-      return ((val % singleSetWidth) + singleSetWidth) % singleSetWidth;
-    }
-
-    function tick() {
-      const span = itemSpan();
-      if (!paused && !dragging) {
-        offset = wrapOffset(offset + speed, span);
-        track.style.transform = `translateX(${-offset}px)`;
-      }
-
-      const wrapRect = wrap.getBoundingClientRect();
-      const centerX = wrapRect.left + wrapRect.width / 2;
+    function render(value) {
+      if (!span) return;
+      const cycle = span * total;
+      offset = ((value % cycle) + cycle) % cycle;
+      track.style.transform = `translateX(${-offset}px)`;
       const radius = span * 1.1;
-      Array.from(track.children).forEach(el => {
-        const r = el.getBoundingClientRect();
-        const elCenter = r.left + r.width / 2;
-        const dist = Math.abs(elCenter - centerX);
-        const factor = Math.max(0, 1 - dist / radius);
-        const scale = 1 + 0.5 * factor;
-        el.style.transform = `scale(${scale.toFixed(3)})`;
-        el.style.zIndex = Math.round(scale * 10);
+      cards.forEach((card, index) => {
+        const distance = Math.abs(index * span + halfCard - offset - centerX);
+        const scale = 1 + 0.5 * Math.max(0, 1 - distance / radius);
+        const transform = scale === 1 ? '' : `scale(${scale.toFixed(3)})`;
+        const zIndex = scale === 1 ? '' : String(Math.round(scale * 10));
+        if (card.style.transform !== transform) card.style.transform = transform;
+        if (card.style.zIndex !== zIndex) card.style.zIndex = zIndex;
       });
-
-      requestAnimationFrame(tick);
     }
-    requestAnimationFrame(tick);
+
+    function measure() {
+      halfCard = origItems[0].offsetWidth / 2;
+      span = halfCard * 2 + (parseFloat(getComputedStyle(track).columnGap) || 0);
+      centerX = wrap.clientWidth / 2;
+      render(offset);
+    }
+
+    function tick(time) {
+      const elapsed = lastFrame ? Math.min(time - lastFrame, 50) : 0;
+      lastFrame = time;
+      if (!paused && !dragging && !reducedMotion.matches && elapsed) {
+        render(offset + speed * elapsed / (1000 / 60));
+      }
+      frame = requestAnimationFrame(tick);
+    }
+    observeCarousel(track, () => {
+      measure();
+      if (!frame) frame = requestAnimationFrame(tick);
+    }, () => {
+      cancelAnimationFrame(frame);
+      frame = 0;
+      lastFrame = 0;
+    });
+    window.addEventListener('resize', measure);
 
     wrap.addEventListener('touchstart', (e) => {
       dragging = true;
@@ -2345,9 +2441,7 @@
     wrap.addEventListener('touchmove', (e) => {
       if (!dragging) return;
       const dx = e.touches[0].clientX - dragStartX;
-      const span = itemSpan();
-      offset = wrapOffset(dragStartOffset - dx, span);
-      track.style.transform = `translateX(${-offset}px)`;
+      render(dragStartOffset - dx);
     }, { passive: true });
 
     function endDrag() { dragging = false; wrap.style.cursor = 'grab'; }
@@ -2357,6 +2451,7 @@
     wrap.addEventListener('mouseenter', () => { paused = true; });
     wrap.addEventListener('mouseleave', () => { paused = false; if (dragging) endDrag(); });
 
+    /* PC: 마우스 드래그로도 스와이프 */
     wrap.style.cursor = 'grab';
     wrap.addEventListener('mousedown', (e) => {
       dragging = true;
@@ -2369,9 +2464,7 @@
     window.addEventListener('mousemove', (e) => {
       if (!dragging) return;
       const dx = e.clientX - dragStartX;
-      const span = itemSpan();
-      offset = wrapOffset(dragStartOffset - dx, span);
-      track.style.transform = `translateX(${-offset}px)`;
+      render(dragStartOffset - dx);
     });
 
     window.addEventListener('mouseup', () => { if (dragging) endDrag(); });
@@ -2405,12 +2498,13 @@
   document.querySelectorAll('a[href*="kakao"]').forEach(el => el.addEventListener('click', () => { ga4('kakao_inquiry','카카오문의_branch_yeonsan'); }));
   document.querySelectorAll('a[href*="talk.naver.com"]').forEach(el => el.addEventListener('click', () => { ga4('naver_inquiry','네이버문의_branch_yeonsan'); }));
 </script>
-<script type="text/javascript" src="//wcs.pstatic.net/wcslog.js"></script>
-<script type="text/javascript">
-  if (!wcs_add) var wcs_add = {};
-  wcs_add["wa"] = "cf421df2fe08a8";
-  if (window.wcs) { wcs_do(); }
-</script>
+<script>
+    function startNaverPageMeasurement() {
+      wcs_add["wa"] = "cf421df2fe08a8";
+      if (window.wcs) wcs_do();
+    }
+  </script>
+  <script defer src="https://wcs.pstatic.net/wcslog.js" onload="startNaverPageMeasurement()"></script>
 <!-- 📍 가까운 지점 문의 모달 -->
 <div id="nearbyOverlay" role="dialog" aria-modal="true" aria-labelledby="nearby-title" onclick="if(event.target===this)closeNearbyModal();">
   <div class="modal-sheet">
@@ -2436,5 +2530,28 @@
 <script src="/assets/branch-nearby.js"></script>
 <script src="/assets/branch-enrollment.js"></script>
 <script src="/assets/branch-preparation.js?v=20261103-soft-type" defer></script>
+<script>
+  // Load decorative section photos shortly before they enter the viewport.
+  (() => {
+    const sections = document.querySelectorAll('[style*="--section-photo-source:"], [style*="--section-base-photo-source:"]');
+    const reveal = section => {
+      for (const property of ['--section-photo', '--section-base-photo']) {
+        const source = section.style.getPropertyValue(property + '-source');
+        if (source) section.style.setProperty(property, source);
+      }
+    };
+    if (!('IntersectionObserver' in window)) { sections.forEach(reveal); return; }
+    try {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          reveal(entry.target);
+          observer.unobserve(entry.target);
+        });
+      }, { rootMargin:'140px 0px' });
+      sections.forEach(section => observer.observe(section));
+    } catch (error) { sections.forEach(reveal); }
+  })();
+</script>
 </body>
 </html>

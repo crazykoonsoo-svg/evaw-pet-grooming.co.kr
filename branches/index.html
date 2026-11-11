@@ -18,15 +18,18 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Do+Hyeon&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300..900&family=Do+Hyeon&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300..900&family=Do+Hyeon&display=swap" rel="stylesheet" /></noscript>
 
-  <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
-  <script type="text/javascript">
-    if (!wcs_add) var wcs_add = {};
-    wcs_add["wa"] = "s_142bb34fca15";
-    if (!_nasa) var _nasa = {};
-    if (window.wcs) { wcs.inflow(); wcs_do(); }
+  <script>
+    var wcs_add = window.wcs_add || {};
+    var _nasa = window._nasa || {};
+    function startNaverSearchMeasurement() {
+      wcs_add["wa"] = "s_142bb34fca15";
+      if (window.wcs) { wcs.inflow(); wcs_do(); }
+    }
   </script>
+  <script defer src="https://wcs.naver.net/wcslog.js" onload="startNaverSearchMeasurement()"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HCPV87VR4G"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -299,6 +302,64 @@
       .branch-list { grid-template-columns:repeat(3,1fr); }
     }
   </style>
+<style>    @media (prefers-reduced-motion: no-preference) {
+      .winter-header-snow::before, .winter-header-snow::after {
+        content: "";
+        position: absolute;
+        inset: calc(-1 * var(--snow-step)) -18px 0;
+        z-index: 0;
+        pointer-events: none;
+        opacity: .7;
+        background-size: var(--snow-width) var(--snow-step);
+        animation: hero-snowfall var(--snow-duration) linear infinite;
+      }
+      .winter-header-snow::before {
+        --snow-width: 192px;
+        --snow-step: 228px;
+        --snow-duration: 13s;
+        --snow-drift: 12px;
+        --snow-color: rgba(139, 176, 203, .32);
+        background-image:
+          radial-gradient(circle at 22px 28px, var(--snow-color) 1px, transparent 1.8px),
+          radial-gradient(circle at 144px 54px, var(--snow-color) 1.3px, transparent 2px),
+          radial-gradient(circle at 75px 105px, var(--snow-color) 1px, transparent 1.7px),
+          radial-gradient(circle at 173px 147px, var(--snow-color) 1px, transparent 1.8px),
+          radial-gradient(circle at 38px 188px, var(--snow-color) 1.2px, transparent 2px);
+      }
+      .winter-header-snow::after {
+        --snow-width: 264px;
+        --snow-step: 288px;
+        --snow-duration: 9s;
+        --snow-drift: -15px;
+        --snow-color: rgba(161, 192, 213, .44);
+        background-size:
+          792px var(--snow-step),
+          var(--snow-width) var(--snow-step),
+          var(--snow-width) var(--snow-step),
+          var(--snow-width) var(--snow-step),
+          var(--snow-width) var(--snow-step);
+        background-image:
+          var(--hero-crystals, url("/image/hero-snow-crystals.svg?v=large")),
+          radial-gradient(circle at 59px 57px, var(--snow-color) 2px, transparent 3.5px),
+          radial-gradient(circle at 205px 111px, var(--snow-color) 1.7px, transparent 3.2px),
+          radial-gradient(circle at 115px 199px, var(--snow-color) 2px, transparent 3.5px),
+          radial-gradient(circle at 240px 253px, var(--snow-color) 2.2px, transparent 3.7px);
+      }
+      @keyframes hero-snowfall {
+        from { transform: translate3d(0, 0, 0); }
+        50% { transform: translate3d(var(--snow-drift), calc(var(--snow-step) / 2), 0); }
+        to { transform: translate3d(0, var(--snow-step), 0); }
+      }
+    }
+
+    .winter-header-snow { position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
+    @media (max-width:767px) { .winter-header-snow { --hero-crystals:url('/image/hero-snow-crystals-mobile.svg'); } }
+</style>
+<style>
+    .page-hero .hero-stat-row { gap:clamp(12px,2.5vw,28px); }
+    .page-hero .hero-stat { flex:1; min-width:0; }
+    .page-hero .hero-stat .num { white-space:nowrap; font-size:clamp(1.25rem,5.2vw,1.7rem); }
+</style>
 </head>
 <body>
 
@@ -333,6 +394,7 @@
 
 <header class="page-hero">
   <div class="scrim"></div>
+  <div class="winter-header-snow" aria-hidden="true"></div>
   <div class="wrap">
     <div class="breadcrumb"><a href="../">홈</a> / 전국 캠퍼스 안내</div>
     <div class="sec-tag">🌐 전국 네트워크</div>
@@ -340,7 +402,7 @@
     <p class="page-desc">서울·경기·인천·대전·대구·부산·경남·충남·광주 전국 각지에서<br/>이바우펫 직영 캠퍼스를 만나보세요.</p>
     <div class="hero-stat-row">
       <div class="hero-stat"><span class="num">20개 운영</span><span class="lbl">전국 직영 캠퍼스</span></div>
-      <div class="hero-stat"><span class="num">5,600명+</span><span class="lbl">누적 수강생<small style="display:block;font-size:.85em;opacity:.75;">전 지점 · 2026 기준</small></span></div>
+      <div class="hero-stat"><span class="num">5,600명+</span><span class="lbl">누적 수강생</span></div>
       <div class="hero-stat"><span class="num">100%</span><span class="lbl">가정견 실견수업</span></div>
     </div>
   </div>
@@ -669,11 +731,12 @@
   document.querySelectorAll('a[href*="kakao"]').forEach(el => el.addEventListener('click', () => { ga4('kakao_inquiry','카카오문의_branches'); }));
   document.querySelectorAll('a[href*="talk.naver.com"]').forEach(el => el.addEventListener('click', () => { ga4('naver_inquiry','네이버문의_branches'); }));
 </script>
-<script type="text/javascript" src="//wcs.pstatic.net/wcslog.js"></script>
-<script type="text/javascript">
-  if (!wcs_add) var wcs_add = {};
-  wcs_add["wa"] = "cf421df2fe08a8";
-  if (window.wcs) { wcs_do(); }
-</script>
+<script>
+    function startNaverPageMeasurement() {
+      wcs_add["wa"] = "cf421df2fe08a8";
+      if (window.wcs) wcs_do();
+    }
+  </script>
+  <script defer src="https://wcs.pstatic.net/wcslog.js" onload="startNaverPageMeasurement()"></script>
 </body>
 </html>
