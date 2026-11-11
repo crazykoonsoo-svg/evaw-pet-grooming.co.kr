@@ -10,8 +10,8 @@
   originals.forEach(card => { const copy = card.cloneNode(true); copy.setAttribute('aria-hidden','true'); track.append(copy); });
   const span = () => originals[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).gap);
   const cycle = () => span() * originals.length;
-  function updateButton() { pause.setAttribute('aria-pressed',String(stopped)); pause.textContent = stopped ? '자동 넘김 재생' : '자동 넘김 정지'; }
-  pause.addEventListener('click',() => { stopped = !stopped; updateButton(); });
+  function updateButton() { if (!pause) return; pause.setAttribute('aria-pressed',String(stopped)); pause.textContent = stopped ? '자동 넘김 재생' : '자동 넘김 정지'; }
+  pause?.addEventListener('click',() => { stopped = !stopped; updateButton(); });
   reduced.addEventListener('change',e => { stopped=e.matches;updateButton(); });
   updateButton();
   root.addEventListener('mouseenter',() => hovering=true);
@@ -23,8 +23,8 @@
   window.addEventListener('pointercancel',() => touching=false);
   viewport.addEventListener('wheel',() => manualUntil=performance.now()+3000,{passive:true});
   function move(dir) { manualUntil=performance.now()+3000; if(dir<0 && viewport.scrollLeft<span()) viewport.scrollLeft+=cycle(); viewport.scrollBy({left:dir*span(),behavior:reduced.matches?'instant':'smooth'}); }
-  root.querySelector('[data-faculty-prev]').addEventListener('click',() => move(-1));
-  root.querySelector('[data-faculty-next]').addEventListener('click',() => move(1));
+  root.querySelector('[data-faculty-prev]')?.addEventListener('click',() => move(-1));
+  root.querySelector('[data-faculty-next]')?.addEventListener('click',() => move(1));
   viewport.addEventListener('keydown',e => { if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();move(e.key==='ArrowLeft'?-1:1);} });
   new IntersectionObserver(entries => { visible=entries[0].isIntersecting; }).observe(root);
   function tick(now) {
