@@ -17,3 +17,18 @@ body button,body input,body select,body textarea{font-family:var(--font-body)!im
 /* Let the approved transparent feature illustrations blend into each card. */
 #why .diff-icon{background:transparent;box-shadow:none}
 #why .diff-card:hover .diff-icon{box-shadow:none}
+
+/* Article media: override legacy HTML heights without stretching or cropping. */
+article .art-image,article .article-figure{height:auto;max-width:100%}
+article .art-image img,article .article-figure img,article .art-body img{
+ display:block;width:auto!important;height:auto!important;max-width:100%;
+ max-height:480px;object-fit:contain;aspect-ratio:auto!important;margin-inline:auto;
+}
+/* List thumbnails share a stable frame while retaining the full artwork. */
+.nc-card .nc-image,.area-card .ac-image{
+ display:block;width:100%;height:auto!important;aspect-ratio:16/9!important;
+ object-fit:contain!important;background:var(--gray-1,#f3f5f8);
+}
+@media(max-width:767px){
+ article .art-image img,article .article-figure img,article .art-body img{max-height:420px}
+}
