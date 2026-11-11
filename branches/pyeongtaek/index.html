@@ -2345,7 +2345,7 @@
   }
 
   /* HERO SLIDESHOW */
-  function runHeroSlideshow(selector, interval = 2000, viewport) {
+  function runHeroSlideshow(selector, interval = 3000, viewport) {
     const slides = document.querySelectorAll(selector);
     if (slides.length < 2) return;
     let cur = 0;
@@ -2366,9 +2366,9 @@
   }
   const mobileHeroMotion = window.matchMedia('(max-width: 767px) and (prefers-reduced-motion: no-preference)');
   const desktopHeroMotion = window.matchMedia('(min-width: 768px) and (prefers-reduced-motion: no-preference)');
-  runHeroSlideshow('.hero-slide', 5200, mobileHeroMotion);
+  runHeroSlideshow('.hero-slide', 3000, mobileHeroMotion);
   runHeroSlideshow('.hero-mobile-gallery .hmg-slide', 3000, window.matchMedia('(prefers-reduced-motion: no-preference)'));
-  runHeroSlideshow('.hero-slide-pc', 4000, desktopHeroMotion);
+  runHeroSlideshow('.hero-slide-pc', 3000, desktopHeroMotion);
 
   /* PORTFOLIO MARQUEE - 흐르는 무한 루프 + 중앙 확대 + 스와이프로 넘기기 */
   (function() {
