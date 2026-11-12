@@ -142,3 +142,5 @@
 @keyframes bp-type-reveal{from{opacity:0}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){.branch-prep .bp-type-char{animation:none;opacity:1}}
 @media print{.branch-prep .bp-type-char{animation:none;opacity:1}}
+/* Readable small print on the light reading column (contrast fix, 2026-11-12) */
+.branch-prep .bp-local-copy .bp-small{color:#5a6474}
