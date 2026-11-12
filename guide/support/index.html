@@ -23,13 +23,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Do+Hyeon&display=swap" rel="stylesheet" />
 
-  <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
-  <script type="text/javascript">
-    if (!wcs_add) var wcs_add = {};
-    wcs_add["wa"] = "s_142bb34fca15";
-    if (!_nasa) var _nasa = {};
-    if (window.wcs) { wcs.inflow(); wcs_do(); }
+  <script>
+    var wcs_add = window.wcs_add || {};
+    var _nasa = window._nasa || {};
+    function startNaverSearchMeasurement() {
+      wcs_add["wa"] = "s_142bb34fca15";
+      if (window.wcs) { wcs.inflow(); wcs_do(); }
+    }
   </script>
+  <script defer src="https://wcs.naver.net/wcslog.js" onload="startNaverSearchMeasurement()"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HCPV87VR4G"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
