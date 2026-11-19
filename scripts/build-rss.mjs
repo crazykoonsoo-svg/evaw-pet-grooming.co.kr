@@ -13,7 +13,7 @@ const decode = (s) => s
   .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(parseInt(d, 10)))
   .replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>')
   .replace(/&nbsp;/g, ' ').replace(/&middot;/g, '·').replace(/&rarr;/g, '→').replace(/&amp;/g, '&');
-const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const esc = (s) => String(s).replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const attr = (tag, name) => {
   const m = tag.match(new RegExp(name + '\\s*=\\s*(["\'])([\\s\\S]*?)\\1', 'i'));
   return m ? decode(m[2]) : '';
@@ -23,6 +23,18 @@ const metaContent = (html, key, value) => {
     if (attr(tag, key).toLowerCase() === value.toLowerCase()) return attr(tag, 'content').trim();
   }
   return '';
+};
+
+const rssBody = (html, section, link) => {
+  const content = html.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i)?.[1]
+    || (section === 'guide' && html.match(/<section\b[^>]*aria-label=["']가이드 본문["'][^>]*>([\s\S]*?)<\/section>/i)?.[1]);
+  return content?.trim()
+    .replace(/[^\S\n]+$/gm, '')
+    .replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi, '')
+    .replace(/\s(src|href)=(["'])(.*?)\2/gi, (attribute, name, quote, value) => {
+      if (/^[a-z][a-z\d+.-]*:/i.test(value) || value.startsWith('#')) return attribute;
+      return ` ${name}=${quote}${esc(new URL(decode(value), link).href)}${quote}`;
+    });
 };
 
 // 사이트맵 lastmod (발행일이 없는 글의 대체 날짜)
@@ -56,7 +68,7 @@ for (const [section, category] of Object.entries(SECTIONS)) {
     const link = (canonTag && attr(canonTag, 'href')) || SITE + path;
     const title = decode((html.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1] || slug)
       .replace(/\s+/g, ' ').replace(/\s*\|\s*(EVAWPET|Evaw Pet|이바우펫)[^|]*$/, '').trim();
-    const description = metaContent(html, 'name', 'description');
+    const description = rssBody(html, section, link) || metaContent(html, 'name', 'description');
     let pub = metaContent(html, 'property', 'article:published_time');
     if (!pub) {
       for (const m of html.matchAll(/<script[^>]*application\/ld\+json[^>]*>([\s\S]*?)<\/script>/gi)) {
